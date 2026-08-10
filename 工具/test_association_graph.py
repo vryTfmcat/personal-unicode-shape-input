@@ -15,6 +15,7 @@ def main() -> None:
     assert len(graph["characters"]) == 2000
     assert len(graph["letters"]) == 26
     assert len(graph["pairs"]) == 676
+    assert all(len(item["machineCode"]) == 4 and len(item["shapeSuffix"]) == 2 for item in graph["characters"])
     assert {item["key"] for item in graph["letters"]} == set(LETTERS)
     assert next(item for item in graph["letters"] if item["key"] == "v")["meanings"] == ["危险"]
     assert "完美" in next(item for item in graph["letters"] if item["key"] == "r")["meanings"]
@@ -35,4 +36,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

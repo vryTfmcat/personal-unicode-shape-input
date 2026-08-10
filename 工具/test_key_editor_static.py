@@ -23,7 +23,7 @@ def main() -> None:
     thread.start()
     try:
         base = f"http://127.0.0.1:{server.server_port}"
-        for relative in ("index.html", "styles.css", "app.js", "data/initial-data.json"):
+        for relative in ("index.html", "styles.css", "app.js", "association.js", "data/initial-data.json"):
             with urllib.request.urlopen(f"{base}/{relative}", timeout=5) as response:
                 assert response.status == 200
                 assert response.read()

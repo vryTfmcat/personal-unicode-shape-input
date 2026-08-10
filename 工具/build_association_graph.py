@@ -13,6 +13,7 @@ from pathlib import Path
 
 PROJECT = Path(__file__).resolve().parents[1]
 SELECTION = PROJECT / "数据" / "Unicode精选" / "输出" / "unicode-17-v1-2000.tsv"
+ALL_CODES = PROJECT / "数据" / "Unicode全码表" / "unicode-17-全字符编码.tsv"
 OUTPUT = PROJECT / "数据" / "联想图谱" / "association-graph.json"
 LETTERS = "abcdefghijklmnopqrstuvwxyz"
 MAX_SUGGESTIONS = 500
@@ -85,8 +86,14 @@ def association_for(row: dict[str, str]) -> str | None:
     return None
 
 
-def character_record(row: dict[str, str]) -> dict[str, object]:
+def read_machine_codes() -> dict[str, str]:
+    with ALL_CODES.open(encoding="utf-8-sig", newline="") as handle:
+        return {row["char"]: row["input_code"] for row in csv.DictReader(handle, delimiter="\t")}
+
+
+def character_record(row: dict[str, str], machine_codes: dict[str, str]) -> dict[str, object]:
     cp = row["codepoint"]
+    machine_code = machine_codes[row["char"]]
     return {
         "id": "u-" + cp[2:].lower(),
         "char": row["char"],
@@ -95,12 +102,15 @@ def character_record(row: dict[str, str]) -> dict[str, object]:
         "block": row["block"],
         "shapeTags": [item for item in row.get("shape_hints", "").split(",") if item],
         "selectionRank": int(row["rank"]),
+        "machineCode": machine_code,
+        "shapeSuffix": machine_code[-2:],
     }
 
 
 def build() -> dict[str, object]:
     rows = read_selection()
-    characters = [character_record(row) for row in rows]
+    machine_codes = read_machine_codes()
+    characters = [character_record(row, machine_codes) for row in rows]
     character_ids = {item["char"]: item["id"] for item in characters}
 
     letters = [
@@ -229,4 +239,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

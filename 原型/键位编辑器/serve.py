@@ -10,6 +10,7 @@ import json
 import os
 import re
 import shutil
+import sys
 import tempfile
 import threading
 import time
@@ -21,6 +22,10 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parent
 PROJECT = ROOT.parents[1]
+TOOLS = PROJECT / "工具"
+if str(TOOLS) not in sys.path:
+    sys.path.insert(0, str(TOOLS))
+from sync_association_entities import sync as sync_association_entities  # noqa: E402
 GRAPH_PATH = PROJECT / "数据" / "联想图谱" / "association-graph.json"
 BACKUP_DIR = PROJECT / "数据" / "联想图谱" / "备份"
 LETTERS = "abcdefghijklmnopqrstuvwxyz"
@@ -91,11 +96,12 @@ def validate_graph(graph: Any) -> dict[str, Any]:
 
 
 class GraphStore:
-    def __init__(self, path: Path = GRAPH_PATH, backup_dir: Path = BACKUP_DIR) -> None:
+    def __init__(self, path: Path = GRAPH_PATH, backup_dir: Path = BACKUP_DIR, entity_project: Path | None = None) -> None:
         self.path = path
         self.backup_dir = backup_dir
         self.lock = threading.RLock()
         self.last_backup = 0.0
+        self.entity_project = entity_project
 
     def read(self) -> tuple[dict[str, Any], str]:
         with self.lock:
@@ -113,6 +119,10 @@ class GraphStore:
             self.backup_dir.mkdir(parents=True, exist_ok=True)
             stamp = datetime.now().strftime("%Y%m%d-%H%M%S-%f")
             target = self.backup_dir / f"association-graph.{stamp}.json"
+            counter = 1
+            while target.exists():
+                target = self.backup_dir / f"association-graph.{stamp}-{counter:02d}.json"
+                counter += 1
             shutil.copy2(self.path, target)
             self.last_backup = now
             backups = sorted(self.backup_dir.glob("association-graph.*.json"), key=lambda item: item.name)
@@ -142,6 +152,8 @@ class GraphStore:
             finally:
                 if os.path.exists(temp_name):
                     os.unlink(temp_name)
+            if self.entity_project is not None:
+                sync_association_entities(validated, self.entity_project)
             return revision_for(data)
 
 
@@ -197,6 +209,8 @@ def handler_factory(store: GraphStore, directory: Path = ROOT):
                     self._json(500, {"error": str(error)})
             except (ValueError, GraphValidationError) as error:
                 self._json(400, {"error": str(error)})
+            except OSError as error:
+                self._json(500, {"error": str(error)})
 
         def do_POST(self) -> None:  # noqa: N802
             if self.path != "/api/association-graph/snapshot":
@@ -214,7 +228,7 @@ def handler_factory(store: GraphStore, directory: Path = ROOT):
 
 def main() -> None:
     port = 8765
-    store = GraphStore()
+    store = GraphStore(entity_project=PROJECT)
     handler = handler_factory(store)
     try:
         server = http.server.ThreadingHTTPServer(("127.0.0.1", port), handler)
@@ -234,4 +248,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
