@@ -21,6 +21,7 @@ from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_VAULT_ROOT = PROJECT_ROOT.parents[1]
+PROJECT_SOURCE_PREFIX = "30_项目/个人Unicode音型输入法/"
 
 SOURCE_GROUPS = (
     (
@@ -49,6 +50,15 @@ SOURCE_GROUPS = (
         Path("90_旧库冷归档/Unicode原库_迁移前快照/茂ܜ/词汇"),
     ),
 )
+
+
+def resolve_source(project_root: Path, vault_root: Path, source: str) -> Path:
+    """Resolve project-generated sources inside this checkout, even in a clean clone."""
+    normalized = source.replace("\\", "/")
+    if normalized.startswith(PROJECT_SOURCE_PREFIX):
+        return project_root / normalized[len(PROJECT_SOURCE_PREFIX):]
+    candidate = Path(source)
+    return candidate if candidate.is_absolute() else vault_root / candidate
 
 REQUIRED_FIELDS = {
     "id",
@@ -342,7 +352,7 @@ def validate_entities(project_root: Path, vault_root: Path) -> tuple[list[dict[s
         if not record["sources"]:
             errors.append(f"{label}：sources 不能为空")
         for source in record["sources"]:
-            if not (vault_root / source).is_file():
+            if not resolve_source(project_root, vault_root, str(source)).is_file():
                 errors.append(f"{label}：来源不存在：{source}")
         if record["type"] in {"character", "sequence"}:
             expected = codepoints(str(record["display"]))
@@ -421,7 +431,7 @@ def load_hieroglyph_block(vault_root: Path) -> tuple[list[dict[str, Any]], list[
         if code != row["prefix"] + row["main_key"] + row["state_key"]:
             errors.append(f"{label}：input_code 与 main_key/state_key 不一致")
         source = row["source"]
-        if not (vault_root / source).is_file():
+        if not resolve_source(PROJECT_ROOT, vault_root, source).is_file():
             errors.append(f"{label}：来源不存在：{source}")
         if row["status"] not in {"machine-initial-v3", "reviewed"}:
             errors.append(f"{label}：status 必须为 machine-initial-v3 或 reviewed")
@@ -474,7 +484,7 @@ def load_odia_block(vault_root: Path) -> tuple[list[dict[str, Any]], list[str]]:
         if not is_valid_input_code(code) or len(code) != 4:
             errors.append(f"{label}：input_code 必须为四个小写字母")
         source = row["source"]
-        if not (vault_root / source).is_file():
+        if not resolve_source(PROJECT_ROOT, vault_root, source).is_file():
             errors.append(f"{label}：来源不存在：{source}")
         if row["status"] not in {"machine-initial-v1", "reviewed"}:
             errors.append(f"{label}：status 必须为 machine-initial-v1 或 reviewed")
@@ -537,7 +547,7 @@ def load_additional_blocks(vault_root: Path) -> tuple[list[dict[str, Any]], list
             if not is_valid_input_code(code) or len(code) != 4:
                 errors.append(f"{label}：input_code 必须为四个小写字母")
             source = row["source"]
-            if not (vault_root / source).is_file():
+            if not resolve_source(PROJECT_ROOT, vault_root, source).is_file():
                 errors.append(f"{label}：来源不存在：{source}")
             if row["status"] not in {"machine-initial-v1", "reviewed"}:
                 errors.append(f"{label}：status 必须为 machine-initial-v1 或 reviewed")
@@ -599,7 +609,7 @@ def load_all_unicode_table(vault_root: Path) -> tuple[list[dict[str, Any]], list
         code_counts[code] += 1
         source = row["source"]
         if source not in source_exists:
-            source_exists[source] = (vault_root / source).is_file()
+            source_exists[source] = resolve_source(PROJECT_ROOT, vault_root, source).is_file()
         if not source_exists[source]:
             errors.append(f"{label}：来源不存在：{source}")
         if row["status"] not in {"managed-existing", "manual-anchor", "machine-balanced-v1", "reviewed"}:

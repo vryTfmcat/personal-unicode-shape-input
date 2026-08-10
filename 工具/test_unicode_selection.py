@@ -19,7 +19,13 @@ def read_tsv(name: str) -> list[dict[str, str]]:
 class UnicodeSelectionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.broad = read_tsv("unicode-17-全量精选.tsv")
+        broad_path = OUTPUT / "unicode-17-全量精选.tsv"
+        if broad_path.is_file():
+            cls.broad = read_tsv("unicode-17-全量精选.tsv")
+        else:
+            from build_unicode_selection import build_records, record_row
+            records, _counts = build_records(UCD, set())
+            cls.broad = [record_row(record) for record in records]
         cls.v1 = read_tsv("unicode-17-v1-2000.tsv")
 
     def test_expected_counts_and_unique_codepoints(self) -> None:

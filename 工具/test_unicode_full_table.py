@@ -4,9 +4,10 @@
 from __future__ import annotations
 
 import re
+import tempfile
 from pathlib import Path
 
-from build_unicode_full_table import OUTPUT_DIR, collect
+from build_unicode_full_table import OUTPUT_DIR, build, collect
 
 
 ENTRY = re.compile(r"^U\+([0-9A-F]{4,6})\t", re.MULTILINE)
@@ -26,8 +27,17 @@ def main() -> int:
         found += len(codepoints)
         previous = max(previous, codepoints[-1])
     assert found == expected_total
-    odia = OUTPUT_DIR / "plane-00" / "block-u0b00-u0b7f-oriya.md"
+    odia = OUTPUT_DIR / "plane-00-Basic Multilingual Plane" / "block-u0b00-u0b7f-oriya.md"
     assert "U+0B09\tଉ" in odia.read_text(encoding="utf-8")
+    with tempfile.TemporaryDirectory() as temporary:
+        regenerated = Path(temporary) / "unicode全字符"
+        result = build(regenerated)
+        assert result["characters"] == expected_total
+        assert result["block_notes"] == len(grouped)
+        assert result["plane_folders"] == 4
+        assert (regenerated / "Unicode全字符表.md").is_file()
+        rebuilt_odia = regenerated / "plane-00-Basic Multilingual Plane" / "block-u0b00-u0b7f-oriya.md"
+        assert "U+0B09\tଉ" in rebuilt_odia.read_text(encoding="utf-8")
     print(f"unicode full table tests passed: {found} characters in {len(files)} blocks")
     return 0
 
