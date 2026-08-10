@@ -1,0 +1,27 @@
+# Python and local runtime state
+__pycache__/
+*.py[cod]
+*.log
+*.tmp
+
+# Regenerated Unicode tables and editor payloads
+数据/unicode全字符/
+数据/Unicode全码表/*.tsv
+数据/Unicode精选/输出/*
+!数据/Unicode精选/输出/unicode-17-v1-2000.tsv
+!数据/Unicode精选/输出/unicode-17-v1-2000预览.md
+原型/键位编辑器/data/initial-data.json
+
+# Generated dictionaries, reports, and recoverable local snapshots
+原型/rime/*.dict.yaml
+原型/rime/备份/
+来源/来源清单.md
+来源/构建报告.md
+数据/联想图谱/备份/
+原型/键位编辑器/backups/
+
+# Editor and OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+

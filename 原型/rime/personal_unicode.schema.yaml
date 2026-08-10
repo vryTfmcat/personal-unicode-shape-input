@@ -1,0 +1,35 @@
+# Rime schema for the personal Unicode input method (2 to 4 letter codes).
+schema:
+  schema_id: personal_unicode
+  name: 个人 Unicode 音型
+  version: "0.1"
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - table_translator
+
+speller:
+  alphabet: abcdefghijklmnopqrstuvwxyz
+  max_code_length: 4
+  auto_select: true
+
+translator:
+  dictionary: personal_unicode
+  enable_sentence: false
+  enable_completion: false
+  enable_user_dict: false

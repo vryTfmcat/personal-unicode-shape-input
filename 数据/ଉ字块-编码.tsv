@@ -1,0 +1,92 @@
+char	codepoint	unicode_name	category	prefix	visual_cluster	main_key	main_shape	preferred_state_key	state_cluster	state_key	state_shape	input_code	classification_reason	rebalanced	cluster_distance	aspect	density	source	status	algorithm
+ଁ	U+0B01	ORIYA SIGN CANDRABINDU	Mn	bo	3	i	细柱	m	1	m	重复多部件	boim	奥里亚视觉聚类C3;状态组S1	false	0.232792	0.5856	0.1123	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଂ	U+0B02	ORIYA SIGN ANUSVARA	Mc	bo	14	f	人物轮廓	m	0	m	重复多部件	bofm	奥里亚视觉聚类C14;状态组S0	false	0.264041	1.3077	0.1012	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଃ	U+0B03	ORIYA SIGN VISARGA	Mc	bo	14	f	人物轮廓	m	1	s	对称	bofs	奥里亚视觉聚类C14;状态组S1	true	0.370656	1.3165	0.1906	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଅ	U+0B05	ORIYA LETTER A	Lo	bo	12	k	绳结	s	1	s	对称	boks	奥里亚视觉聚类C12;状态组S1	false	0.379294	0.9367	0.3122	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଆ	U+0B06	ORIYA LETTER AA	Lo	bo	2	y	分叉翼形	s	1	s	对称	boys	奥里亚视觉聚类C2;状态组S1	false	1.309204	1.1899	0.3212	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଇ	U+0B07	ORIYA LETTER I	Lo	bo	8	m	复合	s	0	s	对称	boms	奥里亚视觉聚类C8;状态组S0	false	0.107310	1.0506	0.3078	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଈ	U+0B08	ORIYA LETTER II	Lo	bo	8	m	复合	s	0	s	对称	boms	奥里亚视觉聚类C8;状态组S0	false	0.294568	1.0380	0.3225	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଉ	U+0B09	ORIYA LETTER U	Lo	bo	4	k	绳结	i	0	i	内含	boki	用户锚点：ଉ=boki	false	0.717900	1.0253	0.2918	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଊ	U+0B0A	ORIYA LETTER UU	Lo	bo	8	m	复合	s	1	g	缺口开放	bomg	奥里亚视觉聚类C8;状态组S1	true	0.363856	1.0506	0.2910	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଋ	U+0B0B	ORIYA LETTER VOCALIC R	Lo	bo	6	z	阶梯锯齿	s	1	s	对称	bozs	奥里亚视觉聚类C6;状态组S1	false	0.266796	1.0380	0.2842	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଌ	U+0B0C	ORIYA LETTER VOCALIC L	Lo	bo	16	d	点状	s	0	x	穿过交叠	bodx	奥里亚视觉聚类C16;状态组S0	true	0.466966	0.7975	0.2954	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଏ	U+0B0F	ORIYA LETTER E	Lo	bo	12	k	绳结	s	1	s	对称	boks	奥里亚视觉聚类C12;状态组S1	false	0.500718	0.9103	0.2362	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଐ	U+0B10	ORIYA LETTER AI	Lo	bo	18	p	螺旋回环	s	1	s	对称	bops	奥里亚视觉聚类C18;状态组S1	false	0.507857	0.9072	0.2726	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଓ	U+0B13	ORIYA LETTER O	Lo	bo	4	n	成列成排	s	1	s	对称	bons	奥里亚视觉聚类C4;状态组S1	false	0.434631	0.7222	0.2663	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଔ	U+0B14	ORIYA LETTER AU	Lo	bo	0	x	交叉	s	1	o	外包	boxo	奥里亚视觉聚类C0;状态组S1	true	0.521729	0.8571	0.2900	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+କ	U+0B15	ORIYA LETTER KA	Lo	bo	7	r	放射星芒	s	0	x	穿过交叠	borx	奥里亚视觉聚类C7;状态组S0	true	0.082605	0.9487	0.2860	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଖ	U+0B16	ORIYA LETTER KHA	Lo	bo	11	w	波浪流线	s	0	s	对称	bows	奥里亚视觉聚类C11;状态组S0	false	0.287506	0.9620	0.3286	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଗ	U+0B17	ORIYA LETTER GA	Lo	bo	11	w	波浪流线	s	0	s	对称	bows	奥里亚视觉聚类C11;状态组S0	false	0.109548	0.9620	0.3086	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଘ	U+0B18	ORIYA LETTER GHA	Lo	bo	11	w	波浪流线	s	0	s	对称	bows	奥里亚视觉聚类C11;状态组S0	false	0.232010	0.9747	0.2992	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଙ	U+0B19	ORIYA LETTER NGA	Lo	bo	6	z	阶梯锯齿	s	1	s	对称	bozs	奥里亚视觉聚类C6;状态组S1	false	0.322403	1.0253	0.2708	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଚ	U+0B1A	ORIYA LETTER CA	Lo	bo	5	g	动物有机体	s	0	s	对称	bogs	奥里亚视觉聚类C5;状态组S0	false	0.056428	0.9241	0.2572	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଛ	U+0B1B	ORIYA LETTER CHA	Lo	bo	9	o	圆环	s	0	f	实心高填充	boof	奥里亚视觉聚类C9;状态组S0	true	0.801460	0.9747	0.3513	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଜ	U+0B1C	ORIYA LETTER JA	Lo	bo	7	r	放射星芒	s	1	s	对称	bors	奥里亚视觉聚类C7;状态组S1	false	0.128941	0.9241	0.2866	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଝ	U+0B1D	ORIYA LETTER JHA	Lo	bo	6	z	阶梯锯齿	s	1	s	对称	bozs	奥里亚视觉聚类C6;状态组S1	false	0.485153	0.9367	0.2882	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଞ	U+0B1E	ORIYA LETTER NYA	Lo	bo	4	n	成列成排	s	1	s	对称	bons	奥里亚视觉聚类C4;状态组S1	false	0.649694	0.9367	0.3645	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଟ	U+0B1F	ORIYA LETTER TTA	Lo	bo	5	g	动物有机体	s	0	s	对称	bogs	奥里亚视觉聚类C5;状态组S0	false	0.106571	0.9367	0.2672	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଠ	U+0B20	ORIYA LETTER TTHA	Lo	bo	0	x	交叉	s	1	o	外包	boxo	奥里亚视觉聚类C0;状态组S1	true	0.356995	0.9241	0.2374	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଡ	U+0B21	ORIYA LETTER DDA	Lo	bo	13	v	开口V形	s	1	s	对称	bovs	奥里亚视觉聚类C13;状态组S1	false	0.259382	0.9367	0.2657	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଢ	U+0B22	ORIYA LETTER DDHA	Lo	bo	7	r	放射星芒	s	0	x	穿过交叠	borx	奥里亚视觉聚类C7;状态组S0	true	0.221764	0.8795	0.2786	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଣ	U+0B23	ORIYA LETTER NNA	Lo	bo	9	o	圆环	s	0	f	实心高填充	boof	奥里亚视觉聚类C9;状态组S0	true	0.297744	0.9367	0.3288	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ତ	U+0B24	ORIYA LETTER TA	Lo	bo	5	g	动物有机体	s	0	s	对称	bogs	奥里亚视觉聚类C5;状态组S0	false	0.103663	0.9241	0.2637	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଥ	U+0B25	ORIYA LETTER THA	Lo	bo	12	k	绳结	s	1	s	对称	boks	奥里亚视觉聚类C12;状态组S1	false	0.272402	0.9114	0.2857	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଦ	U+0B26	ORIYA LETTER DA	Lo	bo	5	g	动物有机体	s	1	g	缺口开放	bogg	奥里亚视觉聚类C5;状态组S1	true	0.133896	0.9359	0.2385	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଧ	U+0B27	ORIYA LETTER DHA	Lo	bo	12	k	绳结	s	0	g	缺口开放	bokg	奥里亚视觉聚类C12;状态组S0	true	0.375021	0.9241	0.2743	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ନ	U+0B28	ORIYA LETTER NA	Lo	bo	13	v	开口V形	s	1	s	对称	bovs	奥里亚视觉聚类C13;状态组S1	false	0.248486	0.9367	0.2576	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ପ	U+0B2A	ORIYA LETTER PA	Lo	bo	10	t	三角尖形	i	0	i	内含	boti	奥里亚视觉聚类C10;状态组S0	false	0.200347	0.9494	0.2873	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଫ	U+0B2B	ORIYA LETTER PHA	Lo	bo	18	p	螺旋回环	i	0	i	内含	bopi	奥里亚视觉聚类C18;状态组S0	false	0.666176	1.1772	0.2754	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ବ	U+0B2C	ORIYA LETTER BA	Lo	bo	5	g	动物有机体	s	1	g	缺口开放	bogg	奥里亚视觉聚类C5;状态组S1	true	0.097490	0.9359	0.2520	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଭ	U+0B2D	ORIYA LETTER BHA	Lo	bo	8	m	复合	s	0	s	对称	boms	奥里亚视觉聚类C8;状态组S0	false	0.184062	1.0253	0.3021	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ମ	U+0B2E	ORIYA LETTER MA	Lo	bo	11	w	波浪流线	s	0	s	对称	bows	奥里亚视觉聚类C11;状态组S0	false	0.172343	0.9620	0.2607	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଯ	U+0B2F	ORIYA LETTER YA	Lo	bo	11	w	波浪流线	i	1	i	内含	bowi	奥里亚视觉聚类C11;状态组S1	false	0.386840	0.9873	0.3147	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ର	U+0B30	ORIYA LETTER RA	Lo	bo	6	z	阶梯锯齿	s	1	s	对称	bozs	奥里亚视觉聚类C6;状态组S1	false	0.243738	1.0127	0.2840	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଲ	U+0B32	ORIYA LETTER LA	Lo	bo	8	m	复合	s	0	s	对称	boms	奥里亚视觉聚类C8;状态组S0	false	0.226655	1.0506	0.2975	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଳ	U+0B33	ORIYA LETTER LLA	Lo	bo	7	r	放射星芒	s	0	x	穿过交叠	borx	奥里亚视觉聚类C7;状态组S0	true	0.114805	0.9487	0.2805	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଵ	U+0B35	ORIYA LETTER VA	Lo	bo	7	r	放射星芒	s	0	x	穿过交叠	borx	奥里亚视觉聚类C7;状态组S0	true	0.176348	0.9359	0.2745	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଶ	U+0B36	ORIYA LETTER SHA	Lo	bo	9	o	圆环	s	0	f	实心高填充	boof	奥里亚视觉聚类C9;状态组S0	true	0.329959	0.9241	0.3279	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଷ	U+0B37	ORIYA LETTER SSA	Lo	bo	10	t	三角尖形	i	0	i	内含	boti	奥里亚视觉聚类C10;状态组S0	false	0.343669	0.9494	0.3478	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ସ	U+0B38	ORIYA LETTER SA	Lo	bo	10	t	三角尖形	s	1	s	对称	bots	奥里亚视觉聚类C10;状态组S1	false	0.244036	0.9259	0.2989	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ହ	U+0B39	ORIYA LETTER HA	Lo	bo	13	v	开口V形	s	1	s	对称	bovs	奥里亚视觉聚类C13;状态组S1	false	0.304151	0.9012	0.2662	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+଼	U+0B3C	ORIYA SIGN NUKTA	Mn	bo	17	j	钩弯	s	0	s	对称	bojs	奥里亚视觉聚类C17;状态组S0	false	0.268233	0.8333	0.0884	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଽ	U+0B3D	ORIYA SIGN AVAGRAHA	Lo	bo	3	i	细柱	s	0	s	对称	bois	奥里亚视觉聚类C3;状态组S0	false	0.395370	0.7067	0.2010	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ା	U+0B3E	ORIYA VOWEL SIGN AA	Mc	bo	2	y	分叉翼形	s	1	s	对称	boys	奥里亚视觉聚类C2;状态组S1	false	0.602414	1.0897	0.1345	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ି	U+0B3F	ORIYA VOWEL SIGN I	Mn	bo	1	l	线条	m	0	s	对称	bols	奥里亚视觉聚类C1;状态组S0	true	0.087714	0.7053	0.1097	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୀ	U+0B40	ORIYA VOWEL SIGN II	Mc	bo	2	y	分叉翼形	s	0	z	层叠错列	boyz	奥里亚视觉聚类C2;状态组S0	true	0.358467	1.1923	0.1283	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୁ	U+0B41	ORIYA VOWEL SIGN U	Mn	bo	13	v	开口V形	m	0	m	重复多部件	bovm	奥里亚视觉聚类C13;状态组S0	false	0.327327	0.8571	0.1490	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୂ	U+0B42	ORIYA VOWEL SIGN UU	Mn	bo	13	v	开口V形	m	0	m	重复多部件	bovm	奥里亚视觉聚类C13;状态组S0	false	0.313925	0.8824	0.1206	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୃ	U+0B43	ORIYA VOWEL SIGN VOCALIC R	Mn	bo	1	l	线条	m	0	s	对称	bols	奥里亚视觉聚类C1;状态组S0	true	0.256833	0.7976	0.1215	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୄ	U+0B44	ORIYA VOWEL SIGN VOCALIC RR	Mn	bo	0	x	交叉	s	0	s	对称	boxs	奥里亚视觉聚类C0;状态组S0	false	0.271341	0.7738	0.1223	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+େ	U+0B47	ORIYA VOWEL SIGN E	Mc	bo	14	f	人物轮廓	m	1	s	对称	bofs	奥里亚视觉聚类C14;状态组S1	true	0.279063	1.4810	0.1726	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୈ	U+0B48	ORIYA VOWEL SIGN AI	Mc	bo	14	f	人物轮廓	m	0	m	重复多部件	bofm	奥里亚视觉聚类C14;状态组S0	false	0.200703	1.7755	0.1395	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୋ	U+0B4B	ORIYA VOWEL SIGN O	Mc	bo	3	i	细柱	s	0	s	对称	bois	奥里亚视觉聚类C3;状态组S0	false	0.363949	2.4684	0.1569	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୌ	U+0B4C	ORIYA VOWEL SIGN AU	Mc	bo	14	f	人物轮廓	m	0	m	重复多部件	bofm	奥里亚视觉聚类C14;状态组S0	false	0.231861	1.9898	0.1471	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୍	U+0B4D	ORIYA SIGN VIRAMA	Mn	bo	0	x	交叉	s	0	s	对称	boxs	奥里亚视觉聚类C0;状态组S0	false	0.259498	0.7738	0.0890	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୕	U+0B55	ORIYA SIGN OVERLINE	Mn	bo	1	l	线条	m	0	s	对称	bols	奥里亚视觉聚类C1;状态组S0	true	0.135145	0.6915	0.0979	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୖ	U+0B56	ORIYA AI LENGTH MARK	Mn	bo	1	l	线条	m	0	s	对称	bols	奥里亚视觉聚类C1;状态组S0	true	0.111224	0.6804	0.1228	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୗ	U+0B57	ORIYA AU LENGTH MARK	Mc	bo	1	l	线条	m	1	m	重复多部件	bolm	奥里亚视觉聚类C1;状态组S1	false	0.313088	0.8763	0.1560	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଡ଼	U+0B5C	ORIYA LETTER RRA	Lo	bo	16	d	点状	s	1	s	对称	bods	奥里亚视觉聚类C16;状态组S1	false	0.204510	0.7708	0.2349	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ଢ଼	U+0B5D	ORIYA LETTER RHA	Lo	bo	16	d	点状	s	1	s	对称	bods	奥里亚视觉聚类C16;状态组S1	false	0.226321	0.7604	0.2577	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୟ	U+0B5F	ORIYA LETTER YYA	Lo	bo	10	t	三角尖形	i	0	i	内含	boti	奥里亚视觉聚类C10;状态组S0	false	0.580739	0.9762	0.2940	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୠ	U+0B60	ORIYA LETTER VOCALIC RR	Lo	bo	10	t	三角尖形	s	1	s	对称	bots	奥里亚视觉聚类C10;状态组S1	false	0.400928	0.9545	0.2610	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୡ	U+0B61	ORIYA LETTER VOCALIC LL	Lo	bo	18	p	螺旋回环	s	1	s	对称	bops	奥里亚视觉聚类C18;状态组S1	false	0.373350	0.6632	0.2668	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୢ	U+0B62	ORIYA VOWEL SIGN VOCALIC L	Mn	bo	2	y	分叉翼形	s	1	s	对称	boys	奥里亚视觉聚类C2;状态组S1	false	0.828945	0.7927	0.1098	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୣ	U+0B63	ORIYA VOWEL SIGN VOCALIC LL	Mn	bo	17	j	钩弯	s	0	s	对称	bojs	奥里亚视觉聚类C17;状态组S0	false	0.268091	0.7471	0.1061	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୦	U+0B66	ORIYA DIGIT ZERO	Nd	bo	6	z	阶梯锯齿	i	0	i	内含	bozi	奥里亚视觉聚类C6;状态组S0	false	0.791319	1.0781	0.2206	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୧	U+0B67	ORIYA DIGIT ONE	Nd	bo	16	d	点状	s	1	s	对称	bods	奥里亚视觉聚类C16;状态组S1	false	0.250314	0.7467	0.2526	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୨	U+0B68	ORIYA DIGIT TWO	Nd	bo	16	d	点状	s	1	s	对称	bods	奥里亚视觉聚类C16;状态组S1	false	0.283041	0.7467	0.2531	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୩	U+0B69	ORIYA DIGIT THREE	Nd	bo	2	y	分叉翼形	s	0	z	层叠错列	boyz	奥里亚视觉聚类C2;状态组S0	true	0.887212	1.2568	0.2868	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୪	U+0B6A	ORIYA DIGIT FOUR	Nd	bo	4	n	成列成排	s	1	s	对称	bons	奥里亚视觉聚类C4;状态组S1	false	0.549372	0.9200	0.2327	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୫	U+0B6B	ORIYA DIGIT FIVE	Nd	bo	18	p	螺旋回环	s	1	s	对称	bops	奥里亚视觉聚类C18;状态组S1	false	0.459600	0.8800	0.2725	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୬	U+0B6C	ORIYA DIGIT SIX	Nd	bo	9	o	圆环	s	0	f	实心高填充	boof	奥里亚视觉聚类C9;状态组S0	true	0.346218	0.9733	0.2429	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୭	U+0B6D	ORIYA DIGIT SEVEN	Nd	bo	9	o	圆环	s	1	s	对称	boos	奥里亚视觉聚类C9;状态组S1	false	0.365150	0.9600	0.2706	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୮	U+0B6E	ORIYA DIGIT EIGHT	Nd	bo	0	x	交叉	s	0	s	对称	boxs	奥里亚视觉聚类C0;状态组S0	false	0.509664	0.8889	0.1673	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୯	U+0B6F	ORIYA DIGIT NINE	Nd	bo	4	n	成列成排	s	1	s	对称	bons	奥里亚视觉聚类C4;状态组S1	false	0.542996	0.8667	0.2476	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୰	U+0B70	ORIYA ISSHAR	So	bo	17	j	钩弯	s	1	q	倾斜	bojq	奥里亚视觉聚类C17;状态组S1	true	0.621708	1.0137	0.1488	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+ୱ	U+0B71	ORIYA LETTER WA	Lo	bo	17	j	钩弯	s	0	s	对称	bojs	奥里亚视觉聚类C17;状态组S0	false	0.635392	0.8205	0.3075	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୲	U+0B72	ORIYA FRACTION ONE QUARTER	No	bo	3	i	细柱	s	0	s	对称	bois	奥里亚视觉聚类C3;状态组S0	false	0.288200	0.3846	0.2393	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୳	U+0B73	ORIYA FRACTION ONE HALF	No	bo	18	p	螺旋回环	s	1	s	对称	bops	奥里亚视觉聚类C18;状态组S1	false	0.359712	0.6795	0.2107	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୴	U+0B74	ORIYA FRACTION THREE QUARTERS	No	bo	12	k	绳结	s	1	s	对称	boks	奥里亚视觉聚类C12;状态组S1	false	0.454498	0.9615	0.2191	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୵	U+0B75	ORIYA FRACTION ONE SIXTEENTH	No	bo	3	i	细柱	s	0	s	对称	bois	奥里亚视觉聚类C3;状态组S0	false	0.248830	0.5570	0.1602	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୶	U+0B76	ORIYA FRACTION ONE EIGHTH	No	bo	17	j	钩弯	s	0	s	对称	bojs	奥里亚视觉聚类C17;状态组S0	false	0.427730	0.9241	0.2128	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1
+୷	U+0B77	ORIYA FRACTION THREE SIXTEENTHS	No	bo	15	u	容器U形	s	0	s	对称	bous	奥里亚视觉聚类C15;状态组S0	false	0.000000	1.0500	0.1973	30_项目/个人Unicode音型输入法/数据/ଉOriya Sign字块.md	machine-initial-v1	visual-balanced-odia-v1

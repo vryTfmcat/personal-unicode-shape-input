@@ -1,0 +1,4 @@
+# Append the personal Unicode schema without replacing Weasel's default schemas.
+patch:
+  "schema_list/+":
+    - schema: personal_unicode
