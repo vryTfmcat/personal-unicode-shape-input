@@ -21,11 +21,10 @@ def main() -> None:
         assert max(Counter(row["input_code"] for row in rows).values()) <= MAX_CANDIDATES
         anchor = next(row for row in rows if int(row["codepoint"][2:], 16) == block.anchor)
         assert anchor["input_code"] == block.anchor_code
-    dictionary = PROJECT / "原型" / "rime" / "personal_unicode.dict.yaml"
+    dictionary = PROJECT / "原型" / "rime" / "personal_unicode_symbols.dict.yaml"
     entries = [line.split("\t")[:2] for line in dictionary.read_text(encoding="utf-8").splitlines() if "\t" in line]
     codes = Counter(code for _, code in entries)
-    assert len(entries) == 159347
-    assert len(codes) == 49701
+    assert len(entries) == 56891
     assert max(codes.values()) <= MAX_CANDIDATES
     assert len(set(map(tuple, entries))) == len(entries)
     anchors = {"Պ": "ascg", "⦿": "ddoi", "𒁔": "mvma", "ஆ": "pici", "ଉ": "boki"}

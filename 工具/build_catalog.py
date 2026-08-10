@@ -75,6 +75,13 @@ ADDITIONAL_BLOCK_TABLES = (
 )
 ALL_UNICODE_TABLE = PROJECT_ROOT / "数据" / "Unicode全码表" / "unicode-17-全字符编码.tsv"
 ALL_UNICODE_PAGES = PROJECT_ROOT / "数据" / "Unicode全码表" / "unicode-17-前缀页.tsv"
+ASSOCIATION_GRAPH = PROJECT_ROOT / "数据" / "联想图谱" / "association-graph.json"
+RIME_DIR = PROJECT_ROOT / "原型" / "rime"
+RIME_OUTPUTS = {
+    "symbols": ("personal_unicode_symbols", RIME_DIR / "personal_unicode_symbols.dict.yaml"),
+    "han-bmp": ("personal_unicode_han_bmp", RIME_DIR / "personal_unicode_han_bmp.dict.yaml"),
+    "full": ("personal_unicode_full", RIME_DIR / "personal_unicode_full.dict.yaml"),
+}
 
 
 @dataclass(frozen=True)
@@ -352,7 +359,31 @@ def validate_entities(project_root: Path, vault_root: Path) -> tuple[list[dict[s
             if record["status"] != "active" or not is_valid_input_code(code):
                 errors.append(f"{label}：导出到 Rime 的条目必须 active 且填写 2 至 4 位码")
             codes[code].append(label)
+        aliases = record.get("input_aliases", [])
+        association_ids = record.get("association_ids", [])
+        if not isinstance(aliases, list) or not isinstance(association_ids, list):
+            errors.append(f"{label}：input_aliases 与 association_ids 必须为列表")
+            aliases = []
+        valid_aliases: list[str] = []
+        for alias in aliases:
+            alias = str(alias)
+            if not is_valid_input_code(alias):
+                errors.append(f"{label}：无效 input_aliases：{alias}")
+                continue
+            if alias == code or alias in valid_aliases:
+                continue
+            valid_aliases.append(alias)
+            if record["export_to_rime"]:
+                codes[alias].append(label + "（别名）")
+        record["catalog_origin"] = "实体主码"
         records.append(record)
+        if record["export_to_rime"] and record["status"] == "active":
+            for alias in valid_aliases:
+                alias_record = dict(record)
+                alias_record["input_code"] = alias
+                alias_record["catalog_origin"] = "实体别名"
+                alias_record["note"] = f"实体页启用别名；{record.get('note', '')}"
+                records.append(alias_record)
     collisions = {code: labels for code, labels in codes.items() if len(labels) > 1}
     return records, errors, collisions
 
@@ -586,11 +617,103 @@ def load_all_unicode_table(vault_root: Path) -> tuple[list[dict[str, Any]], list
             "sources": [source],
             "note": f"{row['status']}；{row.get('allocation', '')}",
             "catalog_origin": "Unicode全码表",
+            "unicode_block": row["block"],
         })
     for code, count in code_counts.items():
         if count > 5:
             errors.append(f"{code}：全量码表有 {count} 个候选，超过 5 个上限")
     return records, errors, len(pages)
+
+
+def load_association_aliases() -> tuple[list[dict[str, Any]], list[str]]:
+    records: list[dict[str, Any]] = []
+    errors: list[str] = []
+    if not ASSOCIATION_GRAPH.is_file():
+        return records, ["数据/联想图谱/association-graph.json：文件不存在"]
+    try:
+        graph = json.loads(ASSOCIATION_GRAPH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        return records, [f"数据/联想图谱/association-graph.json：{error}"]
+    if graph.get("version") != 1:
+        return records, ["数据/联想图谱/association-graph.json：版本必须为 1"]
+    characters = {item.get("id"): item for item in graph.get("characters", []) if isinstance(item, dict)}
+    concepts = {item.get("id"): item for item in graph.get("concepts", []) if isinstance(item, dict)}
+    pair_codes = {item.get("code") for item in graph.get("pairs", []) if isinstance(item, dict)}
+    seen: set[tuple[str, str]] = set()
+    for index, alias in enumerate(graph.get("rimeAliases", []), 1):
+        label = f"联想图谱 rimeAliases[{index}]"
+        if not isinstance(alias, dict) or not alias.get("enabled"):
+            continue
+        character = characters.get(alias.get("characterId"))
+        if not character:
+            errors.append(f"{label}：字符不存在")
+            continue
+        prefix, suffix = str(alias.get("prefix", "")), str(alias.get("suffix", ""))
+        code = prefix + suffix
+        if prefix not in pair_codes or not re.fullmatch(r"[a-z]{4}", code):
+            errors.append(f"{label}：输入码必须是已定义双字母加两位形码")
+            continue
+        display = str(character.get("char", ""))
+        if len(display) != 1:
+            errors.append(f"{label}：display 必须是单一 Unicode 标量")
+            continue
+        key = (display, code)
+        if key in seen:
+            continue
+        seen.add(key)
+        association_ids = [str(item) for item in alias.get("associationIds", [])]
+        labels = [str(concepts[item].get("label", "")) for item in association_ids if item in concepts]
+        records.append({
+            "id": str(alias.get("id", f"graph-alias-{index}")),
+            "type": "character",
+            "display": display,
+            "codepoints": [str(character.get("codepoint", f"U+{ord(display):04X}"))],
+            "input_code": code,
+            "mnemonic": "、".join(labels),
+            "shape_tags": list(character.get("shapeTags", [])),
+            "status": "active",
+            "export_to_rime": True,
+            "sources": ["30_项目/个人Unicode音型输入法/数据/联想图谱/association-graph.json"],
+            "note": "个人联想图谱启用码",
+            "catalog_origin": "联想主码" if alias.get("primary") else "联想别名",
+            "unicode_block": str(character.get("block", "")),
+            "association_ids": association_ids,
+        })
+    return records, errors
+
+
+def is_han_record(record: dict[str, Any]) -> bool:
+    block = str(record.get("unicode_block", record.get("mnemonic", "")))
+    if block:
+        return block.startswith("CJK Unified Ideographs") or block == "CJK Compatibility Ideographs"
+    display = str(record.get("display", ""))
+    if len(display) != 1:
+        return False
+    codepoint = ord(display)
+    return (
+        0x3400 <= codepoint <= 0x4DBF
+        or 0x4E00 <= codepoint <= 0x9FFF
+        or 0xF900 <= codepoint <= 0xFAFF
+    )
+
+
+def profile_records(records: list[dict[str, Any]], profile: str) -> list[dict[str, Any]]:
+    if profile == "full":
+        return list(records)
+    if profile == "symbols":
+        return [record for record in records if not is_han_record(record)]
+    if profile == "han-bmp":
+        return [record for record in records if is_han_record(record) and len(str(record.get("display", ""))) == 1 and ord(str(record["display"])) <= 0xFFFF]
+    raise ValueError(f"未知 Rime profile：{profile}")
+
+
+def record_weight(record: dict[str, Any]) -> int:
+    origin = str(record.get("catalog_origin", ""))
+    if origin in {"实体主码", "联想主码"}:
+        return 1000
+    if origin in {"实体别名", "联想别名"}:
+        return 500
+    return 1
 
 
 def deduplicate_exact_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -614,12 +737,12 @@ def collision_map(records: list[dict[str, Any]]) -> dict[str, list[str]]:
     return {code: labels for code, labels in codes.items() if len(labels) > 1}
 
 
-def rime_dictionary(records: list[dict[str, Any]]) -> str:
+def rime_dictionary(records: list[dict[str, Any]], dictionary_name: str = "personal_unicode") -> str:
     lines = [
         "# Generated by 工具/build_catalog.py. Do not edit entries here.",
         "---",
-        "name: personal_unicode",
-        'version: "0.1"',
+        f"name: {dictionary_name}",
+        'version: "0.2"',
         "sort: by_weight",
         "use_preset_vocabulary: false",
         "...",
@@ -628,13 +751,15 @@ def rime_dictionary(records: list[dict[str, Any]]) -> str:
         (record for record in records if record["export_to_rime"] and record["status"] == "active"),
         key=lambda record: (record["input_code"], record["display"]),
     )
-    lines.extend(f"{record['display']}\t{record['input_code']}\t1" for record in active)
+    lines.extend(f"{record['display']}\t{record['input_code']}\t{record_weight(record)}" for record in active)
     return "\n".join(lines) + "\n"
 
 
-def build_report(records: list[dict[str, Any]], errors: list[str], collisions: dict[str, list[str]], entity_count: int = 0, full_unicode_count: int = 0, prefix_page_count: int = 0) -> str:
+def build_report(records: list[dict[str, Any]], errors: list[str], collisions: dict[str, list[str]], entity_count: int = 0, full_unicode_count: int = 0, prefix_page_count: int = 0, profile_counts: dict[str, int] | None = None, association_count: int = 0) -> str:
     active = [record for record in records if record["export_to_rime"] and record["status"] == "active"]
-    lines = ["# 构建报告", "", f"- 已校验实体页：{entity_count}", f"- 已载入 Unicode 17 全量字符：{full_unicode_count}", f"- 前缀页：{prefix_page_count}"]
+    lines = ["# 构建报告", "", f"- 已校验实体记录：{entity_count}", f"- 已载入 Unicode 17 全量字符：{full_unicode_count}", f"- 已启用联想码：{association_count}", f"- 前缀页：{prefix_page_count}"]
+    if profile_counts:
+        lines.extend(f"- {profile} profile 条目：{count}" for profile, count in profile_counts.items())
     lines.extend([f"- 已导出 Rime 条目：{len(active)}", f"- 校验错误：{len(errors)}", f"- 重码：{len(collisions)}", ""])
     if collisions:
         lines.append("## 重码（会作为 Rime 候选显示）")
@@ -650,24 +775,34 @@ def build_report(records: list[dict[str, Any]], errors: list[str], collisions: d
     return "\n".join(lines)
 
 
-def write_outputs(vault_root: Path) -> tuple[int, int, int, int]:
+def write_outputs(vault_root: Path) -> tuple[int, int, int, int, dict[str, int]]:
     notes, counts = collect_sources(vault_root)
     (PROJECT_ROOT / "来源" / "来源清单.md").write_text(source_manifest(notes, counts), encoding="utf-8")
     records, errors, _ = validate_entities(PROJECT_ROOT, vault_root)
     unicode_records, unicode_errors, prefix_page_count = load_all_unicode_table(vault_root)
     errors.extend(unicode_errors)
-    all_records = deduplicate_exact_records(records + unicode_records)
+    association_records, association_errors = load_association_aliases()
+    errors.extend(association_errors)
+    all_records = deduplicate_exact_records(records + unicode_records + association_records)
     collisions = collision_map(all_records)
     for code, labels in collisions.items():
         if len(labels) > 5:
             errors.append(f"{code}：共有 {len(labels)} 个候选，超过单页 5 个上限")
     queue = vault_root / "80_Codex工作区" / "待确认清单" / "个人Unicode音型输入法-首批候选.md"
     queue.write_text(candidate_report(notes, counts, records), encoding="utf-8")
-    (PROJECT_ROOT / "原型" / "rime" / "personal_unicode.dict.yaml").write_text(rime_dictionary(all_records), encoding="utf-8")
-    (PROJECT_ROOT / "来源" / "构建报告.md").write_text(build_report(all_records, errors, collisions, len(records), len(unicode_records), prefix_page_count), encoding="utf-8")
+    profile_counts: dict[str, int] = {}
+    for profile, (dictionary_name, output) in RIME_OUTPUTS.items():
+        selected = deduplicate_exact_records(profile_records(all_records, profile))
+        selected_collisions = collision_map(selected)
+        for code, labels in selected_collisions.items():
+            if len(labels) > 5:
+                errors.append(f"{profile}:{code}：共有 {len(labels)} 个候选，超过单页 5 个上限")
+        output.write_text(rime_dictionary(selected, dictionary_name), encoding="utf-8")
+        profile_counts[profile] = len(selected)
+    (PROJECT_ROOT / "来源" / "构建报告.md").write_text(build_report(all_records, errors, collisions, len(records), len(unicode_records), prefix_page_count, profile_counts, len(association_records)), encoding="utf-8")
     if errors:
         raise ValueError("实体校验失败；详情见 来源/构建报告.md")
-    return len(notes), len(records), len(unicode_records), prefix_page_count
+    return len(notes), len(records), len(unicode_records), prefix_page_count, profile_counts
 
 
 def main() -> int:
@@ -679,8 +814,9 @@ def main() -> int:
     args = parser.parse_args()
     vault_root = args.vault_root.resolve()
     if args.write:
-        note_count, record_count, unicode_count, prefix_page_count = write_outputs(vault_root)
-        print(f"Wrote inventories for {note_count} source notes, validated {record_count} entity pages, and loaded {unicode_count} Unicode characters across {prefix_page_count} prefix pages.")
+        note_count, record_count, unicode_count, prefix_page_count, profile_counts = write_outputs(vault_root)
+        profiles = ", ".join(f"{name}={count}" for name, count in profile_counts.items())
+        print(f"Wrote inventories for {note_count} source notes, validated {record_count} entity records, and loaded {unicode_count} Unicode characters across {prefix_page_count} prefix pages ({profiles}).")
         return 0
     notes, counts = collect_sources(vault_root)
     print(f"Read {len(notes)} source notes: " + ", ".join(f"{group}={count}" for group, count in counts.items()))

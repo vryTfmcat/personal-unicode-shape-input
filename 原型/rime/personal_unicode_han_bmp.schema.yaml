@@ -1,7 +1,7 @@
-# Default non-Han symbol and personal-association schema.
+# Optional Plane 0 Han research schema. Normal Chinese remains in Xiaohe.
 schema:
-  schema_id: personal_unicode
-  name: 个人 Unicode 符号联想
+  schema_id: personal_unicode_han_bmp
+  name: 个人 Unicode 汉字 BMP
   version: "0.2"
 
 engine:
@@ -29,7 +29,7 @@ speller:
   auto_select: true
 
 translator:
-  dictionary: personal_unicode_symbols
+  dictionary: personal_unicode_han_bmp
   enable_sentence: false
   enable_completion: false
   enable_user_dict: false

@@ -28,6 +28,9 @@ def main() -> int:
         parsed = catalog.parse_frontmatter(page)
         assert parsed["id"] == "u-1319f"
         assert parsed["sources"] == ["example.md"]
+    assert catalog.profile_records([{"display": "○", "unicode_block": "Geometric Shapes"}], "symbols")
+    assert not catalog.profile_records([{"display": "一", "unicode_block": "CJK Unified Ideographs"}], "symbols")
+    assert catalog.profile_records([{"display": "一", "unicode_block": "CJK Unified Ideographs"}], "han-bmp")
     print("build_catalog tests passed")
     return 0
 
