@@ -16,6 +16,7 @@ def main() -> None:
     assert len({row["codepoint"] for row in rows}) == 159345
     assert len(pages) <= 676
     assert all(len(row["input_code"]) == 4 and row["input_code"].islower() for row in rows)
+    assert all(row["source"].startswith("30_项目/个人Unicode音型输入法/") for row in rows)
     counts = Counter(row["input_code"] for row in rows)
     assert max(counts.values()) <= MAX_PER_CODE
     by_cp = {int(row["codepoint"][2:], 16): row for row in rows}

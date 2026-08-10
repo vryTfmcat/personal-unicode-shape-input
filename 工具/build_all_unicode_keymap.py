@@ -21,7 +21,7 @@ from build_unicode_selection import parse_unicode_data
 
 
 PROJECT = Path(__file__).resolve().parents[1]
-VAULT = PROJECT.parents[1]
+PROJECT_VAULT_PATH = Path("30_项目/个人Unicode音型输入法")
 FULL_TABLE = PROJECT / "数据" / "unicode全字符"
 UCD = PROJECT / "数据" / "Unicode精选" / "UCD-17.0.0" / "UnicodeData.txt"
 OUTPUT_DIR = PROJECT / "数据" / "Unicode全码表"
@@ -103,7 +103,7 @@ def collect_blocks() -> list[Block]:
             start=int(match.group(2), 16),
             end=int(match.group(3), 16),
             plane=path.parent.name,
-            source=path.relative_to(VAULT).as_posix(),
+            source=(PROJECT_VAULT_PATH / path.relative_to(PROJECT)).as_posix(),
             codepoints=codepoints,
         ))
     if sum(len(block.codepoints) for block in blocks) != 159345:

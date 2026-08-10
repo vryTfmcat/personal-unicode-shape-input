@@ -1,4 +1,6 @@
 * text=auto
+.gitattributes text eol=lf
+.gitignore text eol=lf
 *.md text eol=lf
 *.py text eol=lf
 *.js text eol=lf
@@ -8,5 +10,6 @@
 *.yml text eol=lf
 *.json text eol=lf
 *.tsv text eol=lf
+*.txt text eol=lf
 *.cmd text eol=crlf
-
+.githooks/* text eol=lf

@@ -16,6 +16,13 @@ PROJECT = Path(__file__).resolve().parents[1]
 UCD_DIR = PROJECT / "数据" / "Unicode精选" / f"UCD-{UNICODE_VERSION}"
 OUTPUT_DIR = PROJECT / "数据" / "unicode全字符"
 ALLOWED_CATEGORY_PREFIXES = {"L", "M", "N", "P", "S"}
+PLANE_NAMES = {
+    0: "Basic Multilingual Plane",
+    1: "Supplementary Multilingual Plane",
+    2: "Supplementary Ideographic Plane",
+    3: "Tertiary Ideographic Plane",
+    14: "Supplementary Special-purpose Plane",
+}
 
 
 def ascii_slug(value: str) -> str:
@@ -71,6 +78,18 @@ def render_block(start: int, end: int, name: str, items: list[tuple[int, str, st
     return "\n".join(lines) + "\n"
 
 
+def render_index(grouped: dict[tuple[int, int, str], list[tuple[int, str, str]]]) -> str:
+    lines = ["# Unicode 全字符表", ""]
+    for (_start, _end, name), items in sorted(grouped.items()):
+        lines.extend([
+            f"## {name}",
+            f"有效字符数：{len(items)}",
+            " ".join(display_sample(char, category) for _cp, char, category in items),
+            "",
+        ])
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def build(output_dir: Path) -> dict[str, int]:
     if output_dir.exists() and any(output_dir.iterdir()):
         raise ValueError(f"输出目录不为空，拒绝覆盖：{output_dir}")
@@ -83,12 +102,14 @@ def build(output_dir: Path) -> dict[str, int]:
         if len(plane_set) != 1:
             raise ValueError(f"区块跨平面：{name}")
         plane = plane_set.pop()
-        plane_dir = output_dir / f"plane-{plane:02d}"
+        plane_name = PLANE_NAMES.get(plane, f"Plane {plane}")
+        plane_dir = output_dir / f"plane-{plane:02d}-{plane_name}"
         plane_dir.mkdir(exist_ok=True)
         target = plane_dir / block_filename(start, end, name)
         target.write_text(render_block(start, end, name, items), encoding="utf-8")
         files += 1
         planes.add(plane)
+    (output_dir / "Unicode全字符表.md").write_text(render_index(grouped), encoding="utf-8")
     return {"characters": total, "block_notes": files, "plane_folders": len(planes)}
 
 

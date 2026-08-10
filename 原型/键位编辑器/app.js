@@ -46,6 +46,13 @@ async function init() {
   bindStaticEvents();
   renderAll();
   $("#saveStatus").textContent = "本地草稿";
+  window.keyEditor = {
+    itemById,
+    findCharacter: (char) => state.characters.find((item) => item.char === char) || null,
+    codeCount: (code) => codeIndex.get(code) || 0,
+    characters: () => state.characters,
+  };
+  document.dispatchEvent(new CustomEvent("key-editor-ready"));
 }
 
 function applyPatch(incoming) {

@@ -4,110 +4,119 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>Unicode 音型键位编辑器</title>
+  <title>Unicode 音型联想编辑器</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="topbar">
     <div class="brand">
       <span class="brand-mark" aria-hidden="true">༳</span>
-      <div>
-        <h1>Unicode 音型键位编辑器</h1>
-        <p>拖动分区 · 微调形符 · 本地保存</p>
-      </div>
+      <div><h1>Unicode 音型联想编辑器</h1><p>中文联觉 · 双字母感受 · 字形强化</p></div>
     </div>
+    <nav class="view-tabs" aria-label="编辑器工作区">
+      <button class="view-tab active" type="button" data-view="characterView">字符与键位</button>
+      <button class="view-tab" type="button" data-view="pairView">双字母感觉</button>
+      <button class="view-tab" type="button" data-view="graphView">联想图谱</button>
+    </nav>
     <div class="top-actions">
-      <span id="saveStatus" class="save-status">本地草稿</span>
-      <button id="exportTsvButton" class="button quiet" type="button">导出 TSV</button>
-      <button id="exportButton" class="button quiet" type="button">导出 JSON</button>
-      <label class="button quiet file-button">导入 JSON<input id="importInput" type="file" accept="application/json,.json"></label>
-      <button id="resetButton" class="button danger" type="button">重置</button>
+      <span id="saveStatus" class="save-status">正在加载</span>
+      <button id="snapshotGraphButton" class="button quiet" type="button">图谱快照</button>
+      <button id="exportGraphButton" class="button quiet" type="button">导出图谱</button>
+      <label class="button quiet file-button">导入图谱<input id="importGraphInput" type="file" accept="application/json,.json"></label>
+      <details class="more-actions"><summary class="button quiet">键位数据</summary><div class="action-menu">
+        <button id="exportTsvButton" class="button quiet" type="button">导出完整 TSV</button>
+        <button id="exportButton" class="button quiet" type="button">导出键位补丁</button>
+        <label class="button quiet file-button">导入键位补丁<input id="importInput" type="file" accept="application/json,.json"></label>
+        <button id="resetButton" class="button danger" type="button">重置键位草稿</button>
+      </div></details>
     </div>
   </header>
 
-  <main class="workspace">
-    <aside class="sidebar">
-      <div class="sidebar-heading">
-        <span>字符页面</span>
-        <small>拖到页面名即可移动</small>
-      </div>
-      <label class="page-filter"><span aria-hidden="true">⌕</span><input id="pageSearchInput" type="search" placeholder="搜索前缀或区块"></label>
-      <nav id="pageNav" class="page-nav" aria-label="字符页面"></nav>
-      <div class="sidebar-note">
-        <strong>常用字符是收藏层</strong>
-        <p>拖入常用页不会改变原来的前两码；拖入其他页会换成目标页前缀，并保留后两码。</p>
-      </div>
-    </aside>
+  <section id="characterView" class="view-panel active">
+    <main class="workspace">
+      <aside class="sidebar">
+        <div class="sidebar-heading"><span>字符页面</span><small>拖到页面名即可移动</small></div>
+        <label class="page-filter"><span aria-hidden="true">⌕</span><input id="pageSearchInput" type="search" placeholder="搜索前缀或区块"></label>
+        <nav id="pageNav" class="page-nav" aria-label="字符页面"></nav>
+        <div class="sidebar-note"><strong>常用字符是收藏层</strong><p>拖入常用页不会改变原来的前两码；拖入其他页会换成目标页前缀，并保留后两码。</p></div>
+      </aside>
 
-    <section class="content">
-      <div class="page-intro">
-        <div class="page-title-row">
-          <div>
-            <div class="eyebrow"><span id="prefixBadge"></span><span id="pageCount"></span></div>
-            <h2 id="pageTitle"></h2>
-            <p id="pageDescription"></p>
+      <section class="content">
+        <div class="page-intro">
+          <div class="page-title-row"><div><div class="eyebrow"><span id="prefixBadge"></span><span id="pageCount"></span></div><h2 id="pageTitle"></h2><p id="pageDescription"></p></div>
+            <label class="block-field">存储区块 / 类别<input id="blockInput" type="text" autocomplete="off"></label>
           </div>
-          <label class="block-field">存储区块 / 类别
-            <input id="blockInput" type="text" autocomplete="off">
-          </label>
+          <details id="rulesPanel" class="rules-panel"><summary><span>本页形符规则</span><small>每个前两键可拥有独立规则；修改只影响规则说明。</small></summary>
+            <div class="rule-columns"><section><h3>第三键 · 主骨架</h3><div id="mainRules" class="rule-grid"></div></section><section><h3>第四键 · 状态</h3><div id="stateRules" class="rule-grid"></div></section></div>
+          </details>
         </div>
-        <details id="rulesPanel" class="rules-panel">
-          <summary><span>本页形符规则</span><small>每个前两键可拥有独立规则；修改只影响规则说明，不批量重编码。</small></summary>
-          <div class="rule-columns">
-            <section><h3>第三键 · 主骨架</h3><div id="mainRules" class="rule-grid"></div></section>
-            <section><h3>第四键 · 状态</h3><div id="stateRules" class="rule-grid"></div></section>
-          </div>
-        </details>
-      </div>
+        <div class="toolbar">
+          <label class="search-field"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="搜索字符、码、U+码位或名称"></label>
+          <label class="check-control"><input id="conflictOnly" type="checkbox">只看同码</label><span id="conflictSummary" class="conflict-summary"></span>
+        </div>
+        <div id="glyphGrid" class="glyph-grid" aria-live="polite"></div>
+        <div id="emptyState" class="empty-state" hidden><span>∅</span><p>这一页暂时没有符合条件的字符。</p></div>
+      </section>
 
-      <div class="toolbar">
-        <label class="search-field"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="搜索字符、码、U+码位或名称"></label>
-        <label class="check-control"><input id="conflictOnly" type="checkbox">只看同码</label>
-        <span id="conflictSummary" class="conflict-summary"></span>
-      </div>
+      <aside id="inspector" class="inspector">
+        <div id="inspectorEmpty" class="inspector-empty"><span>◌</span><p>点选一个字符，在这里微调键位。</p></div>
+        <div id="inspectorBody" hidden>
+          <div class="inspector-head"><div id="inspectorGlyph" class="inspector-glyph"></div><div><h2 id="inspectorCodepoint"></h2><p id="inspectorName"></p></div></div>
+          <div class="copy-row"><button id="copyGlyphButton" class="button primary" type="button">复制字符</button><label class="favorite-control"><input id="favoriteInput" type="checkbox">常用收藏</label></div>
+          <label class="form-field">四码<input id="codeInput" type="text" maxlength="4" spellcheck="false" autocomplete="off"><small id="codeHint"></small></label>
+          <label class="form-field">归属页面<select id="pageSelect"></select></label>
+          <div class="key-pair"><label class="form-field">第三键 · 主骨架<select id="mainKeySelect"></select></label><label class="form-field">第四键 · 状态<select id="stateKeySelect"></select></label></div>
+          <label class="form-field">备注<textarea id="noteInput" rows="4"></textarea></label>
+          <dl class="metadata"><div><dt>来源区块</dt><dd id="sourceBlock"></dd></div><div><dt>当前同码</dt><dd id="sameCodeCount"></dd></div></dl>
+        </div>
+      </aside>
+    </main>
+  </section>
 
-      <div id="glyphGrid" class="glyph-grid" aria-live="polite"></div>
-      <div id="emptyState" class="empty-state" hidden>
-        <span>∅</span><p>这一页暂时没有符合条件的字符。</p>
-      </div>
-    </section>
+  <section id="pairView" class="view-panel">
+    <main class="pair-workspace">
+      <aside class="letter-panel">
+        <div class="sidebar-heading"><span>26 个字母感觉</span><small>字母只提供背景；双字母可以产生全新含义</small></div>
+        <div id="letterList" class="letter-list"></div>
+      </aside>
+      <section class="pair-content">
+        <div class="section-heading"><div><span class="eyebrow">676 个独立感受空间</span><h2>双字母感觉矩阵</h2><p>点击任意组合，记录它带来的中文意象、情绪和联觉。</p></div>
+          <label class="search-field compact"><span>⌕</span><input id="pairSearchInput" type="search" placeholder="搜索字母、标签或描述"></label>
+        </div>
+        <div id="pairMatrix" class="pair-matrix" aria-label="双字母感觉矩阵"></div>
+      </section>
+      <aside class="pair-inspector">
+        <div id="pairInspectorEmpty" class="inspector-empty"><span>ab</span><p>选择一个字母或双字母，赋予它个人感受。</p></div>
+        <div id="pairInspectorBody" hidden></div>
+      </aside>
+    </main>
+  </section>
 
-    <aside id="inspector" class="inspector">
-      <div id="inspectorEmpty" class="inspector-empty">
-        <span>◌</span><p>点选一个字符，在这里微调键位。</p>
+  <section id="graphView" class="view-panel">
+    <main class="graph-workspace">
+      <div class="graph-toolbar">
+        <div class="segmented" role="group" aria-label="图谱视图">
+          <button class="graph-mode active" type="button" data-mode="focus">聚焦图</button>
+          <button class="graph-mode" type="button" data-mode="global">全局画布</button>
+          <button class="graph-mode" type="button" data-mode="theme">主题图</button>
+        </div>
+        <label class="search-field compact"><span>⌕</span><input id="graphSearchInput" type="search" placeholder="搜索字符、概念或双字母"></label>
+        <label id="themePickerWrap" class="theme-picker" hidden>主题<select id="themeSelect"></select></label>
+        <button id="addThemeButton" class="button quiet" type="button">新建主题</button>
+        <span id="graphSummary" class="conflict-summary"></span>
       </div>
-      <div id="inspectorBody" hidden>
-        <div class="inspector-head">
-          <div id="inspectorGlyph" class="inspector-glyph"></div>
-          <div><h2 id="inspectorCodepoint"></h2><p id="inspectorName"></p></div>
+      <div class="graph-main">
+        <div id="graphCanvasWrap" class="graph-canvas-wrap">
+          <canvas id="graphCanvas" aria-label="联想图谱画布"></canvas>
+          <div class="canvas-help">滚轮缩放 · 拖动画布 · 拖动节点保存位置 · 双击聚焦</div>
         </div>
-        <div class="copy-row">
-          <button id="copyGlyphButton" class="button primary" type="button">复制字符</button>
-          <label class="favorite-control"><input id="favoriteInput" type="checkbox">常用收藏</label>
-        </div>
-        <label class="form-field">四码
-          <input id="codeInput" type="text" maxlength="4" spellcheck="false" autocomplete="off">
-          <small id="codeHint"></small>
-        </label>
-        <label class="form-field">归属页面
-          <select id="pageSelect"></select>
-        </label>
-        <div class="key-pair">
-          <label class="form-field">第三键 · 主骨架<select id="mainKeySelect"></select></label>
-          <label class="form-field">第四键 · 状态<select id="stateKeySelect"></select></label>
-        </div>
-        <label class="form-field">备注
-          <textarea id="noteInput" rows="4"></textarea>
-        </label>
-        <dl class="metadata">
-          <div><dt>来源区块</dt><dd id="sourceBlock"></dd></div>
-          <div><dt>当前同码</dt><dd id="sameCodeCount"></dd></div>
-        </dl>
+        <aside class="graph-inspector"><div id="graphInspector"></div></aside>
       </div>
-    </aside>
-  </main>
+    </main>
+  </section>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="app.js" defer></script>
+  <script src="association.js" defer></script>
 </body>
 </html>
