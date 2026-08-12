@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *.log
 *.tmp
+发布/*.zip
+发布/*.sha256
 
 # Regenerated Unicode tables and editor payloads
 数据/unicode全字符/
@@ -24,4 +26,3 @@ __pycache__/
 .DS_Store
 Thumbs.db
 desktop.ini
-
