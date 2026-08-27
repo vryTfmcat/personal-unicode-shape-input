@@ -1,11 +1,21 @@
 @echo off
 chcp 65001 >nul
-set "BUNDLED_PYTHON=C:\Users\86137\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe"
-if exist "%BUNDLED_PYTHON%" goto bundled
-python "%~dp0serve.py"
+cd /d "%~dp0"
+set "BUNDLED_PYTHON=%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe"
+if exist "%BUNDLED_PYTHON%" (
+  "%BUNDLED_PYTHON%" serve.py
+  goto done
+)
+where py >nul 2>nul
+if not errorlevel 1 (
+  py -3 serve.py
+  goto done
+)
+where python >nul 2>nul
+if not errorlevel 1 (
+  python serve.py
+  goto done
+)
+echo 未找到 Python 3，无法启动键位编辑器。
+:done
 if errorlevel 1 pause
-goto end
-:bundled
-"%BUNDLED_PYTHON%" "%~dp0serve.py"
-if errorlevel 1 pause
-:end

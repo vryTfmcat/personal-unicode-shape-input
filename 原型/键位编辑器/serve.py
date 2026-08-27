@@ -10,6 +10,7 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 import tempfile
 import threading
@@ -32,6 +33,29 @@ LETTERS = "abcdefghijklmnopqrstuvwxyz"
 MAX_BODY = 10 * 1024 * 1024
 BACKUP_LIMIT = 50
 BACKUP_INTERVAL = 600
+INITIAL_DATA = ROOT / "data" / "initial-data.json"
+ALL_KEYMAP = PROJECT / "数据" / "Unicode全码表" / "unicode-17-全字符编码.tsv"
+
+
+def ensure_initial_data() -> None:
+    """Rebuild ignored editor artifacts after a fresh clone or project move."""
+    if INITIAL_DATA.is_file() and INITIAL_DATA.stat().st_size > 1_000_000:
+        return
+    print("检测到编辑器初始数据缺失，正在自动重建（首次约需一分钟）……", flush=True)
+    scripts: list[Path] = []
+    if not ALL_KEYMAP.is_file():
+        scripts.append(TOOLS / "build_all_unicode_keymap.py")
+    scripts.append(TOOLS / "build_key_editor_data.py")
+    try:
+        for script in scripts:
+            subprocess.run([sys.executable, str(script)], cwd=PROJECT, check=True)
+    except (OSError, subprocess.CalledProcessError) as error:
+        raise SystemExit(
+            "无法自动重建编辑器数据。请保留此窗口并安装 NumPy 与 Pillow，"
+            "或在项目目录运行：python 工具/project_tasks.py build"
+        ) from error
+    if not INITIAL_DATA.is_file():
+        raise SystemExit("初始数据重建完成但文件仍不存在，请检查磁盘空间和项目写入权限。")
 
 
 class GraphValidationError(ValueError):
@@ -227,6 +251,7 @@ def handler_factory(store: GraphStore, directory: Path = ROOT):
 
 
 def main() -> None:
+    ensure_initial_data()
     port = 8765
     store = GraphStore(entity_project=PROJECT)
     handler = handler_factory(store)

@@ -17,6 +17,11 @@ ROOT = Path(__file__).resolve().parents[1] / "原型" / "键位编辑器"
 
 
 def main() -> None:
+    launcher = (ROOT / "启动键位编辑器.cmd").read_text(encoding="utf-8")
+    server_source = (ROOT / "serve.py").read_text(encoding="utf-8")
+    assert "%USERPROFILE%" in launcher
+    assert "C:\\Users\\86137" not in launcher
+    assert "ensure_initial_data()" in server_source
     handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(ROOT))
     server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
