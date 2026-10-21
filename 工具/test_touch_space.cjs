@@ -1,0 +1,16 @@
+const assert=require('node:assert/strict');
+const C=require('../原型/键位编辑器/touch/core.js');
+const known=new Set(['u-2c2d','u-1319f','u-0061','u-0301']);
+const tile={id:'a',charId:'u-1319f'};
+let tiles=C.place([],tile,511,511);
+assert.equal(tiles[0].charId,'u-1319f');
+assert.throws(()=>C.place(tiles,{id:'b',charId:'u-2c2d'},511,511),/已有/);
+assert.throws(()=>C.place(tiles,tile,512,0),/超出/);
+tiles=C.place(tiles,tile,0,0);assert.equal(tiles.length,1);
+const layout={format:C.FORMAT,tiles,bindings:{mk68:{'r1-k3':'u-2c2d'}}};
+assert.deepEqual(C.validate(JSON.parse(JSON.stringify(layout)),known),layout);
+assert.throws(()=>C.validate({...layout,tiles:[...tiles,{...tiles[0],id:'b'}]},known),/重复/);
+assert.throws(()=>C.validate({...layout,tiles:[{...tiles[0],charId:'unknown'}]},known),/未知/);
+assert.throws(()=>C.validate({...layout,bindings:{mk68:{'r1-k3':'unknown'}}},known),/无效/);
+assert.throws(()=>C.validate({...layout,tiles:[{...tiles[0],x:Infinity}]},known),/越界/);
+console.log('PASS: bounds, collision rejection, exact identity, movement, import round trip, invalid import rejection');

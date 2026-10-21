@@ -18,10 +18,11 @@ from pathlib import Path
 
 from build_hieroglyph_block import MAIN_LABELS, STATE_LABELS
 from build_unicode_selection import parse_unicode_data
+from reviewed_shapes import REVIEWED_SHAPE_CODES, candidate_limit
 
 
 PROJECT = Path(__file__).resolve().parents[1]
-PROJECT_VAULT_PATH = Path("30_项目/个人Unicode音型输入法")
+PROJECT_VAULT_PATH = Path("70_unicode/个人Unicode音型输入法")
 FULL_TABLE = PROJECT / "数据" / "unicode全字符"
 UCD = PROJECT / "数据" / "Unicode精选" / "UCD-17.0.0" / "UnicodeData.txt"
 OUTPUT_DIR = PROJECT / "数据" / "Unicode全码表"
@@ -145,9 +146,10 @@ def prefix_candidates(name: str) -> list[str]:
 
 
 def keyword_key(name: str, mapping: tuple[tuple[tuple[str, ...], str], ...]) -> str | None:
-    upper = name.upper()
+    # Match whole name tokens: SUN must not match SUNDANESE, nor UP CUP.
+    tokens = set(re.findall(r"[A-Z]+(?:-[A-Z]+)*", name.upper()))
     for words, key in mapping:
-        if any(word in upper for word in words):
+        if any(word in tokens for word in words):
             return key
     return None
 
@@ -313,12 +315,25 @@ def build() -> tuple[list[dict[str, str]], list[dict[str, str]]]:
                 "allocation": allocation,
             })
 
+    # Apply reviewed codes after machine allocation so unrelated codes and page
+    # prefixes stay stable. Personal anchors always retain priority.
+    for row in rows:
+        code = REVIEWED_SHAPE_CODES.get(row["char"])
+        if code is None:
+            continue
+        if row["status"] in {"manual-anchor", "managed-existing"}:
+            raise ValueError(f"图形复核不能覆盖已有锚点：{row['codepoint']}")
+        if row["prefix"] != code[:2]:
+            raise ValueError(f"图形复核不能改写前缀：{row['codepoint']}")
+        row.update(input_code=code, main_key=code[2], state_key=code[3],
+                   main_shape=MAIN_LABELS[code[2]], state_shape=STATE_LABELS[code[3]],
+                   status="reviewed", allocation="用户确认图形复核 2026-10-05；同形族最多10候选")
     rows.sort(key=lambda row: int(row["codepoint"][2:], 16))
     if len(rows) != 159345 or len({row["codepoint"] for row in rows}) != 159345:
         raise ValueError("统一码表未覆盖 159,345 个唯一字符")
     counts = Counter(row["input_code"] for row in rows)
-    if max(counts.values()) > MAX_PER_CODE:
-        raise ValueError("统一码表存在超过 5 个候选的四码")
+    if any(count > candidate_limit(code) for code, count in counts.items()):
+        raise ValueError("统一码表超过候选上限：机器码5，已确认常见图形族10")
 
     page_rows: list[dict[str, str]] = []
     for prefix, members in page_members.items():
@@ -361,7 +376,7 @@ def write() -> tuple[int, int]:
 
 def main() -> None:
     character_count, page_count = write()
-    print(f"生成 {character_count:,} 个全量字符、{page_count} 个前缀页；每个四码最多 {MAX_PER_CODE} 个候选。")
+    print(f"生成 {character_count:,} 个全量字符、{page_count} 个前缀页；机器码最多5候选，已确认常见图形族最多10候选。")
 
 
 if __name__ == "__main__":

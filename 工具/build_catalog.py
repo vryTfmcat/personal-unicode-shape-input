@@ -17,11 +17,13 @@ from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+from reviewed_shapes import candidate_limit
+from external_paths import vault_root as storage_vault_root
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_VAULT_ROOT = PROJECT_ROOT.parents[1]
-PROJECT_SOURCE_PREFIX = "30_项目/个人Unicode音型输入法/"
+DEFAULT_VAULT_ROOT = storage_vault_root()
+PROJECT_SOURCE_PREFIX = "70_unicode/个人Unicode音型输入法/"
 
 SOURCE_GROUPS = (
     (
@@ -630,8 +632,8 @@ def load_all_unicode_table(vault_root: Path) -> tuple[list[dict[str, Any]], list
             "unicode_block": row["block"],
         })
     for code, count in code_counts.items():
-        if count > 5:
-            errors.append(f"{code}：全量码表有 {count} 个候选，超过 5 个上限")
+        if count > candidate_limit(code):
+            errors.append(f"{code}：全量码表有 {count} 个候选，超过 {candidate_limit(code)} 个上限")
     return records, errors, len(pages)
 
 
@@ -683,7 +685,7 @@ def load_association_aliases() -> tuple[list[dict[str, Any]], list[str]]:
             "shape_tags": list(character.get("shapeTags", [])),
             "status": "active",
             "export_to_rime": True,
-            "sources": ["30_项目/个人Unicode音型输入法/数据/联想图谱/association-graph.json"],
+            "sources": ["70_unicode/个人Unicode音型输入法/数据/联想图谱/association-graph.json"],
             "note": "个人联想图谱启用码",
             "catalog_origin": "联想主码" if alias.get("primary") else "联想别名",
             "unicode_block": str(character.get("block", "")),
@@ -796,8 +798,8 @@ def write_outputs(vault_root: Path) -> tuple[int, int, int, int, dict[str, int]]
     all_records = deduplicate_exact_records(records + unicode_records + association_records)
     collisions = collision_map(all_records)
     for code, labels in collisions.items():
-        if len(labels) > 5:
-            errors.append(f"{code}：共有 {len(labels)} 个候选，超过单页 5 个上限")
+        if len(labels) > candidate_limit(code):
+            errors.append(f"{code}：共有 {len(labels)} 个候选，超过 {candidate_limit(code)} 个上限")
     queue = vault_root / "80_Codex工作区" / "待确认清单" / "个人Unicode音型输入法-首批候选.md"
     queue.write_text(candidate_report(notes, counts, records), encoding="utf-8")
     profile_counts: dict[str, int] = {}
@@ -805,8 +807,8 @@ def write_outputs(vault_root: Path) -> tuple[int, int, int, int, dict[str, int]]
         selected = deduplicate_exact_records(profile_records(all_records, profile))
         selected_collisions = collision_map(selected)
         for code, labels in selected_collisions.items():
-            if len(labels) > 5:
-                errors.append(f"{profile}:{code}：共有 {len(labels)} 个候选，超过单页 5 个上限")
+            if len(labels) > candidate_limit(code):
+                errors.append(f"{profile}:{code}：共有 {len(labels)} 个候选，超过 {candidate_limit(code)} 个上限")
         output.write_text(rime_dictionary(selected, dictionary_name), encoding="utf-8")
         profile_counts[profile] = len(selected)
     (PROJECT_ROOT / "来源" / "构建报告.md").write_text(build_report(all_records, errors, collisions, len(records), len(unicode_records), prefix_page_count, profile_counts, len(association_records)), encoding="utf-8")

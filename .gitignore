@@ -13,9 +13,21 @@ __pycache__/
 !数据/Unicode精选/输出/unicode-17-v1-2000.tsv
 !数据/Unicode精选/输出/unicode-17-v1-2000预览.md
 原型/键位编辑器/data/initial-data.json
+原型/键位编辑器/data/mode-data.json
+数据/三模式/备份/
+数据/三模式/规则库/缓存/
+数据/三模式/规则库/运行/
+数据/三模式/规则库/字体/*.ttf
+数据/三模式/规则库/单层分桶/缓存/
+数据/三模式/规则库/单层分桶/运行/
+数据/三模式/规则库/保留桶布局/运行/
+工具/.形状实验依赖/
+数据/三模式/规则库/首次优化/缓存/
+数据/三模式/规则库/首次优化/运行/
 
 # Generated dictionaries, reports, and recoverable local snapshots
 原型/rime/*.dict.yaml
+原型/rime/三模式/
 原型/rime/备份/
 来源/来源清单.md
 来源/构建报告.md
@@ -23,6 +35,10 @@ __pycache__/
 原型/键位编辑器/backups/
 
 # Editor and OS noise
+工具/work/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Device-local path map; handwritten entities remain in the vault.
+vault-location.json
