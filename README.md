@@ -1,5 +1,12 @@
 # Personal Unicode Shape-Phonetic Input
 
+## Android 初步版本 0.2.4
+
+触屏 Unicode 编辑器现可配合同文 Trime 使用，包含区块／全形／收藏、自由拼排、手机键位配置、草稿与发布管理。
+
+安装包、同文部署包与重建输入见 [android-v0.2.4 发布页](https://github.com/vryTfmcat/personal-unicode-shape-input/releases/tag/android-v0.2.4)；[安装和源码构建说明](原型/安卓app/GitHub发布.md)。这是已完成本轮手机验收的初步版本，完整改码和编码格位等功能仍待后续开发。
+
+
 A private Rime/Weasel input-method research project for assigning memorable
 two-letter associations and visual shape codes to Unicode characters.
 

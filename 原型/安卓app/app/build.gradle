@@ -1,0 +1,20 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'org.personalunicode.touch'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'org.personalunicode.touch'
+        minSdk 26
+        targetSdk 35
+        versionCode 6
+        versionName '0.2.4'
+        testInstrumentationRunner 'org.personalunicode.touch.FontProbe'
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    sourceSets { main { assets.srcDirs = ['../generated-assets'] } }
+}
+tasks.register('prepareUnicodeAssets', Exec) {
+    workingDir rootDir
+    commandLine 'python', 'prepare_assets.py'
+}
+tasks.named('preBuild').configure { dependsOn 'prepareUnicodeAssets' }

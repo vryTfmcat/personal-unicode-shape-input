@@ -1,6 +1,6 @@
 # Git 版本管理
 
-本项目使用项目目录内的独立 Git 仓库，不把 Obsidian 全库、冷归档或个人资料纳入版本历史。目前只保存在本机，没有配置远程仓库。
+本项目使用项目目录内的独立 Git 仓库，不把 Obsidian 全库、冷归档或个人资料纳入版本历史。当前 GitHub 远程仓库为 `https://github.com/vryTfmcat/personal-unicode-shape-input.git`，保持公开（用户于 2026-10-22 确认）。安卓初版源码在 `codex/android-0.2.4` 分支，发布版本为 `android-v0.2.4`，下载与重建见 [[原型/安卓app/GitHub发布]]。
 
 ## 分支与版本
 

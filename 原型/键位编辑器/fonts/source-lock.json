@@ -1,0 +1,12 @@
+{
+  "plangothic": {
+    "package": "@free-fonts/plangothic",
+    "version": "1.0.0",
+    "integrity": "sha512-pjo4sMqChj68ED7DDYdkYKYN+qOqnBGJE/cUO9UR7vIs+gzxjRxQDU4xLKksOxQzFBZJ1dS2IEG7ndlUAQHlIQ==",
+    "tarball": "https://registry.npmjs.org/@free-fonts/plangothic/-/plangothic-1.0.0.tgz"
+  },
+  "additionalNoto": [
+    "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansegyptianhieroglyphs/NotoSansEgyptianHieroglyphs-Regular.ttf",
+    "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansmath/NotoSansMath-Regular.ttf"
+  ]
+}
