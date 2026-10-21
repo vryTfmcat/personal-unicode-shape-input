@@ -13,3 +13,6 @@
 *.txt text eol=lf
 *.cmd text eol=crlf
 .githooks/* text eol=lf
+
+# Pinned upstream bytes must retain their published SHA256.
+"数据/三模式/flypy-ixdata-20260930.json" -text
