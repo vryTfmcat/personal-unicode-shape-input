@@ -9,6 +9,7 @@ from copy import deepcopy
 from pathlib import Path
 
 from build_hieroglyph_block import MAIN_LABELS, STATE_LABELS
+from reviewed_shapes import CANDIDATE_LIMITS
 
 
 PROJECT = Path(__file__).resolve().parents[1]
@@ -66,6 +67,7 @@ def build() -> dict[str, object]:
     return {
         "version": 3,
         "storageKey": "unicode-key-editor-v3",
+        "candidateLimits": CANDIDATE_LIMITS,
         "pages": pages,
         "characters": characters,
         "commonOrder": [by_char[character]["id"] for character, _ in COMMON],

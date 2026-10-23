@@ -1,0 +1,267 @@
+{
+  "version": "round-partial-trial-v1",
+  "date": "2026-10-07",
+  "status": "trial",
+  "reference": "Segoe UI Symbol, 86 px",
+  "second": {
+    "p": "部分填充（试验新键义，旧粗码p成对尚未修改）",
+    "i": "内含构件，主体仍空心"
+  },
+  "third": {
+    "b": "半填充",
+    "q": "四分之一黑色扇区",
+    "g": "四分之一空白扇区，其余填充",
+    "a": "内含角折"
+  },
+  "fourth": {
+    "w": "上",
+    "s": "下",
+    "j": "左上",
+    "k": "右上",
+    "n": "左下",
+    "a": "左",
+    "d": "右",
+    "m": "右下"
+  },
+  "characters": [
+    {
+      "char": "◐",
+      "codepoint": "U+25D0",
+      "proposedCode": "opba",
+      "feature": "半填充",
+      "detail": "黑色在左"
+    },
+    {
+      "char": "◑",
+      "codepoint": "U+25D1",
+      "proposedCode": "opbd",
+      "feature": "半填充",
+      "detail": "黑色在右"
+    },
+    {
+      "char": "◒",
+      "codepoint": "U+25D2",
+      "proposedCode": "opbs",
+      "feature": "半填充",
+      "detail": "黑色在下"
+    },
+    {
+      "char": "◓",
+      "codepoint": "U+25D3",
+      "proposedCode": "opbw",
+      "feature": "半填充",
+      "detail": "黑色在上"
+    },
+    {
+      "char": "◔",
+      "codepoint": "U+25D4",
+      "proposedCode": "opqk",
+      "feature": "四分之一黑色扇区",
+      "detail": "右上"
+    },
+    {
+      "char": "◕",
+      "codepoint": "U+25D5",
+      "proposedCode": "opgj",
+      "feature": "四分之一空白扇区，其余填充",
+      "detail": "左上空白"
+    },
+    {
+      "char": "◴",
+      "codepoint": "U+25F4",
+      "proposedCode": "oiaj",
+      "feature": "圆内角折，围出扇区",
+      "detail": "左上"
+    },
+    {
+      "char": "◵",
+      "codepoint": "U+25F5",
+      "proposedCode": "oian",
+      "feature": "圆内角折，围出扇区",
+      "detail": "左下"
+    },
+    {
+      "char": "◶",
+      "codepoint": "U+25F6",
+      "proposedCode": "oiam",
+      "feature": "圆内角折，围出扇区",
+      "detail": "右下"
+    },
+    {
+      "char": "◷",
+      "codepoint": "U+25F7",
+      "proposedCode": "oiak",
+      "feature": "圆内角折，围出扇区",
+      "detail": "右上"
+    }
+  ],
+  "functionIds": {
+    "third": {
+      "b": "fill.half",
+      "q": "fill.quarter",
+      "g": "blank.quarter",
+      "a": "component.corner"
+    },
+    "fourth": {
+      "w": "position.up",
+      "s": "position.down",
+      "j": "position.up_left",
+      "k": "position.up_right",
+      "n": "position.down_left",
+      "a": "position.left",
+      "d": "position.right",
+      "m": "position.down_right"
+    }
+  },
+  "revision": 4,
+  "amendment": {
+    "date": "2026-10-07",
+    "reason": "按用户授权覆盖统一游戏布局",
+    "changes": [
+      {
+        "source": "全形圆族试验-04.json",
+        "char": "◐",
+        "before": "opbl",
+        "after": "opba"
+      },
+      {
+        "source": "全形圆族试验-04.json",
+        "char": "◑",
+        "before": "opbr",
+        "after": "opbd"
+      },
+      {
+        "source": "全形圆族试验-04.json",
+        "char": "◒",
+        "before": "opbd",
+        "after": "opbs"
+      },
+      {
+        "source": "全形圆族试验-04.json",
+        "char": "◔",
+        "before": "opqi",
+        "after": "opqk"
+      },
+      {
+        "source": "全形圆族试验-04.json",
+        "char": "◕",
+        "before": "opgu",
+        "after": "opgj"
+      },
+      {
+        "source": "全形圆族试验-04.json",
+        "char": "◴",
+        "before": "oiau",
+        "after": "oiaj"
+      },
+      {
+        "source": "全形圆族试验-04.json",
+        "char": "◵",
+        "before": "oiaj",
+        "after": "oian"
+      },
+      {
+        "source": "全形圆族试验-04.json",
+        "char": "◶",
+        "before": "oiak",
+        "after": "oiam"
+      },
+      {
+        "source": "全形圆族试验-04.json",
+        "char": "◷",
+        "before": "oiai",
+        "after": "oiak"
+      }
+    ]
+  },
+  "amendmentHistory": [
+    {
+      "date": "2026-10-07",
+      "reason": "用户要求同一键位不同功能错开；保留前三批已确认键义，修改第四批未确认方向键",
+      "changes": [
+        {
+          "char": "◐",
+          "before": "opbl",
+          "after": "opbw"
+        },
+        {
+          "char": "◑",
+          "before": "opbr",
+          "after": "opbe"
+        },
+        {
+          "char": "◶",
+          "before": "oiam",
+          "after": "oiaz"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-07",
+      "reason": "用户指定第四位l/r保留左右位置，四角按键盘U I / J K统一；斜向迁至f/g，上迁至w",
+      "keyChanges": {
+        "w": "l",
+        "e": "r",
+        "u": "w",
+        "j": "u",
+        "k": "i",
+        "n": "j",
+        "z": "k"
+      },
+      "changes": [
+        {
+          "char": "◐",
+          "before": "opbw",
+          "after": "opbl"
+        },
+        {
+          "char": "◑",
+          "before": "opbe",
+          "after": "opbr"
+        },
+        {
+          "char": "◓",
+          "before": "opbu",
+          "after": "opbw"
+        },
+        {
+          "char": "◔",
+          "before": "opqk",
+          "after": "opqi"
+        },
+        {
+          "char": "◕",
+          "before": "opgj",
+          "after": "opgu"
+        },
+        {
+          "char": "◴",
+          "before": "oiaj",
+          "after": "oiau"
+        },
+        {
+          "char": "◵",
+          "before": "oian",
+          "after": "oiaj"
+        },
+        {
+          "char": "◶",
+          "before": "oiaz",
+          "after": "oiak"
+        },
+        {
+          "char": "◷",
+          "before": "oiak",
+          "after": "oiai"
+        }
+      ]
+    }
+  ],
+  "layoutVersion": "game-layout-v1",
+  "layoutApproval": {
+    "status": "approved",
+    "date": "2026-10-07",
+    "userMessage": "可以覆盖",
+    "scope": "第四位统一空间布局WASD/JK-NM/ZXCV及配套迁移"
+  }
+}

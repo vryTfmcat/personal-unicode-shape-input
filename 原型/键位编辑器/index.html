@@ -4,72 +4,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>Unicode 音型联想编辑器</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Unicode 三模式编辑器</title>
+  <link rel="stylesheet" href="styles.css?v=20261005-search">
+  <link rel="stylesheet" href="modes.css?v=20261008-language-v01">
+  <link rel="stylesheet" href="fonts/editor-fonts.css?v=20261015-outline2">
 </head>
 <body>
   <header class="topbar">
     <div class="brand">
       <span class="brand-mark" aria-hidden="true">༳</span>
-      <div><h1>Unicode 音型联想编辑器</h1><p>中文联觉 · 双字母感受 · 字形强化</p></div>
+      <div><h1>Unicode 三模式编辑器</h1><p>区块定位 · 全形查找 · 个人收藏</p></div>
     </div>
-    <nav class="view-tabs" aria-label="编辑器工作区">
-      <button class="view-tab active" type="button" data-view="characterView">字符与键位</button>
+    <nav class="edit-modes" aria-label="编辑模式">
+      <button class="mode-button active" type="button" data-mode="block">区块模式</button>
+      <button class="mode-button" type="button" data-mode="shape">全形模式</button>
+      <button class="mode-button" type="button" data-mode="personal">收藏模式</button>
+    </nav>
+    <nav id="personalTools" class="view-tabs" aria-label="收藏工具" hidden>
+      <button class="view-tab active" type="button" data-view="characterView">收藏码</button>
       <button class="view-tab" type="button" data-view="pairView">双字母感觉</button>
       <button class="view-tab" type="button" data-view="graphView">联想图谱</button>
     </nav>
     <div class="top-actions">
+      <a class="button quiet" href="touch/index.html" target="_blank" rel="noopener">触屏拼排</a>
       <span id="saveStatus" class="save-status">正在加载</span>
       <button id="snapshotGraphButton" class="button quiet" type="button">图谱快照</button>
       <button id="exportGraphButton" class="button quiet" type="button">导出图谱</button>
       <label class="button quiet file-button">导入图谱<input id="importGraphInput" type="file" accept="application/json,.json"></label>
       <details class="more-actions"><summary class="button quiet">键位数据</summary><div class="action-menu">
         <button id="exportTsvButton" class="button quiet" type="button">导出完整 TSV</button>
-        <button id="exportButton" class="button quiet" type="button">导出键位补丁</button>
-        <label class="button quiet file-button">导入键位补丁<input id="importInput" type="file" accept="application/json,.json"></label>
-        <button id="resetButton" class="button danger" type="button">重置键位草稿</button>
+        <button id="exportButton" class="button quiet" type="button">导出三模式码本</button>
+        <label class="button quiet file-button">导入码本或旧草稿<input id="importInput" type="file" accept="application/json,.json"></label>
       </div></details>
     </div>
   </header>
 
+  <section class="mode-controls">
+    <p id="modeDescription">正在载入三模式数据…</p>
+    <label id="shapeStageControl" class="check-control" hidden>全形资料<select id="shapeView"><option value="review">本轮核对版 · 一至四键</option><option value="stage">阶段分桶 · 按图形顺序</option><option value="legacy">历史形码 · 两码与已确认路径</option></select></label>
+    <details id="shapeStageSummary" hidden><summary>阶段版本与后续问题</summary><div id="shapeStageSummaryText"></div><p><a href="shape-key-overview.html">四位键位总览 · 最新独立版（四轮集中核对，未部署）</a></p><p><a href="shape-experiment.html">旧四键取形独立实验 · 历史对照</a></p></details>
+    <details id="shapeReviewSummary" hidden open><summary>本轮核对版 · 四层键位与版本</summary><div id="shapeReviewRules"></div><p><a href="shape-key-overview.html">四位键位总览 · 最新独立版（四轮集中核对，未部署）</a></p><p><a href="shape-experiment.html">旧版逐字符取形对象与全部路径依据</a></p></details>
+    <div class="candidate-controls"><strong>候选来源</strong>
+      <label><input type="checkbox" data-source="block" checked>区块</label><label><input type="checkbox" data-source="shape">全形</label><label><input type="checkbox" data-source="personal">收藏</label>
+      <label><input type="checkbox" id="hanEnabled">中文</label><label><input type="checkbox" id="hanExtended">包含小鹤扩展字与〇</label>
+      <small>左 Shift 单按循环模式；组合键不触发</small>
+    </div>
+    <div class="publish-controls"><span id="bookStatus" role="status">正在连接码本</span><button id="snapshotBooks" class="button quiet">码本快照</button><button id="exportRecovery" class="button quiet" hidden>导出恢复草稿</button><button id="reloadBooks" class="button quiet">重新载入</button><button id="reviewSample" class="button quiet">首批核对</button><button id="publishBooks" class="button primary">发布到小狼毫</button></div>
+    <p id="recoveryConflict" hidden>恢复草稿与项目版本不同，请先导出恢复草稿，避免覆盖新版本。</p>
+    <small id="hanInfo"></small><button id="checkHanSource" class="button quiet">检查小鹤来源差异</button><details id="hanSourceDiff" hidden><summary>来源差异（锁定版本保留）</summary><pre id="hanSourceDiffText"></pre></details><p id="modeStatistics"></p>
+    <details class="candidate-test" open><summary>输入候选测试</summary><label class="search-field"><input id="candidateInput" aria-label="输入码测试" maxlength="4" placeholder="例如 oe：勾选全形后查找圆形族" autocomplete="off" spellcheck="false"></label><span id="candidateCount"></span><div id="candidateGrid" class="glyph-grid"></div></details>
+  </section>
+
   <section id="characterView" class="view-panel active">
-    <main class="workspace">
-      <aside class="sidebar">
-        <div class="sidebar-heading"><span>字符页面</span><small>拖到页面名即可移动</small></div>
-        <label class="page-filter"><span aria-hidden="true">⌕</span><input id="pageSearchInput" type="search" placeholder="搜索前缀或区块"></label>
-        <nav id="pageNav" class="page-nav" aria-label="字符页面"></nav>
-        <div class="sidebar-note"><strong>常用字符是收藏层</strong><p>拖入常用页不会改变原来的前两码；拖入其他页会换成目标页前缀，并保留后两码。</p></div>
-      </aside>
-
+    <main class="modes-workspace">
+      <aside class="sidebar"><div class="sidebar-heading"><span>字符分组</span></div><label class="page-filter"><input id="pageSearchInput" type="search" placeholder="搜索平面、区块或形族"></label><nav id="pageNav" class="page-nav"></nav></aside>
       <section class="content">
-        <div class="page-intro">
-          <div class="page-title-row"><div><div class="eyebrow"><span id="prefixBadge"></span><span id="pageCount"></span></div><h2 id="pageTitle"></h2><p id="pageDescription"></p></div>
-            <label class="block-field">存储区块 / 类别<input id="blockInput" type="text" autocomplete="off"></label>
-          </div>
-          <details id="rulesPanel" class="rules-panel"><summary><span>本页形符规则</span><small>每个前两键可拥有独立规则；修改只影响规则说明。</small></summary>
-            <div class="rule-columns"><section><h3>第三键 · 主骨架</h3><div id="mainRules" class="rule-grid"></div></section><section><h3>第四键 · 状态</h3><div id="stateRules" class="rule-grid"></div></section></div>
-          </details>
-        </div>
-        <div class="toolbar">
-          <label class="search-field"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="搜索字符、码、U+码位或名称"></label>
-          <label class="check-control"><input id="conflictOnly" type="checkbox">只看同码</label><span id="conflictSummary" class="conflict-summary"></span>
-        </div>
-        <div id="glyphGrid" class="glyph-grid" aria-live="polite"></div>
-        <div id="emptyState" class="empty-state" hidden><span>∅</span><p>这一页暂时没有符合条件的字符。</p></div>
+        <div class="page-title-row"><h2 id="pageTitle"></h2><span id="pageCount"></span></div>
+        <details id="rulesPanel" class="rules-panel"><summary>本区块独立规则与前缀</summary><p id="ruleNote"></p>
+          <div class="rule-controls"><input id="prefixDraft" aria-label="前缀分配"><button id="previewPrefix" class="button">预览前缀变更</button><button id="applyPrefix" class="button" disabled>应用预览</button><button id="applyLocalRules" class="button" disabled>应用规则说明</button></div><p id="ruleImpact" role="status"></p>
+          <div class="rule-columns"><section><h3>第三键·局部组</h3><div id="mainRules" class="rule-grid"></div></section><section><h3>第四键·组内特征</h3><div id="stateRules" class="rule-grid"></div></section></div>
+        </details>
+        <div class="toolbar"><label class="search-field"><input id="searchInput" type="search" aria-label="搜索字符" placeholder="搜索字符、各套码、U+或名称"></label><label><input id="searchCurrentPage" type="checkbox">只搜本组</label></div>
+        <div id="glyphGrid" class="glyph-grid"></div>
       </section>
-
-      <aside id="inspector" class="inspector">
-        <div id="inspectorEmpty" class="inspector-empty"><span>◌</span><p>点选一个字符，在这里微调键位。</p></div>
-        <div id="inspectorBody" hidden>
-          <div class="inspector-head"><div id="inspectorGlyph" class="inspector-glyph"></div><div><h2 id="inspectorCodepoint"></h2><p id="inspectorName"></p></div></div>
-          <div class="copy-row"><button id="copyGlyphButton" class="button primary" type="button">复制字符</button><label class="favorite-control"><input id="favoriteInput" type="checkbox">常用收藏</label></div>
-          <label class="form-field">四码<input id="codeInput" type="text" maxlength="4" spellcheck="false" autocomplete="off"><small id="codeHint"></small></label>
-          <label class="form-field">归属页面<select id="pageSelect"></select></label>
-          <div class="key-pair"><label class="form-field">第三键 · 主骨架<select id="mainKeySelect"></select></label><label class="form-field">第四键 · 状态<select id="stateKeySelect"></select></label></div>
-          <label class="form-field">备注<textarea id="noteInput" rows="4"></textarea></label>
-          <dl class="metadata"><div><dt>来源区块</dt><dd id="sourceBlock"></dd></div><div><dt>当前同码</dt><dd id="sameCodeCount"></dd></div></dl>
-        </div>
-      </aside>
+      <aside id="modeInspector" class="inspector"></aside>
     </main>
   </section>
 
@@ -115,8 +113,12 @@
     </main>
   </section>
 
+  <div id="fontLoadStatus" role="status" aria-live="polite" hidden></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js" defer></script>
-  <script src="association.js" defer></script>
+  <script src="font-status.js?v=20261015" defer></script>
+  <script src="virtual-keyboard-bridge.js?v=20261018" defer></script>
+  <script src="modes-core.js?v=20261008-language-v01" defer></script>
+  <script src="modes.js?v=20261008-language-v01" defer></script>
+  <script src="association.js?v=20261005-reviewed" defer></script>
 </body>
 </html>

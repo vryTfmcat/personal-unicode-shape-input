@@ -364,7 +364,17 @@ function drawGraph() {
   ctx.restore();
 }
 
+const graphFontRequests = new Set();
 function drawNode(ctx, node) {
+  if (node.type === "character" && document.fonts) {
+    const text = nodeLabel(node);
+    if (!graphFontRequests.has(text)) {
+      graphFontRequests.add(text);
+      document.fonts.load('20px "Unicode Editor"', text).then(requestGraphRender).catch(() => {
+        graphFontRequests.delete(text);
+      });
+    }
+  }
   const radius = node.type === "character" ? 22 : node.type === "theme" ? 20 : node.type === "concept" ? 17 : 14;
   const selected = node.id === selectedGraphNode;
   ctx.beginPath(); ctx.arc(node.position.x, node.position.y, radius, 0, Math.PI * 2);
@@ -373,7 +383,7 @@ function drawNode(ctx, node) {
   ctx.strokeStyle = selected ? "#a2472f" : "rgba(56,49,39,.28)"; ctx.stroke();
   const showLabel = graphCamera.scale > .42 || selected || node.type === "theme";
   if (showLabel) {
-    ctx.font = `${node.type === "character" ? 20 : 11}px ${node.type === "character" ? '"Segoe UI Symbol"' : '"Microsoft YaHei UI"'}`;
+    ctx.font = `${node.type === "character" ? 20 : 11}px ${node.type === "character" ? '"Unicode Editor", "Segoe UI Symbol"' : '"Microsoft YaHei UI"'}`;
     ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillStyle = node.type === "character" ? "#27251f" : "#fff";
     ctx.fillText(nodeLabel(node).slice(0, 12), node.position.x, node.position.y);
     if (selected && node.type !== "character") { ctx.font = "11px Microsoft YaHei UI"; ctx.fillStyle = "#27251f"; ctx.fillText(nodeLabel(node).slice(0, 20), node.position.x, node.position.y + radius + 13); }
@@ -455,16 +465,17 @@ function renderGraphInspector() {
 function renderNodeEditor(node) {
   const target = qa("#nodeEditor");
   if (node.type === "character") {
-    const aliases = graph.rimeAliases.filter((item) => item.characterId === node.id);
-    target.innerHTML = `<dl class="metadata compact-meta"><div><dt>码位</dt><dd>${node.data.codepoint}</dd></div><div><dt>机器定位码</dt><dd>${node.data.machineCode}</dd></div><div><dt>形码</dt><dd>${node.data.shapeSuffix}</dd></div></dl>
+    const aliases = window.keyEditor?.getPersonal ? window.keyEditor.getPersonal(node.id).map(a => ({...a, prefix:a.code.slice(0,2), suffix:a.code.slice(2)})) : graph.rimeAliases.filter((item) => item.characterId === node.id);
+    const current = window.keyEditor?.itemById(node.id);
+    target.innerHTML = `<dl class="metadata compact-meta"><div><dt>码位</dt><dd>${node.data.codepoint}</dd></div><div><dt>区块码</dt><dd>${current ? current.blockCode?.code || "汉字不占前缀" : node.data.machineCode || "无区块码"}</dd></div><div><dt>全形粗码</dt><dd>${current?.shape?.coarse || "未分类"}</dd></div></dl>
       <div class="add-relation"><h3>添加中文联想</h3><input id="newConceptInput" placeholder="例如：完整、回归、庇护"><button id="addConceptRelation" class="button primary" type="button">添加</button></div>
-      <section class="alias-section"><h3>已启用联想码 ${aliases.length}</h3><div id="aliasList"></div></section>`;
+      <section class="alias-section"><h3>收藏别名 ${aliases.length}</h3><div id="aliasList"></div></section>`;
     qa("#addConceptRelation").addEventListener("click", () => addConceptForNode(node.id, qa("#newConceptInput").value));
     const aliasList = qa("#aliasList");
     aliasList.replaceChildren(...aliases.map((alias) => {
       const row = document.createElement("div"); row.className = "alias-row";
       row.innerHTML = `<code>${alias.prefix}${alias.suffix}</code><span>${alias.enabled ? "已启用" : "未启用"}</span><button type="button" aria-label="删除别名">×</button>`;
-      row.querySelector("button").addEventListener("click", () => { graph.rimeAliases = graph.rimeAliases.filter((item) => item.id !== alias.id); markGraphDirty(); renderGraphWorkspace(); });
+      row.querySelector("button").addEventListener("click", () => { if(window.keyEditor?.removePersonal) window.keyEditor.removePersonal(node.id,alias.code); else {graph.rimeAliases = graph.rimeAliases.filter((item) => item.id !== alias.id); markGraphDirty();} renderGraphWorkspace(); });
       return row;
     }));
   } else if (node.type === "concept") {
@@ -517,6 +528,12 @@ function addConceptForNode(nodeId, rawLabel) {
 }
 
 function enableAlias(character, concept) {
+  if (window.keyEditor?.addPersonal) {
+    const code = prompt(`为“${concept.data.label}”设置独立收藏码（2–4 字母）：`, "");
+    if(code === null) return;
+    try {window.keyEditor.addPersonal(character.id, code.trim().toLowerCase(), concept.data.label); renderGraphWorkspace(); toast(`已启用收藏码 ${code}；基础两套码保持独立`);} catch(error) {toast(error.message);}
+    return;
+  }
   const prefix = prompt(`为“${concept.data.label}”选择双字母感受：`, "");
   if (prefix === null) return;
   const normalized = prefix.toLowerCase().replace(/[^a-z]/g, "").slice(0, 2);
@@ -530,7 +547,8 @@ function enableAlias(character, concept) {
   if (window.keyEditor) window.keyEditor.characters().filter((item) => item.code === code).forEach((item) => baseCharacters.add(item.char));
   graph.rimeAliases.filter((item) => item.enabled && item.prefix + item.suffix === code).forEach((item) => { const node = graphNodes.get(item.characterId); if (node) baseCharacters.add(node.data.char); });
   baseCharacters.add(character.data.char);
-  if (baseCharacters.size > 5) { toast(`${code} 会产生第 ${baseCharacters.size} 个候选，已拒绝启用`); return; }
+  const limit = window.keyEditor?.codeLimit(code) || 5;
+  if (baseCharacters.size > limit) { toast(`${code} 会产生第 ${baseCharacters.size} 个候选，超过上限 ${limit}，已拒绝启用`); return; }
   const id = `alias-${character.id}-${normalized}-${suffix}`;
   const existing = graph.rimeAliases.find((item) => item.id === id);
   if (existing) { existing.enabled = true; if (!existing.associationIds.includes(concept.id)) existing.associationIds.push(concept.id); }

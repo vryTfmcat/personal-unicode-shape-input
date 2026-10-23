@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>四键取形实验 · 核对</title><link rel="stylesheet" href="fonts/editor-fonts.css">
+<link rel="stylesheet" href="shape-experiment.css"></head>
+<body><main>
+<header><a href="./">返回三模式编辑器</a><p><a href="shape-key-overview.html">四位键位总览 · 最新独立版（四轮集中核对）</a></p><h1>主桶 → 形族 → 规则 → 属性</h1>
+<p class="notice">独立候选实验 · 所有新形族和路径待人工审议 · 当前快照、旧确认和小狼毫未替换</p>
+<p id="status" role="status">正在读取实验数据…</p></header>
+<p class="notice"><a href="shape-detector-review.html">2026-10-17 检测器边界验证与样本</a> · 本页全量候选仍为旧实验，尚未按新检测器重算。</p>
+<section aria-label="查找"><div class="search"><label>输入一至四键<input id="code" maxlength="5" placeholder="点击下方主桶开始"></label>
+<label>字符／码位<input id="character" placeholder="○、✺ 或 U+25CB"></label><button id="clear">清空</button></div>
+<p>前缀都可选字；空键不回退；多个码对应同一字符时只显示一次。字形小图来自提取特征时的锁定字体，不依赖本机替代字体。</p>
+<div id="buckets" class="keys"></div><div id="families" class="keys"></div><p id="resultCount"></p>
+<div id="results" class="results"></div><button id="more" hidden>继续显示80项</button></section>
+<section id="detail" aria-live="polite"><h2>逐字符核对</h2><p>点选字符查看全部候选路径、取形对象、旧归属和变化原因。</p></section>
+<details open><summary>容量、重码与评价边界</summary><div id="report"></div><div id="stability"></div>
+<p><a href="data/shape-experiment-report.json">完整容量／重码报告</a> · <a href="data/shape-experiment-diff.json">主桶变化提案</a> · <a href="data/shape-experiment-stability.json">字号／粗细／替代字体检查</a></p></details>
+<details><summary>第二位形族定义、代表和边界</summary><div id="familyDefinitions"></div></details>
+<details><summary>第三位规则候选表与第四位冻结布局</summary><div id="rules"></div><div id="fourth"></div></details>
+<details><summary>人工判断基准与已确认边界</summary><div id="benchmarks"></div></details>
+<p id="error" role="alert"></p>
+</main><script src="shape-experiment-core.js"></script><script src="shape-experiment.js"></script></body></html>

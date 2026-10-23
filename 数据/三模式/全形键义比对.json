@@ -1,0 +1,1358 @@
+{
+  "ok": true,
+  "errors": [],
+  "bindings": [
+    {
+      "position": 3,
+      "key": "s",
+      "function": "proportion.near_round",
+      "meaning": "近圆：0.8 ≤ 宽高比 ≤ 1.25",
+      "source": "全形圆族试验-01.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "v",
+      "function": "proportion.tall",
+      "meaning": "纵长：宽高比 < 0.8",
+      "source": "全形圆族试验-01.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "h",
+      "function": "proportion.flat",
+      "meaning": "横扁：宽高比 > 1.25",
+      "source": "全形圆族试验-01.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "z",
+      "function": "size.tiny",
+      "meaning": "微小：最长边 ≤ 0.35 em",
+      "source": "全形圆族试验-01.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "x",
+      "function": "size.small",
+      "meaning": "小：0.35 em < 最长边 ≤ 0.60 em",
+      "source": "全形圆族试验-01.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "c",
+      "function": "size.medium",
+      "meaning": "中：0.60 em < 最长边 ≤ 0.90 em",
+      "source": "全形圆族试验-01.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "v",
+      "function": "size.large",
+      "meaning": "大：最长边 > 0.90 em",
+      "source": "全形圆族试验-01.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "o",
+      "function": "component.hollow_circle",
+      "meaning": "内部空心圆环",
+      "source": "全形圆族试验-02.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "d",
+      "function": "component.filled_round",
+      "meaning": "内部实心点／圆面",
+      "source": "全形圆族试验-02.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "x",
+      "function": "component.cross",
+      "meaning": "内部交叉",
+      "source": "全形圆族试验-02.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "v",
+      "function": "size.large",
+      "meaning": "构件较大",
+      "source": "全形圆族试验-02.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "x",
+      "function": "size.small",
+      "meaning": "构件较小",
+      "source": "全形圆族试验-02.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "z",
+      "function": "size.tiny",
+      "meaning": "构件微小",
+      "source": "全形圆族试验-02.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "e",
+      "function": "orientation.axis_aligned",
+      "meaning": "正置，轴向对齐",
+      "source": "全形圆族试验-02.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "q",
+      "function": "orientation.tilted",
+      "meaning": "斜置",
+      "source": "全形圆族试验-02.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "l",
+      "function": "component.line",
+      "meaning": "单一直线",
+      "source": "全形圆族试验-03.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "n",
+      "function": "component.repeated",
+      "meaning": "重复排列构件，本批为平行直线",
+      "source": "全形圆族试验-03.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "h",
+      "function": "orientation.horizontal",
+      "meaning": "横向",
+      "source": "全形圆族试验-03.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "i",
+      "function": "orientation.vertical",
+      "meaning": "纵向",
+      "source": "全形圆族试验-03.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "r",
+      "function": "orientation.up_right",
+      "meaning": "向右上斜",
+      "source": "全形圆族试验-03.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "l",
+      "function": "orientation.up_left",
+      "meaning": "向左上斜",
+      "source": "全形圆族试验-03.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "b",
+      "function": "fill.half",
+      "meaning": "半填充",
+      "source": "全形圆族试验-04.json",
+      "confirmed": false
+    },
+    {
+      "position": 3,
+      "key": "q",
+      "function": "fill.quarter",
+      "meaning": "四分之一黑色扇区",
+      "source": "全形圆族试验-04.json",
+      "confirmed": false
+    },
+    {
+      "position": 3,
+      "key": "g",
+      "function": "blank.quarter",
+      "meaning": "四分之一空白扇区，其余填充",
+      "source": "全形圆族试验-04.json",
+      "confirmed": false
+    },
+    {
+      "position": 3,
+      "key": "a",
+      "function": "component.corner",
+      "meaning": "内含角折",
+      "source": "全形圆族试验-04.json",
+      "confirmed": false
+    },
+    {
+      "position": 4,
+      "key": "w",
+      "function": "position.up",
+      "meaning": "上",
+      "source": "全形圆族试验-04.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "s",
+      "function": "position.down",
+      "meaning": "下",
+      "source": "全形圆族试验-04.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "j",
+      "function": "position.up_left",
+      "meaning": "左上",
+      "source": "全形圆族试验-04.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "k",
+      "function": "position.up_right",
+      "meaning": "右上",
+      "source": "全形圆族试验-04.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "n",
+      "function": "position.down_left",
+      "meaning": "左下",
+      "source": "全形圆族试验-04.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "a",
+      "function": "position.left",
+      "meaning": "左",
+      "source": "全形圆族试验-04.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "d",
+      "function": "position.right",
+      "meaning": "右",
+      "source": "全形圆族试验-04.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "m",
+      "function": "position.down_right",
+      "meaning": "右下",
+      "source": "全形圆族试验-04.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "p",
+      "function": "outline.half",
+      "meaning": "半轮廓",
+      "source": "全形圆族试验-05.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "f",
+      "function": "outline.quarter",
+      "meaning": "四分之一轮廓",
+      "source": "全形圆族试验-05.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "u",
+      "function": "outline.gap",
+      "meaning": "轮廓开口／缺口",
+      "source": "全形圆族试验-05.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "a",
+      "function": "position.left",
+      "meaning": "左",
+      "source": "全形圆族试验-05.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "d",
+      "function": "position.right",
+      "meaning": "右",
+      "source": "全形圆族试验-05.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "w",
+      "function": "position.up",
+      "meaning": "上",
+      "source": "全形圆族试验-05.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "s",
+      "function": "position.down",
+      "meaning": "下",
+      "source": "全形圆族试验-05.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "j",
+      "function": "position.up_left",
+      "meaning": "左上",
+      "source": "全形圆族试验-05.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "k",
+      "function": "position.up_right",
+      "meaning": "右上",
+      "source": "全形圆族试验-05.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "m",
+      "function": "position.down_right",
+      "meaning": "右下",
+      "source": "全形圆族试验-05.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "n",
+      "function": "position.down_left",
+      "meaning": "左下",
+      "source": "全形圆族试验-05.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "v",
+      "function": "proportion.tall",
+      "meaning": "纵长",
+      "source": "全形圆族试验-06.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "h",
+      "function": "proportion.flat",
+      "meaning": "横扁",
+      "source": "全形圆族试验-06.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "p",
+      "function": "outline.half",
+      "meaning": "半轮廓",
+      "source": "全形圆族试验-06.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "u",
+      "function": "outline.gap",
+      "meaning": "轮廓开口／缺口",
+      "source": "全形圆族试验-06.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "a",
+      "function": "position.left",
+      "meaning": "左",
+      "source": "全形圆族试验-06.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "d",
+      "function": "position.right",
+      "meaning": "右",
+      "source": "全形圆族试验-06.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "w",
+      "function": "position.up",
+      "meaning": "上",
+      "source": "全形圆族试验-06.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "s",
+      "function": "position.down",
+      "meaning": "下",
+      "source": "全形圆族试验-06.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "c",
+      "function": "size.medium",
+      "meaning": "中",
+      "source": "全形圆族试验-06.json",
+      "confirmed": true
+    },
+    {
+      "position": 4,
+      "key": "x",
+      "function": "size.small",
+      "meaning": "小",
+      "source": "全形圆族试验-06.json",
+      "confirmed": true
+    },
+    {
+      "position": 3,
+      "key": "j",
+      "function": "component.hook",
+      "meaning": "钩尾",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 3,
+      "key": "d",
+      "function": "component.filled_round",
+      "meaning": "实心点／圆面",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 3,
+      "key": "l",
+      "function": "component.line",
+      "meaning": "单一直线",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 3,
+      "key": "o",
+      "function": "component.hollow_circle",
+      "meaning": "空心圆环",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 3,
+      "key": "n",
+      "function": "component.repeated",
+      "meaning": "重复排列构件",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 3,
+      "key": "v",
+      "function": "proportion.tall",
+      "meaning": "纵长",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 3,
+      "key": "h",
+      "function": "proportion.flat",
+      "meaning": "横扁",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 3,
+      "key": "a",
+      "function": "component.corner",
+      "meaning": "角折",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 4,
+      "key": "j",
+      "function": "position.up_left",
+      "meaning": "左上",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 4,
+      "key": "k",
+      "function": "position.up_right",
+      "meaning": "右上",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 4,
+      "key": "n",
+      "function": "position.down_left",
+      "meaning": "左下",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 4,
+      "key": "m",
+      "function": "position.down_right",
+      "meaning": "右下",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 4,
+      "key": "w",
+      "function": "position.up",
+      "meaning": "上",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 4,
+      "key": "s",
+      "function": "position.down",
+      "meaning": "下",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 4,
+      "key": "i",
+      "function": "orientation.vertical",
+      "meaning": "纵向",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 4,
+      "key": "h",
+      "function": "orientation.horizontal",
+      "meaning": "横向",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 4,
+      "key": "c",
+      "function": "size.medium",
+      "meaning": "中",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 4,
+      "key": "x",
+      "function": "size.small",
+      "meaning": "小",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    },
+    {
+      "position": 4,
+      "key": "v",
+      "function": "size.large",
+      "meaning": "大",
+      "source": "全形圆族试验-07.json",
+      "confirmed": false
+    }
+  ],
+  "crossPositionReuse": [
+    {
+      "key": "a",
+      "third": [
+        {
+          "position": 3,
+          "key": "a",
+          "function": "component.corner",
+          "meaning": "内含角折",
+          "source": "全形圆族试验-04.json",
+          "confirmed": false
+        },
+        {
+          "position": 3,
+          "key": "a",
+          "function": "component.corner",
+          "meaning": "角折",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ],
+      "fourth": [
+        {
+          "position": 4,
+          "key": "a",
+          "function": "position.left",
+          "meaning": "左",
+          "source": "全形圆族试验-04.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "a",
+          "function": "position.left",
+          "meaning": "左",
+          "source": "全形圆族试验-05.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "a",
+          "function": "position.left",
+          "meaning": "左",
+          "source": "全形圆族试验-06.json",
+          "confirmed": true
+        }
+      ]
+    },
+    {
+      "key": "d",
+      "third": [
+        {
+          "position": 3,
+          "key": "d",
+          "function": "component.filled_round",
+          "meaning": "内部实心点／圆面",
+          "source": "全形圆族试验-02.json",
+          "confirmed": true
+        },
+        {
+          "position": 3,
+          "key": "d",
+          "function": "component.filled_round",
+          "meaning": "实心点／圆面",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ],
+      "fourth": [
+        {
+          "position": 4,
+          "key": "d",
+          "function": "position.right",
+          "meaning": "右",
+          "source": "全形圆族试验-04.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "d",
+          "function": "position.right",
+          "meaning": "右",
+          "source": "全形圆族试验-05.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "d",
+          "function": "position.right",
+          "meaning": "右",
+          "source": "全形圆族试验-06.json",
+          "confirmed": true
+        }
+      ]
+    },
+    {
+      "key": "h",
+      "third": [
+        {
+          "position": 3,
+          "key": "h",
+          "function": "proportion.flat",
+          "meaning": "横扁：宽高比 > 1.25",
+          "source": "全形圆族试验-01.json",
+          "confirmed": true
+        },
+        {
+          "position": 3,
+          "key": "h",
+          "function": "proportion.flat",
+          "meaning": "横扁",
+          "source": "全形圆族试验-06.json",
+          "confirmed": true
+        },
+        {
+          "position": 3,
+          "key": "h",
+          "function": "proportion.flat",
+          "meaning": "横扁",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ],
+      "fourth": [
+        {
+          "position": 4,
+          "key": "h",
+          "function": "orientation.horizontal",
+          "meaning": "横向",
+          "source": "全形圆族试验-03.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "h",
+          "function": "orientation.horizontal",
+          "meaning": "横向",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ]
+    },
+    {
+      "key": "j",
+      "third": [
+        {
+          "position": 3,
+          "key": "j",
+          "function": "component.hook",
+          "meaning": "钩尾",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ],
+      "fourth": [
+        {
+          "position": 4,
+          "key": "j",
+          "function": "position.up_left",
+          "meaning": "左上",
+          "source": "全形圆族试验-04.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "j",
+          "function": "position.up_left",
+          "meaning": "左上",
+          "source": "全形圆族试验-05.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "j",
+          "function": "position.up_left",
+          "meaning": "左上",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ]
+    },
+    {
+      "key": "l",
+      "third": [
+        {
+          "position": 3,
+          "key": "l",
+          "function": "component.line",
+          "meaning": "单一直线",
+          "source": "全形圆族试验-03.json",
+          "confirmed": true
+        },
+        {
+          "position": 3,
+          "key": "l",
+          "function": "component.line",
+          "meaning": "单一直线",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ],
+      "fourth": [
+        {
+          "position": 4,
+          "key": "l",
+          "function": "orientation.up_left",
+          "meaning": "向左上斜",
+          "source": "全形圆族试验-03.json",
+          "confirmed": true
+        }
+      ]
+    },
+    {
+      "key": "n",
+      "third": [
+        {
+          "position": 3,
+          "key": "n",
+          "function": "component.repeated",
+          "meaning": "重复排列构件，本批为平行直线",
+          "source": "全形圆族试验-03.json",
+          "confirmed": true
+        },
+        {
+          "position": 3,
+          "key": "n",
+          "function": "component.repeated",
+          "meaning": "重复排列构件",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ],
+      "fourth": [
+        {
+          "position": 4,
+          "key": "n",
+          "function": "position.down_left",
+          "meaning": "左下",
+          "source": "全形圆族试验-04.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "n",
+          "function": "position.down_left",
+          "meaning": "左下",
+          "source": "全形圆族试验-05.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "n",
+          "function": "position.down_left",
+          "meaning": "左下",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ]
+    },
+    {
+      "key": "q",
+      "third": [
+        {
+          "position": 3,
+          "key": "q",
+          "function": "fill.quarter",
+          "meaning": "四分之一黑色扇区",
+          "source": "全形圆族试验-04.json",
+          "confirmed": false
+        }
+      ],
+      "fourth": [
+        {
+          "position": 4,
+          "key": "q",
+          "function": "orientation.tilted",
+          "meaning": "斜置",
+          "source": "全形圆族试验-02.json",
+          "confirmed": true
+        }
+      ]
+    },
+    {
+      "key": "s",
+      "third": [
+        {
+          "position": 3,
+          "key": "s",
+          "function": "proportion.near_round",
+          "meaning": "近圆：0.8 ≤ 宽高比 ≤ 1.25",
+          "source": "全形圆族试验-01.json",
+          "confirmed": true
+        }
+      ],
+      "fourth": [
+        {
+          "position": 4,
+          "key": "s",
+          "function": "position.down",
+          "meaning": "下",
+          "source": "全形圆族试验-04.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "s",
+          "function": "position.down",
+          "meaning": "下",
+          "source": "全形圆族试验-05.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "s",
+          "function": "position.down",
+          "meaning": "下",
+          "source": "全形圆族试验-06.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "s",
+          "function": "position.down",
+          "meaning": "下",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ]
+    },
+    {
+      "key": "v",
+      "third": [
+        {
+          "position": 3,
+          "key": "v",
+          "function": "proportion.tall",
+          "meaning": "纵长：宽高比 < 0.8",
+          "source": "全形圆族试验-01.json",
+          "confirmed": true
+        },
+        {
+          "position": 3,
+          "key": "v",
+          "function": "proportion.tall",
+          "meaning": "纵长",
+          "source": "全形圆族试验-06.json",
+          "confirmed": true
+        },
+        {
+          "position": 3,
+          "key": "v",
+          "function": "proportion.tall",
+          "meaning": "纵长",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ],
+      "fourth": [
+        {
+          "position": 4,
+          "key": "v",
+          "function": "size.large",
+          "meaning": "大：最长边 > 0.90 em",
+          "source": "全形圆族试验-01.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "v",
+          "function": "size.large",
+          "meaning": "构件较大",
+          "source": "全形圆族试验-02.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "v",
+          "function": "size.large",
+          "meaning": "大",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ]
+    },
+    {
+      "key": "x",
+      "third": [
+        {
+          "position": 3,
+          "key": "x",
+          "function": "component.cross",
+          "meaning": "内部交叉",
+          "source": "全形圆族试验-02.json",
+          "confirmed": true
+        }
+      ],
+      "fourth": [
+        {
+          "position": 4,
+          "key": "x",
+          "function": "size.small",
+          "meaning": "小：0.35 em < 最长边 ≤ 0.60 em",
+          "source": "全形圆族试验-01.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "x",
+          "function": "size.small",
+          "meaning": "构件较小",
+          "source": "全形圆族试验-02.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "x",
+          "function": "size.small",
+          "meaning": "小",
+          "source": "全形圆族试验-06.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "x",
+          "function": "size.small",
+          "meaning": "小",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ]
+    }
+  ],
+  "manualReview": [
+    {
+      "position": 3,
+      "functions": [
+        "outline.half",
+        "fill.half"
+      ],
+      "bindings": [
+        {
+          "position": 3,
+          "key": "p",
+          "function": "outline.half",
+          "meaning": "半轮廓",
+          "source": "全形圆族试验-05.json",
+          "confirmed": true
+        },
+        {
+          "position": 3,
+          "key": "p",
+          "function": "outline.half",
+          "meaning": "半轮廓",
+          "source": "全形圆族试验-06.json",
+          "confirmed": true
+        },
+        {
+          "position": 3,
+          "key": "b",
+          "function": "fill.half",
+          "meaning": "半填充",
+          "source": "全形圆族试验-04.json",
+          "confirmed": false
+        }
+      ]
+    },
+    {
+      "position": 3,
+      "functions": [
+        "outline.quarter",
+        "fill.quarter"
+      ],
+      "bindings": [
+        {
+          "position": 3,
+          "key": "f",
+          "function": "outline.quarter",
+          "meaning": "四分之一轮廓",
+          "source": "全形圆族试验-05.json",
+          "confirmed": true
+        },
+        {
+          "position": 3,
+          "key": "q",
+          "function": "fill.quarter",
+          "meaning": "四分之一黑色扇区",
+          "source": "全形圆族试验-04.json",
+          "confirmed": false
+        }
+      ]
+    },
+    {
+      "position": 3,
+      "functions": [
+        "outline.gap",
+        "blank.quarter"
+      ],
+      "bindings": [
+        {
+          "position": 3,
+          "key": "u",
+          "function": "outline.gap",
+          "meaning": "轮廓开口／缺口",
+          "source": "全形圆族试验-05.json",
+          "confirmed": true
+        },
+        {
+          "position": 3,
+          "key": "u",
+          "function": "outline.gap",
+          "meaning": "轮廓开口／缺口",
+          "source": "全形圆族试验-06.json",
+          "confirmed": true
+        },
+        {
+          "position": 3,
+          "key": "g",
+          "function": "blank.quarter",
+          "meaning": "四分之一空白扇区，其余填充",
+          "source": "全形圆族试验-04.json",
+          "confirmed": false
+        }
+      ]
+    },
+    {
+      "position": 3,
+      "functions": [
+        "component.hook",
+        "component.corner"
+      ],
+      "bindings": [
+        {
+          "position": 3,
+          "key": "j",
+          "function": "component.hook",
+          "meaning": "钩尾",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        },
+        {
+          "position": 3,
+          "key": "a",
+          "function": "component.corner",
+          "meaning": "内含角折",
+          "source": "全形圆族试验-04.json",
+          "confirmed": false
+        },
+        {
+          "position": 3,
+          "key": "a",
+          "function": "component.corner",
+          "meaning": "角折",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ]
+    },
+    {
+      "position": 4,
+      "functions": [
+        "orientation.axis_aligned",
+        "orientation.horizontal"
+      ],
+      "bindings": [
+        {
+          "position": 4,
+          "key": "e",
+          "function": "orientation.axis_aligned",
+          "meaning": "正置，轴向对齐",
+          "source": "全形圆族试验-02.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "h",
+          "function": "orientation.horizontal",
+          "meaning": "横向",
+          "source": "全形圆族试验-03.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "h",
+          "function": "orientation.horizontal",
+          "meaning": "横向",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ]
+    },
+    {
+      "position": 4,
+      "functions": [
+        "orientation.axis_aligned",
+        "orientation.vertical"
+      ],
+      "bindings": [
+        {
+          "position": 4,
+          "key": "e",
+          "function": "orientation.axis_aligned",
+          "meaning": "正置，轴向对齐",
+          "source": "全形圆族试验-02.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "i",
+          "function": "orientation.vertical",
+          "meaning": "纵向",
+          "source": "全形圆族试验-03.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "i",
+          "function": "orientation.vertical",
+          "meaning": "纵向",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ]
+    },
+    {
+      "position": 4,
+      "functions": [
+        "orientation.tilted",
+        "orientation.up_left"
+      ],
+      "bindings": [
+        {
+          "position": 4,
+          "key": "q",
+          "function": "orientation.tilted",
+          "meaning": "斜置",
+          "source": "全形圆族试验-02.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "l",
+          "function": "orientation.up_left",
+          "meaning": "向左上斜",
+          "source": "全形圆族试验-03.json",
+          "confirmed": true
+        }
+      ]
+    },
+    {
+      "position": 4,
+      "functions": [
+        "orientation.tilted",
+        "orientation.up_right"
+      ],
+      "bindings": [
+        {
+          "position": 4,
+          "key": "q",
+          "function": "orientation.tilted",
+          "meaning": "斜置",
+          "source": "全形圆族试验-02.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "r",
+          "function": "orientation.up_right",
+          "meaning": "向右上斜",
+          "source": "全形圆族试验-03.json",
+          "confirmed": true
+        }
+      ]
+    },
+    {
+      "position": 4,
+      "functions": [
+        "orientation.up_left",
+        "position.up_left"
+      ],
+      "bindings": [
+        {
+          "position": 4,
+          "key": "l",
+          "function": "orientation.up_left",
+          "meaning": "向左上斜",
+          "source": "全形圆族试验-03.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "j",
+          "function": "position.up_left",
+          "meaning": "左上",
+          "source": "全形圆族试验-04.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "j",
+          "function": "position.up_left",
+          "meaning": "左上",
+          "source": "全形圆族试验-05.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "j",
+          "function": "position.up_left",
+          "meaning": "左上",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ]
+    },
+    {
+      "position": 4,
+      "functions": [
+        "orientation.up_right",
+        "position.up_right"
+      ],
+      "bindings": [
+        {
+          "position": 4,
+          "key": "r",
+          "function": "orientation.up_right",
+          "meaning": "向右上斜",
+          "source": "全形圆族试验-03.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "k",
+          "function": "position.up_right",
+          "meaning": "右上",
+          "source": "全形圆族试验-04.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "k",
+          "function": "position.up_right",
+          "meaning": "右上",
+          "source": "全形圆族试验-05.json",
+          "confirmed": true
+        },
+        {
+          "position": 4,
+          "key": "k",
+          "function": "position.up_right",
+          "meaning": "右上",
+          "source": "全形圆族试验-07.json",
+          "confirmed": false
+        }
+      ]
+    }
+  ],
+  "scopeReview": [
+    {
+      "source": "全形圆族试验-07.json",
+      "notes": [
+        "实心点/空心环的形状键义尝试扩展到主体上方或下方，不限定圆内；位置由码的其他位和取形依据明确",
+        "两个反向钩可否按重复构件n检索，需要人工核对",
+        "ʝ的p回环/j钩弯两条主形路径均为候选，不强制其只属于一个主形"
+      ]
+    }
+  ],
+  "layoutTrial": false,
+  "codeChanges": []
+}

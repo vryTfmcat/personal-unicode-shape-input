@@ -10,6 +10,7 @@ let selectedId = null;
 let query = "";
 let navQuery = "";
 let conflictOnly = false;
+let searchCurrentPage = false;
 let displayLimit = PAGE_BATCH;
 let toastTimer = null;
 let itemIndex = new Map();
@@ -24,6 +25,7 @@ function clone(value) { return JSON.parse(JSON.stringify(value)); }
 function pageById(id) { return pageLookup.get(id); }
 function itemById(id) { return itemIndex.get(id); }
 function selectedItem() { return selectedId ? itemById(selectedId) : null; }
+function codeLimit(code) { return pristine?.candidateLimits?.[code] || 5; }
 
 function emptyPatch() {
   return { format: "unicode-key-editor-patch-v1", baseVersion: pristine.version, pages: {}, characters: {}, commonOrder: null };
@@ -50,6 +52,7 @@ async function init() {
     itemById,
     findCharacter: (char) => state.characters.find((item) => item.char === char) || null,
     codeCount: (code) => codeIndex.get(code) || 0,
+    codeLimit,
     characters: () => state.characters,
   };
   document.dispatchEvent(new CustomEvent("key-editor-ready"));
@@ -82,6 +85,7 @@ function rebuildIndexes() {
 function bindStaticEvents() {
   $("#pageSearchInput").addEventListener("input", (event) => { navQuery = event.target.value.trim().toLowerCase(); renderNav(); });
   $("#searchInput").addEventListener("input", (event) => { query = event.target.value.trim().toLowerCase(); displayLimit = PAGE_BATCH; renderGrid(); });
+  $("#searchCurrentPage").addEventListener("change", (event) => { searchCurrentPage = event.target.checked; displayLimit = PAGE_BATCH; renderGrid(); });
   $("#conflictOnly").addEventListener("change", (event) => { conflictOnly = event.target.checked; displayLimit = PAGE_BATCH; renderGrid(); });
   $("#blockInput").addEventListener("input", (event) => { pageById(activePage).block = event.target.value; save(); });
   $("#exportButton").addEventListener("click", exportJson);
@@ -145,20 +149,46 @@ function renderAll() {
 function renderNav() {
   const nav = $("#pageNav");
   nav.replaceChildren();
+  const matchesByPage = new Map();
+  let favoriteMatches = 0;
+  if (navQuery) {
+    for (const item of state.characters) {
+      if (!matchesCharacter(item, navQuery)) continue;
+      matchesByPage.set(item.pageId, (matchesByPage.get(item.pageId) || 0) + 1);
+      if (item.favorite) favoriteMatches++;
+    }
+    matchesByPage.set("common", favoriteMatches);
+  }
   for (const page of state.pages) {
     const haystack = `${page.id} ${page.name} ${page.block}`.toLowerCase();
-    if (navQuery && page.id !== activePage && !haystack.includes(navQuery)) continue;
+    const pageMatches = haystack.includes(navQuery);
+    const characterMatches = matchesByPage.get(page.id) || 0;
+    if (navQuery && !pageMatches && !characterMatches) continue;
     const button = document.createElement("button");
     button.type = "button";
     button.className = "page-button" + (page.id === activePage ? " active" : "");
     button.dataset.pageId = page.id;
-    const count = page.id === "common" ? favoriteIds.size : (pageIndex.get(page.id)?.length || 0);
+    const count = navQuery && !pageMatches ? characterMatches : page.id === "common" ? favoriteIds.size : (pageIndex.get(page.id)?.length || 0);
     button.innerHTML = `<span class="page-prefix">${page.id === "common" ? "★" : page.prefix}</span><span class="page-name">${escapeHtml(page.name)}</span><span class="page-number">${count}</span>`;
-    button.addEventListener("click", () => { activePage = page.id; query = ""; displayLimit = PAGE_BATCH; $("#searchInput").value = ""; renderAll(); });
+    button.addEventListener("click", () => {
+      activePage = page.id;
+      query = navQuery && !pageMatches ? navQuery : "";
+      if (query) searchCurrentPage = true;
+      $("#searchCurrentPage").checked = searchCurrentPage;
+      displayLimit = PAGE_BATCH;
+      $("#searchInput").value = query;
+      renderAll();
+    });
     button.addEventListener("dragover", (event) => { event.preventDefault(); button.classList.add("drag-over"); });
     button.addEventListener("dragleave", () => button.classList.remove("drag-over"));
     button.addEventListener("drop", (event) => { event.preventDefault(); button.classList.remove("drag-over"); moveItem(event.dataTransfer.getData("text/plain"), page.id, true); });
     nav.append(button);
+  }
+  if (!nav.childElementCount) {
+    const empty = document.createElement("p");
+    empty.className = "nav-empty";
+    empty.textContent = "全库没有匹配的字符或区块。";
+    nav.append(empty);
   }
 }
 
@@ -188,22 +218,28 @@ function renderRules(targetId, rules) {
   }
 }
 
+function matchesCharacter(item, search) {
+  const haystack = `${item.char} ${item.code} ${item.codepoint} ${item.unicodeName}`.toLowerCase();
+  return haystack.includes(search);
+}
+
 function filteredItems(source, counts) {
   return source.filter((item) => {
-    const haystack = `${item.char} ${item.code} ${item.codepoint} ${item.unicodeName}`.toLowerCase();
-    return (!query || haystack.includes(query)) && (!conflictOnly || (counts.get(item.code) || 0) > 1);
+    return (!query || matchesCharacter(item, query)) && (!conflictOnly || (counts.get(item.code) || 0) > 1);
   });
 }
 
 function renderGrid() {
-  const all = pageItems(activePage);
-  const counts = codeCounts(all);
+  const globalSearch = Boolean(query) && !searchCurrentPage;
+  $("#searchInput").placeholder = `${searchCurrentPage ? "本页" : "全库"}搜索字符、码、U+码位或名称`;
+  const all = globalSearch ? state.characters : pageItems(activePage);
+  const counts = globalSearch ? codeIndex : codeCounts(all);
   const items = filteredItems(all, counts);
   const shown = items.slice(0, displayLimit);
   const collisions = [...counts.values()].filter((count) => count > 1).reduce((sum, count) => sum + count, 0);
-  const overFive = [...counts.values()].filter((count) => count > 5).length;
-  $("#pageCount").textContent = `${all.length.toLocaleString()} 字符`;
-  $("#conflictSummary").textContent = `${shown.length.toLocaleString()}/${items.length.toLocaleString()} 显示 · ${collisions.toLocaleString()} 同码${overFive ? ` · ${overFive} 组超限` : ""}`;
+  const overFive = [...counts.entries()].filter(([code, count]) => count > codeLimit(code)).length;
+  $("#pageCount").textContent = `${pageItems(activePage).length.toLocaleString()} 字符`;
+  $("#conflictSummary").textContent = `${globalSearch ? "全库搜索" : query ? "本页搜索" : "本页"} · ${shown.length.toLocaleString()}/${items.length.toLocaleString()} 显示 · ${collisions.toLocaleString()} 同码${overFive ? ` · ${overFive} 组超限` : ""}`;
   const grid = $("#glyphGrid");
   grid.replaceChildren();
   const fragment = document.createDocumentFragment();
@@ -211,10 +247,17 @@ function renderGrid() {
     const count = counts.get(item.code) || 1;
     const card = document.createElement("button");
     card.type = "button";
-    card.className = `glyph-card${item.id === selectedId ? " selected" : ""}${count > 5 ? " over-five" : ""}`;
+    card.className = `glyph-card${item.id === selectedId ? " selected" : ""}${count > codeLimit(item.code) ? " over-five" : ""}`;
     card.draggable = true;
-    card.title = item.unicodeName;
-    card.innerHTML = `${item.favorite ? '<span class="favorite-star">★</span>' : ""}${count > 1 ? `<span class="collision-dot${count > 5 ? " hot" : ""}">${count}</span>` : ""}<span class="glyph">${escapeHtml(item.char)}</span><span class="glyph-code">${escapeHtml(item.code)}</span><span class="glyph-cp">${item.codepoint}</span>`;
+    const owner = pageById(item.pageId);
+    card.title = `${item.unicodeName}\n${owner?.name || item.sourceBlock}`;
+    card.innerHTML = `${item.favorite ? '<span class="favorite-star">★</span>' : ""}${count > 1 ? `<span class="collision-dot${count > codeLimit(item.code) ? " hot" : ""}">${count}</span>` : ""}<span class="glyph">${escapeHtml(item.char)}</span><span class="glyph-code">${escapeHtml(item.code)}</span><span class="glyph-cp">${item.codepoint}</span>`;
+    if (globalSearch) {
+      const pageLabel = document.createElement("span");
+      pageLabel.className = "glyph-page";
+      pageLabel.textContent = owner?.name || item.sourceBlock;
+      card.append(pageLabel);
+    }
     card.addEventListener("click", () => { selectedId = item.id; renderGrid(); renderInspector(); });
     card.addEventListener("dragstart", (event) => { event.dataTransfer.setData("text/plain", item.id); event.dataTransfer.effectAllowed = "move"; card.classList.add("dragging"); });
     card.addEventListener("dragend", () => card.classList.remove("dragging"));
@@ -230,6 +273,7 @@ function renderGrid() {
   }
   grid.append(fragment);
   $("#emptyState").hidden = items.length !== 0;
+  $("#emptyState p").textContent = globalSearch ? "全库没有符合条件的字符。" : "这一页暂时没有符合条件的字符。";
 }
 
 function renderInspector() {
@@ -323,7 +367,7 @@ function updateShapeKeys() {
   item.mainKey = $("#mainKeySelect").value;
   item.stateKey = $("#stateKeySelect").value;
   const owner = pageById(item.pageId);
-  const prefix = owner?.prefix || (item.code || "qq").slice(0, 2).padEnd(2, "q");
+  const prefix = item.code?.length >= 2 ? item.code.slice(0, 2) : owner?.prefix || "qq";
   item.code = prefix + item.mainKey + item.stateKey;
   changeCodeIndex(oldCode, item.code);
   save(); renderGrid(); renderInspector();
@@ -338,7 +382,8 @@ function setCodeHint(item) {
 
 function renderInspectorMetadataOnly(item) {
   const same = codeIndex.get(item.code) || 0;
-  $("#sameCodeCount").textContent = `${same} 个${same > 5 ? "（超过候选上限）" : ""}`;
+  const limit = codeLimit(item.code);
+  $("#sameCodeCount").textContent = `${same} 个（上限 ${limit}）${same > limit ? "（超过候选上限）" : ""}`;
 }
 
 async function copyGlyph() {

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>t 拟物 · 全量收入初稿</title><link rel="icon" href="data:,">
+<link rel="stylesheet" href="fonts/editor-fonts.css"><link rel="stylesheet" href="pictorial-intake-review.css"></head>
+<body><main>
+<header><a href="shape-key-overview.html#round=3">返回四位键位总览</a><h1>t 拟物 · 收入初稿</h1>
+<p>第一位 t：具体物象、象征标志、指示牌、游戏图标及物象装饰；不含文字、标点、乐谱或纯几何纹样。收入t后退出其他几何桶，不设双入口个例。第二位字母未定；未迁移、未部署。</p>
+<p id="scope" role="status">正在读取……</p><p id="progress"></p>
+<p id="revision"></p>
+<details><summary>边界、来源与未覆盖范围</summary><div id="provenance"></div></details></header>
+<details id="historyArchive" hidden><summary>初审归档与备份</summary><p><a id="archiveDownload" download>下载初审资料与过程备份</a></p><p id="archivePath"></p></details>
+<nav id="queues" aria-label="初稿队列"></nav>
+<nav id="followupQueues" aria-label="本轮确认与待核对"></nav>
+<nav id="candidateQueues" aria-label="分类修正与同类候选" hidden></nav>
+<form id="filters"><label>类别<select id="category"><option value="">全部类别</option></select></label>
+<label>字符／码位／名称<input id="search" placeholder="如 𓆟、U+1319F、FISH"></label>
+<label id="egyptScopeLabel" hidden>埃及区块<select id="egyptScope"><option value="">全部范围</option><option>原区块</option><option>扩展A区块</option></select></label>
+<label>审核状态<select id="reviewFilter"><option value="">全部状态</option><option value="pending">尚未审核</option><option value="include">收入</option><option value="exclude">不收入</option><option value="uncertain">待讨论</option></select></label>
+<label>每页<select id="pageSize"><option>48</option><option>96</option><option>192</option></select></label>
+<button type="submit">查询</button><button id="clear" type="button">清除筛选</button></form>
+<section class="review-tools" aria-label="审核结果"><button id="saveProject">保存到项目</button><button id="export">导出审核结果</button>
+<label class="file-button">导入审核结果<input id="import" type="file" accept="application/json,.json"></label>
+<span id="saveState" role="status"></span></section>
+<section aria-label="字符核对"><h2 id="heading" tabindex="-1"></h2>
+<div class="page-tools"><button id="prev">上一页</button><span id="page"></span><button id="next">下一页</button>
+<label>本页批量判断<select id="bulk"><option value="">不修改</option><option value="include">收入</option><option value="exclude">不收入</option><option value="uncertain">待讨论</option></select></label><button id="applyBulk">应用到本页</button></div>
+<div id="cards"></div><div class="page-tools"><button id="prevBottom">上一页</button><span id="pageBottom"></span><button id="nextBottom">下一页</button></div></section>
+<p id="error" role="alert"></p>
+</main><script src="pictorial-intake-review.js"></script></body></html>

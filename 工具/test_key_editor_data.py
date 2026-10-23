@@ -2,6 +2,7 @@
 """Validate the key editor's generated initial state."""
 
 from build_key_editor_data import COMMON, build
+from reviewed_shapes import REVIEWED_SHAPE_CODES, CANDIDATE_LIMITS
 
 
 def main() -> None:
@@ -16,6 +17,9 @@ def main() -> None:
     for character, code in COMMON:
         assert by_char[character]["code"] == code
         assert by_char[character]["favorite"] is True
+    assert data["candidateLimits"] == CANDIDATE_LIMITS
+    for character, code in REVIEWED_SHAPE_CODES.items():
+        assert by_char[character]["code"] == code
     assert by_char["ଉ"]["pageId"] == "bo"
     assert by_char["ଉ"]["code"] == "boki"
     assert by_char["Պ"]["pageId"] == "as"

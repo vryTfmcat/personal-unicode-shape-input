@@ -1,0 +1,139 @@
+{
+  "version": "round-components-trial-v1",
+  "status": "approved-candidate",
+  "date": "2026-10-06",
+  "reference": "Segoe UI Symbol, 96 px",
+  "coarseProposal": "oi：圆主体含内部构件；⊕、⊗ 从 ox 试验归入 oi，交叉信息移至第三位",
+  "third": {
+    "o": "内部空心圆环",
+    "d": "内部实心点／圆面",
+    "x": "内部交叉"
+  },
+  "fourth": {
+    "v": "构件较大",
+    "x": "构件较小",
+    "z": "构件微小",
+    "e": "正置，轴向对齐",
+    "q": "斜置"
+  },
+  "rulesStatus": "取码优先级、内点／圆面边界、尺寸分档与默认关系均待用户核定",
+  "characters": [
+    {
+      "char": "◎",
+      "codepoint": "U+25CE",
+      "currentCoarse": "oi",
+      "proposedCode": "oiov",
+      "feature": "内部空心圆环",
+      "detail": "较大内环，默认同心",
+      "status": "approved-candidate"
+    },
+    {
+      "char": "⊚",
+      "codepoint": "U+229A",
+      "currentCoarse": "oi",
+      "proposedCode": "oiox",
+      "feature": "内部空心圆环",
+      "detail": "较小内环，默认同心",
+      "status": "approved-candidate"
+    },
+    {
+      "char": "⊙",
+      "codepoint": "U+2299",
+      "currentCoarse": "oi",
+      "proposedCode": "oidz",
+      "feature": "内部实心点",
+      "detail": "微小内点，默认居中",
+      "status": "approved-candidate"
+    },
+    {
+      "char": "◉",
+      "codepoint": "U+25C9",
+      "currentCoarse": "oi",
+      "proposedCode": "oidv",
+      "feature": "内部实心点／圆面",
+      "detail": "较大内点，默认居中",
+      "status": "approved-candidate"
+    },
+    {
+      "char": "⊕",
+      "codepoint": "U+2295",
+      "currentCoarse": "ox",
+      "proposedCode": "oixe",
+      "feature": "内部交叉",
+      "detail": "正置，与水平／垂直轴对齐",
+      "status": "approved-candidate"
+    },
+    {
+      "char": "⊗",
+      "codepoint": "U+2297",
+      "currentCoarse": "ox",
+      "proposedCode": "oixq",
+      "feature": "内部交叉",
+      "detail": "斜置",
+      "status": "approved-candidate"
+    }
+  ],
+  "approval": {
+    "date": "2026-10-07",
+    "scope": "本批六个试验码及上一轮展示的构件、尺寸与方向键义",
+    "userMessage": "可以，这几个码都行，下一批"
+  },
+  "functionIds": {
+    "third": {
+      "o": "component.hollow_circle",
+      "d": "component.filled_round",
+      "x": "component.cross"
+    },
+    "fourth": {
+      "v": "size.large",
+      "x": "size.small",
+      "z": "size.tiny",
+      "e": "orientation.axis_aligned",
+      "q": "orientation.tilted"
+    }
+  },
+  "layoutVersion": "game-layout-v1",
+  "layoutApproval": {
+    "status": "approved",
+    "date": "2026-10-07",
+    "userMessage": "可以覆盖",
+    "scope": "第四位统一空间布局WASD/JK-NM/ZXCV及配套迁移"
+  },
+  "amendment": {
+    "date": "2026-10-07",
+    "reason": "按用户授权覆盖统一游戏布局",
+    "changes": [
+      {
+        "source": "全形圆族试验-02.json",
+        "char": "◎",
+        "before": "oiob",
+        "after": "oiov"
+      },
+      {
+        "source": "全形圆族试验-02.json",
+        "char": "⊚",
+        "before": "oios",
+        "after": "oiox"
+      },
+      {
+        "source": "全形圆族试验-02.json",
+        "char": "⊙",
+        "before": "oidt",
+        "after": "oidz"
+      },
+      {
+        "source": "全形圆族试验-02.json",
+        "char": "◉",
+        "before": "oidb",
+        "after": "oidv"
+      },
+      {
+        "source": "全形圆族试验-02.json",
+        "char": "⊕",
+        "before": "oixa",
+        "after": "oixe"
+      }
+    ]
+  },
+  "revision": 2
+}

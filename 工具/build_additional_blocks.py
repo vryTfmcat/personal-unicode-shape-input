@@ -49,12 +49,12 @@ class Block:
 BLOCKS = (
     Block(
         "armenian", 0x0530, 0x058F, 91, (("as", 0x0530, 0x058F),),
-        "30_项目/个人Unicode音型输入法/数据/unicode全字符/plane-00-Basic Multilingual Plane/block-u0530-u058f-armenian.md",
+        "70_unicode/个人Unicode音型输入法/数据/unicode全字符/plane-00-Basic Multilingual Plane/block-u0530-u058f-armenian.md",
         "ՊArmenian字块-编码.tsv", "C:/Windows/Fonts/sylfaen.ttf", 76, 0x054A, "ascg",
     ),
     Block(
         "math-symbols-b", 0x2980, 0x29FF, 128, (("dd", 0x2980, 0x29FF),),
-        "30_项目/个人Unicode音型输入法/数据/unicode全字符/plane-00-Basic Multilingual Plane/block-u2980-u29ff-miscellaneous-mathematical-symbols-b.md",
+        "70_unicode/个人Unicode音型输入法/数据/unicode全字符/plane-00-Basic Multilingual Plane/block-u2980-u29ff-miscellaneous-mathematical-symbols-b.md",
         "⦿数学符号B字块-编码.tsv", "C:/Windows/Fonts/cambria.ttc", 76, 0x29BF, "ddoi",
     ),
     Block(
@@ -64,12 +64,12 @@ BLOCKS = (
             ("mn", 0x12200, 0x122FF),
             ("mw", 0x12300, 0x12399),
         ),
-        "30_项目/个人Unicode音型输入法/数据/unicode全字符/plane-01-Supplementary Multilingual Plane/block-u12000-u123ff-cuneiform.md",
+        "70_unicode/个人Unicode音型输入法/数据/unicode全字符/plane-01-Supplementary Multilingual Plane/block-u12000-u123ff-cuneiform.md",
         "𒁔Cuneiform字块-编码.tsv", "C:/Windows/Fonts/seguihis.ttf", 72, 0x12054, "mvma",
     ),
     Block(
         "tamil", 0x0B80, 0x0BFF, 72, (("pi", 0x0B80, 0x0BFF),),
-        "30_项目/个人Unicode音型输入法/数据/unicode全字符/plane-00-Basic Multilingual Plane/block-u0b80-u0bff-tamil.md",
+        "70_unicode/个人Unicode音型输入法/数据/unicode全字符/plane-00-Basic Multilingual Plane/block-u0b80-u0bff-tamil.md",
         "ஆTamil字块-编码.tsv", "C:/Windows/Fonts/Nirmala.ttc", 76, 0x0B86, "pici",
     ),
 )

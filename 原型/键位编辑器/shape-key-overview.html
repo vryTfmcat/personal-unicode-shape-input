@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>四位键位总览 · 最新独立版</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="fonts/editor-fonts.css"><link rel="stylesheet" href="shape-key-overview.css"></head>
+<body><main>
+<header><a href="./">返回键位编辑器</a> · <a href="pictorial-intake-review.html">t 拟物收入全量初稿</a><h1>四位键位总览</h1><span class="badge">独立核对 · 未部署 · 只读</span>
+<p id="version">正在读取并校验最新独立全量数据……</p><p id="stats"></p>
+<div id="allocationModes" class="toolbar" hidden><button data-allocation="draft" aria-pressed="true">旧桶清空草案</button><button data-allocation="legacy" aria-pressed="false">v14原始／旧码兼容</button></div><p id="allocationStatus" hidden></p><div id="cleanupQueues" class="toolbar" hidden></div>
+<details><summary>版本、确认范围与证据</summary><div id="provenance"></div></details></header>
+<nav aria-label="核对轮次"><button data-round="1" aria-pressed="true">第一轮 · 四层键义</button><button data-round="2" aria-pressed="false">第二轮 · 代表字与对象</button><button data-round="3" aria-pressed="false">第三轮 · 大重码组</button><button data-round="4" aria-pressed="false">第四轮 · 覆盖与漏收</button></nav>
+<p id="error" role="alert"></p>
+<section id="thickPanel" aria-label="粗笔误拒修复" hidden><h2>粗笔分叉 · 检测修复</h2><div id="thickSummary"></div><div id="thickButtons" class="toolbar"></div></section>
+<section id="centrePanel" aria-label="中心属性独立试验" hidden><h2>第四位 o · 中心</h2><div id="centreSummary"></div><div id="centreButtons" class="toolbar"></div></section>
+<section id="round1" aria-label="四层键义"><div id="positions" class="toolbar"></div><div id="keyboard"></div><div id="keyInfo"></div><details id="historicalPanel" hidden><summary>旧桶整理与 u／v 新用途试验 · 2026-10-22</summary><div id="historicalSummary"></div><div id="historicalButtons" class="toolbar"></div><div id="historicalCategories" class="toolbar"></div><figure id="historicalFigure" hidden><img id="historicalImage" alt="历史桶独立试验的实际字形候选"><figcaption id="historicalCaption"></figcaption></figure></details></section>
+<section id="round2" aria-label="代表字与对象" hidden><div id="samples" class="toolbar"></div><figure id="proof" hidden><img id="proofImage" alt="锁定字体的主体与构件取形核对图"><figcaption>本独立全量版保存的取形核对图</figcaption></figure></section>
+<section id="round3" aria-label="大重码组" hidden><details id="chvcPanel" open hidden><summary>chvc · 结构细分与优先级试验</summary><div id="chvcSummary"></div><div id="chvcButtons" class="toolbar"></div><div id="chvcComparison"></div></details><div class="toolbar"><label>前缀长度 <select id="length"><option value="4">四位</option><option value="3">三位</option><option value="2">两位</option><option value="1">一位</option></select></label><label>编码筛选 <input id="collisionFilter" maxlength="4"></label></div><div id="majorGroups" class="toolbar"></div><div id="collisions"></div><button id="moreGroups" hidden>显示更多编码组</button></section>
+<section id="round4" aria-label="覆盖与漏收" hidden><div id="queues" class="toolbar"></div><p id="queueNote"></p></section>
+<section aria-label="共用查询"><form id="search" class="toolbar"><label>编码 <input id="prefix" maxlength="4" pattern="[a-zA-Z]{1,4}" placeholder="如 chzt"></label><label>字符／码位 <input id="character" placeholder="如 Q 或 U+0051"></label><button type="submit">查询</button><button type="button" id="clear">清除筛选</button></form>
+<div id="cleanupResultNav" class="toolbar" aria-label="清空草案结果分类" hidden></div><div id="uExpansionNav" class="toolbar" aria-label="u线群近似候选" hidden></div><div id="chvcResultNav" class="toolbar" aria-label="chvc结构试验队列" hidden></div><div id="centreResultNav" class="toolbar" aria-label="中心属性核对队列" hidden></div><div id="thickResultNav" class="toolbar" aria-label="粗笔复核队列" hidden></div><h2 id="resultHeading" tabindex="-1">全部普通字符</h2><p id="resultStatus" role="status"></p><div id="groupCounts"></div>
+<div class="workspace"><div><div id="results"></div><div class="toolbar"><button id="prev" disabled>上一页</button><span id="page"></span><button id="next" disabled>下一页</button></div></div><aside id="detail" aria-label="字符详情"><h2>字符详情</h2><p>未选择字符</p></aside></div></section>
+</main><script src="shape-key-overview.js"></script></body></html>

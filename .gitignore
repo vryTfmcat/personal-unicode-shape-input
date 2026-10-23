@@ -42,3 +42,19 @@ desktop.ini
 
 # Device-local path map; handwritten entities remain in the vault.
 vault-location.json
+
+# Local entities and personal state are supplied from the vault; never add new records.
+/实体/
+/vault-location.json
+/数据/三模式/codebooks.json
+/数据/三模式/shape-stage.json
+/数据/三模式/flypy-ixdata-*.json
+/数据/三模式/规则库/**/运行/
+/数据/三模式/规则库/**/缓存/
+/数据/三模式/规则库/**/字体/
+/原型/键位编辑器/**/backups/
+/原型/键位编辑器/**/备份/
+/原型/键位编辑器/**/fonts/
+
+/数据/三模式/全形核对版.json
+/数据/三模式/本机核对索引/

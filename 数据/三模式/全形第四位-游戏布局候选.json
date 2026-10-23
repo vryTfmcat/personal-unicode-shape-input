@@ -1,0 +1,81 @@
+{
+  "version": "game-layout-trial-v1",
+  "date": "2026-10-07",
+  "status": "trial",
+  "directionProposal": "用户提出WASD与JK/NM",
+  "sizeProposal": "ZXCV由左向右微小、小、中、大；待核定",
+  "fourth": {
+    "w": {
+      "function": "position.up",
+      "meaning": "上"
+    },
+    "s": {
+      "function": "position.down",
+      "meaning": "下"
+    },
+    "a": {
+      "function": "position.left",
+      "meaning": "左"
+    },
+    "d": {
+      "function": "position.right",
+      "meaning": "右"
+    },
+    "j": {
+      "function": "position.up_left",
+      "meaning": "左上"
+    },
+    "k": {
+      "function": "position.up_right",
+      "meaning": "右上"
+    },
+    "n": {
+      "function": "position.down_left",
+      "meaning": "左下"
+    },
+    "m": {
+      "function": "position.down_right",
+      "meaning": "右下"
+    },
+    "z": {
+      "function": "size.tiny",
+      "meaning": "微小"
+    },
+    "x": {
+      "function": "size.small",
+      "meaning": "小"
+    },
+    "c": {
+      "function": "size.medium",
+      "meaning": "中"
+    },
+    "v": {
+      "function": "size.large",
+      "meaning": "大"
+    },
+    "h": {
+      "function": "orientation.horizontal",
+      "meaning": "横向"
+    },
+    "i": {
+      "function": "orientation.vertical",
+      "meaning": "纵向"
+    },
+    "l": {
+      "function": "orientation.up_left",
+      "meaning": "左上斜"
+    },
+    "r": {
+      "function": "orientation.up_right",
+      "meaning": "右上斜"
+    },
+    "e": {
+      "function": "orientation.axis_aligned",
+      "meaning": "正置"
+    },
+    "q": {
+      "function": "orientation.tilted",
+      "meaning": "斜置"
+    }
+  }
+}
