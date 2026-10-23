@@ -39,12 +39,21 @@ TESTS = (
     "test_key_editor_static.py",
     "test_rime_profiles.py",
     "test_sync_rime_files.py",
+    "test_mode_codebooks.py",
+    "test_reviewed_paths.py",
+    "test_publish_mode_rime.py",
+    "test_mode_rime_runtime.py",
+    "test_shape_rule_audit.py",
+    "test_shape_batch_annotation.py",
+    "test_shape_lab.py",
+    "test_balanced_shape_buckets.py",
+    "test_shape_bucket_scope.py",
 )
 
 
 def run(*arguments: str) -> None:
     print("→", " ".join(arguments), flush=True)
-    subprocess.run(arguments, cwd=PROJECT, check=True)
+    subprocess.run(arguments, cwd=PROJECT, check=True, env={**os.environ, "PYTHONUTF8": "1"})
 
 
 def find_python() -> str:
@@ -53,12 +62,12 @@ def find_python() -> str:
         if not candidate.is_file():
             continue
         probe = subprocess.run(
-            [str(candidate), "-c", "import numpy; from PIL import Image"],
+            [str(candidate), "-c", "import numpy; import yaml; from PIL import Image"],
             capture_output=True,
         )
         if probe.returncode == 0:
             return str(candidate)
-    raise FileNotFoundError("找不到同时提供 NumPy 与 Pillow 的 Python；请在 Codex 工作区中运行")
+    raise FileNotFoundError("找不到同时提供 NumPy、Pillow 和 PyYAML 的 Python")
 
 
 def python_script(name: str, *arguments: str) -> None:
@@ -79,18 +88,14 @@ def ensure_official_structure() -> None:
 
 
 def build(vault_root: Path | None = None) -> None:
+    python_script("audit_shape_rules.py")
     ensure_full_table()
     ensure_official_structure()
-    python_script("build_all_unicode_keymap.py")
-    python_script("build_key_editor_data.py")
+    python_script("mode_codebooks.py")
+    python_script("build_mode_rime.py")
     graph = PROJECT / "数据" / "联想图谱" / "association-graph.json"
     if not graph.is_file():
         python_script("build_association_graph.py")
-    python_script("sync_association_entities.py")
-    catalog_args = ["--write"]
-    if vault_root:
-        catalog_args.extend(("--vault-root", str(vault_root)))
-    python_script("build_catalog.py", *catalog_args)
 
 
 def find_node() -> str:
@@ -104,11 +109,17 @@ def find_node() -> str:
 
 
 def test() -> None:
+    python_script("audit_shape_rules.py")
     for name in TESTS:
         python_script(name)
     node = find_node()
     run(node, "--check", str(PROJECT / "原型" / "键位编辑器" / "app.js"))
     run(node, "--check", str(PROJECT / "原型" / "键位编辑器" / "association.js"))
+    for name in ("modes-core.js", "modes.js"):
+        run(node, "--check", str(PROJECT / "原型" / "键位编辑器" / name))
+    run(node, str(TOOLS / "test_key_editor_search.cjs"))
+    run(node, str(TOOLS / "test_modes_core.cjs"))
+    run(node, str(TOOLS / "test_modes_reviewed_paths.cjs"))
 
 
 def main() -> None:
@@ -121,11 +132,9 @@ def main() -> None:
     elif args.command == "test": test()
     elif args.command == "check": build(args.vault_root); test()
     elif args.command == "rime":
-        catalog_args = ["--write"]
-        if args.vault_root: catalog_args.extend(("--vault-root", str(args.vault_root)))
-        python_script("build_catalog.py", *catalog_args)
+        python_script("build_mode_rime.py")
     elif args.command == "sync-rime":
-        python_script("sync_rime_files.py", *(["--apply"] if args.apply else []))
+        python_script("publish_mode_rime.py", *(["--apply"] if args.apply else []))
 
 
 if __name__ == "__main__":

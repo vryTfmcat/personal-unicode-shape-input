@@ -7,6 +7,7 @@ import csv
 from collections import Counter
 
 from build_additional_blocks import BLOCKS, MAX_CANDIDATES, PROJECT
+from reviewed_shapes import candidate_limit
 
 
 def main() -> None:
@@ -25,7 +26,7 @@ def main() -> None:
     entries = [line.split("\t")[:2] for line in dictionary.read_text(encoding="utf-8").splitlines() if "\t" in line]
     codes = Counter(code for _, code in entries)
     assert len(entries) == 56891
-    assert max(codes.values()) <= MAX_CANDIDATES
+    assert all(count <= candidate_limit(code) for code,count in codes.items())
     assert len(set(map(tuple, entries))) == len(entries)
     anchors = {"Պ": "ascg", "⦿": "ddoi", "𒁔": "mvma", "ஆ": "pici", "ଉ": "boki"}
     for character, code in anchors.items():

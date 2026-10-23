@@ -1,0 +1,10 @@
+{
+  "format": "unicode-shape-review-profile-v1",
+  "enabled": false,
+  "purpose": "user-review",
+  "experimentId": "example-review-index",
+  "indexPath": "数据/三模式/本机核对索引/index.json",
+  "indexSHA256": "replace-with-the-local-index-sha256",
+  "migrationApproved": false,
+  "keyboardBindingsStatus": "provisional-review"
+}

@@ -6,20 +6,30 @@ from __future__ import annotations
 import csv
 from collections import Counter
 
-from build_all_unicode_keymap import LOCKED_TABLES, MAX_PER_CODE, OUTPUT_PAGES, OUTPUT_TABLE, read_tsv
+from build_all_unicode_keymap import LOCKED_TABLES, MAX_PER_CODE, OUTPUT_PAGES, OUTPUT_TABLE, read_tsv, keyword_key, MAIN_HINTS, STATE_HINTS
+from reviewed_shapes import REVIEWED_SHAPE_CODES, candidate_limit
 
 
 def main() -> None:
+    assert keyword_key("SUNDANESE PUNCTUATION BINDU SURYA", MAIN_HINTS) is None
+    assert keyword_key("SUN", MAIN_HINTS) == "r"
+    assert keyword_key("CUP", STATE_HINTS) is None
+    assert keyword_key("UPWARDS ARROW", STATE_HINTS) == "u"
+    assert keyword_key("V-SHAPED SYMBOL", MAIN_HINTS) == "v"
     rows = read_tsv(OUTPUT_TABLE)
     pages = read_tsv(OUTPUT_PAGES)
     assert len(rows) == 159345
     assert len({row["codepoint"] for row in rows}) == 159345
     assert len(pages) <= 676
     assert all(len(row["input_code"]) == 4 and row["input_code"].islower() for row in rows)
-    assert all(row["source"].startswith("30_项目/个人Unicode音型输入法/") for row in rows)
+    assert all(row["source"].startswith("70_unicode/个人Unicode音型输入法/") for row in rows)
     counts = Counter(row["input_code"] for row in rows)
-    assert max(counts.values()) <= MAX_PER_CODE
+    assert all(count <= candidate_limit(code) for code, count in counts.items())
+    assert candidate_limit("gsoe") == 10 and candidate_limit("zzzz") == 5
     by_cp = {int(row["codepoint"][2:], 16): row for row in rows}
+    for char, code in REVIEWED_SHAPE_CODES.items():
+        assert by_cp[ord(char)]["input_code"] == code
+        assert by_cp[ord(char)]["status"] == "reviewed"
     for path in LOCKED_TABLES:
         for locked in read_tsv(path):
             codepoint = int(locked["codepoint"][2:], 16)

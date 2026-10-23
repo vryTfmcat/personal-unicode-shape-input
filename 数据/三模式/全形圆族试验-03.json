@@ -1,0 +1,177 @@
+{
+  "version": "round-lines-trial-v1",
+  "date": "2026-10-07",
+  "status": "approved-candidate",
+  "reference": "Segoe UI Symbol, 84 px",
+  "second": {
+    "i": "线在圆内或仅与圆周相接",
+    "x": "线明显穿出圆外"
+  },
+  "third": {
+    "l": "单一直线",
+    "n": "重复排列构件，本批为平行直线"
+  },
+  "fourth": {
+    "h": "横向",
+    "i": "纵向",
+    "r": "向右上斜",
+    "l": "向左上斜"
+  },
+  "characters": [
+    {
+      "char": "⊖",
+      "code": "oilh",
+      "description": "圆内单横线",
+      "codepoint": "U+2296",
+      "status": "approved-candidate"
+    },
+    {
+      "char": "⊘",
+      "code": "oilr",
+      "description": "圆内斜线，向右上",
+      "codepoint": "U+2298",
+      "status": "approved-candidate"
+    },
+    {
+      "char": "⦸",
+      "code": "oill",
+      "description": "圆内斜线，向左上",
+      "codepoint": "U+29B8",
+      "status": "approved-candidate"
+    },
+    {
+      "char": "⦶",
+      "code": "oili",
+      "description": "圆内单竖线",
+      "codepoint": "U+29B6",
+      "status": "approved-candidate"
+    },
+    {
+      "char": "⦷",
+      "code": "oini",
+      "description": "圆内重复平行线，纵向",
+      "codepoint": "U+29B7",
+      "status": "approved-candidate"
+    },
+    {
+      "char": "⦵",
+      "code": "oxlh",
+      "description": "横线穿出圆外",
+      "codepoint": "U+29B5",
+      "status": "approved-candidate"
+    },
+    {
+      "char": "∅",
+      "code": "oxlr",
+      "description": "斜线穿出圆外，向右上",
+      "codepoint": "U+2205",
+      "status": "approved-candidate"
+    },
+    {
+      "char": "Ø",
+      "code": "oxlr",
+      "description": "斜线穿出圆外，向右上",
+      "codepoint": "U+00D8",
+      "status": "approved-candidate"
+    }
+  ],
+  "approval": {
+    "date": "2026-10-07",
+    "scope": "第03批八字符候选码及上轮展示的内含/穿出、单线/重复、方向键义",
+    "userMessage": "好的没有问题，继续下一批"
+  },
+  "functionIds": {
+    "third": {
+      "l": "component.line",
+      "n": "component.repeated"
+    },
+    "fourth": {
+      "h": "orientation.horizontal",
+      "i": "orientation.vertical",
+      "r": "orientation.up_right",
+      "l": "orientation.up_left"
+    }
+  },
+  "revision": 3,
+  "amendment": {
+    "date": "2026-10-07",
+    "reason": "按用户授权覆盖统一游戏布局",
+    "changes": [
+      {
+        "source": "全形圆族试验-03.json",
+        "char": "⊘",
+        "before": "oilg",
+        "after": "oilr"
+      },
+      {
+        "source": "全形圆族试验-03.json",
+        "char": "⦸",
+        "before": "oilf",
+        "after": "oill"
+      },
+      {
+        "source": "全形圆族试验-03.json",
+        "char": "⦶",
+        "before": "oilv",
+        "after": "oili"
+      },
+      {
+        "source": "全形圆族试验-03.json",
+        "char": "⦷",
+        "before": "oinv",
+        "after": "oini"
+      },
+      {
+        "source": "全形圆族试验-03.json",
+        "char": "∅",
+        "before": "oxlg",
+        "after": "oxlr"
+      },
+      {
+        "source": "全形圆族试验-03.json",
+        "char": "Ø",
+        "before": "oxlg",
+        "after": "oxlr"
+      }
+    ]
+  },
+  "layoutVersion": "game-layout-v1",
+  "layoutApproval": {
+    "status": "approved",
+    "date": "2026-10-07",
+    "userMessage": "可以覆盖",
+    "scope": "第四位统一空间布局WASD/JK-NM/ZXCV及配套迁移"
+  },
+  "amendmentHistory": [
+    {
+      "date": "2026-10-07",
+      "reason": "用户指定第四位l/r保留左右位置，四角按键盘U I / J K统一；斜向迁至f/g，上迁至w",
+      "keyChanges": {
+        "l": "f",
+        "r": "g"
+      },
+      "changes": [
+        {
+          "char": "⊘",
+          "before": "oilr",
+          "after": "oilg"
+        },
+        {
+          "char": "⦸",
+          "before": "oill",
+          "after": "oilf"
+        },
+        {
+          "char": "∅",
+          "before": "oxlr",
+          "after": "oxlg"
+        },
+        {
+          "char": "Ø",
+          "before": "oxlr",
+          "after": "oxlg"
+        }
+      ]
+    }
+  ]
+}

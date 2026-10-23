@@ -10,7 +10,7 @@ from typing import Any
 
 
 PROJECT = Path(__file__).resolve().parents[1]
-GRAPH_SOURCE = "30_项目/个人Unicode音型输入法/数据/联想图谱/association-graph.json"
+GRAPH_SOURCE = "70_unicode/个人Unicode音型输入法/数据/联想图谱/association-graph.json"
 
 
 def parse_simple_frontmatter(text: str) -> dict[str, Any]:

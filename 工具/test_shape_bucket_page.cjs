@@ -1,0 +1,14 @@
+const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert');
+const root=path.resolve(__dirname,'..','数据','三模式','规则库','单层分桶');
+const latest=JSON.parse(fs.readFileSync(path.join(root,'最新分桶.json'),'utf8'));
+const html=fs.readFileSync(path.join(latest.run,'单层分桶核对.html'),'utf8');
+const items={};const context=vm.createContext({document:{getElementById(id){return items[id] ||= {value:'',innerHTML:'',textContent:'',addEventListener(){}}}}});
+vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
+assert.strictEqual(items.buckets.innerHTML.split('<article>').length-1,26);
+vm.runInContext("$('query').value='U+004A';show()",context);
+assert(items.count.textContent.includes('1，'));assert(items.results.innerHTML.includes('J'));
+vm.runInContext("$('query').value='○';show()",context);
+assert(items.count.textContent.includes('1，'));
+vm.runInContext("let r=data.rows.find(r=>r.char==='○');$('bucket').value=r.aliases[0]||r.primary;show()",context);
+assert(items.results.innerHTML.includes('○'));
+console.log('26桶代表图、码位查询、字符查询、别名检索入口检查通过。');

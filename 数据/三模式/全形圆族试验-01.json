@@ -1,0 +1,271 @@
+{
+  "version": "round-detail-trial-v1",
+  "status": "approved-candidate",
+  "date": "2026-10-06",
+  "method": "Pillow glyph ink bounding box at 96 px; no implicit font fallback",
+  "rules": {
+    "third": {
+      "s": "近圆：0.8 ≤ 宽高比 ≤ 1.25",
+      "v": "纵长：宽高比 < 0.8",
+      "h": "横扁：宽高比 > 1.25"
+    },
+    "fourth": {
+      "z": "微小：最长边 ≤ 0.35 em",
+      "x": "小：0.35 em < 最长边 ≤ 0.60 em",
+      "c": "中：0.60 em < 最长边 ≤ 0.90 em",
+      "v": "大：最长边 > 0.90 em"
+    }
+  },
+  "fonts": [
+    {
+      "font": "Segoe UI Symbol",
+      "path": "C:/Windows/Fonts/seguisym.ttf",
+      "sha256": "a4a35dcc62cd30e1a6c97b695ecef83e59d2b149e3af834f6a49f11851d56b37",
+      "fontSizePx": 96
+    },
+    {
+      "font": "Microsoft YaHei",
+      "path": "C:/Windows/Fonts/msyh.ttc",
+      "sha256": "d79c55e68b1131eea0cc1c47be4f572d964f28c682e143db2ad09c1e4cb07a3f",
+      "fontSizePx": 96
+    }
+  ],
+  "characters": [
+    {
+      "char": "○",
+      "codepoint": "U+25CB",
+      "font": "Segoe UI Symbol",
+      "widthPx": 71,
+      "heightPx": 71,
+      "widthHeightRatio": 1.0,
+      "extentEm": 0.7396,
+      "proposedCode": "oesc",
+      "primaryReference": true,
+      "status": "approved-candidate"
+    },
+    {
+      "char": "◯",
+      "codepoint": "U+25EF",
+      "font": "Segoe UI Symbol",
+      "widthPx": 96,
+      "heightPx": 95,
+      "widthHeightRatio": 1.0105,
+      "extentEm": 1.0,
+      "proposedCode": "oesv",
+      "primaryReference": true,
+      "status": "approved-candidate"
+    },
+    {
+      "char": "O",
+      "codepoint": "U+004F",
+      "font": "Segoe UI Symbol",
+      "widthPx": 64,
+      "heightPx": 69,
+      "widthHeightRatio": 0.9275,
+      "extentEm": 0.7188,
+      "proposedCode": "oesc",
+      "primaryReference": true,
+      "status": "approved-candidate"
+    },
+    {
+      "char": "0",
+      "codepoint": "U+0030",
+      "font": "Segoe UI Symbol",
+      "widthPx": 44,
+      "heightPx": 69,
+      "widthHeightRatio": 0.6377,
+      "extentEm": 0.7188,
+      "proposedCode": "oevc",
+      "primaryReference": true,
+      "status": "approved-candidate"
+    },
+    {
+      "char": "o",
+      "codepoint": "U+006F",
+      "font": "Segoe UI Symbol",
+      "widthPx": 48,
+      "heightPx": 50,
+      "widthHeightRatio": 0.96,
+      "extentEm": 0.5208,
+      "proposedCode": "oesx",
+      "primaryReference": true,
+      "status": "approved-candidate"
+    },
+    {
+      "char": "∘",
+      "codepoint": "U+2218",
+      "font": "Segoe UI Symbol",
+      "widthPx": 27,
+      "heightPx": 27,
+      "widthHeightRatio": 1.0,
+      "extentEm": 0.2812,
+      "proposedCode": "oesz",
+      "primaryReference": true,
+      "status": "approved-candidate"
+    },
+    {
+      "char": "◦",
+      "codepoint": "U+25E6",
+      "font": "Segoe UI Symbol",
+      "widthPx": 23,
+      "heightPx": 23,
+      "widthHeightRatio": 1.0,
+      "extentEm": 0.2396,
+      "proposedCode": "oesz",
+      "primaryReference": true,
+      "status": "approved-candidate"
+    },
+    {
+      "char": "○",
+      "codepoint": "U+25CB",
+      "font": "Microsoft YaHei",
+      "widthPx": 42,
+      "heightPx": 42,
+      "widthHeightRatio": 1.0,
+      "extentEm": 0.4375,
+      "proposedCode": "oesx",
+      "primaryReference": false,
+      "status": "trial"
+    },
+    {
+      "char": "O",
+      "codepoint": "U+004F",
+      "font": "Microsoft YaHei",
+      "widthPx": 70,
+      "heightPx": 75,
+      "widthHeightRatio": 0.9333,
+      "extentEm": 0.7812,
+      "proposedCode": "oesc",
+      "primaryReference": false,
+      "status": "trial"
+    },
+    {
+      "char": "0",
+      "codepoint": "U+0030",
+      "font": "Microsoft YaHei",
+      "widthPx": 49,
+      "heightPx": 75,
+      "widthHeightRatio": 0.6533,
+      "extentEm": 0.7812,
+      "proposedCode": "oevc",
+      "primaryReference": false,
+      "status": "trial"
+    },
+    {
+      "char": "o",
+      "codepoint": "U+006F",
+      "font": "Microsoft YaHei",
+      "widthPx": 53,
+      "heightPx": 54,
+      "widthHeightRatio": 0.9815,
+      "extentEm": 0.5625,
+      "proposedCode": "oesx",
+      "primaryReference": false,
+      "status": "trial"
+    },
+    {
+      "char": "〇",
+      "codepoint": "U+3007",
+      "font": "Microsoft YaHei",
+      "widthPx": 78,
+      "heightPx": 78,
+      "widthHeightRatio": 1.0,
+      "extentEm": 0.8125,
+      "proposedCode": "oesc",
+      "primaryReference": true,
+      "status": "approved-candidate"
+    },
+    {
+      "char": "◦",
+      "codepoint": "U+25E6",
+      "font": "Microsoft YaHei",
+      "widthPx": 27,
+      "heightPx": 27,
+      "widthHeightRatio": 1.0,
+      "extentEm": 0.2812,
+      "proposedCode": "oesz",
+      "primaryReference": false,
+      "status": "trial"
+    }
+  ],
+  "approval": {
+    "date": "2026-10-06",
+    "scope": "用户确认上轮展示的 s/v/h、t/s/m/b 键义及八字符候选码；测量阈值仍为试验依据",
+    "userMessage": "这一批可以，继续下一批检验"
+  },
+  "functionIds": {
+    "third": {
+      "s": "proportion.near_round",
+      "v": "proportion.tall",
+      "h": "proportion.flat"
+    },
+    "fourth": {
+      "z": "size.tiny",
+      "x": "size.small",
+      "c": "size.medium",
+      "v": "size.large"
+    }
+  },
+  "layoutVersion": "game-layout-v1",
+  "layoutApproval": {
+    "status": "approved",
+    "date": "2026-10-07",
+    "userMessage": "可以覆盖",
+    "scope": "第四位统一空间布局WASD/JK-NM/ZXCV及配套迁移"
+  },
+  "amendment": {
+    "date": "2026-10-07",
+    "reason": "按用户授权覆盖统一游戏布局",
+    "changes": [
+      {
+        "source": "全形圆族试验-01.json",
+        "char": "○",
+        "before": "oesm",
+        "after": "oesc"
+      },
+      {
+        "source": "全形圆族试验-01.json",
+        "char": "◯",
+        "before": "oesb",
+        "after": "oesv"
+      },
+      {
+        "source": "全形圆族试验-01.json",
+        "char": "O",
+        "before": "oesm",
+        "after": "oesc"
+      },
+      {
+        "source": "全形圆族试验-01.json",
+        "char": "0",
+        "before": "oevm",
+        "after": "oevc"
+      },
+      {
+        "source": "全形圆族试验-01.json",
+        "char": "o",
+        "before": "oess",
+        "after": "oesx"
+      },
+      {
+        "source": "全形圆族试验-01.json",
+        "char": "∘",
+        "before": "oest",
+        "after": "oesz"
+      },
+      {
+        "source": "全形圆族试验-01.json",
+        "char": "◦",
+        "before": "oest",
+        "after": "oesz"
+      },
+      {
+        "source": "全形圆族试验-01.json",
+        "char": "〇",
+        "before": "oesm",
+        "after": "oesc"
+      }
+    ]
+  },
+  "revision": 2
+}

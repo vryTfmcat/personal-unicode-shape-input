@@ -49,6 +49,7 @@ button, label.file-button { -webkit-tap-highlight-color: transparent; }
 .page-filter { display: flex; align-items: center; gap: 6px; margin: 0 3px 11px; padding: 0 8px; border: 1px solid var(--line); border-radius: 9px; background: var(--card); color: var(--muted); }
 .page-filter input { width: 100%; min-width: 0; border: 0; outline: 0; padding: 8px 0; color: var(--ink); background: transparent; font-size: 11px; }
 .page-nav { display: grid; gap: 5px; }
+.nav-empty { padding: 0 8px; color: var(--muted); font-size: 12px; line-height: 1.6; }
 .page-button { width: 100%; display: grid; grid-template-columns: 39px 1fr auto; gap: 8px; align-items: center; text-align: left; border: 1px solid transparent; border-radius: 11px; padding: 9px; color: var(--ink); background: transparent; cursor: pointer; }
 .page-button:hover, .page-button.drag-over { background: rgba(255,255,255,.6); border-color: var(--line); }
 .page-button.active { color: #fff; background: var(--ink); }
@@ -98,6 +99,7 @@ button, label.file-button { -webkit-tap-highlight-color: transparent; }
 .glyph { font: 46px/1.1 "Segoe UI Historic", "Nirmala UI", "Segoe UI Symbol", "Noto Sans Symbols 2", sans-serif; }
 .glyph-code { margin-top: 10px; color: var(--rust); font: 700 12px ui-monospace, Consolas, monospace; }
 .glyph-cp { margin-top: 4px; color: var(--muted); font: 9px ui-monospace, Consolas, monospace; }
+.glyph-page { max-width: 100%; margin-top: 5px; padding: 0 6px; color: var(--muted); font-size: 10px; line-height: 1.4; overflow-wrap: anywhere; }
 .favorite-star { position: absolute; top: 8px; right: 9px; color: #b66d19; font-size: 13px; }
 .collision-dot { position: absolute; top: 10px; left: 10px; min-width: 18px; height: 18px; display: grid; place-items: center; border-radius: 999px; color: white; background: var(--blue); font: 9px ui-monospace, Consolas, monospace; }
 .collision-dot.hot { background: var(--rust); }

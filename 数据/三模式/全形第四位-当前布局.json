@@ -1,0 +1,87 @@
+{
+  "version": "game-layout-v1",
+  "date": "2026-10-07",
+  "status": "approved",
+  "directionProposal": "WASD方向、JK/NM四角已确认",
+  "sizeProposal": "ZXCV由左至右微小、小、中、大已确认",
+  "fourth": {
+    "w": {
+      "function": "position.up",
+      "meaning": "上"
+    },
+    "s": {
+      "function": "position.down",
+      "meaning": "下"
+    },
+    "a": {
+      "function": "position.left",
+      "meaning": "左"
+    },
+    "d": {
+      "function": "position.right",
+      "meaning": "右"
+    },
+    "j": {
+      "function": "position.up_left",
+      "meaning": "左上"
+    },
+    "k": {
+      "function": "position.up_right",
+      "meaning": "右上"
+    },
+    "n": {
+      "function": "position.down_left",
+      "meaning": "左下"
+    },
+    "m": {
+      "function": "position.down_right",
+      "meaning": "右下"
+    },
+    "z": {
+      "function": "size.tiny",
+      "meaning": "微小"
+    },
+    "x": {
+      "function": "size.small",
+      "meaning": "小"
+    },
+    "c": {
+      "function": "size.medium",
+      "meaning": "中"
+    },
+    "v": {
+      "function": "size.large",
+      "meaning": "大"
+    },
+    "h": {
+      "function": "orientation.horizontal",
+      "meaning": "横向"
+    },
+    "i": {
+      "function": "orientation.vertical",
+      "meaning": "纵向"
+    },
+    "l": {
+      "function": "orientation.up_left",
+      "meaning": "左上斜"
+    },
+    "r": {
+      "function": "orientation.up_right",
+      "meaning": "右上斜"
+    },
+    "e": {
+      "function": "orientation.axis_aligned",
+      "meaning": "正置"
+    },
+    "q": {
+      "function": "orientation.tilted",
+      "meaning": "斜置"
+    }
+  },
+  "approval": {
+    "status": "approved",
+    "date": "2026-10-07",
+    "userMessage": "可以覆盖",
+    "scope": "第四位统一空间布局WASD/JK-NM/ZXCV及配套迁移"
+  }
+}
