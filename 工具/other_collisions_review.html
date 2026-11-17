@@ -1,0 +1,10 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>其他大重码组：结构特征分析</title><link rel="stylesheet" href="review.css"><body>
+<header><span class="eyebrow">独立观测与分类试验 · 原码和候选完整保留</span><h1>其他大重码组的结构特征</h1><p id="scope"></p><a href="其他大组分析.json">完整机器结果</a></header>
+<section class="note">折角、分叉、交叉、直曲段、贯通连续笔、闭环均采用同一检测器。蓝框为折角，红／紫圈为连接点，绿色框为闭孔范围；同色表示同一连续笔。<br><strong>分析对象是整字，不代表原码局部对象已确认。实验分组人数不是已实现的四码候选量。</strong></section>
+<section class="overview"><h2>逐码比较</h2><p>点击码组查看字符。相同集合的别名已标出；待核字符全部计入“含待核最大组”。</p><div class="tableWrap"><table id="comparison"><thead><tr><th>当前四码</th><th>候选</th><th>稳定适用</th><th>稳定类数</th><th>最大稳定类</th><th>待核／不适用</th><th>含待核最大组</th></tr></thead><tbody></tbody></table></div></section>
+<section class="filters"><label>查看码组<select id="code"></select></label><label>状态<select id="status"><option value="all">全部状态</option></select></label><label>查字／码位<input id="search" placeholder="字符 / U+25CB"></label><label>视图<select id="view"><option value="annotated">结构标注</option><option value="plain">原始字形</option></select></label><button id="reset">重置筛选</button></section>
+<section class="facets" id="facets"></section>
+<section class="groupNote"><h2 id="groupTitle"></h2><p id="groupSummary"></p><p id="aliases"></p><div id="featureSummary"></div></section>
+<main><div class="resultHead"><h2>逐字审阅</h2><span id="resultCount" role="status"></span></div><div id="grid"></div><div class="pages"><button id="prev">上一页</button><span id="pageInfo"></span><button id="next">下一页</button></div></main>
+<dialog id="detail"><button id="close">关闭</button><h2 id="detailTitle"></h2><div class="sprite big" id="detailImage"></div><div id="detailText"></div><h3>九种字号／粗细变体</h3><div class="tableWrap"><table><thead><tr><th>字号／粗细</th><th>折／叉／交</th><th>直／曲／段数</th><th>直贯／曲贯</th><th>笔数／环数</th><th>拓扑／配对</th></tr></thead><tbody id="variants"></tbody></table></div></dialog>
+<footer>当前≥500候选的其他四码组；不包含chvc作为比较组，但复用其重叠字符的原观测。无新字母绑定、无路径增删、无t／b回流。</footer><script>/*DATA*/</script><script src="review.js"></script></body></html>

@@ -1,0 +1,2067 @@
+{
+  "schema": "o-attachment-group-independent-v1",
+  "capturedAt": "2026-10-26T14:24:10.005979+08:00",
+  "runtimeVersion": "structure-count-bindings-v9",
+  "shapeBoundaryRefinement": "single-character-shape-boundaries-20261026-v1",
+  "authority": {
+    "field": "pathRuleReviewAcceptance20261025Batch2",
+    "sourceReport": "数据/三模式/规则库/四键实验/键位试验/20261025-structure-count-bindings-v5/代表字实际查找测试/多路径规则草案/本人24字审核答复-20261025.json",
+    "sourceSHA256": "38acc193520dfd6f2298e8872fbb9f0ad87b64a65f03d36a983bb3eded032367",
+    "sourcePointer": "/records/3",
+    "scope": "主体＋2附件（一折角一点）自然思路已接受；本次只审编码包装，不重问自然思路"
+  },
+  "target": {
+    "char": "ộ",
+    "cp": 7897,
+    "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAABBUlEQVR4nO2W4Q7CIAyEuWbv/8pnTNRM15ajTZxL5AeRjft2tFABR69ZUz+2/DXuHesOsOsrAKR0xYEAsomOsyxZrp9bsJzPRw5QAOCZQLaDyMyCTQ3sxisA7PXZInD6YbLrA7bsJVpZwNsonkZFniDMlzv7DgsAyFQ/iPh0nVUkUIo9wjhYiKYzgAKA+7EwjaZ8/0DPAAj0PP8w0V+DJZNLDqBLMwcLzVYm/wFfCiInu4F1B9AcLDcb4hqiY24BWD4Tdnjil7/IwMgvWa/fsSE4UEQBofrfiKGXGZNnBk+h1m/27gcsXvOQi+eAS9TEbTRjYFN9fwnoAkYdwF1fAgj6H9hIN4FpOHkzLxzWAAAAAElFTkSuQmCC",
+    "bucket": "i",
+    "family": "o",
+    "bodyBBox": [
+      15,
+      18,
+      48,
+      53
+    ],
+    "totalInkParts": 3,
+    "externalCount": 2,
+    "members": [
+      {
+        "type": "折线",
+        "position": "上",
+        "bbox": [
+          23,
+          2,
+          41,
+          13
+        ],
+        "sourcePointer": "detail.features.parts/1",
+        "status": "本人已确认的单字类型"
+      },
+      {
+        "type": "点",
+        "position": "下",
+        "bbox": [
+          28,
+          56,
+          35,
+          62
+        ],
+        "sourcePointer": "detail.features.parts/2",
+        "status": "本人已确认的单字类型"
+      }
+    ],
+    "typeBag": {
+      "折线": 1,
+      "点": 1
+    },
+    "coarseBag": {
+      "线状": 1,
+      "点": 1
+    },
+    "positions": [
+      "上",
+      "下"
+    ],
+    "sourceImageSHA256": "f8ef47737df2a493d5d5515a551cd891f0ac7d62f4ee24ddb17c903512dc1abd",
+    "paths": [
+      {
+        "code": "epki",
+        "count": 83,
+        "preferred": true,
+        "evidence": [
+          {
+            "rule": "topology.separated",
+            "third": "k",
+            "objectId": "body:p:visible-part-group",
+            "fourthObjectId": "body:p:visible-part-group",
+            "familyTarget": "body",
+            "familyId": "family.irregular-loop",
+            "attribute": "选定构件组的成员中心排列轴",
+            "status": "machine-proposal"
+          }
+        ]
+      },
+      {
+        "code": "epcc",
+        "count": 143,
+        "preferred": false,
+        "evidence": [
+          {
+            "rule": "topology.one_hole",
+            "third": "c",
+            "objectId": "body:p:hole-0",
+            "fourthObjectId": "body:p:hole-0",
+            "familyTarget": "body",
+            "familyId": "family.irregular-loop",
+            "attribute": "该对象最长边／主体最长边",
+            "status": "machine-proposal"
+          }
+        ]
+      },
+      {
+        "code": "epkt",
+        "count": 44,
+        "preferred": false,
+        "evidence": [
+          {
+            "rule": "topology.separated",
+            "third": "k",
+            "objectId": "body:p:visible-part-group",
+            "fourthObjectId": "body:p:visible-part-group",
+            "familyTarget": "body",
+            "familyId": "family.irregular-loop",
+            "attribute": "选定构件组的成员数量",
+            "status": "machine-proposal"
+          }
+        ]
+      },
+      {
+        "code": "epkv",
+        "count": 163,
+        "preferred": false,
+        "evidence": [
+          {
+            "rule": "topology.separated",
+            "third": "k",
+            "objectId": "body:p:part-group",
+            "fourthObjectId": "body:p:part-group",
+            "familyTarget": "body",
+            "familyId": "family.irregular-loop",
+            "attribute": "该对象最长边／主体最长边",
+            "status": "machine-proposal"
+          },
+          {
+            "rule": "topology.separated",
+            "third": "k",
+            "objectId": "body:p:visible-part-group",
+            "fourthObjectId": "body:p:visible-part-group",
+            "familyTarget": "body",
+            "familyId": "family.irregular-loop",
+            "attribute": "该对象最长边／主体最长边",
+            "status": "machine-proposal"
+          }
+        ]
+      },
+      {
+        "code": "epvg",
+        "count": 533,
+        "preferred": false,
+        "evidence": [
+          {
+            "rule": "proportion.tall",
+            "third": "v",
+            "objectId": "body:p:body",
+            "fourthObjectId": "body:p:body",
+            "familyTarget": "body",
+            "familyId": "family.irregular-loop",
+            "attribute": "对象长轴正置",
+            "status": "machine-proposal"
+          }
+        ]
+      },
+      {
+        "code": "epvi",
+        "count": 533,
+        "preferred": false,
+        "evidence": [
+          {
+            "rule": "proportion.tall",
+            "third": "v",
+            "objectId": "body:p:body",
+            "fourthObjectId": "body:p:body",
+            "familyTarget": "body",
+            "familyId": "family.irregular-loop",
+            "attribute": "对象长轴纵向",
+            "status": "machine-proposal"
+          }
+        ]
+      },
+      {
+        "code": "epvv",
+        "count": 215,
+        "preferred": false,
+        "evidence": [
+          {
+            "rule": "proportion.tall",
+            "third": "v",
+            "objectId": "body:p:body",
+            "fourthObjectId": "body:p:body",
+            "familyTarget": "body",
+            "familyId": "family.irregular-loop",
+            "attribute": "原始字形最长边／渲染字号",
+            "status": "machine-proposal"
+          }
+        ]
+      },
+      {
+        "code": "ioyw",
+        "count": 46,
+        "preferred": false,
+        "evidence": [
+          {
+            "rule": "component.external_stroke",
+            "objectId": "reviewed-ộ-external-caret",
+            "fourthObjectId": "reviewed-ộ-external-caret",
+            "familyTarget": "reviewed-circle-subject",
+            "attribute": "主体上方的外部折线构件",
+            "status": "human-scope-accepted-machine-object-verified"
+          }
+        ]
+      },
+      {
+        "code": "iots",
+        "count": 5,
+        "preferred": false,
+        "evidence": [
+          {
+            "rule": "component.external_dot",
+            "objectId": "reviewed-ộ-external-dot",
+            "fourthObjectId": "reviewed-ộ-external-dot",
+            "familyTarget": "reviewed-circle-subject",
+            "attribute": "主体下方的外部点块",
+            "status": "human-scope-accepted-machine-object-verified"
+          }
+        ]
+      }
+    ],
+    "acceptedObjectIds": [
+      "reviewed-ộ-external-caret",
+      "reviewed-ộ-external-dot"
+    ]
+  },
+  "sample": [
+    {
+      "char": "o",
+      "cp": 111,
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAABGElEQVR4nN2X2xLDIAhE3Z3+/y9vn5rEChTRSTvlSYU9YK4ItTXjor49fBe6mVcplBBHECirdhgc5ZF+hHMmvcXnTHorBafSG1FQqFewPALgRgU+XIa+PHDjHIVyN4JWpOzH01ylgXdfUOuC0yrPNQPNVJTlQwdATp95mdSyhgsAadWQgOUCHMCMoQZQP+WBsrx3fNa5IkYNoH0VbAPgmBX+tNxRwZLx3wCoAbSvgnsAOEb6wbvQUAOolly1LcCoYGUPbJN7wGqfeJquAGUJw9eLYXigfxnbTAlGG8FUmqgm1do8LTaaWmx1Nddst/f1TiM/j2edhL4rpW9vtzFB0KdTG2bk1oMUdrpKHjyRy+4DRogf9vXT+xOcI0lknMLPCQAAAABJRU5ErkJggg==",
+      "bucket": "i",
+      "family": "o",
+      "bodyBBox": [
+        3,
+        2,
+        61,
+        62
+      ],
+      "totalInkParts": 1,
+      "externalCount": 0,
+      "members": [],
+      "typeBag": {},
+      "coarseBag": {},
+      "positions": [],
+      "sourceImageSHA256": "870e5db81b4e1b0bfcbb125d5127789b3d8d08ec72ade243be31e095c49476bb",
+      "paths": [
+        {
+          "code": "iose",
+          "count": 448,
+          "preferred": true,
+          "evidence": [
+            {
+              "rule": "proportion.near_round",
+              "third": "s",
+              "objectId": "body:o:visible-body",
+              "fourthObjectId": "body:o:visible-body",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "选定主体的填充状态",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iocv",
+          "count": 827,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.one_hole",
+              "third": "c",
+              "objectId": "body:o:hole-0",
+              "fourthObjectId": "body:o:hole-0",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iosx",
+          "count": 461,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "proportion.near_round",
+              "third": "s",
+              "objectId": "body:o:body",
+              "fourthObjectId": "body:o:body",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "同族同填充参考系列的相对主体尺寸",
+              "status": "machine-proposal"
+            },
+            {
+              "rule": "proportion.near_round",
+              "third": "s",
+              "objectId": "body:o:visible-body",
+              "fourthObjectId": "body:o:visible-body",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "同族同填充参考系列的相对主体尺寸",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "ioqu",
+          "count": 172,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "whole-glyph-collection-nine-variant-count",
+              "objectId": "whole-glyph-collection:curveStrokes",
+              "fourthObjectId": "whole-glyph-collection:curveStrokes",
+              "familyTarget": "whole-glyph",
+              "attribute": "整字曲连续笔集：1个（p为五个及以上）",
+              "status": "accepted-rule-machine-application",
+              "variants": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "char": "ô",
+      "cp": 244,
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAABD0lEQVR4nO2WyRKDMAxDLQ///8vqTA90AC9K0pYLPnAAWXlZcAzaWvhivm3lV7yfnCaAQOBCPpbXAHMGULytI2Dn5TUAWwdv8ptNlBaRJYJ3AF24kF8ieO79Gb9y8BxAC9z+O/tjYEpJK08k0o+ns8AxAwTvuHoSIRMgVCYQ3uSTjTUupruIUSJbAkTSI0dtkKQwm4SrC5g5eJwfIHNkCsw4VIPKFZUBDtKvVySuGlg0B7drDBVqn7wOSoKh8DH5Y/D7RaSUwpYA0wRN4A8HicVQJ80EAQSCSqu1eazVwVa7iQ5ZudyykXDQ5vcF8ss12hTFwIpNjJoJBjqslnXq+ZZ1aReIwS7t5FH85/e3+y9AKkBvkAjXVwAAAABJRU5ErkJggg==",
+      "bucket": "i",
+      "family": "o",
+      "bodyBBox": [
+        12,
+        21,
+        51,
+        62
+      ],
+      "totalInkParts": 2,
+      "externalCount": 1,
+      "members": [
+        {
+          "type": "折线",
+          "position": "上",
+          "bbox": [
+            21,
+            2,
+            42,
+            15
+          ],
+          "sourcePointer": "detail.features.parts/1",
+          "status": "AI对照分类，未派码"
+        }
+      ],
+      "typeBag": {
+        "折线": 1
+      },
+      "coarseBag": {
+        "线状": 1
+      },
+      "positions": [
+        "上"
+      ],
+      "sourceImageSHA256": "db840e48f62cb17836dffe90d948622898faa37786d39ed706b5337d36c50317",
+      "paths": [
+        {
+          "code": "ioki",
+          "count": 130,
+          "preferred": true,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "选定构件组的成员中心排列轴",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iocv",
+          "count": 827,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.one_hole",
+              "third": "c",
+              "objectId": "body:o:hole-0",
+              "fourthObjectId": "body:o:hole-0",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iokb",
+          "count": 225,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "选定构件组的成员数量",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iokv",
+          "count": 367,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:part-group",
+              "fourthObjectId": "body:o:part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            },
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iokw",
+          "count": 69,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:part-group",
+              "fourthObjectId": "body:o:part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            },
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iosc",
+          "count": 578,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "proportion.near_round",
+              "third": "s",
+              "objectId": "body:o:body",
+              "fourthObjectId": "body:o:body",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "原始字形最长边／渲染字号",
+              "status": "machine-proposal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "char": "ọ",
+      "cp": 7885,
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAABEElEQVR4nN2W2w6DIBBEmYn//8vTGNNU694EL2l9UWTnMKALC7Wxi4P6NvldWD37PqFcHUKgotxD0JI7epPL8vAOmuXhHToUBcjQKPyMMCLnO47/SJLTQgSALV/7+SbQ1luWhnNBpgVWDXivWQ08JZ1lzIGfx/dr3buh8FC0znKACKD21BpgFNB5sVf4lwDd6UARAFc6wCighQCV56BeB4gd9C0j041/D978MayPZWPZTAtGsHPscNNyz2D/2Jp8wyqtK8IKZYbEBUrblXnJN9zlLNOIpBeGwDVRLTTlyDVUK8txhaAOz9Ux4Pe29YsAyHYXhIu4qNXtAJvbcQAiYcnB4wCd5UDdgCWBYyPPJ9ML1WZAcLQjFzQAAAAASUVORK5CYII=",
+      "bucket": "i",
+      "family": "o",
+      "bodyBBox": [
+        9,
+        2,
+        54,
+        49
+      ],
+      "totalInkParts": 2,
+      "externalCount": 1,
+      "members": [
+        {
+          "type": "点",
+          "position": "下",
+          "bbox": [
+            27,
+            53,
+            36,
+            62
+          ],
+          "sourcePointer": "detail.features.parts/1",
+          "status": "AI对照分类，未派码"
+        }
+      ],
+      "typeBag": {
+        "点": 1
+      },
+      "coarseBag": {
+        "点": 1
+      },
+      "positions": [
+        "下"
+      ],
+      "sourceImageSHA256": "ec2756cac9ac65d20915b7ef8ddc426f9d22184faa8c9ec543e1b6eb1513fa31",
+      "paths": [
+        {
+          "code": "ioki",
+          "count": 130,
+          "preferred": true,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "选定构件组的成员中心排列轴",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iocv",
+          "count": 827,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.one_hole",
+              "third": "c",
+              "objectId": "body:o:hole-0",
+              "fourthObjectId": "body:o:hole-0",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iokb",
+          "count": 225,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "选定构件组的成员数量",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "ioks",
+          "count": 7,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:part-group",
+              "fourthObjectId": "body:o:part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            },
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iokv",
+          "count": 367,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:part-group",
+              "fourthObjectId": "body:o:part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            },
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iosc",
+          "count": 578,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "proportion.near_round",
+              "third": "s",
+              "objectId": "body:o:body",
+              "fourthObjectId": "body:o:body",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "原始字形最长边／渲染字号",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iots",
+          "count": 5,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.external_dot",
+              "third": "t",
+              "objectId": "body:o:part-1",
+              "fourthObjectId": "body:o:part-1",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iotx",
+          "count": 28,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.external_dot",
+              "third": "t",
+              "objectId": "body:o:part-1",
+              "fourthObjectId": "body:o:part-1",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "char": "ö",
+      "cp": 246,
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAABDklEQVR4nO1X0Y7DIAzD0f7/lz1Nmk4TjRNztLuTtjwgAY5xIYEUHHsWm/7jlo7i0VD3OwV4abN+S/C02QMuARzHimDJIhmbd4u/VUCHKLQnZf/V8OeRGF+CcVE6zzlQnDXU3CGDuEKAFOuHMsRi8Aig8x8OAaR7OglqCOvBnAACKY80hD8nHBcjkXoEFQGK9bidC0wlhCtgJRLZSMFlVxo6cCYtPJinwDb812sdPTrZnjhRwWcQoCTgGxScRcCaANcpQENAk4ertfJpn4CWgBVS3Nnhr5VbWO+XFjAmBZLhp+qgu4lA/mqvFBiJHUMlekg9GUcQd1+moR7nvKRkjnYL1eqXpyjNPALPtq+0O6IRP3EGt/0yAAAAAElFTkSuQmCC",
+      "bucket": "i",
+      "family": "o",
+      "bodyBBox": [
+        10,
+        17,
+        53,
+        62
+      ],
+      "totalInkParts": 3,
+      "externalCount": 2,
+      "members": [
+        {
+          "type": "点",
+          "position": "上",
+          "bbox": [
+            19,
+            2,
+            28,
+            10
+          ],
+          "sourcePointer": "detail.features.parts/1",
+          "status": "AI对照分类，未派码"
+        },
+        {
+          "type": "点",
+          "position": "上",
+          "bbox": [
+            35,
+            2,
+            44,
+            10
+          ],
+          "sourcePointer": "detail.features.parts/2",
+          "status": "AI对照分类，未派码"
+        }
+      ],
+      "typeBag": {
+        "点": 2
+      },
+      "coarseBag": {
+        "点": 2
+      },
+      "positions": [
+        "上",
+        "上"
+      ],
+      "sourceImageSHA256": "39b0707e08dedf3a3c76130015e88ee52a019af05b4069b1b83444127d0d763f",
+      "paths": [
+        {
+          "code": "iocv",
+          "count": 827,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.one_hole",
+              "third": "c",
+              "objectId": "body:o:hole-0",
+              "fourthObjectId": "body:o:hole-0",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iokt",
+          "count": 117,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "选定构件组的成员数量",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iokv",
+          "count": 367,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:part-group",
+              "fourthObjectId": "body:o:part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            },
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iokw",
+          "count": 69,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:part-group",
+              "fourthObjectId": "body:o:part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            },
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "ionj",
+          "count": 12,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.repeated",
+              "third": "n",
+              "objectId": "body:o:part-1",
+              "fourthObjectId": "body:o:part-1",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "ionk",
+          "count": 12,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.repeated",
+              "third": "n",
+              "objectId": "body:o:part-2",
+              "fourthObjectId": "body:o:part-2",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "ionx",
+          "count": 8,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.repeated",
+              "third": "n",
+              "objectId": "body:o:part-1",
+              "fourthObjectId": "body:o:part-1",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            },
+            {
+              "rule": "component.repeated",
+              "third": "n",
+              "objectId": "body:o:part-2",
+              "fourthObjectId": "body:o:part-2",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iosc",
+          "count": 578,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "proportion.near_round",
+              "third": "s",
+              "objectId": "body:o:body",
+              "fourthObjectId": "body:o:body",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "原始字形最长边／渲染字号",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iotj",
+          "count": 25,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.external_dot",
+              "third": "t",
+              "objectId": "body:o:part-1",
+              "fourthObjectId": "body:o:part-1",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iotk",
+          "count": 15,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.external_dot",
+              "third": "t",
+              "objectId": "body:o:part-2",
+              "fourthObjectId": "body:o:part-2",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iotx",
+          "count": 28,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.external_dot",
+              "third": "t",
+              "objectId": "body:o:part-1",
+              "fourthObjectId": "body:o:part-1",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            },
+            {
+              "rule": "component.external_dot",
+              "third": "t",
+              "objectId": "body:o:part-2",
+              "fourthObjectId": "body:o:part-2",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "char": "ố",
+      "cp": 7889,
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAABJ0lEQVR4nO1Xy5LDIAyzPPv/v6ydfbVALduUzfRSH5JgkCwIOA5oZ+aHePvYGo3vK59WgEe8+SHe/BBv1y4ixpCxAMsUYLgqvCUEWO4h3jQBpqdpNq01wPjMGJwr+DLeYPLIuPD/Sf6hGOX0CHCPWjB4ha8YvMQXDHh5QvE3gel8kB/C+zBW6IIDUU+4adh/jeiJUgSQmzb2Mhm2HoJwuhR4Vs5iK3NqzKk9I4AIpXeCt/A3D3pToIxXKUhMSfCx8dvLaxIK2wS8NqUhIcAu2VMKVnM7NH8T2PYaZIUm/+kt4JRAWDut55aXukxiYbtGappPLZ2+ZbLymHdl0MnO5yZDBvm5LL6NjB0Fgelo4U713jDdgW6FsvW/wEfPXo20qEhP6euL7U9OmEd0JB1OUQAAAABJRU5ErkJggg==",
+      "bucket": "i",
+      "family": "o",
+      "bodyBBox": [
+        11,
+        23,
+        49,
+        62
+      ],
+      "totalInkParts": 3,
+      "externalCount": 2,
+      "members": [
+        {
+          "type": "折线",
+          "position": "上",
+          "bbox": [
+            20,
+            7,
+            41,
+            17
+          ],
+          "sourcePointer": "detail.features.parts/1",
+          "status": "AI对照分类，未派码"
+        },
+        {
+          "type": "短直线",
+          "position": "上",
+          "bbox": [
+            39,
+            2,
+            51,
+            12
+          ],
+          "sourcePointer": "detail.features.parts/2",
+          "status": "AI对照分类，未派码"
+        }
+      ],
+      "typeBag": {
+        "折线": 1,
+        "短直线": 1
+      },
+      "coarseBag": {
+        "线状": 2
+      },
+      "positions": [
+        "上",
+        "上"
+      ],
+      "sourceImageSHA256": "f8ef47737df2a493d5d5515a551cd891f0ac7d62f4ee24ddb17c903512dc1abd",
+      "paths": [
+        {
+          "code": "iocv",
+          "count": 827,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.one_hole",
+              "third": "c",
+              "objectId": "body:o:hole-0",
+              "fourthObjectId": "body:o:hole-0",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iokt",
+          "count": 117,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "选定构件组的成员数量",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iokv",
+          "count": 367,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:part-group",
+              "fourthObjectId": "body:o:part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            },
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iokw",
+          "count": 69,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:part-group",
+              "fourthObjectId": "body:o:part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            },
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iosc",
+          "count": 578,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "proportion.near_round",
+              "third": "s",
+              "objectId": "body:o:body",
+              "fourthObjectId": "body:o:body",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "原始字形最长边／渲染字号",
+              "status": "machine-proposal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "char": "ȱ",
+      "cp": 561,
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAA9klEQVR4nO2WyRLDMAhDkSf//8vqoZ0uKcJymUx6CDdj+YF3wOjZaI6PLXcj8fGYDMbpAPzrLjwNavW9DACxpS7gbvgZgKrTAUQXwC7A4WASBbM0cPpJHBcgNu8kc30bsXdwCYDMSX8b4XtHJlTXGB4A7w2SNQHfE3uqWPsUALlUuONrCkrIxctE5cEEgDqen0FieQqjmUCsPCj+UeaxTxq6gCgAiGUb60MuwMGLyC7AMs4B8EgaIMz5F1hI2xngI8YEgJ8zoCSI126ESVCv5eZViHpKKP7GR8B9ewoIHS4RD0+mO+CXOOwVWVS64ga/GJXo9Gr9BjlNN3KdLkpQAAAAAElFTkSuQmCC",
+      "bucket": "i",
+      "family": "o",
+      "bodyBBox": [
+        13,
+        22,
+        51,
+        62
+      ],
+      "totalInkParts": 3,
+      "externalCount": 2,
+      "members": [
+        {
+          "type": "短直线",
+          "position": "上",
+          "bbox": [
+            22,
+            2,
+            42,
+            6
+          ],
+          "sourcePointer": "detail.features.parts/1",
+          "status": "AI对照分类，未派码"
+        },
+        {
+          "type": "点",
+          "position": "上",
+          "bbox": [
+            28,
+            8,
+            36,
+            16
+          ],
+          "sourcePointer": "detail.features.parts/2",
+          "status": "AI对照分类，未派码"
+        }
+      ],
+      "typeBag": {
+        "短直线": 1,
+        "点": 1
+      },
+      "coarseBag": {
+        "线状": 1,
+        "点": 1
+      },
+      "positions": [
+        "上",
+        "上"
+      ],
+      "sourceImageSHA256": "f8ef47737df2a493d5d5515a551cd891f0ac7d62f4ee24ddb17c903512dc1abd",
+      "paths": [
+        {
+          "code": "ioki",
+          "count": 130,
+          "preferred": true,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "选定构件组的成员中心排列轴",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iocv",
+          "count": 827,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.one_hole",
+              "third": "c",
+              "objectId": "body:o:hole-0",
+              "fourthObjectId": "body:o:hole-0",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iokt",
+          "count": 117,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "选定构件组的成员数量",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iokv",
+          "count": 367,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:part-group",
+              "fourthObjectId": "body:o:part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            },
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iokw",
+          "count": 69,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:part-group",
+              "fourthObjectId": "body:o:part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            },
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:o:visible-part-group",
+              "fourthObjectId": "body:o:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iosc",
+          "count": 578,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "proportion.near_round",
+              "third": "s",
+              "objectId": "body:o:body",
+              "fourthObjectId": "body:o:body",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "原始字形最长边／渲染字号",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iotw",
+          "count": 11,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.external_dot",
+              "third": "t",
+              "objectId": "body:o:part-2",
+              "fourthObjectId": "body:o:part-2",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "iotx",
+          "count": 28,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.external_dot",
+              "third": "t",
+              "objectId": "body:o:part-2",
+              "fourthObjectId": "body:o:part-2",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "ioyc",
+          "count": 29,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.external_stroke",
+              "third": "y",
+              "objectId": "body:o:part-1",
+              "fourthObjectId": "body:o:part-1",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "ioyg",
+          "count": 69,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.external_stroke",
+              "third": "y",
+              "objectId": "body:o:part-1",
+              "fourthObjectId": "body:o:part-1",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "对象长轴正置",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "ioyh",
+          "count": 38,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.external_stroke",
+              "third": "y",
+              "objectId": "body:o:part-1",
+              "fourthObjectId": "body:o:part-1",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "对象长轴横向",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "ioyw",
+          "count": 46,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.external_stroke",
+              "third": "y",
+              "objectId": "body:o:part-1",
+              "fourthObjectId": "body:o:part-1",
+              "familyTarget": "body",
+              "familyId": "family.round-outline",
+              "attribute": "该对象中心相对主体中心",
+              "status": "machine-proposal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "char": "ộ",
+      "cp": 7897,
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAABBUlEQVR4nO2W4Q7CIAyEuWbv/8pnTNRM15ajTZxL5AeRjft2tFABR69ZUz+2/DXuHesOsOsrAKR0xYEAsomOsyxZrp9bsJzPRw5QAOCZQLaDyMyCTQ3sxisA7PXZInD6YbLrA7bsJVpZwNsonkZFniDMlzv7DgsAyFQ/iPh0nVUkUIo9wjhYiKYzgAKA+7EwjaZ8/0DPAAj0PP8w0V+DJZNLDqBLMwcLzVYm/wFfCiInu4F1B9AcLDcb4hqiY24BWD4Tdnjil7/IwMgvWa/fsSE4UEQBofrfiKGXGZNnBk+h1m/27gcsXvOQi+eAS9TEbTRjYFN9fwnoAkYdwF1fAgj6H9hIN4FpOHkzLxzWAAAAAElFTkSuQmCC",
+      "bucket": "i",
+      "family": "o",
+      "bodyBBox": [
+        15,
+        18,
+        48,
+        53
+      ],
+      "totalInkParts": 3,
+      "externalCount": 2,
+      "members": [
+        {
+          "type": "折线",
+          "position": "上",
+          "bbox": [
+            23,
+            2,
+            41,
+            13
+          ],
+          "sourcePointer": "detail.features.parts/1",
+          "status": "本人已确认的单字类型"
+        },
+        {
+          "type": "点",
+          "position": "下",
+          "bbox": [
+            28,
+            56,
+            35,
+            62
+          ],
+          "sourcePointer": "detail.features.parts/2",
+          "status": "本人已确认的单字类型"
+        }
+      ],
+      "typeBag": {
+        "折线": 1,
+        "点": 1
+      },
+      "coarseBag": {
+        "线状": 1,
+        "点": 1
+      },
+      "positions": [
+        "上",
+        "下"
+      ],
+      "sourceImageSHA256": "f8ef47737df2a493d5d5515a551cd891f0ac7d62f4ee24ddb17c903512dc1abd",
+      "paths": [
+        {
+          "code": "epki",
+          "count": 83,
+          "preferred": true,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:p:visible-part-group",
+              "fourthObjectId": "body:p:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.irregular-loop",
+              "attribute": "选定构件组的成员中心排列轴",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "epcc",
+          "count": 143,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.one_hole",
+              "third": "c",
+              "objectId": "body:p:hole-0",
+              "fourthObjectId": "body:p:hole-0",
+              "familyTarget": "body",
+              "familyId": "family.irregular-loop",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "epkt",
+          "count": 44,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:p:visible-part-group",
+              "fourthObjectId": "body:p:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.irregular-loop",
+              "attribute": "选定构件组的成员数量",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "epkv",
+          "count": 163,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:p:part-group",
+              "fourthObjectId": "body:p:part-group",
+              "familyTarget": "body",
+              "familyId": "family.irregular-loop",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            },
+            {
+              "rule": "topology.separated",
+              "third": "k",
+              "objectId": "body:p:visible-part-group",
+              "fourthObjectId": "body:p:visible-part-group",
+              "familyTarget": "body",
+              "familyId": "family.irregular-loop",
+              "attribute": "该对象最长边／主体最长边",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "epvg",
+          "count": 533,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "proportion.tall",
+              "third": "v",
+              "objectId": "body:p:body",
+              "fourthObjectId": "body:p:body",
+              "familyTarget": "body",
+              "familyId": "family.irregular-loop",
+              "attribute": "对象长轴正置",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "epvi",
+          "count": 533,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "proportion.tall",
+              "third": "v",
+              "objectId": "body:p:body",
+              "fourthObjectId": "body:p:body",
+              "familyTarget": "body",
+              "familyId": "family.irregular-loop",
+              "attribute": "对象长轴纵向",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "epvv",
+          "count": 215,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "proportion.tall",
+              "third": "v",
+              "objectId": "body:p:body",
+              "fourthObjectId": "body:p:body",
+              "familyTarget": "body",
+              "familyId": "family.irregular-loop",
+              "attribute": "原始字形最长边／渲染字号",
+              "status": "machine-proposal"
+            }
+          ]
+        },
+        {
+          "code": "ioyw",
+          "count": 46,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.external_stroke",
+              "objectId": "reviewed-ộ-external-caret",
+              "fourthObjectId": "reviewed-ộ-external-caret",
+              "familyTarget": "reviewed-circle-subject",
+              "attribute": "主体上方的外部折线构件",
+              "status": "human-scope-accepted-machine-object-verified"
+            }
+          ]
+        },
+        {
+          "code": "iots",
+          "count": 5,
+          "preferred": false,
+          "evidence": [
+            {
+              "rule": "component.external_dot",
+              "objectId": "reviewed-ộ-external-dot",
+              "fourthObjectId": "reviewed-ộ-external-dot",
+              "familyTarget": "reviewed-circle-subject",
+              "attribute": "主体下方的外部点块",
+              "status": "human-scope-accepted-machine-object-verified"
+            }
+          ]
+        }
+      ],
+      "acceptedObjectIds": [
+        "reviewed-ộ-external-caret",
+        "reviewed-ộ-external-dot"
+      ]
+    }
+  ],
+  "simulations": [
+    {
+      "label": "二件外附件",
+      "characters": [
+        "ö",
+        "ố",
+        "ȱ",
+        "ộ"
+      ],
+      "count": 4,
+      "scope": "仅七例对照，不是全库候选数；不是已有码"
+    },
+    {
+      "label": "二件且点＋线状",
+      "characters": [
+        "ȱ",
+        "ộ"
+      ],
+      "count": 2,
+      "scope": "仅七例对照，不是全库候选数；不是已有码"
+    },
+    {
+      "label": "二件且折线＋点",
+      "characters": [
+        "ộ"
+      ],
+      "count": 1,
+      "scope": "仅七例对照，不是全库候选数；不是已有码"
+    },
+    {
+      "label": "二件且上折线下点",
+      "characters": [
+        "ộ"
+      ],
+      "count": 1,
+      "scope": "仅七例对照，不是全库候选数；不是已有码"
+    }
+  ],
+  "realEntries": [
+    {
+      "canonical": "iots",
+      "back": "otsi",
+      "count": 5,
+      "rank": 5,
+      "object": {
+        "id": "reviewed-ộ-external-dot",
+        "kind": "part",
+        "bbox": [
+          28.0,
+          56.0,
+          35.0,
+          62.0
+        ],
+        "relativeSize": 0.2,
+        "extentEm": 0.9166666666666666,
+        "relativePosition": [
+          0.0,
+          0.6714285714285714
+        ],
+        "area": 34,
+        "orientation": null
+      },
+      "evidence": [
+        {
+          "rule": "component.external_dot",
+          "objectId": "reviewed-ộ-external-dot",
+          "fourthObjectId": "reviewed-ộ-external-dot",
+          "familyTarget": "reviewed-circle-subject",
+          "attribute": "主体下方的外部点块",
+          "status": "human-scope-accepted-machine-object-verified"
+        }
+      ],
+      "classification": "现行圆主体下单附件入口；不是独立局部起手",
+      "characters": [
+        "Ộ",
+        "ọ",
+        "Ọ",
+        "𞢼",
+        "ộ"
+      ]
+    },
+    {
+      "canonical": "ioyw",
+      "back": "oywi",
+      "count": 46,
+      "rank": 46,
+      "object": {
+        "id": "reviewed-ộ-external-caret",
+        "kind": "part",
+        "bbox": [
+          23.0,
+          2.0,
+          41.0,
+          13.0
+        ],
+        "relativeSize": 0.5142857142857142,
+        "extentEm": 0.9166666666666666,
+        "relativePosition": [
+          0.014285714285714285,
+          -0.8
+        ],
+        "area": 89,
+        "orientation": null
+      },
+      "evidence": [
+        {
+          "rule": "component.external_stroke",
+          "objectId": "reviewed-ộ-external-caret",
+          "fourthObjectId": "reviewed-ộ-external-caret",
+          "familyTarget": "reviewed-circle-subject",
+          "attribute": "主体上方的外部折线构件",
+          "status": "human-scope-accepted-machine-object-verified"
+        }
+      ],
+      "classification": "现行圆主体下单附件入口；不是独立局部起手",
+      "characters": [
+        "⦱",
+        "⥀",
+        "⥁",
+        "Ō",
+        "ꗞ",
+        "ō",
+        "Ȱ",
+        "𑠕",
+        "ꚢ",
+        "ṓ",
+        "ṑ",
+        "ȭ",
+        "ȫ",
+        "ȱ",
+        "Ṓ",
+        "Ṑ",
+        "Ȫ",
+        "Ȭ",
+        "ȣ",
+        "🜘",
+        "𑀫",
+        "ᴕ",
+        "🜻",
+        "ნ",
+        "ჼ",
+        "ϭ",
+        "⛣",
+        "ರ",
+        "ಠ",
+        "ర",
+        "ఠ",
+        "Ბ",
+        "Გ",
+        "Ნ",
+        "Ϭ",
+        "ᶞ",
+        "ð",
+        "ꝺ",
+        "Მ",
+        "მ",
+        "𛱂",
+        "ꅁ",
+        "ꅂ",
+        "꘨",
+        "Ⴃ",
+        "ộ"
+      ]
+    }
+  ],
+  "readOnlyIntersection": {
+    "codes": [
+      "iots",
+      "ioyw"
+    ],
+    "characters": [
+      "ộ"
+    ],
+    "count": 1,
+    "status": "两真实候选集合的只读交集，不是已实现联合码或新4码；不保证恰好二附件或y必为折线"
+  },
+  "currentGroupBaseline": {
+    "iokb": {
+      "count": 225,
+      "ifOnlyAddTarget": 226,
+      "caveat": "原两件组包含主体＋一个附件，ô/ọ均在；不能改叫二件外附件"
+    },
+    "iokt": {
+      "count": 117,
+      "ifOnlyAddTarget": 118,
+      "caveat": "若新增ộ，只是主体＋折线＋点共3件；符合旧全组数，却要求从2附件心算为3，不等于满足先2再类型"
+    }
+  },
+  "existingThirdKeys": [
+    {
+      "key": "a",
+      "meaning": "整字角点集",
+      "count": 495,
+      "assigned": true
+    },
+    {
+      "key": "b",
+      "meaning": "整字三叉点集",
+      "count": 706,
+      "assigned": true
+    },
+    {
+      "key": "c",
+      "meaning": "单闭孔",
+      "count": 4159,
+      "assigned": true
+    },
+    {
+      "key": "d",
+      "meaning": "内部实心点／圆面",
+      "count": 374,
+      "assigned": true
+    },
+    {
+      "key": "e",
+      "meaning": "无闭孔",
+      "count": 11569,
+      "assigned": true
+    },
+    {
+      "key": "f",
+      "meaning": "四分之一轮廓",
+      "count": 7,
+      "assigned": true
+    },
+    {
+      "key": "g",
+      "meaning": "整字四叉点集",
+      "count": 128,
+      "assigned": true
+    },
+    {
+      "key": "h",
+      "meaning": "横扁",
+      "count": 3644,
+      "assigned": true
+    },
+    {
+      "key": "i",
+      "meaning": "多闭孔",
+      "count": 3199,
+      "assigned": true
+    },
+    {
+      "key": "j",
+      "meaning": "整字直连续笔集",
+      "count": 1216,
+      "assigned": true
+    },
+    {
+      "key": "k",
+      "meaning": "分离部件组",
+      "count": 5534,
+      "assigned": true
+    },
+    {
+      "key": "l",
+      "meaning": "单一直线",
+      "count": 3000,
+      "assigned": true
+    },
+    {
+      "key": "m",
+      "meaning": "分叉骨架",
+      "count": 12990,
+      "assigned": true
+    },
+    {
+      "key": "n",
+      "meaning": "重复排列构件",
+      "count": 1607,
+      "assigned": true
+    },
+    {
+      "key": "o",
+      "meaning": "内部空心圆环",
+      "count": 228,
+      "assigned": true
+    },
+    {
+      "key": "p",
+      "meaning": "半轮廓",
+      "count": 12,
+      "assigned": true
+    },
+    {
+      "key": "q",
+      "meaning": "整字曲连续笔集；O另有空心主体入口",
+      "count": 707,
+      "assigned": true
+    },
+    {
+      "key": "r",
+      "meaning": "局部放射交点（≥5臂）",
+      "count": 1315,
+      "assigned": true
+    },
+    {
+      "key": "s",
+      "meaning": "近圆",
+      "count": 1328,
+      "assigned": true
+    },
+    {
+      "key": "t",
+      "meaning": "外部点块",
+      "count": 1038,
+      "assigned": true
+    },
+    {
+      "key": "u",
+      "meaning": "轮廓开口／缺口",
+      "count": 642,
+      "assigned": true
+    },
+    {
+      "key": "v",
+      "meaning": "纵长",
+      "count": 7887,
+      "assigned": true
+    },
+    {
+      "key": "w",
+      "meaning": "主体轮廓",
+      "count": 830,
+      "assigned": true
+    },
+    {
+      "key": "x",
+      "meaning": "内部交叉",
+      "count": 214,
+      "assigned": true
+    },
+    {
+      "key": "y",
+      "meaning": "外部线状构件",
+      "count": 719,
+      "assigned": true
+    },
+    {
+      "key": "z",
+      "meaning": "连接横笔组",
+      "count": 36,
+      "assigned": true
+    }
+  ],
+  "proposals": [
+    {
+      "id": "A",
+      "name": "前三格固定二件外附件组，末格描述类型组合",
+      "recommended": true,
+      "canonicalSemanticSlots": [
+        "i",
+        "o",
+        "二件外附件组",
+        "折线＋点"
+      ],
+      "backSemanticSlots": [
+        "o",
+        "二件外附件组",
+        "折线＋点",
+        "i"
+      ],
+      "alternateSameObjectSlots": [
+        "i",
+        "o",
+        "二件外附件组",
+        "上折线/下点"
+      ],
+      "groupMemberReferences": [
+        "reviewed-ộ-external-caret",
+        "reviewed-ộ-external-dot"
+      ],
+      "thirdAndFourthObject": "同一个排除主体的二件外附件组",
+      "advantage": "前三格即保留数量2，第四格可表达一折线一点，符合先2再类型；排列可另作同组末位选择",
+      "cost": "C包含数量条件，可能需要不同组大小的对象类别；当前26键全占用，无字母分配；D类型/排列不能再追加第五位",
+      "needsSharedKeyDecision": true,
+      "notTypeable": true
+    },
+    {
+      "id": "B",
+      "name": "前三格选外附件组，末格每次选数量或组合属性",
+      "recommended": false,
+      "canonicalSemanticSlots": [
+        "i",
+        "o",
+        "外附件组",
+        "2件"
+      ],
+      "backSemanticSlots": [
+        "o",
+        "外附件组",
+        "2件",
+        "i"
+      ],
+      "alternateSameObjectSlots": [
+        "i",
+        "o",
+        "外附件组",
+        "折线＋点"
+      ],
+      "groupMemberReferences": [
+        "reviewed-ộ-external-caret",
+        "reviewed-ộ-external-dot"
+      ],
+      "thirdAndFourthObject": "同一个排除主体的外附件组",
+      "advantage": "组对象类别更统一，数量/类型/排列分别作为该组的末位属性，不必为每个数量设C类别",
+      "cost": "已输入第四格2后，类型不能继续追加，必须替换末格或另用一条同组码；一个码不同时叠加全部条件；仍需公共键义协调",
+      "needsSharedKeyDecision": true,
+      "notTypeable": true
+    }
+  ],
+  "conflictRegister": [
+    "26个有效C键已有用途；基础keys中a/b/g/j/q占位0不代表空闲，须读allocationKeys/结构叠加",
+    "3/n仅相似分离构件，不能静默扩为折线＋点异类组；3/k当前全墨组不能改名成外附件组",
+    "3/t/y仍是单附件；新组不能把两个单附件码拼成一条4码，也不能把前后置算两路",
+    "A/B均未分配字母，不占公共键义；与8的孔组/双环组对象设计交总控统一，不能各占一套组键",
+    "若四种部件类型作二件无序组合有10类；再一并编码至少三种排列会扩为30种标签，不能假设26末位可无限容纳",
+    "组合属性与成员位置属于同一选定组的不同视角；不能C选组、D只借某一个附件的孤立属性"
+  ],
+  "runtimeChanges": {
+    "addedCodes": [],
+    "removedCodes": [],
+    "preferredChanges": [],
+    "manualWritten": false,
+    "publicSourcesWritten": false
+  },
+  "limitations": [
+    "仅ộ为已接受派码对象候选；六个对照的外部类型是AI锁定图分类，不批量派码",
+    "模拟数4/2/1/1仅七例；全库新码人数未知，没有可输入新字母",
+    "安排属性若与类型同时打包，必须有限列举并另审，不能追加第五位",
+    "圆主体遗留仍在，只继承明确圆主体例，不据新组候选宣布圆族已修复"
+  ],
+  "protectedUnchanged": true
+}

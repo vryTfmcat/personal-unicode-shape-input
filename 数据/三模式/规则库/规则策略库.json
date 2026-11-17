@@ -1,0 +1,1011 @@
+{
+  "version": "shape-lab-v1",
+  "date": "2026-10-12",
+  "scope": "\u5168\u90e8\u73b0\u6709\u975e\u7edf\u4e00\uff0f\u517c\u5bb9\u6c49\u5b57\u5b57\u7b26",
+  "fourth": {
+    "w": {
+      "function": "position.up",
+      "meaning": "\u4e0a"
+    },
+    "s": {
+      "function": "position.down",
+      "meaning": "\u4e0b"
+    },
+    "a": {
+      "function": "position.left",
+      "meaning": "\u5de6"
+    },
+    "d": {
+      "function": "position.right",
+      "meaning": "\u53f3"
+    },
+    "j": {
+      "function": "position.up_left",
+      "meaning": "\u5de6\u4e0a"
+    },
+    "k": {
+      "function": "position.up_right",
+      "meaning": "\u53f3\u4e0a"
+    },
+    "n": {
+      "function": "position.down_left",
+      "meaning": "\u5de6\u4e0b"
+    },
+    "m": {
+      "function": "position.down_right",
+      "meaning": "\u53f3\u4e0b"
+    },
+    "z": {
+      "function": "size.tiny",
+      "meaning": "\u5fae\u5c0f"
+    },
+    "x": {
+      "function": "size.small",
+      "meaning": "\u5c0f"
+    },
+    "c": {
+      "function": "size.medium",
+      "meaning": "\u4e2d"
+    },
+    "v": {
+      "function": "size.large",
+      "meaning": "\u5927"
+    },
+    "h": {
+      "function": "orientation.horizontal",
+      "meaning": "\u6a2a\u5411"
+    },
+    "i": {
+      "function": "orientation.vertical",
+      "meaning": "\u7eb5\u5411"
+    },
+    "l": {
+      "function": "orientation.up_left",
+      "meaning": "\u5de6\u4e0a\u659c"
+    },
+    "r": {
+      "function": "orientation.up_right",
+      "meaning": "\u53f3\u4e0a\u659c"
+    },
+    "e": {
+      "function": "orientation.axis_aligned",
+      "meaning": "\u6b63\u7f6e"
+    },
+    "q": {
+      "function": "orientation.tilted",
+      "meaning": "\u659c\u7f6e"
+    }
+  },
+  "fourthHash": "36bdf9dad7dbc750ee7cc51111f8a8e8b1fd1c619e8d96b5d23829cfee02ec9d",
+  "weights": {
+    "balance": 0.4,
+    "memory": 0.4,
+    "visual": 0.2
+  },
+  "scorePriorDisclosure": "semantic/mnemonic\u4e3a\u4eba\u4e3a\u53ef\u89e3\u91ca\u6027\u5148\u9a8c\uff0c\u672a\u505a\u771f\u4eba\u8bb0\u5fc6\u8bd5\u9a8c",
+  "strategies": [
+    {
+      "id": "shape-coarse",
+      "name": "\u8f6e\u5ed3\u4f18\u5148\uff0fcoarse",
+      "algorithm": "shape",
+      "level": "coarse",
+      "bins": 0,
+      "clusters": 0,
+      "semantic": 1.0,
+      "mnemonic": 0.9,
+      "branches": 15,
+      "dictionary": [
+        {
+          "a": "\u89d2\u5f62\uff08\u89d2\u6298\uff0f\u56db\u8fb9\uff0f\u4e09\u89d2\uff09",
+          "c": "\u66f2\u7ebf\uff08\u5f27\uff0f\u94a9\uff0fU\uff0f\u6ce2\u5f62\uff09",
+          "o": "\u56f4\u73af\uff08\u5706\uff0f\u56de\u73af\uff09",
+          "x": "\u7ebf\u7fa4\uff08\u4ea4\u53c9\uff0f\u5206\u53c9\uff0f\u653e\u5c04\uff09",
+          "d": "\u5c0f\u70b9\u5757",
+          "l": "\u7ebf\u6761",
+          "m": "\u590d\u5408\u8f6e\u5ed3",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u758f\u58a8\u63cf\u8fb9",
+          "f": "\u9ad8\u586b\u5145",
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "c": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u591a\u4e2a\u95ed\u5b54",
+          "i": "\u4e3b\u4f53\u5185\u6709\u53ef\u5206\u8fa8\u533a\u57df\uff0f\u6784\u4ef6",
+          "m": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4e3b\u5e72\u4ea4\u53e0\u4f30\u8ba1",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u6574\u4f53\u53d6\u5f62",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "shape-standard",
+      "name": "\u8f6e\u5ed3\u4f18\u5148\uff0fstandard",
+      "algorithm": "shape",
+      "level": "standard",
+      "bins": 0,
+      "clusters": 0,
+      "semantic": 1.0,
+      "mnemonic": 0.9,
+      "branches": 15,
+      "dictionary": [
+        {
+          "a": "\u89d2\u6298",
+          "c": "\u66f2\u5f27",
+          "d": "\u5c0f\u70b9\u5757",
+          "h": "\u5206\u53c9",
+          "j": "\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u6761",
+          "m": "\u590d\u5408\u8f6e\u5ed3",
+          "o": "\u5706\uff0f\u692d\u5706",
+          "p": "\u5e26\u5b54\u56de\u73af",
+          "r": "\u653e\u5c04",
+          "s": "\u56db\u8fb9\u6846\uff0f\u5757",
+          "t": "\u4e09\u89d2",
+          "u": "\u76f4\u81c2U\u5f62",
+          "w": "\u6ce2\u5f62",
+          "x": "\u4ea4\u53c9",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u758f\u58a8\u63cf\u8fb9",
+          "f": "\u9ad8\u586b\u5145",
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "c": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u591a\u4e2a\u95ed\u5b54",
+          "i": "\u4e3b\u4f53\u5185\u6709\u53ef\u5206\u8fa8\u533a\u57df\uff0f\u6784\u4ef6",
+          "m": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4e3b\u5e72\u4ea4\u53e0\u4f30\u8ba1",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u6574\u4f53\u53d6\u5f62",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "shape-fine",
+      "name": "\u8f6e\u5ed3\u4f18\u5148\uff0ffine",
+      "algorithm": "shape",
+      "level": "fine",
+      "bins": 0,
+      "clusters": 0,
+      "semantic": 1.0,
+      "mnemonic": 0.9,
+      "branches": 15,
+      "dictionary": [
+        {
+          "a": "\u89d2\u6298",
+          "c": "\u66f2\u5f27",
+          "d": "\u5c0f\u70b9\u5757",
+          "h": "\u5206\u53c9",
+          "j": "\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u6761",
+          "m": "\u590d\u5408\u8f6e\u5ed3",
+          "o": "\u5706\uff0f\u692d\u5706",
+          "p": "\u5e26\u5b54\u56de\u73af",
+          "r": "\u653e\u5c04",
+          "s": "\u56db\u8fb9\u6846\uff0f\u5757",
+          "t": "\u4e09\u89d2",
+          "u": "\u76f4\u81c2U\u5f62",
+          "w": "\u6ce2\u5f62",
+          "x": "\u4ea4\u53c9",
+          "q": "\u672a\u89c2\u6d4b",
+          "e": "\u7eb5\u957f\u5706\u7c7b\u8f6e\u5ed3",
+          "b": "\u5bc6\u96c6\u590d\u5408",
+          "k": "\u7a00\u758f\u590d\u5408",
+          "y": "\u591a\u5206\u79bb\u90e8\u4ef6",
+          "z": "\u591a\u5b54\u590d\u5408"
+        },
+        {
+          "e": "\u758f\u58a8\u63cf\u8fb9",
+          "f": "\u9ad8\u586b\u5145",
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "c": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u591a\u4e2a\u95ed\u5b54",
+          "i": "\u4e3b\u4f53\u5185\u6709\u53ef\u5206\u8fa8\u533a\u57df\uff0f\u6784\u4ef6",
+          "m": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4e3b\u5e72\u4ea4\u53e0\u4f30\u8ba1",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u4e3b\u4f53\u76f4\u63a5\u53d6\u5f62\uff08\u9009\u62e9\u5bf9\u8c61\uff0c\u4e0d\u5192\u5145\u65b0\u5f62\u72b6\u7279\u70b9\uff09",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "topology-coarse",
+      "name": "\u62d3\u6251\u4f18\u5148\uff0fcoarse",
+      "algorithm": "topology",
+      "level": "coarse",
+      "bins": 0,
+      "clusters": 0,
+      "semantic": 0.9,
+      "mnemonic": 0.8,
+      "branches": 9,
+      "dictionary": [
+        {
+          "g": "\u7a00\u758f\u5355\u4f53\u65e0\u5b54",
+          "f": "\u5bc6\u5b9e\u65e0\u5b54",
+          "o": "\u6709\u95ed\u5b54",
+          "d": "\u591a\u5206\u79bb\u90e8\u4ef6",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "a": "\u89d2\u6298",
+          "c": "\u66f2\u5f27",
+          "d": "\u5c0f\u70b9\u5757",
+          "h": "\u5206\u53c9",
+          "j": "\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u6761",
+          "m": "\u590d\u5408\u8f6e\u5ed3",
+          "o": "\u5706\uff0f\u692d\u5706",
+          "p": "\u5e26\u5b54\u56de\u73af",
+          "r": "\u653e\u5c04",
+          "s": "\u56db\u8fb9\u6846\uff0f\u5757",
+          "t": "\u4e09\u89d2",
+          "u": "\u76f4\u81c2U\u5f62",
+          "w": "\u6ce2\u5f62",
+          "x": "\u4ea4\u53c9",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u6574\u4f53\u53d6\u5f62",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "topology-standard",
+      "name": "\u62d3\u6251\u4f18\u5148\uff0fstandard",
+      "algorithm": "topology",
+      "level": "standard",
+      "bins": 0,
+      "clusters": 0,
+      "semantic": 0.9,
+      "mnemonic": 0.8,
+      "branches": 9,
+      "dictionary": [
+        {
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "f": "\u5bc6\u5b9e\u65e0\u95ed\u5b54",
+          "o": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u4e24\u4e2a\u95ed\u5b54",
+          "m": "\u4e09\u4e2a\u4ee5\u4e0a\u95ed\u5b54",
+          "d": "\u591a\u5206\u79bb\u58a8\u90e8\u4ef6",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "a": "\u89d2\u6298",
+          "c": "\u66f2\u5f27",
+          "d": "\u5c0f\u70b9\u5757",
+          "h": "\u5206\u53c9",
+          "j": "\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u6761",
+          "m": "\u590d\u5408\u8f6e\u5ed3",
+          "o": "\u5706\uff0f\u692d\u5706",
+          "p": "\u5e26\u5b54\u56de\u73af",
+          "r": "\u653e\u5c04",
+          "s": "\u56db\u8fb9\u6846\uff0f\u5757",
+          "t": "\u4e09\u89d2",
+          "u": "\u76f4\u81c2U\u5f62",
+          "w": "\u6ce2\u5f62",
+          "x": "\u4ea4\u53c9",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u6574\u4f53\u53d6\u5f62",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "topology-fine",
+      "name": "\u62d3\u6251\u4f18\u5148\uff0ffine",
+      "algorithm": "topology",
+      "level": "fine",
+      "bins": 0,
+      "clusters": 0,
+      "semantic": 0.9,
+      "mnemonic": 0.55,
+      "branches": 16,
+      "dictionary": [
+        {
+          "a": "0\u95ed\u5b54\uff0f1\u58a8\u90e8\u4ef6",
+          "b": "0\u95ed\u5b54\uff0f2\u58a8\u90e8\u4ef6",
+          "c": "0\u95ed\u5b54\uff0f3\u58a8\u90e8\u4ef6",
+          "d": "0\u95ed\u5b54\uff0f4+\u58a8\u90e8\u4ef6",
+          "e": "1\u95ed\u5b54\uff0f1\u58a8\u90e8\u4ef6",
+          "f": "1\u95ed\u5b54\uff0f2\u58a8\u90e8\u4ef6",
+          "g": "1\u95ed\u5b54\uff0f3\u58a8\u90e8\u4ef6",
+          "h": "1\u95ed\u5b54\uff0f4+\u58a8\u90e8\u4ef6",
+          "i": "2\u95ed\u5b54\uff0f1\u58a8\u90e8\u4ef6",
+          "j": "2\u95ed\u5b54\uff0f2\u58a8\u90e8\u4ef6",
+          "k": "2\u95ed\u5b54\uff0f3\u58a8\u90e8\u4ef6",
+          "l": "2\u95ed\u5b54\uff0f4+\u58a8\u90e8\u4ef6",
+          "m": "3+\u95ed\u5b54\uff0f1\u58a8\u90e8\u4ef6",
+          "n": "3+\u95ed\u5b54\uff0f2\u58a8\u90e8\u4ef6",
+          "o": "3+\u95ed\u5b54\uff0f3\u58a8\u90e8\u4ef6",
+          "p": "3+\u95ed\u5b54\uff0f4+\u58a8\u90e8\u4ef6"
+        },
+        {
+          "a": "\u89d2\u6298",
+          "c": "\u66f2\u5f27",
+          "d": "\u5c0f\u70b9\u5757",
+          "h": "\u5206\u53c9",
+          "j": "\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u6761",
+          "m": "\u590d\u5408\u8f6e\u5ed3",
+          "o": "\u5706\uff0f\u692d\u5706",
+          "p": "\u5e26\u5b54\u56de\u73af",
+          "r": "\u653e\u5c04",
+          "s": "\u56db\u8fb9\u6846\uff0f\u5757",
+          "t": "\u4e09\u89d2",
+          "u": "\u76f4\u81c2U\u5f62",
+          "w": "\u6ce2\u5f62",
+          "x": "\u4ea4\u53c9",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u6574\u4f53\u53d6\u5f62",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "proportion-coarse",
+      "name": "\u6bd4\u4f8b\u4f18\u5148\uff0fcoarse",
+      "algorithm": "proportion",
+      "level": "coarse",
+      "bins": 0,
+      "clusters": 0,
+      "semantic": 0.9,
+      "mnemonic": 0.75,
+      "branches": 6,
+      "dictionary": [
+        {
+          "v": "\u7eb5\u957f",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "h": "\u6a2a\u5c55",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "f": "\u5bc6\u5b9e\u65e0\u95ed\u5b54",
+          "o": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u4e24\u4e2a\u95ed\u5b54",
+          "m": "\u4e09\u4e2a\u4ee5\u4e0a\u95ed\u5b54",
+          "d": "\u591a\u5206\u79bb\u58a8\u90e8\u4ef6",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u6574\u4f53\u53d6\u5f62",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "proportion-standard",
+      "name": "\u6bd4\u4f8b\u4f18\u5148\uff0fstandard",
+      "algorithm": "proportion",
+      "level": "standard",
+      "bins": 0,
+      "clusters": 0,
+      "semantic": 0.9,
+      "mnemonic": 0.75,
+      "branches": 6,
+      "dictionary": [
+        {
+          "a": "\u6781\u7eb5\u957f",
+          "v": "\u7eb5\u957f",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "h": "\u6a2a\u5c55",
+          "w": "\u6781\u6a2a\u5c55",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "f": "\u5bc6\u5b9e\u65e0\u95ed\u5b54",
+          "o": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u4e24\u4e2a\u95ed\u5b54",
+          "m": "\u4e09\u4e2a\u4ee5\u4e0a\u95ed\u5b54",
+          "d": "\u591a\u5206\u79bb\u58a8\u90e8\u4ef6",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u6574\u4f53\u53d6\u5f62",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "proportion-fine",
+      "name": "\u6bd4\u4f8b\u4f18\u5148\uff0ffine",
+      "algorithm": "proportion",
+      "level": "fine",
+      "bins": 0,
+      "clusters": 0,
+      "semantic": 0.9,
+      "mnemonic": 0.55,
+      "branches": 9,
+      "dictionary": [
+        {
+          "a": "\u5bbd\u9ad8\u6bd4[0, 0.25)",
+          "b": "\u5bbd\u9ad8\u6bd4[0.25, 0.45)",
+          "c": "\u5bbd\u9ad8\u6bd4[0.45, 0.65)",
+          "d": "\u5bbd\u9ad8\u6bd4[0.65, 0.85)",
+          "e": "\u5bbd\u9ad8\u6bd4[0.85, 1.18)",
+          "f": "\u5bbd\u9ad8\u6bd4[1.18, 1.55)",
+          "g": "\u5bbd\u9ad8\u6bd4[1.55, 2.2)",
+          "h": "\u5bbd\u9ad8\u6bd4[2.2, 4)",
+          "i": "\u5bbd\u9ad8\u6bd4[4, inf)"
+        },
+        {
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "f": "\u5bc6\u5b9e\u65e0\u95ed\u5b54",
+          "o": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u4e24\u4e2a\u95ed\u5b54",
+          "m": "\u4e09\u4e2a\u4ee5\u4e0a\u95ed\u5b54",
+          "d": "\u591a\u5206\u79bb\u58a8\u90e8\u4ef6",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u6574\u4f53\u53d6\u5f62",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "decompose-coarse",
+      "name": "\u4e3b\u5e72\u4e0e\u9644\u4ef6\uff0fcoarse",
+      "algorithm": "decompose",
+      "level": "coarse",
+      "bins": 0,
+      "clusters": 0,
+      "semantic": 1.0,
+      "mnemonic": 0.85,
+      "branches": 18,
+      "dictionary": [
+        {
+          "a": "\u89d2\u5f62\uff08\u89d2\u6298\uff0f\u56db\u8fb9\uff0f\u4e09\u89d2\uff09",
+          "c": "\u66f2\u7ebf\uff08\u5f27\uff0f\u94a9\uff0fU\uff0f\u6ce2\u5f62\uff09",
+          "o": "\u56f4\u73af\uff08\u5706\uff0f\u56de\u73af\uff09",
+          "x": "\u7ebf\u7fa4\uff08\u4ea4\u53c9\uff0f\u5206\u53c9\uff0f\u653e\u5c04\uff09",
+          "d": "\u5c0f\u70b9\u5757",
+          "l": "\u7ebf\u6761",
+          "m": "\u590d\u5408\u8f6e\u5ed3",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u758f\u58a8\u63cf\u8fb9",
+          "f": "\u9ad8\u586b\u5145",
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "c": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u591a\u4e2a\u95ed\u5b54",
+          "i": "\u4e3b\u4f53\u5185\u6709\u53ef\u5206\u8fa8\u533a\u57df\uff0f\u6784\u4ef6",
+          "m": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4e3b\u5e72\u4ea4\u53e0\u4f30\u8ba1",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u6574\u4f53\u53d6\u5f62",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "decompose-standard",
+      "name": "\u4e3b\u5e72\u4e0e\u9644\u4ef6\uff0fstandard",
+      "algorithm": "decompose",
+      "level": "standard",
+      "bins": 0,
+      "clusters": 0,
+      "semantic": 1.0,
+      "mnemonic": 0.85,
+      "branches": 18,
+      "dictionary": [
+        {
+          "a": "\u89d2\u6298",
+          "c": "\u66f2\u5f27",
+          "d": "\u5c0f\u70b9\u5757",
+          "h": "\u5206\u53c9",
+          "j": "\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u6761",
+          "m": "\u590d\u5408\u8f6e\u5ed3",
+          "o": "\u5706\uff0f\u692d\u5706",
+          "p": "\u5e26\u5b54\u56de\u73af",
+          "r": "\u653e\u5c04",
+          "s": "\u56db\u8fb9\u6846\uff0f\u5757",
+          "t": "\u4e09\u89d2",
+          "u": "\u76f4\u81c2U\u5f62",
+          "w": "\u6ce2\u5f62",
+          "x": "\u4ea4\u53c9",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u758f\u58a8\u63cf\u8fb9",
+          "f": "\u9ad8\u586b\u5145",
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "c": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u591a\u4e2a\u95ed\u5b54",
+          "i": "\u4e3b\u4f53\u5185\u6709\u53ef\u5206\u8fa8\u533a\u57df\uff0f\u6784\u4ef6",
+          "m": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4e3b\u5e72\u4ea4\u53e0\u4f30\u8ba1",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u6574\u4f53\u53d6\u5f62",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "decompose-fine",
+      "name": "\u4e3b\u5e72\u4e0e\u9644\u4ef6\uff0ffine",
+      "algorithm": "decompose",
+      "level": "fine",
+      "bins": 0,
+      "clusters": 0,
+      "semantic": 1.0,
+      "mnemonic": 0.85,
+      "branches": 18,
+      "dictionary": [
+        {
+          "a": "\u89d2\u6298",
+          "c": "\u66f2\u5f27",
+          "d": "\u5c0f\u70b9\u5757",
+          "h": "\u5206\u53c9",
+          "j": "\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u6761",
+          "m": "\u590d\u5408\u8f6e\u5ed3",
+          "o": "\u5706\uff0f\u692d\u5706",
+          "p": "\u5e26\u5b54\u56de\u73af",
+          "r": "\u653e\u5c04",
+          "s": "\u56db\u8fb9\u6846\uff0f\u5757",
+          "t": "\u4e09\u89d2",
+          "u": "\u76f4\u81c2U\u5f62",
+          "w": "\u6ce2\u5f62",
+          "x": "\u4ea4\u53c9",
+          "q": "\u672a\u89c2\u6d4b",
+          "e": "\u7eb5\u957f\u5706\u7c7b\u8f6e\u5ed3",
+          "b": "\u5bc6\u96c6\u590d\u5408",
+          "k": "\u7a00\u758f\u590d\u5408",
+          "y": "\u591a\u5206\u79bb\u90e8\u4ef6",
+          "z": "\u591a\u5b54\u590d\u5408"
+        },
+        {
+          "e": "\u758f\u58a8\u63cf\u8fb9",
+          "f": "\u9ad8\u586b\u5145",
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "c": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u591a\u4e2a\u95ed\u5b54",
+          "i": "\u4e3b\u4f53\u5185\u6709\u53ef\u5206\u8fa8\u533a\u57df\uff0f\u6784\u4ef6",
+          "m": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4e3b\u5e72\u4ea4\u53e0\u4f30\u8ba1",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u4e3b\u4f53\u76f4\u63a5\u53d6\u5f62\uff08\u9009\u62e9\u5bf9\u8c61\uff0c\u4e0d\u5192\u5145\u65b0\u5f62\u72b6\u7279\u70b9\uff09",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "bins-coarse",
+      "name": "\u53ef\u91cf\u5316\u7279\u5f81\u5206\u6863\uff0fcoarse",
+      "algorithm": "bins",
+      "level": "coarse",
+      "bins": 3,
+      "clusters": 0,
+      "semantic": 0.45,
+      "mnemonic": 0.25,
+      "branches": 9,
+      "dictionary": [
+        {
+          "a": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c1/3\u6863\uff08\u8303\u56f40.167\uff5e6\uff09",
+          "b": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c2/3\u6863\uff08\u8303\u56f40.167\uff5e6\uff09",
+          "c": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c3/3\u6863\uff08\u8303\u56f40.167\uff5e6\uff09"
+        },
+        {
+          "a": "\u58a8\u8ff9\u5bc6\u5ea6[0.000, 0.333]",
+          "b": "\u58a8\u8ff9\u5bc6\u5ea6[0.333, 0.667]",
+          "c": "\u58a8\u8ff9\u5bc6\u5ea6[0.667, 1.000]"
+        },
+        {
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "f": "\u5bc6\u5b9e\u65e0\u95ed\u5b54",
+          "o": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u4e24\u4e2a\u95ed\u5b54",
+          "m": "\u4e09\u4e2a\u4ee5\u4e0a\u95ed\u5b54",
+          "d": "\u591a\u5206\u79bb\u58a8\u90e8\u4ef6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "bins-standard",
+      "name": "\u53ef\u91cf\u5316\u7279\u5f81\u5206\u6863\uff0fstandard",
+      "algorithm": "bins",
+      "level": "standard",
+      "bins": 5,
+      "clusters": 0,
+      "semantic": 0.45,
+      "mnemonic": 0.25,
+      "branches": 15,
+      "dictionary": [
+        {
+          "a": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c1/5\u6863\uff08\u8303\u56f40.167\uff5e6\uff09",
+          "b": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c2/5\u6863\uff08\u8303\u56f40.167\uff5e6\uff09",
+          "c": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c3/5\u6863\uff08\u8303\u56f40.167\uff5e6\uff09",
+          "d": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c4/5\u6863\uff08\u8303\u56f40.167\uff5e6\uff09",
+          "e": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c5/5\u6863\uff08\u8303\u56f40.167\uff5e6\uff09"
+        },
+        {
+          "a": "\u58a8\u8ff9\u5bc6\u5ea6[0.000, 0.200]",
+          "b": "\u58a8\u8ff9\u5bc6\u5ea6[0.200, 0.400]",
+          "c": "\u58a8\u8ff9\u5bc6\u5ea6[0.400, 0.600]",
+          "d": "\u58a8\u8ff9\u5bc6\u5ea6[0.600, 0.800]",
+          "e": "\u58a8\u8ff9\u5bc6\u5ea6[0.800, 1.000]"
+        },
+        {
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "f": "\u5bc6\u5b9e\u65e0\u95ed\u5b54",
+          "o": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u4e24\u4e2a\u95ed\u5b54",
+          "m": "\u4e09\u4e2a\u4ee5\u4e0a\u95ed\u5b54",
+          "d": "\u591a\u5206\u79bb\u58a8\u90e8\u4ef6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "bins-fine",
+      "name": "\u53ef\u91cf\u5316\u7279\u5f81\u5206\u6863\uff0ffine",
+      "algorithm": "bins",
+      "level": "fine",
+      "bins": 7,
+      "clusters": 0,
+      "semantic": 0.45,
+      "mnemonic": 0.25,
+      "branches": 21,
+      "dictionary": [
+        {
+          "a": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c1/7\u6863\uff08\u8303\u56f40.167\uff5e6\uff09",
+          "b": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c2/7\u6863\uff08\u8303\u56f40.167\uff5e6\uff09",
+          "c": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c3/7\u6863\uff08\u8303\u56f40.167\uff5e6\uff09",
+          "d": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c4/7\u6863\uff08\u8303\u56f40.167\uff5e6\uff09",
+          "e": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c5/7\u6863\uff08\u8303\u56f40.167\uff5e6\uff09",
+          "f": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c6/7\u6863\uff08\u8303\u56f40.167\uff5e6\uff09",
+          "g": "\u5bbd\u9ad8\u6bd4\u5bf9\u6570\u7684\u7b2c7/7\u6863\uff08\u8303\u56f40.167\uff5e6\uff09"
+        },
+        {
+          "a": "\u58a8\u8ff9\u5bc6\u5ea6[0.000, 0.143]",
+          "b": "\u58a8\u8ff9\u5bc6\u5ea6[0.143, 0.286]",
+          "c": "\u58a8\u8ff9\u5bc6\u5ea6[0.286, 0.429]",
+          "d": "\u58a8\u8ff9\u5bc6\u5ea6[0.429, 0.571]",
+          "e": "\u58a8\u8ff9\u5bc6\u5ea6[0.571, 0.714]",
+          "f": "\u58a8\u8ff9\u5bc6\u5ea6[0.714, 0.857]",
+          "g": "\u58a8\u8ff9\u5bc6\u5ea6[0.857, 1.000]"
+        },
+        {
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "f": "\u5bc6\u5b9e\u65e0\u95ed\u5b54",
+          "o": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u4e24\u4e2a\u95ed\u5b54",
+          "m": "\u4e09\u4e2a\u4ee5\u4e0a\u95ed\u5b54",
+          "d": "\u591a\u5206\u79bb\u58a8\u90e8\u4ef6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "cluster-coarse",
+      "name": "\u89c6\u89c9\u805a\u7c7b\uff0fcoarse",
+      "algorithm": "cluster",
+      "level": "coarse",
+      "bins": 0,
+      "clusters": 12,
+      "semantic": 0.15,
+      "mnemonic": 0.1,
+      "branches": 12,
+      "dictionary": [
+        {
+          "a": "\u89c6\u89c9\u539f\u578b\u7c071\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "b": "\u89c6\u89c9\u539f\u578b\u7c072\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "c": "\u89c6\u89c9\u539f\u578b\u7c073\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "d": "\u89c6\u89c9\u539f\u578b\u7c074\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "e": "\u89c6\u89c9\u539f\u578b\u7c075\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "f": "\u89c6\u89c9\u539f\u578b\u7c076\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "g": "\u89c6\u89c9\u539f\u578b\u7c077\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "h": "\u89c6\u89c9\u539f\u578b\u7c078\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "i": "\u89c6\u89c9\u539f\u578b\u7c079\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "j": "\u89c6\u89c9\u539f\u578b\u7c0710\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "k": "\u89c6\u89c9\u539f\u578b\u7c0711\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "l": "\u89c6\u89c9\u539f\u578b\u7c0712\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09"
+        },
+        {
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "f": "\u5bc6\u5b9e\u65e0\u95ed\u5b54",
+          "o": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u4e24\u4e2a\u95ed\u5b54",
+          "m": "\u4e09\u4e2a\u4ee5\u4e0a\u95ed\u5b54",
+          "d": "\u591a\u5206\u79bb\u58a8\u90e8\u4ef6",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u6574\u4f53\u53d6\u5f62",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "cluster-standard",
+      "name": "\u89c6\u89c9\u805a\u7c7b\uff0fstandard",
+      "algorithm": "cluster",
+      "level": "standard",
+      "bins": 0,
+      "clusters": 18,
+      "semantic": 0.15,
+      "mnemonic": 0.1,
+      "branches": 18,
+      "dictionary": [
+        {
+          "a": "\u89c6\u89c9\u539f\u578b\u7c071\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "b": "\u89c6\u89c9\u539f\u578b\u7c072\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "c": "\u89c6\u89c9\u539f\u578b\u7c073\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "d": "\u89c6\u89c9\u539f\u578b\u7c074\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "e": "\u89c6\u89c9\u539f\u578b\u7c075\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "f": "\u89c6\u89c9\u539f\u578b\u7c076\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "g": "\u89c6\u89c9\u539f\u578b\u7c077\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "h": "\u89c6\u89c9\u539f\u578b\u7c078\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "i": "\u89c6\u89c9\u539f\u578b\u7c079\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "j": "\u89c6\u89c9\u539f\u578b\u7c0710\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "k": "\u89c6\u89c9\u539f\u578b\u7c0711\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "l": "\u89c6\u89c9\u539f\u578b\u7c0712\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "m": "\u89c6\u89c9\u539f\u578b\u7c0713\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "n": "\u89c6\u89c9\u539f\u578b\u7c0714\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "o": "\u89c6\u89c9\u539f\u578b\u7c0715\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "p": "\u89c6\u89c9\u539f\u578b\u7c0716\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "q": "\u89c6\u89c9\u539f\u578b\u7c0717\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "r": "\u89c6\u89c9\u539f\u578b\u7c0718\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09"
+        },
+        {
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "f": "\u5bc6\u5b9e\u65e0\u95ed\u5b54",
+          "o": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u4e24\u4e2a\u95ed\u5b54",
+          "m": "\u4e09\u4e2a\u4ee5\u4e0a\u95ed\u5b54",
+          "d": "\u591a\u5206\u79bb\u58a8\u90e8\u4ef6",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u6574\u4f53\u53d6\u5f62",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    },
+    {
+      "id": "cluster-fine",
+      "name": "\u89c6\u89c9\u805a\u7c7b\uff0ffine",
+      "algorithm": "cluster",
+      "level": "fine",
+      "bins": 0,
+      "clusters": 24,
+      "semantic": 0.15,
+      "mnemonic": 0.1,
+      "branches": 24,
+      "dictionary": [
+        {
+          "a": "\u89c6\u89c9\u539f\u578b\u7c071\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "b": "\u89c6\u89c9\u539f\u578b\u7c072\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "c": "\u89c6\u89c9\u539f\u578b\u7c073\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "d": "\u89c6\u89c9\u539f\u578b\u7c074\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "e": "\u89c6\u89c9\u539f\u578b\u7c075\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "f": "\u89c6\u89c9\u539f\u578b\u7c076\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "g": "\u89c6\u89c9\u539f\u578b\u7c077\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "h": "\u89c6\u89c9\u539f\u578b\u7c078\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "i": "\u89c6\u89c9\u539f\u578b\u7c079\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "j": "\u89c6\u89c9\u539f\u578b\u7c0710\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "k": "\u89c6\u89c9\u539f\u578b\u7c0711\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "l": "\u89c6\u89c9\u539f\u578b\u7c0712\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "m": "\u89c6\u89c9\u539f\u578b\u7c0713\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "n": "\u89c6\u89c9\u539f\u578b\u7c0714\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "o": "\u89c6\u89c9\u539f\u578b\u7c0715\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "p": "\u89c6\u89c9\u539f\u578b\u7c0716\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "q": "\u89c6\u89c9\u539f\u578b\u7c0717\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "r": "\u89c6\u89c9\u539f\u578b\u7c0718\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "s": "\u89c6\u89c9\u539f\u578b\u7c0719\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "t": "\u89c6\u89c9\u539f\u578b\u7c0720\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "u": "\u89c6\u89c9\u539f\u578b\u7c0721\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "v": "\u89c6\u89c9\u539f\u578b\u7c0722\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "w": "\u89c6\u89c9\u539f\u578b\u7c0723\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09",
+          "x": "\u89c6\u89c9\u539f\u578b\u7c0724\uff08\u987b\u770b\u539f\u578b\uff0c\u4e0d\u662f\u8bed\u4e49\u5f62\u65cf\uff09"
+        },
+        {
+          "g": "\u5355\u4f53\u65e0\u95ed\u5b54",
+          "f": "\u5bc6\u5b9e\u65e0\u95ed\u5b54",
+          "o": "\u4e00\u4e2a\u95ed\u5b54",
+          "p": "\u4e24\u4e2a\u95ed\u5b54",
+          "m": "\u4e09\u4e2a\u4ee5\u4e0a\u95ed\u5b54",
+          "d": "\u591a\u5206\u79bb\u58a8\u90e8\u4ef6",
+          "q": "\u672a\u89c2\u6d4b"
+        },
+        {
+          "e": "\u6574\u4f53\u53d6\u5f62",
+          "s": "\u8fd1\u7b49\u5bbd\u9ad8",
+          "v": "\u7eb5\u957f",
+          "h": "\u6a2a\u5c55",
+          "u": "\u5f00\u53e3\u4f30\u8ba1",
+          "a": "\u89d2\u70b9",
+          "d": "\u70b9\u72b6\u6784\u4ef6",
+          "o": "\u95ed\u5408\u7a7a\u533a\uff0f\u73af\u72b6\u6784\u4ef6",
+          "j": "\u672b\u7aef\u94a9\u5f2f\u4f30\u8ba1",
+          "l": "\u7ebf\u72b6\u6784\u4ef6",
+          "n": "\u591a\u4e2a\u58a8\u6784\u4ef6",
+          "x": "\u4ea4\u53e0\u9aa8\u67b6",
+          "q": "\u672a\u89c2\u6d4b"
+        }
+      ]
+    }
+  ]
+}

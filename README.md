@@ -1,5 +1,12 @@
 # Personal Unicode Shape-Phonetic Input
 
+Local four-round shape-overview work uses the version and privacy boundaries in
+[DEVELOPMENT.md](DEVELOPMENT.md). The current local combination is t/b v17,
+structure counts v5, subject attachments v1 and bucket-order queries. It includes
+uncommitted tools and private inputs that cannot be reconstructed from main alone.
+The complete local restore checkpoint is `../archive/2026-10-25-双顺序版固化/`;
+the public-source and older Android instructions below have their own scope.
+
 ## Android 初步版本 0.2.4
 
 触屏 Unicode 编辑器现可配合同文 Trime 使用，包含区块／全形／收藏、自由拼排、手机键位配置、草稿与发布管理。
@@ -7,8 +14,13 @@
 安装包、同文部署包与重建输入见 [android-v0.2.4 发布页](https://github.com/vryTfmcat/personal-unicode-shape-input/releases/tag/android-v0.2.4)；[安装和源码构建说明](原型/安卓app/GitHub发布.md)。这是已完成本轮手机验收的初步版本，完整改码和编码格位等功能仍待后续开发。
 
 
-A private Rime/Weasel input-method research project for assigning memorable
+A Rime/Weasel and web-editor research project for assigning memorable
 two-letter associations and visual shape codes to Unicode characters.
+
+The local editor now uses three independent codebooks: block, coarse shape,
+and personal aliases, with an optional pinned Flypy Chinese layer.
+See [the current editor guide](原型/键位编辑器/使用说明.md).
+Reviewed four-letter shape paths from batches 01/02/03/05/06 are now enabled. Two-letter families, three-letter prefixes and four-letter paths share exact character identity; trial batches remain excluded.
 
 ## What is included
 
@@ -32,11 +44,10 @@ python 工具/project_tasks.py test
 To rebuild generated data and then run the full test suite:
 
 ```powershell
-python 工具/project_tasks.py check --vault-root "PATH_TO_OBSIDIAN_VAULT"
+python 工具/project_tasks.py check
 ```
 
-The optional vault path is used only for the explicitly allowlisted legacy
-source folders described in `来源/来源范围与综述.md`.
+The current three-mode builder does not depend on legacy cold-archive links.
 
 ## Local editor
 
@@ -46,19 +57,24 @@ On Windows, run:
 原型/键位编辑器/启动键位编辑器.cmd
 ```
 
-The service binds to `127.0.0.1` and keeps association-graph snapshots local.
+The service binds to `127.0.0.1:8765`, saves revisioned codebooks and graph
+snapshots to project files, and publishes the new Weasel schema after isolated
+native Rime verification. Python dependencies are NumPy, Pillow and PyYAML.
+
+## Hosted collaborative editor
+
+The earlier collaborative editor is available at:
+
+<https://amd-fedor.tail73cba1.ts.net/unicode-editor/>
+
+Its runtime collaboration data is stored on the server at
+`/home/vrytfmcat/文档/unicode键位编辑器/`. The hosted version supports shared
+key submissions, server-side persistence, optimistic version-conflict
+protection, backups, and password-protected editing. Credentials are not kept
+in this repository.
 
 ## Privacy and licensing
 
-This repository contains a personal semantic association graph and is intended
-to remain private while the model and data boundaries are still evolving.
-No open-source license has been granted at this stage.
-
-
-## 三模式与形状审查工具
-
-键位编辑器支持字块、全形、个人码本的独立查询和候选合并，工具目录保存规则审计、形状试验、Rime发布与相应测试。实体事实、个人码本、字体、生成词典、运行报告和备份不随本次源码更新提交。
-
-全形审查索引是本机生成输入。需要启用时，按 `数据/三模式/全形核对版.example.json` 建立被忽略的 `全形核对版.json`，填写工程内索引路径与SHA-256；未配置时不启用此审查覆盖。不要把生成目录的整批报告纳入源码仓库。
-
-基础验证：`node 工具/test_modes_core.cjs`、`node 工具/test_modes_reviewed_paths.cjs`、`python 工具/test_mode_codebooks.py`、`python 工具/test_shape_rule_audit.py`、`python 工具/test_shape_lab.py`。全量码表及本机字体相关验证需要已有Unicode输入表和生成的基础载荷。
+This repository contains a personal semantic association graph. The GitHub
+repository remains private while the model and data boundaries are still
+evolving. No open-source license has been granted at this stage.

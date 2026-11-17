@@ -7,7 +7,7 @@ status: research
 
 ## 冷库起点
 
-[[90_旧库冷归档/Unicode原库_迁移前快照/茂ܜ/语义图形语言/布利斯符号 Blissymbols|布利斯符号 Blissymbols]]保留了早期官方网站线索；[[90_旧库冷归档/Unicode原库_迁移前快照/茂ܜ/语义图形语言/图形语|图形语]]将它视为图形语言的历史实验之一。
+布利斯符号 Blissymbols（[[原件集合台账#OBS-COLD-001：Obsidian 旧库冷归档|OBS-COLD-001]]；`relativePath: Unicode原库_迁移前快照/茂ܜ/语义图形语言/布利斯符号 Blissymbols.md`）保留了早期官方网站线索；图形语（[[原件集合台账#OBS-COLD-001：Obsidian 旧库冷归档|OBS-COLD-001]]；`relativePath: Unicode原库_迁移前快照/茂ܜ/语义图形语言/图形语.md`）将它视为图形语言的历史实验之一。
 
 ## 可核验定位
 

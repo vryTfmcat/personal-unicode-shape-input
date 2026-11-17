@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Unicode 输入法 · 候选点选演示</title>
+<meta name="description" content="一个自己做的 Unicode 输入法：区块、全形、收藏三套码本，本页提供固定候选点选演示，不是完整输入引擎。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5/900.css">
+<style>
+  :root{
+    --desk:#E4E6E1; --panel:#FCFCFA; --ink:#16181A; --dim:#5E645C; --line:#D6D9D2;
+    --acc:#2F6B4F; --pad:20px; --gap-s:24px; --gap-m:56px; --gap-l:92px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{background:var(--desk);color:var(--ink);
+    font-family:"Noto Sans SC",-apple-system,sans-serif;font-size:15px;line-height:1.75;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  h2{font-size:32px;font-weight:900;line-height:1.26;letter-spacing:-.01em}
+
+  /* ---------- 首屏：整屏就是候选面板 ---------- */
+  .hero{padding:8px 8px 0;min-height:100svh;display:flex}
+  .panel{flex:1;background:var(--panel);border:1px solid var(--line);
+    display:flex;flex-direction:column;overflow:hidden}
+  .pbar{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:11px 13px;border-bottom:1px solid var(--line)}
+  .pbar .tt{font-size:13px;font-weight:500}
+  .pbar .tt s{text-decoration:none;color:var(--dim);font-weight:400}
+  .tabs{display:flex;gap:5px}
+  .tabs button{font:inherit;font-size:13px;padding:3px 8px;border:1px solid var(--line);
+    background:transparent;color:var(--dim);cursor:pointer;transition:all .15s ease}
+  .tabs button.on{color:var(--acc);border-color:var(--acc);background:rgba(47,107,79,.07)}
+  .field{padding:12px 13px 0}
+  .fline{display:flex;align-items:center;gap:10px;background:#F3F4F0;
+    border:1px solid var(--line);padding:7px 10px;min-height:42px}
+  .fline .code{font-size:22px;font-weight:500;letter-spacing:.04em;line-height:1.2}
+  .caret{width:2px;height:19px;background:var(--acc);display:inline-block;transform:translateY(3px)}
+  .fline .cnt{margin-left:auto;font-size:13px;color:var(--dim);letter-spacing:.02em}
+  .fline .cnt b{font-weight:500;color:var(--ink);font-size:13px}
+  .fres{display:flex;align-items:center;gap:14px;padding:8px 0 12px}
+  .fres .big{font-size:74px;line-height:.95;color:#1B1E1C}
+  .fres .meta small{display:block;font-size:13px;color:var(--dim);line-height:1.5}
+  .fres .meta b{display:block;font-size:14px;font-weight:500;letter-spacing:.02em}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0 13px}
+  .cand{border:1px solid var(--line);background:#fff;padding:10px 0 7px;
+    display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;
+    transition:border-color .15s ease, transform .12s ease}
+  .cand:hover{border-color:#B9BEB4}
+  .cand:active{transform:translateY(1px)}
+  .cand .ch{font-size:28px;line-height:1.15}
+  .cand .cd{font-size:13px;color:var(--acc);letter-spacing:.04em}
+  .cand.pick{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
+  .pfoot{margin-top:auto;border-top:1px solid var(--line);padding:9px 13px;
+    display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--dim)}
+  .pfoot span:last-child{display:none}
+  .hint{background:var(--desk);border-top:1px solid var(--line);padding:9px 13px;
+    font-size:13px;color:#5B6057;text-align:center}
+
+  /* ---------- 说明段 ---------- */
+  .sec{padding:var(--gap-l) var(--pad)}
+  .sec p{margin-top:18px;font-size:15px;line-height:1.9;color:#4E534C;max-width:23em}
+  .sec p b{font-weight:500;color:var(--ink)}
+  .kinds{margin-top:var(--gap-s);border-top:1px solid #CFD3CB}
+  .kind{padding:20px 0;border-bottom:1px solid #CFD3CB;display:grid;
+    grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline}
+  .kind b{font-size:16px;font-weight:500}
+  .kind s{text-decoration:none;font-size:13px;color:var(--dim);letter-spacing:.04em}
+  .kind span{grid-column:1/-1;font-size:13.5px;line-height:1.85;color:#5D6259}
+
+  /* ---------- 手机 / 键盘 ---------- */
+  .shots{padding:0 var(--pad) var(--gap-l)}
+  .shots h2{margin-bottom:var(--gap-s)}
+  .shot{margin-top:var(--gap-s)}
+  .shot img{width:100%;border:1px solid #CFD3CB}
+  .shot figcaption{margin-top:9px;font-size:13px;color:#5B6057}
+
+  /* ---------- 页尾 ---------- */
+  .go{padding:var(--gap-l) var(--pad) 36px;background:var(--panel);border-top:1px solid var(--line)}
+  .go h2{font-size:28px}
+  .go p{margin-top:14px;font-size:13.5px;color:#5D6259;max-width:24em}
+  .go a.main{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    background:var(--acc);color:#fff;padding:15px 16px;margin-top:22px;font-size:15px}
+  .go a.main:active{background:#275A42}
+  .go a.main small{display:block;font-size:13px;opacity:.8;margin-top:2px}
+  .go-sub{margin-top:12px;font-size:13px}
+  .go-sub div{padding:12px 0;border-top:1px solid var(--line)}
+  .go-sub s{display:block;text-decoration:none;font-size:13px;color:var(--dim);margin-top:2px}
+  .go-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-top:30px}
+  .go-foot p{font-size:13px;line-height:1.8;color:var(--dim);max-width:15em;margin:0}
+  .dl-qr{width:120px;height:120px}
+
+  @media (min-width:900px){
+    :root{--pad:64px;--gap-l:140px}
+    .hero{padding:28px 56px 0;max-width:1240px;margin:0 auto;min-height:100svh}
+    .panel{max-height:calc(100svh - 28px)}
+    .pbar{padding:14px 18px}
+    .pbar .tt{font-size:13.5px}
+    .tabs button{font-size:13px;padding:5px 12px}
+    .field{padding:16px 18px 0}
+    .fline .code{font-size:29px}
+    .fres{padding:14px 0 20px;gap:18px}
+    .fres .big{font-size:clamp(120px,12.2vw,176px)}
+    .fres .meta b{font-size:15px}
+    .fres .meta small{font-size:13px}
+    .grid{grid-template-columns:repeat(8,1fr);gap:8px;padding:0 18px}
+    .cand{padding:14px 0 10px}
+    .cand .ch{font-size:30px}
+    .pfoot{padding:11px 18px;font-size:13px}
+    .pfoot span:last-child{display:inline}
+    .hint{font-size:13px;padding:11px 18px}
+    .sec{padding:var(--gap-l) 64px;max-width:1240px;margin:0 auto;
+      display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+    .sec h2{font-size:44px}
+    .sec p{margin-top:0;font-size:16px}
+    .kinds{grid-column:1/-1;margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:0 48px;border-top:1px solid #CFD3CB}
+    .kind{border-bottom:none;border-top:none;padding:22px 0;display:block;border-top:1px solid #CFD3CB}
+    .kind span{margin-top:8px}
+    .shots{padding:0 64px var(--gap-l);max-width:1240px;margin:0 auto;
+      display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+    .shots h2{grid-column:1/-1}
+    .shot{margin-top:0}
+    .go{padding:var(--gap-l) 64px 56px;max-width:1240px;margin:0 auto}
+    .go-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+    .go-foot{margin-top:0;justify-content:flex-end}
+  }
+</style>
+</head>
+<body>
+<nav aria-label="宣传页版本" style="padding:12px 20px;background:#151817;color:#e9e5da;font:14px/1.8 sans-serif;border-bottom:1px solid #343831"><a href="index.html" style="color:inherit;margin-right:18px">项目介绍 A</a><a href="宣传页-B-字符墙.html" style="color:inherit;margin-right:18px">字符墙 B</a><a href="宣传页-C-候选面板.html" style="color:inherit">候选演示 C</a><span style="display:block;color:#b9bdb5;font-size:12px">2026-10-25 采纳版 · 图片及数字为早期编辑器快照；分类、确认与部署状态以项目现行记录为准。</span></nav>
+
+<!-- 首屏：候选面板 -->
+<section class="hero">
+  <div class="panel">
+    <div class="pbar">
+      <div class="tt">Unicode 三模式 <s>/ <span id="modeName">全形</span></s></div>
+      <div class="tabs" id="tabs">
+        <button data-mode="block">区块</button>
+        <button data-mode="shape" class="on">全形</button>
+        <button data-mode="mine">收藏</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="fline"><span class="code" id="code">oe</span><i class="caret"></i>
+        <span class="cnt"><b id="count">24</b> 个示例</span>
+      </div>
+      <div class="fres">
+        <span class="big" id="res">○</span>
+        <span class="meta"><b id="resName">U+25CB</b><small id="resCode">oe · 圆环 · 空心低填充</small></span>
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="pfoot"><span>点击候选更新展示区</span><span>固定样例，不支持输入翻页</span><span>顶部按钮切换示例</span></div>
+    <div class="hint" id="hint">点选固定示例，仅更新本页展示区</div>
+  </div>
+</section>
+
+<!-- 说明 -->
+<section class="sec">
+  <h2>这一屏，<br>演示候选如何点选。</h2>
+  <p>编码区域显示预置示例，下面列出固定候选。<b>点一个，会更新本页展示区</b>。这是候选面板的交互示意，不执行输入查询，也不向其他应用上屏。</p>
+  <p>三套码本分别按区块、形状和私人别名组织。本页通过顶部按钮切换固定示例；系统快捷键以实际输入法配置为准。</p>
+
+  <div class="kinds">
+    <div class="kind">
+      <b>区块</b> <s>gskk</s>
+      <span>按 Unicode 的位置找。早期编辑器为非汉字分配区块码；此处只演示截图可核对的 ○ → gskk，不将同一区块的其他字误标为相同四码。</span>
+    </div>
+    <div class="kind">
+      <b>全形</b> <s>oe</s>
+      <span>按长相找。第一位主形，第二位状态，所以早期 oe 形族跨区块组织相关字形；这里展示 24 个固定样例，不代表当前全部候选。</span>
+    </div>
+    <div class="kind">
+      <b>收藏</b> <s>自己的</s>
+      <span>按你的感觉找。每个字可以有几枚 2～4 字母的私人别名，随便起，不影响上面两套。</span>
+    </div>
+  </div>
+</section>
+
+<!-- 两块截图 -->
+<section class="shots">
+  <h2>桌面之外，<br>它还在两个地方。</h2>
+  <figure class="shot">
+    <img src="assets/phone-keyboard.png" alt="手机端键位配置：QWERTY 三模式，把字符标在键上" loading="lazy" width="482" height="681">
+    <figcaption>手机上配同文 Trime 用：三套码本、自由拼排、键位配置都在。</figcaption>
+  </figure>
+  <figure class="shot">
+    <img src="assets/keyboard-keys.png" alt="键位工作台：实体键盘上给键帽标字符" loading="lazy" width="745" height="225">
+    <figcaption>也可以把你的实体键盘标一遍：这个键出哪个字，点键就看得到。</figcaption>
+  </figure>
+</section>
+
+<!-- 页尾 -->
+<footer class="go" id="go">
+  <div class="go-inner">
+    <div>
+      <h2>去敲一个<br>你打不出来的字。</h2>
+      <p>在线编辑器在浏览器里打开就能用，不用装输入法。</p>
+      <a class="main" href="https://amd-fedor.tail73cba1.ts.net/unicode-editor/" target="_blank" rel="noopener">
+        <span>打开在线编辑器<small>受限入口；本次未检查在线状态或访问权限</small></span>
+        <span>→</span>
+      </a>
+      <div class="go-sub">
+        <div>Android 触屏编辑器<s>安装与部署请按项目现行说明</s></div>
+        <div>使用与反馈<s>当前通过项目协作渠道联系</s></div>
+      </div>
+    </div>
+    <div class="go-foot">
+      <p>一个人做的输入法，还在填。</p>
+      <span style="font-size:12px;line-height:1.7;color:inherit">本地项目展示版<br>未公开发布</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 固定演示数据，非现行码表；全形为早期形族样例，收藏为虚构别名。区块仅保留截图可核的单字映射。 */
+  var DATA = {
+    block: {
+      code:'gskk', name:'区块', count:1, label:'区块码单字示例 · U+25CB',
+      items:[['○','U+25CB','gskk']]
+    },
+    shape: {
+      code:'oe', name:'全形', count:24, label:'圆环 · 空心低填充',
+      items:[['○','U+25CB','oe'],['◯','U+25EF','oe'],['◉','U+25C9','oe'],['◌','U+25CC','oe'],
+             ['◍','U+25CD','oe'],['◎','U+25CE','oe'],['⦿','U+29BF','oe'],['⦾','U+29BE','oe'],
+             ['⊙','U+2299','oe'],['⊚','U+229A','oe'],['⊛','U+229B','oe'],['⌾','U+233E','oe'],
+             ['⍟','U+235F','oe'],['⨀','U+2A00','oe'],['Ꙩ','U+A668','oe'],['⬤','U+2B24','oe'],
+             ['⨁','U+2A01','oe'],['⨂','U+2A02','oe'],['◐','U+25D0','oe'],['◑','U+25D1','oe'],
+             ['◒','U+25D2','oe'],['◓','U+25D3','oe'],['◔','U+25D4','oe'],['◕','U+25D5','oe']]
+    },
+    mine: {
+      code:'obi', name:'收藏', count:6, label:'私人别名 · 示例',
+      items:[['○','U+25CB','obi'],['◯','U+25EF','obu'],['◎','U+25CE','obe'],['◉','U+25C9','oba'],
+             ['◌','U+25CC','obo'],['Ꙩ','U+A668','yi']]
+    }
+  };
+
+  var grid = document.getElementById('grid');
+  var codeEl = document.getElementById('code');
+  var resEl = document.getElementById('res');
+  var resName = document.getElementById('resName');
+  var resCode = document.getElementById('resCode');
+  var countEl = document.getElementById('count');
+  var modeEl = document.getElementById('modeName');
+  var hintEl = document.getElementById('hint');
+  var cur = 'shape';
+
+  function show(it, d){
+    resEl.textContent = it[0];
+    resName.textContent = it[1];
+    resCode.textContent = it[2] + ' · ' + d.label;
+  }
+
+  function render(mode){
+    var d = DATA[mode];
+    cur = mode;
+    grid.innerHTML = '';
+    d.items.forEach(function(it, i){
+      var b = document.createElement('div');
+      b.className = 'cand';
+      b.innerHTML = '<div class="ch">' + it[0] + '</div><div class="cd">' + it[2] + '</div>';
+      b.addEventListener('click', function(){
+        document.querySelectorAll('.cand.pick').forEach(function(x){ x.classList.remove('pick'); });
+        b.classList.add('pick');
+        show(it, d);
+        hintEl.textContent = it[1] + ' 已选入本页展示区';
+      });
+      grid.appendChild(b);
+    });
+    codeEl.textContent = d.code;
+    countEl.textContent = d.items.length;
+    modeEl.textContent = d.name;
+    show(d.items[0], d);
+    hintEl.textContent = '点选固定示例，不执行输入查询或系统上屏';
+  }
+  render('shape');
+
+  document.getElementById('tabs').addEventListener('click', function(e){
+    var btn = e.target.closest('button');
+    if (!btn) return;
+    this.querySelectorAll('button').forEach(function(b){ b.classList.remove('on'); });
+    btn.classList.add('on');
+    render(btn.dataset.mode);
+  });
+
+  if (reduce || !window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.pbar, .fline, .fres, .pfoot', {
+    opacity:0, y:10, duration:.5, stagger:.1, ease:'power2.out', delay:.05
+  });
+  gsap.from('.cand', {
+    opacity:0, scale:.94, duration:.4, stagger:{ each:.02, from:'start' }, ease:'power2.out', delay:.25
+  });
+
+  /* 往下滚，面板像被收起来 */
+  gsap.to('.panel', {
+    scale:.975, duration:1, ease:'none',
+    scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:.8 }
+  });
+  gsap.to('.grid .cand', {
+    opacity:.28, duration:1, ease:'none', stagger:{ each:.008, from:'end' },
+    scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:.8 }
+  });
+
+  gsap.from('.sec h2', { y:26, opacity:0, duration:.65,
+    scrollTrigger:{ trigger:'.sec', start:'top 80%' } });
+  gsap.from('.kind', { x:-12, opacity:0, duration:.5, stagger:.1,
+    scrollTrigger:{ trigger:'.kinds', start:'top 82%' } });
+
+  gsap.from('.shot', { y:24, opacity:0, duration:.65, stagger:.12,
+    scrollTrigger:{ trigger:'.shots', start:'top 80%' } });
+
+  gsap.from('.go a.main', { y:12, opacity:0, duration:.4,
+    scrollTrigger:{ trigger:'.go', start:'top 90%' } });
+})();
+</script>
+</body>
+</html>

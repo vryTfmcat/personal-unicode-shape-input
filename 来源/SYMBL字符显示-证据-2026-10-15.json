@@ -1,0 +1,145 @@
+{
+  "captured_local_date": "2026-10-15",
+  "timezone": "Asia/Shanghai",
+  "target": "https://symbl.cc/en/unicode-table/",
+  "rea_version": "6.5.0",
+  "rea_status": "partial_inventory_only_semantic_analysis_failed",
+  "rea_error": {
+    "error": "JavaScript application analysis failed",
+    "code": "capability_unavailable",
+    "message": "Required runtime controls are unavailable for this attempt."
+  },
+  "rea_reason": "REA Windows native self-test failed: Open Windows path component failed [C:\\] (Win32 32): 另一个程序正在使用此文件，进程无法访问。\r\n",
+  "rea_evidence_id": "ev_868145f0f8920955e0a16a03f6760968a0b2e419482ed474c5e9ace050dd9898",
+  "checks": {
+    "font_bucket_1024": true,
+    "font_faces_128": true,
+    "no_unicode_range_in_downloaded_css": true,
+    "virtual_dom_mount": true,
+    "codepoint_api": true,
+    "utf8_html": true,
+    "u13000_class": true,
+    "no_u20000_face": true
+  },
+  "source_files": [
+    {
+      "file": "unicode-table.html",
+      "bytes": 1767009,
+      "sha256": "9c87459972cce973402b004da0916b85e52a61c7006f3a6b52037dedce99f39b"
+    },
+    {
+      "file": "symbl.css",
+      "bytes": 163330,
+      "sha256": "ece3b239e0f22e0545dc133249e2a354911123d57c69eecccc34c1ec2fc2f952"
+    },
+    {
+      "file": "deferred-styles.css",
+      "bytes": 255970,
+      "sha256": "276c013d3067a7a3a8767d4af3ee728f235239d420ff755903d13d7cccd522a5"
+    },
+    {
+      "file": "charcter-card.css",
+      "bytes": 47911,
+      "sha256": "604a993f1fd44d6e0e6f83f950a9c20c2fce4e3a807cc75adc36def1d601b696"
+    },
+    {
+      "file": "character-table.js",
+      "bytes": 80873,
+      "sha256": "adfb9ebb0fba1b17974b273b6ddc7c7e224093a0384f14f5e2dc4e4e332f0569"
+    },
+    {
+      "file": "main.js",
+      "bytes": 190110,
+      "sha256": "32e7d80f78b785ad051a2a72ecdfe8db33cb2f7a2215895d6ac1258af402cb3e"
+    },
+    {
+      "file": "vendor-core.js",
+      "bytes": 60518,
+      "sha256": "3720f4f7f5aefdafa78ef14573e47b297f1c490915d54e0856c251824d115486"
+    },
+    {
+      "file": "rea-static-evidence.json",
+      "bytes": 67813,
+      "sha256": "164709c3be73df782d5cfeac4e626d9a1297dc35d6d25c81c7a655c05a189de1"
+    }
+  ],
+  "font_samples": [
+    {
+      "file": "u0000.woff2",
+      "bytes": 59248,
+      "sha256": "d2d4dbd0db520be5aed2a16cbf993e6211d6c53a89edd26780c6dc5b2f765ea9",
+      "cmap_entries": 1049,
+      "min": "0x0",
+      "max": "0xfffd",
+      "license_name_13": null,
+      "sample_codepoint": "U+0041",
+      "sample_in_cmap": true
+    },
+    {
+      "file": "u13000.woff2",
+      "bytes": 404992,
+      "sha256": "6cf59a830c1cec7781adb5b1586a82b77feac23230d32af7b978f9877fa787d3",
+      "cmap_entries": 1026,
+      "min": "0x20",
+      "max": "0x133ff",
+      "license_name_13": null,
+      "sample_codepoint": "U+1319F",
+      "sample_in_cmap": true
+    },
+    {
+      "file": "u1f400.woff2",
+      "bytes": 383696,
+      "sha256": "89aa4909fb5173e35b09d9e86aff47e80de2ac7a8c8cbb2e3d85d4b423c83cd6",
+      "cmap_entries": 1027,
+      "min": "0x20",
+      "max": "0x1f7ff",
+      "license_name_13": null,
+      "sample_codepoint": "U+1F514",
+      "sample_in_cmap": true
+    }
+  ],
+  "source_locations": [
+    {
+      "file": "character-table.js",
+      "function": "dec2font",
+      "character_offset_zero_based": 841,
+      "excerpt": "key:\"dec2font\",value:function(t){t=this.dec2hex(1024*Math.floor(t/1024)).toLowerCase();return\"u\".concat(t)}},{key:\"alignWidth\",value:function(t){var e,r=2<arguments.length&&void 0!==arguments[2]?arguments[2]:\"0\";return t=0<(e=(1<arguments.length&&void 0!==arguments[1]?arguments[1]:4)-(t=t.toString()).length)?new Array(1+e).join(r)+t:t}},{key:\"delayedExec\",value:function(t,e){var r;return function(){r&&clearTimeout(r),r=setTimeout(e,t)}}}]),Object.defineProperty(E,\"prototype\",{writable:!1});var H=t;function t(){if(!(this instanceof t))throw new TypeError(\"Cannot call a class as a function\")}function a(t){return(a=\"function\"==typeof Symbol&&\"symbol\"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&\"function\"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototy"
+    },
+    {
+      "file": "character-table.js",
+      "function": "_changeClassLink",
+      "character_offset_zero_based": 30723,
+      "excerpt": "key:\"_changeClassLink\",value:function(){var t,e,r=0<arguments.length&&void 0!==arguments[0]?arguments[0]:null,n=1<arguments.length?arguments[1]:void 0,i=Array.from(n.classList).filter(function(t){return t.startsWith(\"u\")&&t!==r});i.length&&(t=n.classList).remove.apply(t,function(t){if(Array.isArray(t))return m(t)}(e=i)||function(){if(\"undefined\"!=typeof Symbol&&null!=e[Symbol.iterator]||null!=e[\"@@iterator\"])return Array.from(e)}()||function(t){var e;if(t)return\"string\"==typeof t?m(t,void 0):\"Map\"===(e=\"Object\"===(e=Object.prototype.toString.call(t).slice(8,-1))&&t.constructor?t.constructor.name:e)||\"Set\"===e?Array.from(t):\"Arguments\"===e||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(e)?m(t,void 0):void 0}(e)||function(){throw new TypeError(\"Invalid attempt to spread non-iterable instan"
+    },
+    {
+      "file": "character-table.js",
+      "function": "_renderItem",
+      "character_offset_zero_based": 31642,
+      "excerpt": "key:\"_renderItem\",value:function(t){var e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{},r=2<arguments.length&&void 0!==arguments[2]?arguments[2]:0,n=3<arguments.length&&void 0!==arguments[3]?arguments[3]:[],i=e.codePoint,i=void 0===i?null:i,o=e.codeLabel,o=void 0===o?\"\":o,a=e.charHtml,a=void 0===a?\"\":a,l=e.copySymbol,l=void 0===l?null:l,s=e.cssClass,s=void 0===s?null:s,c=e.href,c=void 0===c?null:c,u=e.isDisabled,u=void 0!==u&&u,h=e.isPrivateSymbol,h=void 0!==h&&h,f=e.hasPopup,f=void 0===f||f,d=e.isLinkWrapper,y=e.isPopupLinkEnabled,y=void 0===y||y,p=e.nameBlock,p=void 0===p?null:p,b=e.speedHighlight,b=void 0===b?\"fast\":b,v=e.substituteCodePoint,v=void 0===v?null:v,e=e.tooltip,e=void 0===e?null:e,d=this._ensureWrapper(t,void 0===d||d),m=d.querySelector(\".character-table__char\"),"
+    },
+    {
+      "file": "character-table.js",
+      "function": "_resolveRenderCodePoint",
+      "character_offset_zero_based": 38356,
+      "excerpt": "key:\"_resolveRenderCodePoint\",value:function(){var r=0<arguments.length&&void 0!==arguments[0]?arguments[0]:0,n={renderCodePoint:r,isSubstitute:!1};return this._substituteSymbols.length&&this._substituteSymbols.forEach(function(t){var e=t.current,t=t.substitute;(e.end&&e.start<=r&&e.end>=r||e.start===r)&&(n={renderCodePoint:r+t.start-e.start,isSubstitute:!0})}),n}},{key:\"_hasCodePoint\",value:function(){var t=0<arguments.length&&void 0!==arguments[0]?arguments[0]:[],r=1<arguments.length&&void 0!==arguments[1]?arguments[1]:null,e=!1;return e=t.length&&null!==r?t.some(function(t){var e=t.start,t=t.end;return t&&e<=r&&r<=t||e===r}):e}}]),Object.defineProperty(E,\"prototype\",{writable:!1});var it=k;function k(t){var e=t.helperCharacter,r=t.dataManager,n=t.language,n=void 0===n?\"\":n,i=t.textEmpty"
+    },
+    {
+      "file": "character-table.js",
+      "function": "_onResizePage",
+      "character_offset_zero_based": 49716,
+      "excerpt": "key:\"_onResizePage\",value:function(){this._countInLine=this.isTablet?8:16,this._countLine=this.isTablet?9:this.countLine,this._countItemsOnScreen=this._countInLine*this._countLine,this._maxLine=this._symbolsCount/this._countInLine+1,this._heightScroll=this.heightPage/this._countLine;var t=this._maxLine*this._heightScroll;this._containerEl.style.height=\"\".concat(50+t,\"px\")}},{key:\"_onScrollPage\",value:function(){var r=this;requestAnimationFrame(function(t){var e;r._timeForScroll&&Math.round((t-r._timeForScroll)*r._fpsForRender/1e3)&&(r._backTop&&r._backTop.syncOnScroll(),e=r._getCurrentLine(),r._currentLine===e&&!r._isFirstRender||(r._timeForScroll=t,r._isFirstRender=!1,r._currentLine=e,r._rerenderTable()),r._changeUrlBlock())})}},{key:\"_getCurrentLine\",value:function(){var t=this._currentL"
+    },
+    {
+      "file": "character-table.js",
+      "function": "_getSymbolsForRender",
+      "character_offset_zero_based": 51213,
+      "excerpt": "key:\"_getSymbolsForRender\",value:function(){this._highlightManager.clearIntervals(),this._highlightManager.syncClickedBlock(),this.proposedSetsTable&&!this._containerEl.classList.contains(\"is-scroll-top\")&&this.syncSidebarActiveItem(this._blocks[this.currentIndexBlockCenter].key),this._visibleItems=this._visibleItemsBuilder.build({blocks:this._blocks,currentLine:this._currentLine,currentIndexBlock:this.currentIndexBlock,countInLine:this._countInLine,countItemsOnScreen:this._countItemsOnScreen,getSpeedHighlight:this._highlightManager.getSpeedHighlight.bind(this._highlightManager)})}},{key:\"_rerenderTable\",value:function(){this._getSymbolsForRender(),this._renderer&&this._renderer.render(this._visibleItems)}}]),Object.defineProperty(t,\"prototype\",{writable:!1}),o}());function T(t){return(T=\""
+    }
+  ],
+  "limitations": [
+    "No browser runtime capture: debug browser launch rejected by automatic approval policy.",
+    "REA AST analysis unavailable due to Windows native self-test Win32 32 at C:\\ root.",
+    "cmap presence does not prove correct visible glyphs or all-platform shaping.",
+    "Font CSS face names cover U+0000..U+1FFFF buckets only; no universal Unicode coverage established."
+  ]
+}

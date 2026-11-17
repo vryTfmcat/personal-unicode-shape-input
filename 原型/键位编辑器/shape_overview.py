@@ -5,6 +5,14 @@ import json
 import re
 import threading
 from collections import Counter
+import shape_structure_bindings as structure
+import subject_scope_bindings as subject
+import first_bucket_primary as first_primary
+import round_subject_refinement as round_refinement
+import joint_bc_bindings as joint_bc
+import joint_count_bindings as count_bc
+import hole_group_bindings as hole_groups
+import external_group_bindings as external_groups
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
@@ -26,9 +34,27 @@ LETTERS = 'abcdefghijklmnopqrstuvwxyz'
 LAYERS = ('primary', 'component', 'supplement', 'pending')
 LOCK = threading.Lock()
 
+def accepted_bc_records():
+    return dict((joint_bc.policy() or {}).get('records',{}),**(count_bc.policy() or {}).get('records',{}))
+
+
 
 def read(path):
     return json.loads(path.read_text(encoding='utf-8-sig'))
+
+
+@functools.lru_cache(maxsize=1)
+def exclusive_intake():
+    path = PROJECT / '原型/键位编辑器/data/pictorial-exclusive-allocation.json'
+    if not path.is_file():
+        return {}
+    data = read(path)
+    if data.get('active') is not True:
+        return {}
+    rows = {r['cp']: r for r in data['allocations']}
+    if len(rows) != len(data['allocations']) or any(r['firstKey'] not in ('t', 'b') for r in rows.values()):
+        raise ValueError('t/b排他收入数据无效')
+    return rows
 
 
 @functools.lru_cache(maxsize=1)
@@ -310,6 +336,13 @@ class Overview:
 
     def brief(self, cp, allocation=False):
         row = self.rows.get(cp)
+        intake = exclusive_intake().get(cp) if allocation else None
+        if intake:
+            return dict(row or {'cp': cp, 'char': chr(cp)}, bucket=intake['firstKey'],
+                        familyKey=None, codes=[], preferredCodes=[], pictorialIntake=True,
+                        provisional=intake.get('provisional', False), category=intake['category'],
+                        legacyCodes=(row or {}).get('codes', []),
+                        reason='t/b排他收入；细码待编制' + ('；暂收入，形象待细辨' if intake.get('provisional') else ''))
         if not row:
             return {'cp': cp, 'char': chr(cp), 'codes': [], 'preferredCodes': [],
                     'reason': '全局未分类；尚无全形编码' if cp in self.unclassified else '保留集合，非普通形族路径'}
@@ -331,10 +364,19 @@ class Overview:
             result['codes']=sorted(set(result['codes'])|{p['code'] for p in trial['paths']})
             if trial['preferredCodes']:
                 result.update(preferredCodes=trial['preferredCodes'],centrePreferenceApplied=True)
-        return result
+        if allocation and structure.record(cp):
+            result['codes']=sorted(set(result['codes'])|set(structure.record(cp)['codes']))
+            result['structuralCodes']=structure.record(cp)['codes']
+        if allocation and structure.p_family_decision(cp):
+            result['pFamilyBoundaryReview']=structure.p_family_decision(cp)
+        accepted = structure.data().get('acceptedBoundary', {}).get(str(cp)) if allocation else None
+        if accepted:
+            result.update(legacyFamilyKey=result.get('familyKey'), familyKey=accepted['familyKey'], scopeBoundaryAcceptance=structure.totals.effective_boundary(cp,accepted))
+        return count_bc.brief(joint_bc.brief(external_groups.brief(hole_groups.brief(round_refinement.brief(first_primary.apply(subject.brief(result,cp),cp),cp),cp),cp),cp),cp) if allocation else result
 
     def allocation_members(self,prefix):
-        members=dict(self.layers.entries.get(prefix,{}))
+        members=({cp: 0 for cp in self.collections[prefix]} if prefix in self.collections
+                 else dict(self.layers.entries.get(prefix,{})))
         if len(prefix)==1 and prefix in 'tujvbg':
             for cp,row in cleanup_records().items():
                 if row['legacyFirstAlias']==prefix and not any(c.startswith(prefix) for c in row['oldCodes']):
@@ -344,7 +386,15 @@ class Overview:
         if has_centre_trial():
             for cp,tier in centre_additions().get(prefix,{}).items():
                 members[cp]=min(members.get(cp,4),tier)
-        return members
+        for cp,tier in structure.additions().get(prefix,{}).items():
+            members[cp]=min(members.get(cp,4),tier)
+        for cp,tier in subject.additions().get(prefix,{}).items():
+            members[cp]=min(members.get(cp,4),tier)
+        for cp in exclusive_intake().keys() & members.keys():
+            members.pop(cp)
+        if prefix in ('t', 'b'):
+            members.update({cp: 0 for cp, r in exclusive_intake().items() if r['firstKey'] == prefix})
+        return count_bc.members(prefix,joint_bc.members(prefix,external_groups.members(prefix,hole_groups.members(prefix,round_refinement.members(prefix,members)))))
 
     def key_members(self, position, key, allocation=False):
         if allocation:
@@ -356,7 +406,10 @@ class Overview:
                 elif position>2 and any(len(c)>=position and c[position-1]==key for c in row['newCodes']):original.add(cp)
             if has_centre_trial():
                 original|={cp for cp,r in centre_records().items() if any(p['code'][position-1]==key for p in r['paths'])}
-            return sorted(original)
+            original |= structure.key_index().get((position,key),set())
+            original |= subject.key_members(position,key)
+            if position==2:original-=subject.excluded_from_current_family(key)
+            return sorted(count_bc.key_members(position,key,joint_bc.key_members(position,key,external_groups.key_members(position,key,hole_groups.key_members(position,key,round_refinement.key_members(position,key,original))))) - exclusive_intake().keys())
         if position == 1:
             return list(self.layers.entries.get(key, {}))
         if position == 2:
@@ -368,6 +421,14 @@ class Overview:
         if allocation:
             prefixes={p for p in self.layers.entries if len(p)==length}|{p for p in cleanup_additions() if len(p)==length}
             if has_centre_trial():prefixes|={p for p in centre_additions() if len(p)==length}
+            prefixes|={p for p in structure.additions() if len(p)==length}
+            if round_refinement.policy():prefixes.add('ioqc'[:length])
+            if hole_groups.policy():prefixes.add('ebii'[:length])
+            prefixes|={c[:length] for c in external_groups.codes()}
+            prefixes|={c[:length] for c in joint_bc.codes()}
+            prefixes|={c[:length] for c in count_bc.codes()}
+            for r in (round_refinement.policy() or {}).get('shapeDecisions',{}).values():
+                prefixes|={c[:length] for c in r['newCodes']}
             return sorted([{'code':p,'count':len(self.allocation_members(p))} for p in prefixes
                            if self.allocation_members(p)],key=lambda x:(-x['count'],x['code']))
         return sorted([{'code': p, 'count': len(v)} for p, v in self.layers.entries.items()
@@ -384,6 +445,10 @@ class Overview:
 
     def detail(self, cp, allocation=False):
         row = self.rows.get(cp)
+        if allocation and cp in exclusive_intake():
+            detail = dict(self.brief(cp, True), paths=[], objects=[], familyRoutes=[],
+                          codeCounts={}, lookup=None, pictorialIntake=True)
+            return detail
         if not row:
             if cp not in self.unclassified and not any(cp in v for v in self.collections.values()):
                 raise ValueError('该码位不在本次核对范围')
@@ -428,14 +493,18 @@ class Overview:
         local = CandidateLayers([detail])
         local.entries = {p['code']:self.allocation_members(p['code']) for p in detail['paths']} if allocation else self.layers.entries
         extra = historical_record(cp) if (HISTORICAL_RUN / '历史桶整理与新用途试验.json').is_file() else None
-        return dict(detail, suggestions=local.suggestions(cp), historicalPilot=extra,
+        result = dict(detail, suggestions=local.suggestions(cp), historicalPilot=extra,
                     thickForkRepair=thick_records().get(cp) if has_thick_repair() else None,
                     centreTrial=centre_records().get(cp) if has_centre_trial() else None,
                     chvcTrial=chvc_records().get(cp) if (CHVC_RUN/'chvc结构细分与优先级试验.json').is_file() else None,
                     uExpansion=u_expansion_records().get(cp) if (U_EXPANSION_RUN/'u线群全量近似候选.json').is_file() else None,
                     codeCounts={p['code']:len(local.entries[p['code']]) for p in detail['paths']})
+        if allocation:
+            result=structure.extend_detail(result,cp)
+            result=first_primary.apply(subject.detail(result,cp,lambda code:len(self.allocation_members(code))),cp)
+            return count_bc.detail(joint_bc.detail(external_groups.detail(hole_groups.detail(round_refinement.detail(result,cp,lambda code:len(self.allocation_members(code))),cp,lambda code:len(self.allocation_members(code))),cp,lambda code:len(self.allocation_members(code))),cp,lambda code:len(self.allocation_members(code))),cp,lambda code:len(self.allocation_members(code)))
+        return result
 
-    @functools.lru_cache(maxsize=1)
     def allocation_keys(self):
         result=[]
         meanings={'u':'线群／层列·草案','v':'台阶实心块面·草案'}
@@ -444,22 +513,59 @@ class Overview:
             cps=self.key_members(p,key,True)
             if p==1 and key in 'bgjt':
                 k.update(meaning='空键（旧桶已清空）',assigned=False,status='draft-released')
+                if key in ('t', 'b') and exclusive_intake():
+                    k.update(meaning='具体物象' if key == 't' else '图案／标识',
+                             assigned=True, status='pictorial-intake')
             elif p==1 and key in meanings:
                 k.update(meaning=meanings[key],assigned=True,status='independent-draft',condition='仅在独立草案试用；原码表与部署不变')
             elif p==4 and key=='o' and has_centre_trial():
                 k.update(centre_trial()['definition'],assigned=True,positive='Y',negative='T')
-            if p==1 and key in self.collections:cps=self.collections[key]
+            definition=structure.effective_definitions().get({2:'second',3:'third',4:'fourth'}.get(p,''),{}).get(key)
+            if definition:
+                k.update(definition,assigned=True)
+                members = structure.key_index().get((p,key),set()) & set(cps)
+                members = {cp for cp in members if any(len(c)>=p and c[p-1]==key for c in self.brief(cp,True).get('structuralCodes',[]))}
+                preferred = [ord(ch) for ch in 'LΓEFTYJ)Ꚕꓬ∥ǁߙ৳ᛘ']
+                examples = list(dict.fromkeys([cp for cp in preferred if cp in members] + sorted(members)))[:8]
+                k['collectionExamples'] = [self.brief(cp,True) for cp in examples]
+                k['collectionCondition'] = ('整字集合；第三位选择角点／三叉／四叉／直连续笔／曲连续笔，第四位计数同一集合。零值不生成新码；局部构件不继承整字计数。旧入口保留。'
+                                            if p == 3 else '用于第三位a／b／g／j／q整字集合的数量；p合并五个及以上。其它第三位的原属性规则保留，不把所有旧路径改成整字计数。')
+                if p == 2:
+                    k['collectionCondition'] = definition.get('condition','')
+                    if not examples:
+                        k.pop('collectionExamples', None)
+                if p == 3:
+                    k.update(anchors=[chr(cp) for cp in examples], counterexamples=[], positive='', negative='')
             k.update(count=len(cps),examples=[self.brief(cp,True) for cp in cps[:8]])
-            result.append(k)
+            if p==3 and subject.policy() and key in subject.policy()['thirdDefinitions']:
+                k.update(subject.policy()['thirdDefinitions'][key])
+                if key in 'ty':
+                    k['examples']=[self.brief(ord('ộ'),True)]+[r for r in k['examples'] if r['cp']!=ord('ộ')][:7]
+                    k['anchors']=['ộ']
+            if p==2 and key=='o' and subject.policy():
+                k['condition']=k.get('condition','')+' 现行形族浏览排除4／D／P等已确认非圆主体；直接旧码查询只作兼容。ộ按圆主体取o，附件另取t/y。'
+            result.append(count_bc.key_definition(p,key,joint_bc.key_definition(p,key,external_groups.key_definition(p,key,hole_groups.key_definition(p,key,round_refinement.key_definition(p,key,k))))))
         return result
 
     def query(self, params):
+        if params.get('compatibility',['0'])[0]=='1':
+            return joint_bc.compatibility_query(self,params)
+        order = params.get('order', ['front'])[0]
+        if order not in ('front', 'back'):
+            raise ValueError('未知查询顺序')
+        if order == 'back':
+            import bucket_order_query
+            return bucket_order_query.query(self, params)
         get = lambda k, default='': params.get(k, [default])[0]
         prefix, queue, text = get('prefix').lower(), get('queue'), get('text').strip()
         allocation=get('allocation')=='1'
         groups = {}
         trial_records = {}
-        if get('thickRepair'):
+        if get('structure'):
+            if not allocation or get('structure') not in structure.queues():
+                raise ValueError('结构计数队列仅用于当前工作视图，且须指定有效类别')
+            cps = structure.queues()[get('structure')]
+        elif get('thickRepair'):
             cps=thick_members(get('thickRepair'))
         elif get('centre'):
             cps=centre_members(get('centre'))
@@ -494,7 +600,7 @@ class Overview:
         elif prefix:
             if not re.fullmatch('[a-z]{1,4}', prefix):
                 raise ValueError('编码必须为一至四个字母')
-            if prefix in self.collections:
+            if prefix in self.collections and not allocation:
                 cps = self.collections[prefix]
             else:
                 if allocation:
@@ -514,11 +620,15 @@ class Overview:
             position, key = int(get('position')), get('key')
             if position not in range(1, 5) or key not in LETTERS or len(key) != 1:
                 raise ValueError('无效键位')
-            cps = self.collections.get(key, []) if position == 1 and key in self.collections else self.key_members(position, key, allocation)
+            cps = self.collections.get(key, []) if position == 1 and key in self.collections and not allocation else self.key_members(position, key, allocation)
         else:
             cps = list(self.rows)
             if text:
                 cps += self.unclassified + [cp for values in self.collections.values() for cp in values]
+            if allocation:
+                cps = list(dict.fromkeys(cps + list(exclusive_intake())))
+        if allocation and (queue or any(get(k) for k in ('trial', 'cleanup', 'uExpansion', 'chvcTrial', 'centre', 'thickRepair', 'structure'))):
+            cps = [cp for cp in cps if cp not in exclusive_intake()]
         if text:
             match = re.fullmatch(r'(?:U\+|0x)([0-9a-f]{1,6})', text, re.I)
             wanted = {int(match[1], 16)} if match else {ord(ch) for ch in text}
@@ -541,7 +651,8 @@ class Overview:
                 for cp in cps[offset:offset + 60]]
         return {'id': self.id, 'allocation':allocation, 'total': len(cps), 'offset': offset, 'rows': rows,
                 'groups': {k: len(v) for k, v in groups.items()},
-                'audit': ({k: audit[k] for k in ('code', 'geometrySupported', 'uncertainRetained')} if audit else None)}
+                'audit': (dict(code=audit['code'], geometrySupported=len(set(cps) & support),
+                               uncertainRetained=len(set(cps) & uncertain)) if audit else None)}
 
 
 @functools.lru_cache(maxsize=1)
@@ -568,10 +679,40 @@ def handle(handler):
                            thickForkRepair={k:v for k,v in thick_repair().items() if k not in ('records','protectedHashes')} if has_thick_repair() else None,
                            uExpansion=u_expansion_summary() if (U_EXPANSION_RUN/'u线群全量近似候选.json').is_file() else None,
                            allocationKeys=overview.allocation_keys() if draft else None)
+            payload['structureBindings']=structure.summary()
+            payload['shapeBoundaryRefinement']=(round_refinement.policy() or {}).get('viewRevision')
+            payload['jointBCBindings']=joint_bc.summary()
+            payload['jointCountBindings']=count_bc.summary()
+            payload['currentJointBCVersion']=count_bc.ID if count_bc.policy() else (joint_bc.ID if joint_bc.policy() else None)
+            payload['holeGroupBindings']=(hole_groups.policy() or {}).get('id')
+            payload['externalGroupBindings']=(external_groups.policy() or {}).get('id')
+            payload['curveCountRestoration']=((external_groups.curve_restore_policy() or {}).get('id') if external_groups.curve_restore_active() else None)
+            payload['historicalCurveCountRestoration']=(external_groups.curve_restore_policy() or {}).get('id')
+            payload['countSemanticsVersion']=structure.data().get('countSemanticsVersion','separate-straight-or-curve')
+            if external_groups.curve_restore_active():
+                payload['structureBindings']['frozenCodeCounts']=dict(payload['structureBindings']['codeCounts'])
+                payload['structureBindings']['codeCounts']={c:len(overview.allocation_members(c)) for c in payload['structureBindings']['codeCounts']}
+            payload['subjectAttachments']=subject.summary() if draft else None
+            if payload['subjectAttachments']:
+                payload['subjectAttachments']['codeCounts']={o['code']:len(overview.allocation_members(o['code']))
+                    for r in payload['subjectAttachments']['records'] for o in r['objects']}
             if draft:
                 recovered={cp for cp,r in cleanup_records().items() if r['newCodes']}
-                payload['allocationQueueCounts']={k:len(set(v)-recovered) if k in ('first','prior','withdrawn','historical') else len(v)
+                payload['allocationQueueCounts']={k:len(set(v)-recovered-exclusive_intake().keys()) if k in ('first','prior','withdrawn','historical') else len(set(v)-exclusive_intake().keys())
                                                    for k,v in overview.queues.items()}
+                if exclusive_intake():
+                    members = exclusive_intake()
+                    payload['currentCleanupCounts'] = {key: overview.query({'cleanup':[key], 'allocation':['1']})['total']
+                                                       for key in ('all','allocated','pending','recovered','reviewed')}
+                    codes = {cp: overview.brief(cp, True)['codes'] for cp in overview.rows}
+                    pairs = sum(map(len, codes.values()))
+                    with_paths = sum(map(bool, codes.values()))
+                    payload['exclusiveIntake'] = dict(count=len(members), counts=dict(Counter(r['firstKey'] for r in members.values())),
+                        provisional=sum(r.get('provisional', False) for r in members.values()),
+                        geometryWithPaths=with_paths, geometryPaths=pairs,
+                        geometryFirstOnly=sum(not paths for cp, paths in codes.items() if cp not in members),
+                        geometriesRemoved=sum(bool(overview.rows.get(cp, {}).get('codes')) for cp in members),
+                        removedBaselinePaths=sum(len(overview.rows.get(cp, {}).get('codes', [])) for cp in members))
         elif endpoint == 'query':
             payload = overview.query(params)
         elif endpoint == 'detail':

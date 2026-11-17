@@ -1,0 +1,5 @@
+{
+  "version": "shape-pairs-v1",
+  "note": "relation 可用 similar 或 different；记录所依据字体。空列表尚未参与训练或评分。",
+  "pairs": []
+}

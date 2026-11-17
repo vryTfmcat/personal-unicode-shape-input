@@ -1,0 +1,236 @@
+{
+  "source": "C:\\Users\\86137\\WorkBuddy\\测试任务\\unicode输入法宣传页",
+  "date": "2026-10-25",
+  "mapping": {
+    "宣传页-A-159345.html": "index.html",
+    "宣传页-B-字符墙.html": "宣传页-B-字符墙.html",
+    "宣传页-C-候选面板.html": "宣传页-C-候选面板.html"
+  },
+  "copiedOriginalAssets": {
+    "assets\\detail-input.png": "0b59b9aca947499cb2a8765a6418feab552caa6f9730e095c20dcbaa62152866",
+    "assets\\detail-panel.png": "5239ffb0605ac7112b2588a5d2f3b428fdfa7c29a3dea574e9e4a2d30626205a",
+    "assets\\editor-fullform.jpg": "f7a6e693dd2afff2a6ca54d04fa69e74023b9a3bc17b44618e49346c264921e5",
+    "assets\\keyboard-keys.png": "31932e27583d74b7fd3c6cf9dcda4a90dc6cd89867152eecce8606be3cdf34aa",
+    "assets\\keyboard-workbench.png": "de62f97460dfd2981bd025567f3bd3a3255c0d0797e49e76711cb0b57263c98a",
+    "assets\\phone-arrange.png": "e3ff57e059f22179c418d44b911c58b3aadfe8cd1adac8c78f87c69b974435c6",
+    "assets\\phone-keyboard.png": "df824836b1da4d0d41fd98d1e930d406414d221b5fd4cdbad66e5c582afbca15",
+    "assets\\phone-pair.png": "767c7e025fd5dfbabe5812c2c833bff7777ccea3065f5ae3bc6885eb53392ba4"
+  },
+  "sourceHashes": {
+    "宣传页-A-159345.html": "e69825196edb321d51077389e9cd44cf7e2879729b83e035ed6ea198df69d427",
+    "宣传页-B-字符墙.html": "11e6edf0a39dfa2debbc7539a2adf1c28396d83094ee10c534b1f497351d2820",
+    "宣传页-C-候选面板.html": "6c1a08dcf9a49e97f0c02b1ec46be1492785a5c6b46e54cead474542cb67713b",
+    "assets\\detail-input.png": "0b59b9aca947499cb2a8765a6418feab552caa6f9730e095c20dcbaa62152866",
+    "assets\\detail-panel.png": "5239ffb0605ac7112b2588a5d2f3b428fdfa7c29a3dea574e9e4a2d30626205a",
+    "assets\\editor-fullform.jpg": "f7a6e693dd2afff2a6ca54d04fa69e74023b9a3bc17b44618e49346c264921e5",
+    "assets\\keyboard-keys.png": "31932e27583d74b7fd3c6cf9dcda4a90dc6cd89867152eecce8606be3cdf34aa",
+    "assets\\keyboard-workbench.png": "de62f97460dfd2981bd025567f3bd3a3255c0d0797e49e76711cb0b57263c98a",
+    "assets\\phone-arrange.png": "e3ff57e059f22179c418d44b911c58b3aadfe8cd1adac8c78f87c69b974435c6",
+    "assets\\phone-keyboard.png": "df824836b1da4d0d41fd98d1e930d406414d221b5fd4cdbad66e5c582afbca15",
+    "assets\\phone-pair.png": "767c7e025fd5dfbabe5812c2c833bff7777ccea3065f5ae3bc6885eb53392ba4",
+    "kit\\daoliu.js": "59b7425012915021b2203025e3dc55acbec41c529e2f13fffa6167c049ff5cd1",
+    "sketches\\sketch-1.html": "6a12bc9042892fb30b8772462c5974ecb1ff1cbc436138ad1e6d53e26a69a803",
+    "sketches\\sketch-2.html": "56e669bb37f0adecb22adadcc05945cbb50387970e8e2071b6e5ea4816748b27",
+    "sketches\\sketch-3.html": "6807f32aae7cf8779a36465d06155a1f4654512570aba90468cc5d93658aac1e",
+    "tools\\boxes.js": "a6c6edd6040d5c9e991907e56aea454110b8e4db63312961c5582e95787d2572",
+    "tools\\click.js": "bc108b28dc8baaab937409f7400ec3e348d2a55795a7b98fdf5f281a606ee194",
+    "tools\\overflow.js": "04fca9837a5d7e0f8610cebe220ab194dcd6725102186fbfb3230d65a31d1d57",
+    "tools\\probe.js": "fd770946897425d6d7a147b32be6b16e25b460fa8493b96904ff4ba094bb40b8",
+    "tools\\probe2.js": "382e95e436da2d49a182f6960b8e1bd0a25625978ccda3d406339947cc3b8311",
+    "tools\\run.mjs": "32b3e20e1dd99d2a7f4c110bf0175a67c30971fff60a10100acc0663b80df099",
+    "tools\\sweep.mjs": "65fe8a27a84056f70d464edcc46facf240944fa7dcf13385740d046f645f9617"
+  },
+  "changes": [
+    {
+      "file": "index.html",
+      "before": "Unicode 音型输入法 · 159,345 个字符都有码",
+      "after": "Unicode 音型输入法 · 从字符到自己的编码"
+    },
+    {
+      "file": "index.html",
+      "before": "给 Unicode 的 159,345 个字符各配一个四码。区块、全形、收藏三套码本，可以试玩。",
+      "after": "管理 159,345 个字符的机器初编码，持续人工核对。区块、全形、收藏三套码本；本页采用早期编辑器快照。"
+    },
+    {
+      "file": "index.html",
+      "before": "<span>v0.2.4</span>",
+      "after": "<span>项目展示 · 持续研究</span>"
+    },
+    {
+      "file": "index.html",
+      "before": "个字符，每一个都有<u>四码</u>。<br>不是只覆盖常用的那几千个。",
+      "after": "个字符的<u>机器初编码</u>。<br>人工持续核对，不等于全部确认。"
+    },
+    {
+      "file": "index.html",
+      "before": "非汉字符号 · 唯一四码",
+      "after": "早期快照 · 非汉字唯一码"
+    },
+    {
+      "file": "index.html",
+      "before": "<span>区块 · 前缀</span>",
+      "after": "<span>早期快照 · 区块／前缀</span>"
+    },
+    {
+      "file": "index.html",
+      "before": "<span>人工逐字确认</span>",
+      "after": "<span>早期快照 · 人工确认</span>"
+    },
+    {
+      "file": "index.html",
+      "before": "全形模式 · 一个两字母码，495 个圆环候选",
+      "after": "历史全形示例 · 两字母形族，截图记录 495 候选"
+    },
+    {
+      "file": "index.html",
+      "before": "敲 oe，<br>得到的不是一个字，<br>是 495 个。",
+      "after": "早期形族 oe，<br>不只对应一个字，<br>截图中有 495 个。"
+    },
+    {
+      "file": "index.html",
+      "before": "屏上 48 格，实际 495 个",
+      "after": "页面展示 48 个位置；495 为早期截图统计"
+    },
+    {
+      "file": "index.html",
+      "before": "等实时统计",
+      "after": "等当时统计"
+    },
+    {
+      "file": "index.html",
+      "before": "顶上这一行是它自己报的数",
+      "after": "顶上这一行是早期编辑器的快照"
+    },
+    {
+      "file": "index.html",
+      "before": "已有 2,761 个粗分类建议",
+      "after": "早期快照有 2,761 个粗分类建议"
+    },
+    {
+      "file": "index.html",
+      "before": "0.2.4 是完成手机验收的初步版本。",
+      "after": "触屏编辑器与同文部署分别验收；具体版本和可用范围以 Android 工程说明为准。"
+    },
+    {
+      "file": "index.html",
+      "before": "一个自己每天在用的输入法，慢慢填。已经能打出别的键盘打不出的字，还没填完。",
+      "after": "一个持续研究和使用的个人输入法，慢慢填。让常用键盘难以直接输入的字符有自己的入口，还没填完。"
+    },
+    {
+      "file": "宣传页-B-字符墙.html",
+      "before": "有些字，你一辈子也打不出来",
+      "after": "有些字，常用键盘很难直接输入"
+    },
+    {
+      "file": "宣传页-B-字符墙.html",
+      "before": "Unicode 收着 159,345 个字符。有人把它们一个一个看过去，按长相分组，给每一组配两个字母。",
+      "after": "本项目管理 159,345 个字符，机器先给初编码，人工持续按形核对；本页为早期形族思路的视觉演示。"
+    },
+    {
+      "file": "宣传页-B-字符墙.html",
+      "before": "<span class=\"l\">你一辈子</span><span class=\"l\">也打不出来。</span>",
+      "after": "<span class=\"l\">常用键盘</span><span class=\"l\">很难直接输入。</span>"
+    },
+    {
+      "file": "宣传页-B-字符墙.html",
+      "before": "不是键盘坏了。是它们从来没被放进任何一张键盘。",
+      "after": "许多字符没有熟悉的按键入口，检索和输入都不方便。"
+    },
+    {
+      "file": "宣传页-B-字符墙.html",
+      "before": "Unicode 里收了 <b>159,345</b> 个字符。",
+      "after": "本项目管理 <b>159,345</b> 个字符。"
+    },
+    {
+      "file": "宣传页-B-字符墙.html",
+      "before": "数学里没人用的符号、生僻到读不出音的汉字——它们没有键，也没有读音，多数人一辈子碰不到。",
+      "after": "不常见的数学符号、生僻汉字——许多字符很难通过熟悉的读音或常用键位找到。"
+    },
+    {
+      "file": "宣传页-B-字符墙.html",
+      "before": "他把它们一个一个看过去，按形状分组",
+      "after": "机器先排初稿，他再逐批核对，按形状分组"
+    },
+    {
+      "file": "宣传页-B-字符墙.html",
+      "before": "敲 oe，滚出来 495 个圆。",
+      "after": "早期编辑器截图中，oe 形族有 495 个候选（包含圆形及带内部构件的相关字形）。"
+    },
+    {
+      "file": "宣传页-B-字符墙.html",
+      "before": "随便敲两个字母，看它给你翻出什么。",
+      "after": "按编辑器当前说明选择模式、输入编码，查看候选。"
+    },
+    {
+      "file": "宣传页-C-候选面板.html",
+      "before": "<title>敲两个字母，翻出一族字</title>",
+      "after": "<title>Unicode 输入法 · 候选点选演示</title>"
+    },
+    {
+      "file": "宣传页-C-候选面板.html",
+      "before": "左 Shift 一层层切。点一下就能试。",
+      "after": "本页提供固定候选点选演示，不是完整输入引擎。"
+    },
+    {
+      "file": "宣传页-C-候选面板.html",
+      "before": "<b id=\"count\">495</b> 候选",
+      "after": "<b id=\"count\">24</b> 个示例"
+    },
+    {
+      "file": "宣传页-C-候选面板.html",
+      "before": "<span>空格 / 数字 上屏</span><span>PageDown 翻页</span><span>左 Shift 换层</span>",
+      "after": "<span>点击候选更新展示区</span><span>固定样例，不支持输入翻页</span><span>顶部按钮切换示例</span>"
+    },
+    {
+      "file": "宣传页-C-候选面板.html",
+      "before": "这一屏，<br>就是它平时的样子。",
+      "after": "这一屏，<br>演示候选如何点选。"
+    },
+    {
+      "file": "宣传页-C-候选面板.html",
+      "before": "上面那个框里敲两个字母，下面翻出一族字。<b>点一个，它真的会上屏</b>——这一页不是截图，是照着小狼毫的候选面板做的。",
+      "after": "编码区域显示预置示例，下面列出固定候选。<b>点一个，会更新本页展示区</b>。这是候选面板的交互示意，不执行输入查询，也不向其他应用上屏。"
+    },
+    {
+      "file": "宣传页-C-候选面板.html",
+      "before": "一套码本管一件事，左 Shift 一层层切：先看你住在哪个区块，再看你长什么样，最后看你在我心里像什么。",
+      "after": "三套码本分别按区块、形状和私人别名组织。本页通过顶部按钮切换固定示例；系统快捷键以实际输入法配置为准。"
+    },
+    {
+      "file": "宣传页-C-候选面板.html",
+      "before": "一个圆能跨二十来个区块串起来，一共 495 个。",
+      "after": "早期 oe 形族跨区块组织相关字形；这里展示 24 个固定样例，不代表当前全部候选。"
+    },
+    {
+      "file": "宣传页-C-候选面板.html",
+      "before": "/* 三套码本的候选（区块与全形取自编辑器真实数据，收藏为示例别名） */",
+      "after": "/* 固定演示数据，非现行码表；全形为早期形族样例，收藏为虚构别名。区块仅保留截图可核的单字映射。 */"
+    },
+    {
+      "file": "宣传页-C-候选面板.html",
+      "before": "countEl.textContent = d.count;",
+      "after": "countEl.textContent = d.items.length;"
+    },
+    {
+      "file": "宣传页-C-候选面板.html",
+      "before": "it[1] + ' 上屏了 —— 真的上屏了'",
+      "after": "it[1] + ' 已选入本页展示区'"
+    },
+    {
+      "file": "宣传页-C-候选面板.html",
+      "before": "'点一个试试 —— 这一屏是真的能点'",
+      "after": "'点选固定示例，不执行输入查询或系统上屏'"
+    },
+    {
+      "file": "宣传页-C-候选面板.html",
+      "before": "点一个圆试试 —— 这一屏是真的能点",
+      "after": "点选固定示例，仅更新本页展示区"
+    }
+  ],
+  "checks": {
+    "originalUnchanged": true,
+    "localResourcesResolved": 19,
+    "inlineJavaScriptSyntax": "passed",
+    "browserRendering": "not checked; previous local HTML browser policy rejection; no workaround attempted"
+  }
+}

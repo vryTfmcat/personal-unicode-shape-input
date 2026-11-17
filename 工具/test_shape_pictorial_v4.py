@@ -46,6 +46,8 @@ class PictorialV4Tests(unittest.TestCase):
                     correction=face_category(r['cp'],r['name']) if category=='人脸与表情' else None
                     if correction:category=correction[0]
                     if r['cp'] in EXTRA_SIGNS:category='象征标志'
+                placements={p['cp']:p['after'] for p in current.get('categoryPlacements',[])}
+                category=placements.get(r['cp'],category)
                 expected.append((r['cp'],category,r['oldCodes']))
             self.assertEqual([(r['cp'],r['category'],r['oldCodes']) for r in current['records']],expected)
         payload={'format':'pictorial-intake-human-review-v1','version':self.report['version'],

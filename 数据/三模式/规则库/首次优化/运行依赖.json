@@ -1,0 +1,13 @@
+{
+  "python": "3.12.8",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "numpy": "2.4.6",
+    "Pillow": "12.3.0",
+    "ortools": "9.15.6755",
+    "protobuf": "7.36.2",
+    "absl-py": "2.5.1"
+  },
+  "solverImport": "ortools.graph.python.min_cost_flow",
+  "installScope": "project-only"
+}

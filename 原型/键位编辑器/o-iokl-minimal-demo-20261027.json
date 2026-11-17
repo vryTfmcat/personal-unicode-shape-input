@@ -1,0 +1,463 @@
+{
+  "schema": "minimal-iokl-key-demo-20261027-v1",
+  "capturedAt": "2026-10-27T01:22:53.655021+08:00",
+  "runtime": "structure-count-bindings-v9",
+  "shapeBoundary": "single-character-shape-boundaries-20261026-v1",
+  "holeGroup": "hole-group-direction-20261027-v1",
+  "source": {
+    "unifiedDesign": "数据\\三模式\\规则库\\四键实验\\键位试验\\20261026-structure-count-bindings-v9\\组对象键义统一核查-20261026\\统一核查与两套可审设计.md",
+    "unifiedDesignSHA256": "2b52a5d4f0c5b75864b27d34330b36d81f4b020e489e6c2f41b17c8c8190cbf1",
+    "dictionary": "数据\\三模式\\规则库\\四键实验\\键位试验\\20261026-structure-count-bindings-v9\\组对象键义统一核查-20261026\\方案2-显式条件字典-未批准.json",
+    "dictionarySHA256": "25442615d4acb8c6260a364abbf76c3b93aa3a907eec25607707389657c69244",
+    "oldL": {
+      "third": "k",
+      "fourth": "l",
+      "conditionalMeaning": "外附件恰2件且一折线一点",
+      "change": "新D条件义＋k对象域扩展",
+      "oldFourthMeaning": "左上斜",
+      "oldFourthGlobalPeople": 2135,
+      "oldFourthCondition": null,
+      "currentTupleCodeGroups": 0,
+      "currentTupleCandidatePairs": 0,
+      "approved": false
+    },
+    "confirmationField": "pathRuleReviewAcceptance20261025Batch2",
+    "sourceSHA256": "38acc193520dfd6f2298e8872fbb9f0ad87b64a65f03d36a983bb3eded032367"
+  },
+  "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAABBUlEQVR4nO2W4Q7CIAyEuWbv/8pnTNRM15ajTZxL5AeRjft2tFABR69ZUz+2/DXuHesOsOsrAKR0xYEAsomOsyxZrp9bsJzPRw5QAOCZQLaDyMyCTQ3sxisA7PXZInD6YbLrA7bsJVpZwNsonkZFniDMlzv7DgsAyFQ/iPh0nVUkUIo9wjhYiKYzgAKA+7EwjaZ8/0DPAAj0PP8w0V+DJZNLDqBLMwcLzVYm/wFfCiInu4F1B9AcLDcb4hqiY24BWD4Tdnjil7/IwMgvWa/fsSE4UEQBofrfiKGXGZNnBk+h1m/27gcsXvOQi+eAS9TEbTRjYFN9fwnoAkYdwF1fAgj6H9hIN4FpOHkzLxzWAAAAAElFTkSuQmCC",
+  "subjectBBox": [
+    15,
+    18,
+    48,
+    53
+  ],
+  "objects": [
+    {
+      "code": "ioyw",
+      "third": "y",
+      "fourth": "w",
+      "object": {
+        "id": "reviewed-ộ-external-caret",
+        "kind": "part",
+        "bbox": [
+          23.0,
+          2.0,
+          41.0,
+          13.0
+        ],
+        "relativeSize": 0.5142857142857142,
+        "extentEm": 0.9166666666666666,
+        "relativePosition": [
+          0.014285714285714285,
+          -0.8
+        ],
+        "area": 89,
+        "orientation": null
+      },
+      "evidence": {
+        "rule": "component.external_stroke",
+        "objectId": "reviewed-ộ-external-caret",
+        "fourthObjectId": "reviewed-ộ-external-caret",
+        "familyTarget": "reviewed-circle-subject",
+        "attribute": "主体上方的外部折线构件",
+        "status": "human-scope-accepted-machine-object-verified"
+      }
+    },
+    {
+      "code": "iots",
+      "third": "t",
+      "fourth": "s",
+      "object": {
+        "id": "reviewed-ộ-external-dot",
+        "kind": "part",
+        "bbox": [
+          28.0,
+          56.0,
+          35.0,
+          62.0
+        ],
+        "relativeSize": 0.2,
+        "extentEm": 0.9166666666666666,
+        "relativePosition": [
+          0.0,
+          0.6714285714285714
+        ],
+        "area": 34,
+        "orientation": null
+      },
+      "evidence": {
+        "rule": "component.external_dot",
+        "objectId": "reviewed-ộ-external-dot",
+        "fourthObjectId": "reviewed-ộ-external-dot",
+        "familyTarget": "reviewed-circle-subject",
+        "attribute": "主体下方的外部点块",
+        "status": "human-scope-accepted-machine-object-verified"
+      }
+    }
+  ],
+  "paths": [
+    {
+      "kind": "dot",
+      "canonical": "iots",
+      "back": "otsi",
+      "title": "下方点块",
+      "meanings": [
+        "按圆主体取闭环均衡桶",
+        "圆／椭圆主体",
+        "选择主体外的一个点块",
+        "该点在圆主体下方"
+      ],
+      "frontSteps": [
+        {
+          "prefix": "i",
+          "back": false,
+          "currentCount": 2448,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 1,
+          "meaning": "按圆主体取闭环均衡桶"
+        },
+        {
+          "prefix": "io",
+          "back": false,
+          "currentCount": 1337,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 2,
+          "meaning": "圆／椭圆主体"
+        },
+        {
+          "prefix": "iot",
+          "back": false,
+          "currentCount": 44,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 3,
+          "meaning": "选择主体外的一个点块"
+        },
+        {
+          "prefix": "iots",
+          "back": false,
+          "currentCount": 5,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 4,
+          "meaning": "该点在圆主体下方"
+        }
+      ],
+      "backSteps": [
+        {
+          "prefix": "o",
+          "back": true,
+          "currentCount": 1721,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 2,
+          "meaning": "圆／椭圆主体"
+        },
+        {
+          "prefix": "ot",
+          "back": true,
+          "currentCount": 45,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 3,
+          "meaning": "选择主体外的一个点块"
+        },
+        {
+          "prefix": "ots",
+          "back": true,
+          "currentCount": 5,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 4,
+          "meaning": "该点在圆主体下方"
+        },
+        {
+          "prefix": "otsi",
+          "back": true,
+          "currentCount": 5,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 1,
+          "meaning": "按圆主体取闭环均衡桶"
+        }
+      ],
+      "object": {
+        "id": "reviewed-ộ-external-dot",
+        "kind": "part",
+        "bbox": [
+          28.0,
+          56.0,
+          35.0,
+          62.0
+        ],
+        "relativeSize": 0.2,
+        "extentEm": 0.9166666666666666,
+        "relativePosition": [
+          0.0,
+          0.6714285714285714
+        ],
+        "area": 34,
+        "orientation": null
+      },
+      "rank": 5,
+      "status": "现行已注册，实时只读试查"
+    },
+    {
+      "kind": "fold",
+      "canonical": "ioyw",
+      "back": "oywi",
+      "title": "上方折线",
+      "meanings": [
+        "按圆主体取闭环均衡桶",
+        "圆／椭圆主体",
+        "选择主体外的一个线状构件；本字是折线",
+        "该折线在圆主体上方"
+      ],
+      "frontSteps": [
+        {
+          "prefix": "i",
+          "back": false,
+          "currentCount": 2448,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 1,
+          "meaning": "按圆主体取闭环均衡桶"
+        },
+        {
+          "prefix": "io",
+          "back": false,
+          "currentCount": 1337,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 2,
+          "meaning": "圆／椭圆主体"
+        },
+        {
+          "prefix": "ioy",
+          "back": false,
+          "currentCount": 123,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 3,
+          "meaning": "选择主体外的一个线状构件；本字是折线"
+        },
+        {
+          "prefix": "ioyw",
+          "back": false,
+          "currentCount": 46,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 4,
+          "meaning": "该折线在圆主体上方"
+        }
+      ],
+      "backSteps": [
+        {
+          "prefix": "o",
+          "back": true,
+          "currentCount": 1721,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 2,
+          "meaning": "圆／椭圆主体"
+        },
+        {
+          "prefix": "oy",
+          "back": true,
+          "currentCount": 170,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 3,
+          "meaning": "选择主体外的一个线状构件；本字是折线"
+        },
+        {
+          "prefix": "oyw",
+          "back": true,
+          "currentCount": 65,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 4,
+          "meaning": "该折线在圆主体上方"
+        },
+        {
+          "prefix": "oywi",
+          "back": true,
+          "currentCount": 46,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 1,
+          "meaning": "按圆主体取闭环均衡桶"
+        }
+      ],
+      "object": {
+        "id": "reviewed-ộ-external-caret",
+        "kind": "part",
+        "bbox": [
+          23.0,
+          2.0,
+          41.0,
+          13.0
+        ],
+        "relativeSize": 0.5142857142857142,
+        "extentEm": 0.9166666666666666,
+        "relativePosition": [
+          0.014285714285714285,
+          -0.8
+        ],
+        "area": 89,
+        "orientation": null
+      },
+      "rank": 46,
+      "status": "现行已注册，实时只读试查"
+    },
+    {
+      "kind": "candidate",
+      "canonical": "iokl",
+      "back": "okli",
+      "title": "折线＋点的外二件组（未批准模拟）",
+      "meanings": [
+        "按圆主体取闭环均衡桶",
+        "圆／椭圆主体",
+        "组相关入口，仍混合旧全字分离组；此处尚未固定外二件",
+        "只有k/l新分支才定域：排除主体，外附件恰2件，且一折线一点；不是原左上斜"
+      ],
+      "frontSteps": [
+        {
+          "prefix": "i",
+          "back": false,
+          "currentCount": 2448,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 1,
+          "meaning": "按圆主体取闭环均衡桶",
+          "singleTargetMockCount": 2448
+        },
+        {
+          "prefix": "io",
+          "back": false,
+          "currentCount": 1337,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 2,
+          "meaning": "圆／椭圆主体",
+          "singleTargetMockCount": 1337
+        },
+        {
+          "prefix": "iok",
+          "back": false,
+          "currentCount": 373,
+          "targetCurrentlyReached": false,
+          "normalizedPosition": 3,
+          "meaning": "组相关入口，仍混合旧全字分离组；此处尚未固定外二件",
+          "singleTargetMockCount": 374
+        },
+        {
+          "prefix": "iokl",
+          "back": false,
+          "currentCount": 0,
+          "targetCurrentlyReached": false,
+          "normalizedPosition": 4,
+          "meaning": "只有k/l新分支才定域：排除主体，外附件恰2件，且一折线一点；不是原左上斜",
+          "singleTargetMockCount": 1
+        }
+      ],
+      "backSteps": [
+        {
+          "prefix": "o",
+          "back": true,
+          "currentCount": 1721,
+          "targetCurrentlyReached": true,
+          "normalizedPosition": 2,
+          "meaning": "圆／椭圆主体",
+          "singleTargetMockCount": 1721
+        },
+        {
+          "prefix": "ok",
+          "back": true,
+          "currentCount": 435,
+          "targetCurrentlyReached": false,
+          "normalizedPosition": 3,
+          "meaning": "组相关入口，仍混合旧全字分离组；此处尚未固定外二件",
+          "singleTargetMockCount": 436
+        },
+        {
+          "prefix": "okl",
+          "back": true,
+          "currentCount": 0,
+          "targetCurrentlyReached": false,
+          "normalizedPosition": 4,
+          "meaning": "只有k/l新分支才定域：排除主体，外附件恰2件，且一折线一点；不是原左上斜",
+          "singleTargetMockCount": 1
+        },
+        {
+          "prefix": "okli",
+          "back": true,
+          "currentCount": 0,
+          "targetCurrentlyReached": false,
+          "normalizedPosition": 1,
+          "meaning": "按圆主体取闭环均衡桶",
+          "singleTargetMockCount": 1
+        }
+      ],
+      "object": {
+        "id": "simulation-only:ộ-external-two-member-group",
+        "parentSubject": "reviewed-ộ-circle-subject",
+        "members": [
+          "reviewed-ộ-external-caret",
+          "reviewed-ộ-external-dot"
+        ],
+        "thirdObjectId": "simulation-only:ộ-external-two-member-group",
+        "fourthObjectId": "simulation-only:ộ-external-two-member-group",
+        "type": "external-attachment-group",
+        "count": 2,
+        "signature": [
+          "folded-line",
+          "dot"
+        ],
+        "includesAllOutsideMembers": true,
+        "excludesSubject": true,
+        "requiresSeparatedInk": true,
+        "notAnAuthoritativeRegisteredObject": true
+      },
+      "rank": null,
+      "status": "未批准；只在本页模拟，不向实际查询添加候选"
+    }
+  ],
+  "existingCodes": [
+    "epki",
+    "epcc",
+    "epkt",
+    "epkv",
+    "epvg",
+    "epvi",
+    "epvv",
+    "ioyw",
+    "iots"
+  ],
+  "preferred": "epki",
+  "preferredCount": 83,
+  "prospectiveChange": {
+    "onlyCharacter": "ộ",
+    "onlyAddedCode": "iokl",
+    "back": "okli",
+    "pathsBefore": 9,
+    "pathsAfter": 10,
+    "currentCandidates": 0,
+    "singleCharacterMockCandidates": 1,
+    "noGlobalPredicatePopulationClaim": true,
+    "removedCodes": [],
+    "preferredChanged": false,
+    "noQuantityOrLayoutCodes": [
+      "ioko",
+      "iokg"
+    ],
+    "semanticCost": "明确新增C/D条件分派；k/l在新分支选外二件组并表示折线＋点，不能仍解释为左上斜；其它C/l旧义保持",
+    "isStrictA": false,
+    "thirdPrefixNotTwoOutsideMembers": true,
+    "requiresNewHumanApproval": true,
+    "notImpliedBy8DirectionAcceptance": true
+  },
+  "sevenExampleObservation": {
+    "scope": "只复用既有7例分类，不能作全库人数",
+    "count": 1,
+    "characters": [
+      "ộ"
+    ],
+    "excludedExamples": [
+      "o",
+      "ô",
+      "ọ",
+      "ö",
+      "ố",
+      "ȱ"
+    ]
+  },
+  "protectedUnchanged": true,
+  "publicWrites": false,
+  "manualWrites": false,
+  "serviceRestarted": false
+}

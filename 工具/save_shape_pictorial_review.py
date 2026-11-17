@@ -21,7 +21,9 @@ def validate(data, report):
     categories = {row['category'] for row in report['records']}
     labels = EDITOR / 'data/pictorial-category-labels.json'
     if labels.is_file():
-        categories.update(read(labels).get('aliases', {}).values())
+        aliases = read(labels).get('aliases', {})
+        categories.update(aliases.keys())
+        categories.update(aliases.values())
     decisions = {}
     for r in data['decisions']:
         if not isinstance(r, dict):
@@ -40,6 +42,10 @@ def validate(data, report):
                 raise ValueError('二审类别无效')
             if 'secondReviewed' in r and type(r['secondReviewed']) is not bool:
                 raise ValueError('二审确认状态无效')
+        if report.get('bucketSplit', {}).get('enabled'):
+            allowed.add('firstKey')
+            if 'firstKey' in r and r['firstKey'] not in ('t', 'b', 'auto'):
+                raise ValueError('草案主桶无效')
         if set(r) - allowed:
             raise ValueError('审核含未知字段')
         decisions[cp] = r
@@ -56,7 +62,27 @@ def save_snapshot(data, output=None):
     if not isinstance(data, dict):
         raise ValueError('不是拟物审核结果')
     folder_root = OUT
-    if data.get('version') == 'pictorial-intake-20261022-v7':
+    if data.get('version') == 'pictorial-intake-20261023-v9':
+        folder_root = OUT.parent/'20261023-pictorial-intake-review-v9'
+    elif data.get('version') == 'pictorial-intake-20261023-v10':
+        folder_root = OUT.parent/'20261023-pictorial-intake-review-v10'
+    elif data.get('version') == 'pictorial-intake-20261023-v11':
+        folder_root = OUT.parent/'20261023-pictorial-intake-review-v11'
+    elif data.get('version') == 'pictorial-intake-20261023-v12':
+        folder_root = OUT.parent/'20261023-pictorial-intake-review-v12'
+    elif data.get('version') == 'pictorial-intake-20261023-v13':
+        folder_root = OUT.parent/'20261023-pictorial-intake-review-v13'
+    elif data.get('version') == 'pictorial-intake-20261024-v17':
+        folder_root = OUT.parent/'20261024-pictorial-intake-review-v17'
+    elif data.get('version') == 'pictorial-intake-20261024-v16':
+        folder_root = OUT.parent/'20261024-pictorial-intake-review-v16'
+    elif data.get('version') == 'pictorial-intake-20261024-v15':
+        folder_root = OUT.parent/'20261024-pictorial-intake-review-v15'
+    elif data.get('version') == 'pictorial-intake-20261023-v14':
+        folder_root = OUT.parent/'20261023-pictorial-intake-review-v14'
+    elif data.get('version') == 'pictorial-intake-20261023-v8':
+        folder_root = OUT.parent/'20261023-pictorial-intake-review-v8'
+    elif data.get('version') == 'pictorial-intake-20261022-v7':
         folder_root = OUT.parent/'20261022-pictorial-intake-review-v7'
     elif data.get('version') == 'pictorial-intake-20261022-v6':
         folder_root = OUT.parent/'20261022-pictorial-intake-review-v6'

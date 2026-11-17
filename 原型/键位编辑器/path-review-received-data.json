@@ -1,0 +1,792 @@
+{
+  "schema": "received-path-review-readonly-v1",
+  "sourceSHA256": "38acc193520dfd6f2298e8872fbb9f0ad87b64a65f03d36a983bb3eded032367",
+  "sourceFile": "本人24字审核答复-20261025.json",
+  "completed": 24,
+  "actualAttempts": 0,
+  "routeCounts": {
+    "合适": 65,
+    "暂不能判断": 1,
+    "不合适": 4,
+    "需调整": 1,
+    "未填写": 1
+  },
+  "runtimeVersion": "structure-count-bindings-v8",
+  "capturedAt": "2026-10-25T23:31:50.927384+08:00",
+  "records": [
+    {
+      "char": "O",
+      "id": "u-004f",
+      "cp": 79,
+      "primary": "r1",
+      "primaryTitle": "空心圆主体",
+      "firstThought": "圆形，中空，大，均匀完整的。我也会从一笔弧线组成的一个单圆孔去找",
+      "detailChoice": "两种备用都有用",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "空心圆主体",
+        "r2": "圆内的孔",
+        "r3": "数整字曲线"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推空心圆主体，孔和整字曲线均保留推荐备用；“大”是本人视觉描述，不直接替换ioqc既有c中等尺寸。"
+    },
+    {
+      "char": "Q",
+      "id": "u-0051",
+      "cp": 81,
+      "primary": "r2",
+      "primaryTitle": "圆主体 → 尾巴位置",
+      "firstThought": "先看到是由两部分组成，主要是中间的圆然后带有一个小尾巴，我会从一个圆孔一个短直线部件两者接触不穿过去寻找",
+      "detailChoice": "右下位置",
+      "detailOther": "",
+      "note": "直接找尾巴的话是用什么方式，什么码去找",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "暂不能判断"
+      },
+      "routeTitles": {
+        "r1": "圆主体 → 一个尾巴",
+        "r2": "圆主体 → 尾巴位置",
+        "r3": "直接找尾巴"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推圆主体后的尾巴右下位置，保留接触不穿过的关系描述；r3暂不能判断，先解释真实码。"
+    },
+    {
+      "char": "ρ",
+      "id": "u-03c1",
+      "cp": 961,
+      "primary": "r3",
+      "primaryTitle": "整体回绕外形",
+      "firstThought": "一笔的一个带有下申尾巴的圆，尾巴在左下，顺时针笔画",
+      "detailChoice": "方向",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "圆主体 → 下伸笔",
+        "r2": "直接找下伸笔",
+        "r3": "整体回绕外形"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "本人选择r3整体回绕；与第一眼圆形带左下尾巴、方向偏好并存。保留现行i/o主归属，不自动撤销旧确认。"
+    },
+    {
+      "char": "ộ",
+      "id": "u-1ed9",
+      "cp": 7897,
+      "primary": "r1",
+      "primaryTitle": "圆主体 → 附件组数量与类型",
+      "firstThought": "一个带有两个附件的圆，一个折线一个点",
+      "detailChoice": "数量2 → 折角＋点",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "圆主体 → 附件组数量与类型",
+        "r2": "圆主体 → 上下排列",
+        "r3": "按某一个附件直接查"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推圆主体的附件组数量与类型：2附件，折角＋点；上下排列可细化；单附件“合适”不等于已理解独立局部入口。"
+    },
+    {
+      "char": "◎",
+      "id": "u-25ce",
+      "cp": 9678,
+      "primary": "r2",
+      "primaryTitle": "外圆主体 → 内环",
+      "firstThought": "中空同心圆",
+      "detailChoice": "外圆包围内圆",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "同心圆的数量与关系",
+        "r2": "外圆主体 → 内环",
+        "r3": "按内部空区查"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推外圆包围内圆，组关系与内部空区备用；内外环尺寸分别绑对象。"
+    },
+    {
+      "char": "◉",
+      "id": "u-25c9",
+      "cp": 9673,
+      "primary": "r1",
+      "primaryTitle": "外圆主体 → 内部实心点",
+      "firstThought": "中间有黑圆的圆形",
+      "detailChoice": "内部实心点",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "外圆主体 → 内部实心点",
+        "r2": "外圆与内点的包围关系",
+        "r3": "只按圆主体轮廓"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推外圆中的实心点；包围关系和宽泛圆轮廓可备用，内点实心不写成整字实心。"
+    },
+    {
+      "char": "⊕",
+      "id": "u-2295",
+      "cp": 8853,
+      "primary": "r1",
+      "primaryTitle": "圆主体 → 内部十字",
+      "firstThought": "内有填充完整的垂直十字的圆",
+      "detailChoice": "",
+      "detailOther": "垂直方向",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "不合适"
+      },
+      "routeTitles": {
+        "r1": "圆主体 → 内部十字",
+        "r2": "圆包围十字的关系",
+        "r3": "整字交点或直曲计数"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推圆内十字及垂直方向，包围关系可用；r3整字交点/直曲计数不纳推荐，旧码不因此删除。"
+    },
+    {
+      "char": "8",
+      "id": "u-0038",
+      "cp": 56,
+      "primary": "custom",
+      "primaryTitle": "自定义（见原文字）",
+      "firstThought": "竖直双环",
+      "detailChoice": "两个孔共同的形状",
+      "detailOther": "判断两个孔是否一样大，形状是否相同，是一个大一个小吗",
+      "note": "先确定是相接的双环，然后确认它们的摆放方式，是上下还是左右还是倾斜",
+      "verdict": "需要修改",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "不合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "双环 → 两孔共同的圆弧形",
+        "r2": "双环 → 选一个孔描述形状",
+        "r3": "双环 → 下孔位置或比例"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "整体需要修改：相接双环→上下/左右/倾斜摆放→两孔共同形状及同形/大小关系；r2单选一孔形状不纳推荐，r3位置/比例仍合适但不能抢先。"
+    },
+    {
+      "char": "ᛒ",
+      "id": "u-16d2",
+      "cp": 5842,
+      "primary": "r1",
+      "primaryTitle": "双闭叶 → 三角/多角孔",
+      "firstThought": "三角竖直朝右的双环",
+      "detailChoice": "两个三角孔",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "双闭叶 → 三角/多角孔",
+        "r2": "双闭叶 → 连接区",
+        "r3": "数整字直线或角点"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推三角双闭叶/竖直朝右，保留连接区和整字计数语义备用；本字接受不外推任意两孔，局部5直仍未集成。"
+    },
+    {
+      "char": "B",
+      "id": "u-0042",
+      "cp": 66,
+      "primary": "r1",
+      "primaryTitle": "可辨双闭叶 → 孔形",
+      "firstThought": "带有直线和曲线的双环，其中一笔直线在左边",
+      "detailChoice": "一条直干连两个弧",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "不合适"
+      },
+      "routeTitles": {
+        "r1": "可辨双闭叶 → 孔形",
+        "r2": "直干与两个弧形构件",
+        "r3": "只选一个孔或局部交点"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主选r1双闭叶孔形，细化单选为一条直干连两个弧；两项并存不擅自改主选为r2。r3单孔/局部交点不纳推荐，旧码不删除。"
+    },
+    {
+      "char": "ȣ",
+      "id": "u-0223",
+      "cp": 547,
+      "primary": "r1",
+      "primaryTitle": "整体回绕外形",
+      "firstThought": "上部带有两个部件圆形，或有孔曲线",
+      "detailChoice": "回绕外形",
+      "detailOther": "如果按照曲线计数的话要么是两条曲线要么一条",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "需调整"
+      },
+      "routeTitles": {
+        "r1": "整体回绕外形",
+        "r2": "圆主体 → 上部附件",
+        "r3": "原模型整字计数"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推整体回绕，圆主体上部附件备用；r3现行原模型计数需调整，本人认为曲线可能1或2条，不能当作已确认改成1/2或继续主推3曲。"
+    },
+    {
+      "char": "D",
+      "id": "u-0044",
+      "cp": 68,
+      "primary": "custom",
+      "primaryTitle": "自定义（见原文字）",
+      "firstThought": "单孔，有一直线一曲线",
+      "detailChoice": "1直＋1曲一起想",
+      "detailOther": "",
+      "note": "可以增加单孔无部件的键位查找",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "整字 → 1直1曲",
+        "r2": "整体 → 局部竖干",
+        "r3": "整体 → 右侧半弧"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "自定义主路：单孔、一直一曲，同时提出单孔无部件入口；保留r1/r2/r3均合适，不将补充要求擅自派新码。"
+    },
+    {
+      "char": "4",
+      "id": "u-0034",
+      "cp": 52,
+      "primary": "r1",
+      "primaryTitle": "整体孔线复合 → 直线/交点",
+      "firstThought": "可一笔写出的交叉单孔折线，带有两个笔头",
+      "detailChoice": "闭孔形状",
+      "detailOther": "",
+      "note": "在笔画数量上可以新增关注是否可以一笔写成",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "整体孔线复合 → 直线/交点",
+        "r2": "直线部件的连接关系",
+        "r3": "闭孔 → 孔形或位置"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主选整体孔线复合，细化选闭孔形状，并提出是否能一笔写成；保留三项，不将主选自动改成闭孔r3。"
+    },
+    {
+      "char": "P",
+      "id": "u-0050",
+      "cp": 80,
+      "primary": "r1",
+      "primaryTitle": "整体孔线复合 → 整字计数",
+      "firstThought": "有一个直线一笔尾的单孔，圆弧向右",
+      "detailChoice": "直干加上部闭叶",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "整体孔线复合 → 整字计数",
+        "r2": "直干与上方闭叶的关系",
+        "r3": "局部竖干直接查"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主选整字孔线复合与计数，细化为直干加上部闭叶；关系路和竖干备用保留。"
+    },
+    {
+      "char": "⊟",
+      "id": "u-229f",
+      "cp": 8863,
+      "primary": "r1",
+      "primaryTitle": "方框主体 → 内部横线",
+      "firstThought": "由长方形组成的两个孔",
+      "detailChoice": "两个上下空区",
+      "detailOther": "上下两个方框共用一条边",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "方框主体 → 内部横线",
+        "r2": "框内空区的数量与排列",
+        "r3": "整字直线/交点计数"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主选方框内横线，同时选两个上下空区并写两框共用一边；各描述并存，不能硬归双环或忽略关系。"
+    },
+    {
+      "char": "H",
+      "id": "u-0048",
+      "cp": 72,
+      "primary": "r1",
+      "primaryTitle": "两竖线由中横线连接",
+      "firstThought": "三条直线两个交点，竖放",
+      "detailChoice": "直线数量",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "两竖线由中横线连接",
+        "r2": "局部交点 → 位置",
+        "r3": "数整字直线和分叉"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主选两竖由中横连接，细化直线数量；局部交点和整字计数可备用。"
+    },
+    {
+      "char": "T",
+      "id": "u-0054",
+      "cp": 84,
+      "primary": "r1",
+      "primaryTitle": "整体横竖连接形",
+      "firstThought": "两笔交叉，焦点在上面横线的中间",
+      "detailChoice": "整体T形",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "整体横竖连接形",
+        "r2": "单个三臂交点",
+        "r3": "整字笔线/分叉计数"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推整体T形与连接位置，局部三臂交点、整字笔线计数保留备用。"
+    },
+    {
+      "char": "X",
+      "id": "u-0058",
+      "cp": 88,
+      "primary": "r1",
+      "primaryTitle": "整体交叉 → 笔线方向",
+      "firstThought": "斜置两条线组成的四交叉",
+      "detailChoice": "整体交叉",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "整体交叉 → 笔线方向",
+        "r2": "一个四臂交点",
+        "r3": "整字直线数量"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推整体交叉；局部四臂点和直线数量可作备用，重复属性不自动增独立思路。"
+    },
+    {
+      "char": "Ψ",
+      "id": "u-03a8",
+      "cp": 936,
+      "primary": "r1",
+      "primaryTitle": "分叉整体 → 枝臂关系",
+      "firstThought": "交叉，曲线和数直直线，两条线组成，整体竖直，开口向上",
+      "detailChoice": "整体分叉形",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "分叉整体 → 枝臂关系",
+        "r2": "直干与两侧构件",
+        "r3": "整字交点/直曲计数"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推整体分叉、竖直与向上开口；直干/两侧构件及整字计数可备用。"
+    },
+    {
+      "char": "☰",
+      "id": "u-2630",
+      "cp": 9776,
+      "primary": "r1",
+      "primaryTitle": "三条横线的数量和排列",
+      "firstThought": "三条等长的横线",
+      "detailChoice": "三条等长",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适"
+      },
+      "routeTitles": {
+        "r1": "三条横线的数量和排列",
+        "r2": "选单条横线的位置",
+        "r3": "整字直连续笔计数"
+      },
+      "missingRouteDecisionIds": [
+        "r3"
+      ],
+      "interpretationAI": "主推三条同类等长横线的组数量/排列，单线位置合适；r3未填写，保持未填写，不补成接受。"
+    },
+    {
+      "char": "𞥕",
+      "id": "u-1e955",
+      "cp": 125269,
+      "primary": "r1",
+      "primaryTitle": "整体回绕形态",
+      "firstThought": "不交叉的曲线组成的带有笔尾的单孔",
+      "detailChoice": "1个三叉",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "整体回绕形态",
+        "r2": "整字角点/分叉计数",
+        "r3": "按孔或局部连接点查"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推整体回绕，细化选1个三叉；本人第一眼“不交叉的曲线单孔带尾”与计数选择并存，不当重新验证计数模型。"
+    },
+    {
+      "char": "*",
+      "id": "u-002a",
+      "cp": 42,
+      "primary": "r1",
+      "primaryTitle": "整体放射形 → 枝臂特征",
+      "firstThought": "五臂星",
+      "detailChoice": "枝臂数量",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "整体放射形 → 枝臂特征",
+        "r2": "局部多臂交点",
+        "r3": "整体无孔"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推放射整体并细化枝臂数量；中心交点、整体无孔可备用，但未批准新枝臂计数码。"
+    },
+    {
+      "char": "☆",
+      "id": "u-2606",
+      "cp": 9734,
+      "primary": "r1",
+      "primaryTitle": "星芒整体 → 空心轮廓",
+      "firstThought": "中空五角星",
+      "detailChoice": "尖角数量",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "星芒整体 → 空心轮廓",
+        "r2": "整字尖角或线段",
+        "r3": "内部空区/负形"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推空心星芒并细化尖角数量；计数/负形语义可备用，不以此确认真实墨迹五臂中心。"
+    },
+    {
+      "char": "⁂",
+      "id": "u-2042",
+      "cp": 8258,
+      "primary": "r1",
+      "primaryTitle": "三个星芒的数量与排列",
+      "firstThought": "三个五臂星以正三角排列",
+      "detailChoice": "上1下2排列",
+      "detailOther": "",
+      "note": "",
+      "verdict": "合适",
+      "routeJudgments": {
+        "r1": "合适",
+        "r2": "不合适",
+        "r3": "合适"
+      },
+      "routeTitles": {
+        "r1": "三个星芒的数量与排列",
+        "r2": "选某个星芒的位置",
+        "r3": "选某个多臂交点"
+      },
+      "missingRouteDecisionIds": [],
+      "interpretationAI": "主推三星芒上1下2/正三角排列；r2单个星芒位置不纳推荐，r3局部多臂点合适，两者状态不互相覆盖。"
+    }
+  ],
+  "demos": [
+    {
+      "char": "Q",
+      "cp": 81,
+      "title": "右下尾笔",
+      "canonical": "ioym",
+      "back": "oymi",
+      "count": 12,
+      "rank": 5,
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAABLklEQVR4nOWX2w7CMAxDE4v//2XzAIh1jdO05SKEX0BLfep2U5c5bU/Y9NtFFfzwP0vpHJhHDGfFnjDQ2ZVfgL3lSrcMgRl/VHfG9WYudf0M8GSYLKHkN1KtAr3/ObhBCAL0yNp1nMH6sWUYAcX5ZQ0hNpcnCZg6oyoa6Oh0YR8Btil0yCXAXePzsV8DbFN4JYDLAH9Rgo8A+PUEnWB/B/D3JOAu4C7/hU302w8FwJcTcMEZJRgqOP0RDZgRWmZOiF4/mJ8zTGCVCOH7D1YmxBUUx8kOxFlqsg4dlE5AHeLZ/6Z9osUtft74u2pJ13pl2rRwmiJHeOE2knMEL37yHGYoAIKnQnb8Xt03RUDRf3Q1n1WoAprdXezSGIXABKBZ/IMwdyIFyyjfBaXtM/EKS/9KaeidM28AAAAASUVORK5CYII=",
+      "object": {
+        "id": "cycle-subject:o:attached-tail",
+        "kind": "part",
+        "bbox": [
+          39.0,
+          52.0,
+          58.0,
+          62.0
+        ],
+        "relativeSize": 0.35185185185185186,
+        "extentEm": 0.8020833333333334,
+        "relativePosition": [
+          0.3611111111111111,
+          0.5185185185185185
+        ],
+        "area": 102,
+        "orientation": 153.43210562313723
+      },
+      "meanings": [
+        "i＝闭环·均衡；本路按圆主体取桶",
+        "o＝圆／椭圆主体",
+        "y＝主体外线状构件（尾笔或折线也可）",
+        "m＝右下（相对圆主体）"
+      ],
+      "frontReached": true,
+      "backReached": true,
+      "candidateOrderEqual": true,
+      "classification": "圆主体下选择附件，仍依赖i/o；不是绕过主体的独立局部入口"
+    },
+    {
+      "char": "ộ",
+      "cp": 7897,
+      "title": "圆下的点",
+      "canonical": "iots",
+      "back": "otsi",
+      "count": 5,
+      "rank": 5,
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAABBUlEQVR4nO2W4Q7CIAyEuWbv/8pnTNRM15ajTZxL5AeRjft2tFABR69ZUz+2/DXuHesOsOsrAKR0xYEAsomOsyxZrp9bsJzPRw5QAOCZQLaDyMyCTQ3sxisA7PXZInD6YbLrA7bsJVpZwNsonkZFniDMlzv7DgsAyFQ/iPh0nVUkUIo9wjhYiKYzgAKA+7EwjaZ8/0DPAAj0PP8w0V+DJZNLDqBLMwcLzVYm/wFfCiInu4F1B9AcLDcb4hqiY24BWD4Tdnjil7/IwMgvWa/fsSE4UEQBofrfiKGXGZNnBk+h1m/27gcsXvOQi+eAS9TEbTRjYFN9fwnoAkYdwF1fAgj6H9hIN4FpOHkzLxzWAAAAAElFTkSuQmCC",
+      "object": {
+        "id": "reviewed-ộ-external-dot",
+        "kind": "part",
+        "bbox": [
+          28.0,
+          56.0,
+          35.0,
+          62.0
+        ],
+        "relativeSize": 0.2,
+        "extentEm": 0.9166666666666666,
+        "relativePosition": [
+          0.0,
+          0.6714285714285714
+        ],
+        "area": 34,
+        "orientation": null
+      },
+      "meanings": [
+        "i＝闭环·均衡；本路按圆主体取桶",
+        "o＝圆／椭圆主体",
+        "t＝主体外点块",
+        "s＝下方（相对圆主体）"
+      ],
+      "frontReached": true,
+      "backReached": true,
+      "candidateOrderEqual": true,
+      "classification": "圆主体下选择附件，仍依赖i/o；不是绕过主体的独立局部入口"
+    },
+    {
+      "char": "ộ",
+      "cp": 7897,
+      "title": "圆上的折线",
+      "canonical": "ioyw",
+      "back": "oywi",
+      "count": 46,
+      "rank": 46,
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAABBUlEQVR4nO2W4Q7CIAyEuWbv/8pnTNRM15ajTZxL5AeRjft2tFABR69ZUz+2/DXuHesOsOsrAKR0xYEAsomOsyxZrp9bsJzPRw5QAOCZQLaDyMyCTQ3sxisA7PXZInD6YbLrA7bsJVpZwNsonkZFniDMlzv7DgsAyFQ/iPh0nVUkUIo9wjhYiKYzgAKA+7EwjaZ8/0DPAAj0PP8w0V+DJZNLDqBLMwcLzVYm/wFfCiInu4F1B9AcLDcb4hqiY24BWD4Tdnjil7/IwMgvWa/fsSE4UEQBofrfiKGXGZNnBk+h1m/27gcsXvOQi+eAS9TEbTRjYFN9fwnoAkYdwF1fAgj6H9hIN4FpOHkzLxzWAAAAAElFTkSuQmCC",
+      "object": {
+        "id": "reviewed-ộ-external-caret",
+        "kind": "part",
+        "bbox": [
+          23.0,
+          2.0,
+          41.0,
+          13.0
+        ],
+        "relativeSize": 0.5142857142857142,
+        "extentEm": 0.9166666666666666,
+        "relativePosition": [
+          0.014285714285714285,
+          -0.8
+        ],
+        "area": 89,
+        "orientation": null
+      },
+      "meanings": [
+        "i＝闭环·均衡；本路按圆主体取桶",
+        "o＝圆／椭圆主体",
+        "y＝主体外线状构件（尾笔或折线也可）",
+        "w＝上方（相对圆主体）"
+      ],
+      "frontReached": true,
+      "backReached": true,
+      "candidateOrderEqual": true,
+      "classification": "圆主体下选择附件，仍依赖i/o；不是绕过主体的独立局部入口"
+    },
+    {
+      "char": "ρ",
+      "cp": 961,
+      "title": "左下尾笔",
+      "canonical": "ioyn",
+      "back": "oyni",
+      "count": 6,
+      "rank": 4,
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAA6klEQVR4nO2XSw6EMAxDY6v3v3JmMRKDkPNpQbAYskKJ/RKqqgW4nQva04ARVrB7Tt4TXrpzBrxljxFs+4M02/6gwL5fl+ChyNNcNAE26U6rUBFAt/rRUAAg/dlWok0GWgBvpQQASWvXGjYHsAvWwM8C7CoASoDP4Bize2DOdHsBOmg3AvD4BHI/0U4GbwTgogm8BmBiAJMTdM7WFGDoQ6nTRznCK4sBeHOk7euPLD94fQKgWotTkTOnsiqwK4zSI5C2PxSHTjdWrwDY14LyohpptXHLsVS8gDJYS17Avy2iLwCCP9fFCVbiA04ELIVPlHxWAAAAAElFTkSuQmCC",
+      "object": {
+        "id": "cycle-subject:o:attached-tail",
+        "kind": "part",
+        "bbox": [
+          12.0,
+          40.0,
+          19.0,
+          62.0
+        ],
+        "relativeSize": 0.5,
+        "extentEm": 0.71875,
+        "relativePosition": [
+          -0.36363636363636365,
+          0.5909090909090909
+        ],
+        "area": 147,
+        "orientation": 91.99025354838862
+      },
+      "meanings": [
+        "i＝闭环·均衡；本路按圆主体取桶",
+        "o＝圆／椭圆主体",
+        "y＝主体外线状构件（尾笔或折线也可）",
+        "n＝左下（相对圆主体）"
+      ],
+      "frontReached": true,
+      "backReached": true,
+      "candidateOrderEqual": true,
+      "classification": "圆主体下选择附件，仍依赖i/o；不是绕过主体的独立局部入口"
+    },
+    {
+      "char": "ρ",
+      "cp": 961,
+      "title": "尾笔纵向",
+      "canonical": "ioyi",
+      "back": "oyii",
+      "count": 31,
+      "rank": 12,
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAA6klEQVR4nO2XSw6EMAxDY6v3v3JmMRKDkPNpQbAYskKJ/RKqqgW4nQva04ARVrB7Tt4TXrpzBrxljxFs+4M02/6gwL5fl+ChyNNcNAE26U6rUBFAt/rRUAAg/dlWok0GWgBvpQQASWvXGjYHsAvWwM8C7CoASoDP4Bize2DOdHsBOmg3AvD4BHI/0U4GbwTgogm8BmBiAJMTdM7WFGDoQ6nTRznCK4sBeHOk7euPLD94fQKgWotTkTOnsiqwK4zSI5C2PxSHTjdWrwDY14LyohpptXHLsVS8gDJYS17Avy2iLwCCP9fFCVbiA04ELIVPlHxWAAAAAElFTkSuQmCC",
+      "object": {
+        "id": "cycle-subject:o:attached-tail",
+        "kind": "part",
+        "bbox": [
+          12.0,
+          40.0,
+          19.0,
+          62.0
+        ],
+        "relativeSize": 0.5,
+        "extentEm": 0.71875,
+        "relativePosition": [
+          -0.36363636363636365,
+          0.5909090909090909
+        ],
+        "area": 147,
+        "orientation": 91.99025354838862
+      },
+      "meanings": [
+        "i＝闭环·均衡；本路按圆主体取桶",
+        "o＝圆／椭圆主体",
+        "y＝主体外线状构件（尾笔或折线也可）",
+        "i＝纵向（描述尾笔长轴，不是位置）"
+      ],
+      "frontReached": true,
+      "backReached": true,
+      "candidateOrderEqual": true,
+      "classification": "圆主体下选择附件，仍依赖i/o；不是绕过主体的独立局部入口"
+    }
+  ],
+  "candidateField": "pathRuleReviewAcceptance20261025Batch2",
+  "candidateStatus": "总控已精确入库；原始候选保留历史，不重复写入",
+  "confirmationState": "recorded",
+  "confirmationFieldCanonicalSHA256": "156345c7b57c3af3c27de55baabfddc1617978856eb5e14105d30d2e32b577ff",
+  "confirmationArchive": "C:\\Users\\86137\\Documents\\Codex\\codex资料\\项目\\个人Unicode音型输入法\\archive\\2026-10-26-24字路径答复入库\\确认与材料增量.zip"
+}

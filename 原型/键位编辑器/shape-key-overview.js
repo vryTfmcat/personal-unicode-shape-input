@@ -8,13 +8,28 @@
   const names = {primary:'主入口', component:'可靠构件', supplement:'局部／补充', pending:'待核'};
   const positions = ['','第一位 · 主桶','第二位 · 视觉形族','第三位 · 对象／结构','第四位 · 对象属性'];
   const queueNames = {first:'普通字仅第一位', prior:'原有细分入口待补回', withdrawn:'上轮撤回末条入口', historical:'历史145字尚待恢复', affected:'上轮受影响旧确认字', unclassified:'全局未分类'};
-  const statusNames = {confirmed:'沿用已确认键义；检测阈值仍是试验', proposal:'候选定义；不代表逐字确认', 'trial-binding':'独立试验绑定', 'accepted-independent-trial':'已接受独立试验键义', 'reserved-collection':'保留集合，不参与普通形族', 'historical-retained':'历史入口保留，不视作新键义'};
+  const statusNames = {confirmed:'沿用已确认键义；检测阈值仍是试验', proposal:'候选定义；不代表逐字确认', 'trial-binding':'独立试验绑定', 'accepted-independent-trial':'已接受并纳入当前总览的键义', 'reserved-collection':'保留集合，不参与普通形族', 'historical-retained':'历史入口保留，不视作新键义'};
+  statusNames['accepted-subject-attachment']='已接受主体／附件绑定；仅按已核对象应用';
+  statusNames['clarified-existing-boundary']='澄清既有局部交点含义，旧码保留';
   statusNames['draft-released']='独立草案已释放此第一位；旧入口仍在v14兼容视图保留';
   statusNames['independent-draft']='独立草案试用，非已部署键义';
   let boot, round = 1, position = 1, selectedKey = 'i', params = {}, offset = 0, total = 0;
   let queryTicket = 0, detailTicket = 0, collisionTicket = 0, collisions = [], groupLimit = 80, selectedCp = null;
   const detailCache = new Map();
-  let allocationMode=false, originalKeys;
+  let allocationMode=false, originalKeys, pictorial;
+  let lookupOrder='front';
+  function lookupControls() {
+    if(!allocationMode)lookupOrder='front';
+    $('lookupOrder').value=lookupOrder;
+    $('lookupOrder').disabled=!allocationMode;
+    $('compatibilityMode').disabled=!allocationMode;if(!allocationMode)$('compatibilityMode').checked=false;
+    $('routeLengthLabel').hidden=lookupOrder!=='back';
+    $('prefix').maxLength=lookupOrder==='back'?Number($('routeLength').value):4;
+    $('lookupOrderNote').textContent=lookupOrder==='back'?'后置前缀跨桶并集去重；补最后一位桶缩小范围。四码与原三码分开查询。四轮键义、详情和首选仍显示规范码；集合入口不旋转。':'分桶前置查询。四轮键义与详情保留规范码；两种顺序共用同一份规则、候选和首选。';
+  }
+  statusNames['accepted-scope-boundary']='本人已确认形族边界；推广仅限已验证名单';
+  statusNames['accepted-closed-family-policy']='已接受一般边界；现有成员仍须逐字核验';
+  statusNames['pictorial-intake']='已确认独立收入桶；尚未编制四键码，未部署';
 
   async function api(endpoint, values = {}) {
     if(allocationMode && ['query','detail','collisions'].includes(endpoint))values={...values,allocation:1};
@@ -69,7 +84,7 @@
     $('centrePanel').hidden=!allocationMode;
     $('centreSummary').innerHTML=`<p>扫描 ${num(c.ordinaryScanned)} 普通字，分叉相关 ${num(c.forkRelatedCharacters)} 字；基准中心候选 ${num(c.baseCentreCharacters)} 字，九扰动稳定新增 ${num(c.stableCharacters)} 字／${num(c.newCharacterCodePairs)} 条路径，未稳定 ${num(c.unstableCharacters)} 字未加码。</p><p>${Object.entries(c.codeCounts).map(([code,n])=>`<button data-prefix="${code}">${code} · ${n} 候选</button>`).join(' ')}。本轮新增首选 ${c.newPreferredCharacters} 字；原418字首选全部保留。</p><p>仅接入“h分叉→m单个交点→o中心”。相对本路径主体而非画布；o字母与0.12中心区阈值仍为独立试验，未部署。上轮101字只是子集，不是新码总人数；一至三键人数没有增加。</p>`;
     $('centreButtons').innerHTML=centreButtons();
-    $('centreSummary').insertAdjacentHTML('beforeend',`<p>原chvc组本轮另有 ${c.newChvcPreferred} 字取得具体首选，连同原418字共 ${c.currentChvcSpecificPreferred} 字；尚无本轮具体首选 ${c.remainingChvcWithoutSpecificPreference} 字，最大剩余诊断组 ${c.currentLargestResidual} 字。原始兼容chvc仍为1,562候选，不混称降到${c.currentLargestResidual}。</p>`);
+    $('centreSummary').insertAdjacentHTML('beforeend',`<p>原chvc组本轮另有 ${c.newChvcPreferred} 字取得具体首选，连同原418字共 ${c.currentChvcSpecificPreferred} 字；尚无本轮具体首选 ${c.remainingChvcWithoutSpecificPreference} 字，最大剩余诊断组 ${c.currentLargestResidual} 字。收录前原始兼容chvc为1,562候选，不混称降到${c.currentLargestResidual}。</p>`);
   }
   function selectCentre(kind) {
     params={centre:kind};$('prefix').value='';$('character').value='';
@@ -84,7 +99,7 @@
   function renderThick() {
     const r=boot.thickForkRepair;if(!r)return;
     $('thickPanel').hidden=false;const s=r.statistics;
-    $('thickSummary').innerHTML=`<p>固定原chvc ${s.cohort} 字重新复核。九扰动稳定支持 ${s.stableBefore} → ${s.stableAfter}，新增稳定 ${s.newlyStable} 字，检测改善 ${s.improvedCharacters} 字，仍待核 ${s.remainingUnstable} 字。旧正证据全部保留。</p><p>T已从6/9恢复9/9。高密度交点仍须有同一连通墨块的真实出口与局部凹口；没有直接调高密度阈值。200个随机实心凸多边形及实心三角／方／圆反例未误收。</p><p>本轮仅修检测，不改418字及中心试验的162字首选，不重建码表、不改变重码人数。拟物入口与字母尚未分配，未部署。</p>`;
+    $('thickSummary').innerHTML=`<p>固定原chvc ${s.cohort} 字重新复核。九扰动稳定支持 ${s.stableBefore} → ${s.stableAfter}，新增稳定 ${s.newlyStable} 字，检测改善 ${s.improvedCharacters} 字，仍待核 ${s.remainingUnstable} 字。旧正证据全部保留。</p><p>T已从6/9恢复9/9。高密度交点仍须有同一连通墨块的真实出口与局部凹口；没有直接调高密度阈值。200个随机实心凸多边形及实心三角／方／圆反例未误收。</p><p>本轮仅修检测，不改418字及中心试验的162字首选，不重建码表、不改变重码人数。以上为收录前检测试验结果；当前t／b收入及细码状态见页首，未部署。</p>`;
     $('thickButtons').innerHTML=thickButtons();
   }
   function selectThick(kind) {
@@ -93,22 +108,36 @@
     history.replaceState(null,'','#round='+round+'&thickRepair='+kind);
     query().then(()=>{if(params.thickRepair===kind)focusResults('thickResultNav');});
   }
+  function renderSnapshotNotices() {
+    for(const id of ['centreSummary','thickSummary','chvcSummary']) {
+      $(id).querySelectorAll('.snapshot-notice').forEach(node=>node.remove());
+      if(boot.exclusiveIntake)$(id).insertAdjacentHTML('afterbegin',`<p class="snapshot-notice">收录前试验快照：本面板的检测人数、分组统计与候选数未按t／b名单重算。${allocationMode?'当前工作视图的候选数以键盘、查询与重码列表为准。':'当前查询为v14历史对照，未扣除t／b。'}</p>`);
+    }
+  }
   function allocationControls() {
     const d=boot.cleanupDraft;if(!d)return;
     $('allocationModes').hidden=false;$('allocationStatus').hidden=false;$('cleanupQueues').hidden=!allocationMode;
     document.querySelectorAll('[data-allocation]').forEach(b=>b.setAttribute('aria-pressed',String((b.dataset.allocation==='draft')===allocationMode)));
-    $('version').textContent=allocationMode?'独立视图：v14 + 旧桶草案'+(boot.chvcTrial?' + chvc结构优先试验':'')+(boot.centreTrial?' + o中心试验':'')+'（不是全量重建）':'独立版：'+boot.run+' · 生成器 v14 · 原始旧码兼容';
+    $('version').textContent=allocationMode?'当前工作视图：'+(boot.structureBindings?.version||'v14')+' · '+(boot.countSemanticsVersion||'separate-straight-or-curve')+' · v14基线＋t／b排他收录（未部署）':'独立版：'+boot.run+' · 生成器 v14 · 原始旧码兼容';
+    if(allocationMode&&boot.jointBCBindings)$('version').textContent+=' · '+boot.jointBCBindings.id+'（四字七路）';
+    if(allocationMode&&boot.jointCountBindings)$('version').textContent+=' · '+boot.jointCountBindings.id+'（六字11新关系）';
     const c=boot.capacity,extra=allocationMode?d.recoveredCharacters:0;
     $('stats').textContent=`普通字符 ${num(c.ordinary)} · 有细分路径 ${num(c.withPaths+extra)} · 仅第一位 ${num(boot.queueCounts.first-extra)} · 路径 ${num(c.paths+(allocationMode?d.newCharacterCodePairs+(boot.centreTrial?.newCharacterCodePairs||0):0))}`;
+    if(allocationMode&&boot.exclusiveIntake){const x=boot.exclusiveIntake;$('stats').textContent=`原普通样本 ${num(c.ordinary)} · 几何有细码 ${num(x.geometryWithPaths)} · 几何待补细码 ${num(x.geometryFirstOnly)} · 几何路径 ${num(x.geometryPaths)} · t/b独立收入 ${num(x.count)}（细码待编制）`;}
+    if(boot.structureBindings){const s=boot.structureBindings.statistics;$('structureBindingStatus').hidden=false;$('structureBindingStatus').textContent=allocationMode?`本轮55大组观测 ${num(s.observed)} 字；结构计数${boot.structureBindings.version.split('-').at(-1)}已接受并合并到当前总览；新键覆盖 ${num(s.assigned)}字，${num(s.newCodes)}个新四码，${num(s.newCharacterCodePairs)}条当前计数路径；${num(s.pending)}字暂无本轮新码，保留原入口（含已确认保留原查法的字）；程序待核无需逐字审核。第三位a角点／b三叉／g四叉；j含直入口／q含曲入口，数量对象按当前规则版本；第四位u一／b二／t三／y四／p五及以上。原首选保留；计数码按当前语义版本迁移，非计数旧路保留；ajqu已审阅；其它类已检查整字范围与必要结构条件。本次接受当前工作版本，不代表逐字确认；后续有明确语义边界问题再单列，未部署。`:'当前为v14历史对照，不启用结构计数新键。';}
     renderCentre();
-    $('allocationStatus').textContent=allocationMode?`草案已移除六个旧桶的历史主桶归属：u线群42、v块面1、现有r三角形4；b／g／j为空键，t已预留拟物、收入待审，尚未迁移字符。主桶待定396字，其中93字仍有可靠补充入口。10项历史确认及全部旧码在原版保留，未部署。`:'当前为原始v14：历史保留桶和旧查询结果不变；可切回“旧桶清空草案”比较。';
-    const buttons=[['all','清空前后对照',443],['allocated','草案已分配',47],['pending','草案主桶待定',d.pendingPrimary],['recovered','补回稳定新路径',d.recoveredCharacters],['reviewed','历史确认保护',d.historicalFirstConfirmationsPreserved]].map(([key,label,count])=>`<button data-cleanup="${key}" aria-pressed="false" aria-controls="results">${label} · ${count}</button>`).join('');
+    renderStructureRounds();
+    renderSnapshotNotices();
+    $('allocationStatus').textContent=allocationMode?`草案已移除六个旧桶的历史主桶归属：u线群42、v块面1、现有r三角形4；b／g／j为空键，t已预留拟物、收入待审，尚未迁移字符。主桶待定396字，其中93字仍有可靠补充入口。10项历史确认及全部旧码在原版保留，未部署。`:'当前为原始v14历史对照：保留旧桶、旧查询与收录前人数；切回“当前工作视图（t／b已扣除）”查看现行排他结果。';
+    if(allocationMode&&pictorial?.bucketSplit?.enabled)$('allocationStatus').textContent=`独立收入草案：t具体物象 ${num(pictorial.bucketSplit.admittedCounts.t)} 字，b图案／标识 ${num(pictorial.bucketSplit.admittedCounts.b)} 字；g／j仍为空键。当前独立视图已从其它全形键位排他扣除；原版历史对照保留。t／b细码待编制，未部署。`;
+    if(allocationMode&&boot.exclusiveIntake){const x=boot.exclusiveIntake;$('allocationStatus').textContent=`当前固定排他名单：t具体物象 ${num(x.counts.t)} 字，b图案／标识 ${num(x.counts.b)} 字，含 ${num(x.provisional)} 个暂收入、形象待辨的字；g／j仍为空键。人数与键盘、查询使用同一名单，不随审核页未保存草稿变动。t／b细码待编制，未部署。`;}
+    const buttons=[['all','清空前后对照',443],['allocated','草案已分配',47],['pending','草案主桶待定',d.pendingPrimary],['recovered','补回稳定新路径',d.recoveredCharacters],['reviewed','历史确认保护',d.historicalFirstConfirmationsPreserved]].map(([key,label,count])=>`<button data-cleanup="${key}" aria-pressed="false" aria-controls="results">${label} · ${boot.currentCleanupCounts?.[key]??count}</button>`).join('');
     $('cleanupQueues').innerHTML=buttons;
     $('cleanupResultNav').innerHTML=buttons;
   }
   function selectCleanup(kind) {
     params={cleanup:kind};$('prefix').value='';$('character').value='';
-    $('resultHeading').textContent={all:'旧桶清空前后对照（独立草案）',allocated:'草案中的47字主桶分配',pending:'主桶待定，不强行归类',recovered:'已补回稳定新路径',reviewed:'历史确认保护清单（原确认未迁移）'}[kind];
+    $('resultHeading').textContent={all:'旧桶清空前后对照（独立草案）',allocated:'当前草案主桶分配',pending:'主桶待定，不强行归类',recovered:'已补回稳定新路径',reviewed:'历史确认保护清单（原确认未迁移）'}[kind];
     history.replaceState(null,'','#round='+round+'&cleanup='+kind);
     query().then(()=>{
       if(params.cleanup!==kind)return;
@@ -117,15 +146,51 @@
   }
   function setAllocation(active) {
     allocationMode=active;boot.keys=active?boot.allocationKeys:originalKeys;
+    lookupControls();
     detailCache.clear();++detailTicket;selectedCp=null;
     $('detail').innerHTML='<h2>字符详情</h2><p>未选择字符</p>';
     allocationControls();renderKeys();renderCoverageQueues();setRound(round);
+  }
+  const structureQueueNames={assigned:'本轮已增加结构入口',observationPending:'结构检测待核',scopePending:'整字范围待核',withdrawn:'v2新入口退出记录',reviewedRetained:'已确认保留原查法'};
+  function renderStructureRounds() {
+    const binding=boot.structureBindings, active=allocationMode&&binding;
+    for(let n=1;n<=4;n++)$('structureRound'+n).hidden=!active;
+    if(!active)return;
+    const s=binding.statistics, counts=binding.codeCounts, keys=boot.allocationKeys;
+    const policy=binding.closedFamilyPolicy, policyNotice=policy?`<div id="closedPolicyStatus"><h2>闭合形族规则已确认</h2><p>${esc(policy.scope)} ${esc(policy.alternateRoutes)}</p><p><a href="closed-family-boundary-review.html">查看o／s／t／b／p／k已确认边界与代表字</a>；k现有成员仍为4／D／P，不自动扩充。</p></div>`:'';
+    const keyLink=(p,k,label)=>`<button data-structure-key="${k}" data-structure-position="${p}">${esc(label)}</button>`;
+    const codes=Object.keys(counts).sort((a,b)=>counts[b]-counts[a]||a.localeCompare(b));
+    const codeButton=c=>`<button data-prefix="${c}">${c} · ${num(counts[c])} 候选</button>`;
+    $('structureRound1').innerHTML=policyNotice+(binding.definitions.second?'<h2>第二位 · 当前键义与已确认边界</h2><div class="toolbar">'+Object.entries(binding.definitions.second).map(([k,d])=>keyLink(2,k,k+' · '+d.meaning)).join('')+'</div><p>k有孔拓扑：4／D／P；x交叉：f／t；w波形：ᶔ；Q保留o圆形主体。这是首批7字形族历史；后续接受及计数迁移以当前版本为准。</p>':'')+'<h2>本轮新增／扩展键义</h2><p>第一位保留，第二位本批调整见上方；第三位选择整字特征集合，第四位计数同一集合。原有局部对象和属性规则继续使用。</p><div class="toolbar">'+Object.entries(binding.definitions.third).map(([k,d])=>keyLink(3,k,k+' · '+d.meaning)).join('')+'</div><div class="toolbar">'+Object.entries(binding.definitions.fourth).map(([k,d])=>keyLink(4,k,k+' · '+d.meaning)).join('')+'</div><p>贯通用于连续笔合并，不单独占键；闭孔沿用既有e／c／i。零值不生成新码，五个及以上合并到p。</p>';
+    $('structureRound2').innerHTML=(binding.acceptedBoundary&&Object.keys(binding.acceptedBoundary).length?'<h2>本批已确认的7字</h2><div class="toolbar">'+Object.values(binding.acceptedBoundary).map(r=>`<button data-sample="${esc(r.char)}">${esc(r.char)} · 第二位${r.familyKey} · ${r.generateWholeCounts?'整字计数':'圆主体原查法'}</button>`).join('')+'</div>':'')+'<h2>新增键位的代表字与整字对象</h2><p>点击例字检查同一整字集合的第三、第四位证据；旧代表字保留在下方。</p>'+Object.entries(binding.definitions.third).map(([k,d])=>{
+      const key=keys.find(x=>x.position===3&&x.key===k),rows=key.collectionExamples.slice(0,3);
+      return `<div><h3>${esc(k+' · '+d.meaning)}</h3><div class="toolbar">${rows.map(r=>{const c=r.structuralCodes.find(c=>c[2]===k);return `<button data-sample="${esc(r.char)}">${esc(r.char)} ${cpName(r.cp)} · ${c} · ${num(counts[c])}候选</button>`;}).join('')}</div><p>对象为${esc(d.meaning)}；第四位描述该集合数量，不对单条局部构件套用整字数量。</p></div>`;
+    }).join('')+'<p>ajqu正例：)／J；f、j、ĳ不进入此整字单曲笔入口，原查法保留。'+codeButton('ajqu')+'</p>';
+    const chvc=binding.groups.find(g=>g.code==='chvc');
+    $('structureRound3').innerHTML=`<h2>${boot.jointBCBindings?'冻结v10结构来源（规范替换见七组合）':'当前结构计数分配'}</h2><p>55个原大组共${num(s.observed)}字；${num(s.assigned)}字取得新入口，${boot.jointBCBindings?'冻结来源含':'当前有效'}${num(s.newCodes)}个计数四码、${num(s.newCharacterCodePairs)}条${boot.jointBCBindings?'来源':''}计数路径。原大组保留历史基线，现行成员按明确撤回与数量迁移处理；候选按各四码当前并集去重。</p><p>chvc仍${num(chvc.before)}字，其中${num(chvc.withBetterRoute)}字可查更小入口，${num(chvc.pending)}字在此形族暂无可靠新入口。推荐后最大查找负担仍${num(chvc.maxRecommendedBurden)}，没有宣称旧大组已消除。</p><div class="toolbar">${['chjb','chjt','chqb','ajqu'].filter(c=>counts[c]).map(codeButton).join('')}</div><details><summary>全部${num(s.newCodes)}个新增四码及当前候选数</summary><div class="toolbar">${codes.map(codeButton).join('')}</div></details><details><summary>55个原大组的保留与分配结果</summary>${binding.groups.map(g=>`<p><button data-prefix="${g.code}">${g.code} · ${num(g.before)}</button> · ${num(g.withBetterRoute)}字可查更小入口 · ${num(g.pending)}字暂无新入口 · 推荐最大${num(g.maxRecommendedBurden)}候选</p>`).join('')}</details><p>下方chvc专项面板为收录前历史诊断，当前候选以本轮查询为准。</p>`;
+    const x=boot.exclusiveIntake;
+    $('structureRound4').innerHTML=`<h2>本轮覆盖与待处理入口</h2><p><a href="structure-scope-review.html">首批人工审阅：4题、7字的整字／局部边界</a>。其余程序待核队列无需逐字审核。</p><p>${boot.jointBCBindings?'冻结v10来源':'当前'}${num(s.newCharacterCodePairs)}条计数查法覆盖${num(s.assigned)}字；这些字原有细码，因此本轮没有补回“仅第一位”字。当前几何有细码${num(x.geometryWithPaths)}字、仅第一位${num(x.geometryFirstOnly)}字、总路径${num(x.geometryPaths)}条。历史145字待补仍为${num(boot.allocationQueueCounts.historical)}字；t／b收入${num(x.count)}字仍待编制细码。</p><div class="toolbar">${Object.entries(structureQueueNames).map(([k,label])=>`<button data-structure-queue="${k}">${label} · ${num(binding.queueCounts[k])}</button>`).join('')}</div><p>${num(s.pending)}字暂无本轮新码，其中检测待核${num(s.observationPending)}＋整字范围待核${num(s.wholeScopePending)}；另有${num(s.reviewedRetained||0)}字已确认保留原查法、不套整字计数。程序待核保留原入口，无需逐字审核。“退出记录”与上述队列可重叠，不相加，也不等于退出全部旧码。</p>`;
+    if(binding.countSemanticsVersion==='whole-continuous-total-v1'){const note=`<div class="totalCountNotice"><h2>当前全局直曲总数量 · ${esc(binding.countSemanticsVersion)}</h2><p>${esc(binding.countSemanticsNote)}</p><p>397字791条关系已迁移；原首选、非计数例外及真实三码保持。旧v9为历史，不把错误旧数量码留作当前兼容。</p></div>`;for(let n=1;n<=4;n++)$('structureRound'+n).insertAdjacentHTML('afterbegin',note);}
+    const pReview=binding.pFamilyBoundaryReview;
+    if(pReview){const panel=`<div id="pFamilyReviewStatus"><h2>p族首批8字答复已记录</h2><p>ρ、ộ已停止5条p整字计数入口，旧查法和原首选保留。ȣ保留p候选；ᛒ的闭叶主体与𞥕的回绕形态已接受，计数仍待另验；𐘰、𖧚、𔕛暂缓。不外推其它78字，不新增o／b／k计数码。</p><p><a href="p-family-scope-review.html">查看7题8字答复与原图</a></p></div>`;for(const n of [1,2,3,4])$('structureRound'+n).insertAdjacentHTML('afterbegin',panel.replace('id="pFamilyReviewStatus"',n===1?'id="pFamilyReviewStatus"':''));}
+
+
+    const attachments=boot.subjectAttachments;
+    if(attachments){const html=`<div class="subjectAttachmentNotice"><h2>主体与外部构件</h2><p>第二位o只看有证据的圆／椭圆主体，不含D。ộ新增 <button data-prefix="iots">iots · ${num(attachments.codeCounts.iots)}候选 · 下方外点</button> 与 <button data-prefix="ioyw">ioyw · ${num(attachments.codeCounts.ioyw)}候选 · 上方外部折线</button>。第三位t/y选附件，第四位描述同一附件；两条路径独立于当前整字结构计数。</p><p>2/r为主体放射／星芒外形，3/r为局部≥5臂交点；☆／★不自动有3/r。现行o键位浏览排除已确认非圆主体4／D／P；其旧o码只作兼容查询。</p><p><a href="p-family-object-verification.html">查看切口、连接区处理及r重叠核查</a></p></div>`;for(const n of [1,2,3,4])$('structureRound'+n).insertAdjacentHTML('afterbegin',html);}
+
+  }
+  function chooseStructureQueue(kind) {
+    if(!allocationMode)return;
+    params={structure:kind};$('prefix').value='';$('character').value='';
+    $('resultHeading').textContent=structureQueueNames[kind];
+    $('queueNote').textContent=kind==='assigned'?'本轮新增查法，不等于新增字符覆盖；旧首选保留。':kind==='reviewedRetained'?'本字形族与主体查法已确认；保留原码，不将整字计数套到局部主体。':kind==='withdrawn'?'仅撤回v2不符合范围的新入口，旧码保留；部分字符仍有其它有效新入口。':'程序继续核查，原码与原首选保留；此队列无需逐字人工审核。';
+    query();
   }
   function renderCoverageQueues() {
     const counts=allocationMode?boot.allocationQueueCounts:boot.queueCounts;
     $('queues').innerHTML=Object.entries(queueNames).map(([key,label])=>`<button data-queue="${key}" aria-pressed="false">${label} · ${num(counts[key])}</button>`).join('');
     if(boot.historicalPilot)$('queues').insertAdjacentHTML('beforeend',`<button data-trial="history">旧桶整理与新用途 · ${boot.historicalPilot.count}</button>`);
-    if(boot.cleanupDraft && allocationMode)$('queues').insertAdjacentHTML('beforeend','<button data-cleanup="pending">草案主桶待定 · 396</button>');
+    if(boot.cleanupDraft && allocationMode)$('queues').insertAdjacentHTML('beforeend',`<button data-cleanup="pending">草案主桶待定 · ${boot.currentCleanupCounts?.pending??396}</button>`);
   }
   function glyph(row, box) {
     const p = row.preview;
@@ -139,7 +204,10 @@
   }
   function renderKeys() {
     $('positions').innerHTML = positions.slice(1).map((name,i) => `<button data-position="${i+1}" aria-pressed="${position===i+1}">${name}</button>`).join('');
-    const keys = boot.keys.filter(k => k.position === position).map(k => allocationMode && position===1 && k.key==='t' ? {...k,assigned:true,meaning:'拟物·收入待审',status:'pictorial-intake',condition:'拟物及象征标志、指示牌、游戏图标、物象装饰等分类已确认；收入t后退出其他几何桶，不设双入口个例。0字表示尚未迁移，不是没有候选。',anchors:['😸','𓆟','☀','☁','☾'],counterexamples:['♥','♡','♀','♂','♠','♣','♦']} : k);
+    const keys = boot.keys.filter(k => k.position === position).map(k => {
+      if(allocationMode&&position===1&&['t','b'].includes(k.key)&&pictorial?.bucketSplit?.enabled)return {...k,assigned:true,meaning:pictorial.bucketSplit.firstKeys[k.key],status:'pictorial-intake',count:pictorial.bucketSplit.admittedCounts[k.key],condition:'独立收入分桶已确认；当前数量为已收入身份，不是已生成四键码。当前视图已扣除其它几何路径；部署版未替换。',examples:[],anchors:k.key==='t'?['😸','𓆟','🖱']:['☀','😀','☭'],counterexamples:k.key==='t'?['☭','🚾']:['○','●','♥']};
+      return allocationMode&&position===1&&k.key==='t'?{...k,assigned:true,meaning:'拟物·收入待审',status:'pictorial-intake'}:k;
+    });
     const order = 'qwertyuiopasdfghjklzxcvbnm';
     $('keyboard').innerHTML = [...order].map(key => {
       const k = keys.find(v => v.key === key);
@@ -149,7 +217,8 @@
     const examples = k.anchors || (k.positive ? [...k.positive] : []);
     const negative = k.counterexamples || (k.negative ? [...k.negative] : []);
     $('keyInfo').innerHTML = `<h3>${position} / ${k.key}：${esc(k.meaning || '未分配')}</h3><p>${esc(statusNames[k.status] || (k.assigned ? '快照定义；人工确认范围以核对记录为准' : '保留空键，不猜造功能'))} · ${num(k.count)} 个去重字符</p>${k.condition||k.boundary ? `<p>${esc(k.condition || k.boundary)}</p>` : ''}<p>定义例字：${esc(examples.join(' ') || '未提供')}　反例：${esc(negative.join(' ') || '未提供')}</p><div class="toolbar">${characterButtons(k.examples)}</div>`;
-    if(k.status==='pictorial-intake')$('keyInfo').insertAdjacentHTML('beforeend','<p><a href="pictorial-intake-review.html">打开 t 拟物收入全量初稿</a></p>');
+    if(allocationMode&&k.collectionExamples)$('keyInfo').insertAdjacentHTML('beforeend',`<h4>结构计数整字集合</h4><p>${esc(k.collectionCondition)}</p><div class="toolbar">${characterButtons(k.collectionExamples)}</div>`);
+    if(k.status==='pictorial-intake')$('keyInfo').insertAdjacentHTML('beforeend',`<p><a href="pictorial-intake-review.html#queue=${k.key==='b'?'admittedB':'admittedT'}">打开 ${k.key} 桶收入核对</a></p>`);
     if(k.status==='historical-retained' && boot.historicalPilot) $('keyInfo').insertAdjacentHTML('beforeend',`<p><button data-trial="history" data-oldkey="${k.key}">旧 ${k.key} 桶整理结果</button></p>`);
     if(allocationMode && position===1 && selectedKey==='u')$('keyInfo').insertAdjacentHTML('beforeend','<p>2026-10-22已确认保留“线群／层列”查找方向；仍为独立版，未部署。</p>');
     if(position===1 && selectedKey==='u' && boot.uExpansion)$('keyInfo').insertAdjacentHTML('beforeend',`<p>全体28,223普通字扫描：另有131个规则内稳定候选、22个检测不稳的相似字、28个短条或多段边界候选。当前u仍为42字，新候选未迁移。</p><div class="toolbar">${uExpansionButtons()}</div><details><summary>九种字号、粗细检查的实际含义</summary><p>同一字体按48、96、128三个渲染字号分别生成字形，归一到64×64像素，再各做一像素墨迹收缩、原样、膨胀，共3×3＝9种。粗细是程序模拟，不是换成字体真实粗体。</p><p>它只检测程序是否稳定识别同一线群，不证明跨字体一致、查法自然或应该改主桶。未通过的相似字仍保留供核对。</p></details>`);
@@ -201,13 +270,17 @@
     $('error').textContent = '';
     $('resultStatus').textContent = '正在读取候选……';
     try {
-      const result = await api('query', {...params, offset});
+      const back=lookupOrder==='back' && Object.hasOwn(params,'prefix');
+      const result = await api('query', {...params, offset,...($('compatibilityMode').checked?{compatibility:'1'}:{}),...(back?{order:'back',routeLength:$('routeLength').value}:{})});
       if (ticket !== queryTicket) return;
       total = result.total;
       $('resultStatus').textContent = `${num(total)} 个去重字符 · 全部候选，没有按证据层隐藏`;
+      if(result.compatibility)$('resultStatus').textContent+=' · 显式旧码兼容；已退出当前规范推荐';
+      if(result.lookupOrder==='back')$('resultStatus').textContent+=` · 分桶后置${result.routeLength===3?'原三码':'四码'} · ${result.crossBucket?'跨桶并集':('规范码 '+result.canonical)}`;
       $('groupCounts').textContent = Object.entries(result.groups).map(([k,v]) => `${names[k]} ${num(v)}`).join('　') + (result.audit ? `　几何专项复核：支持 ${num(result.audit.geometrySupported)}，待核 ${num(result.audit.uncertainRetained)}（来源 v13，非人工确认）` : '');
       $('results').innerHTML = result.rows.map(r => `<button class="candidate layer-${esc(r.layer || '')} ${selectedCp===r.cp?'selected':''}" data-cp="${r.cp}" title="${esc(r.reason || r.geometry)}">${glyph(r)}<small>${cpName(r.cp)}${r.layer ? ' · '+names[r.layer] : ''}</small>${result.audit?'<small>'+esc(r.geometry.startsWith('几何')?'几何支持':r.geometry.startsWith('证据')?'证据待核':'专项未覆盖')+'</small>':''}<code>${esc((r.preferredCodes?.length ? r.preferredCodes : r.codes).slice(0,2).join(' ') || r.bucket || '未分配')}</code></button>`).join('') || '<p>本条件没有字符。</p>';
       result.rows.forEach(r=>{if(r.historicalCategory)$('results').querySelector(`[data-cp="${r.cp}"]`).insertAdjacentHTML('beforeend',`<small class="trial-category">${esc(r.historicalCategory)}</small>`);});
+      result.rows.forEach(r=>{if(r.lookupPaths)$('results').querySelector(`[data-cp="${r.cp}"]`).insertAdjacentHTML('beforeend',`<small>后置：${r.lookupPaths.slice(0,3).map(p=>esc(p.code)+' ← '+esc(p.canonical)).join('；')}</small>`);});
       result.rows.forEach(r=>{if(r.draftOnly)$('results').querySelector(`[data-cp="${r.cp}"]`).insertAdjacentHTML('beforeend',`<small class="trial-category">${r.primaryPending?'主桶待定':esc(r.bucket)+' 桶草案'} · 原 ${esc(r.legacyFirstAlias)}</small>`);});
       result.rows.forEach(r=>{if(r.uExpansionCategory)$('results').querySelector(`[data-cp="${r.cp}"]`).insertAdjacentHTML('beforeend',`<small class="trial-category">${esc(r.uExpansionCategory)} · 尚未加入u</small>`);});
       result.rows.forEach(r=>{if(r.centreStatus)$('results').querySelector(`[data-cp="${r.cp}"]`).insertAdjacentHTML('beforeend',`${r.centreCodes?.length?'<code>中心：'+esc(r.centreCodes.join(' '))+'</code>':''}<small class="trial-category">${esc(r.centreStatus)}</small>`);});
@@ -220,13 +293,19 @@
       $('next').disabled = offset + 60 >= total;
     } catch (error) { if (ticket === queryTicket) { $('resultStatus').textContent = ''; fail(error); } }
   }
-  function selectPrefix(prefix) {
+  function selectPrefix(prefix, registeredShort=false, compatibility=false) {
+    $('compatibilityMode').checked=compatibility;
+    if(lookupOrder==='back' && (prefix.length===4 || (prefix.length===3&&registeredShort))){$('routeLength').value=String(prefix.length);prefix=prefix.slice(1)+prefix[0];}
+    else if(lookupOrder==='back'){lookupOrder='front';lookupControls();}
+    lookupControls();
     params = {prefix};
     $('prefix').value = prefix;
     $('character').value = '';
     $('resultHeading').textContent = '编码 ' + prefix;
     query();
   }
+  document.addEventListener('click',event=>{const b=event.target.closest('[data-compat-prefix]');if(b)selectPrefix(b.dataset.compatPrefix,false,true);});
+  $('compatibilityMode').onchange=()=>{if($('prefix').value.length===4)query();};
   async function showDetail(cp) {
     const ticket = ++detailTicket;
     selectedCp = cp;
@@ -236,15 +315,25 @@
       let row = detailCache.get(cacheKey);
       if (!row) { row = await api('detail', {cp}); detailCache.set(cacheKey,row); }
       if (ticket !== detailTicket) return;
-      const pathHtml = (row.paths || []).map(path => `<div class="path"><button data-prefix="${esc(path.code)}">${esc(path.code)}</button><span>${num(row.codeCounts[path.code])} 候选${path.preferred ? ' · 当前首选' : ''}</span><p>${[...path.code].map((key,i) => esc((boot.keys.find(k => k.position===i+1&&k.key===key)||{}).meaning || key)).join(' → ')}</p>${path.evidence.map(e => {
+      const pathHtml = (row.paths || []).map(path => `<div class="path"><button data-prefix="${esc(path.code)}">${esc(path.code)}</button><span>${num(row.codeCounts[path.code])} 候选${path.preferred ? ' · 当前首选' : ''}${path.compatibilityOnly?' · 旧形族兼容':''}</span><p>${path.jointBC?esc('桶 '+path.code[0]+' → BC '+path.code.slice(1,3)+'：'+path.evidence[0].BCMeaning+' → '+path.evidence[0].fixedDMeaning):[...path.code].map((key,i) => esc((boot.keys.find(k => k.position===i+1&&k.key===key)||{}).meaning || key)).join(' → ')}</p>${path.evidence.map(e => {
         const object = (row.objects || []).find(o => o.id === e.objectId);
-        return `<div class="evidence">${glyph(row,object?.bbox)}<div><p>对象：${esc(e.objectId)}${e.fourthObjectId!==e.objectId ? '；第四位对象：'+esc(e.fourthObjectId) : ''}</p><p>属性：${esc(e.attribute)}</p><p>规则：${esc(e.rule)} · ${esc(e.familyTarget)}</p><p class="muted">${object?.bbox ? '蓝框仅为对象定位框，不是精确墨迹掩膜。' : '本对象未提供定位框；不绘制猜测框。'}</p></div></div>`;
+        return `<div class="evidence">${glyph(row,object?.bbox)}<div><p>对象：${esc(e.objectId)}${e.fourthObjectId!==e.objectId ? '；第四位对象：'+esc(e.fourthObjectId) : ''}</p><p>属性：${esc(e.attribute)}</p>${e.sizeReferenceObjectId?`<p>尺寸参照主体：${esc(e.sizeReferenceObjectId)}；第3、4位描述同一个孔。</p>`:''}${e.objectMode==='hole-group'?`<p>第3、4位描述同一孔组 · ${num(object?.members?.length||0)}个真实孔成员；方向／数量看组，位置／尺寸看单孔。</p>`:''}<p>规则：${esc(e.rule)} · ${esc(e.familyTarget)}</p><p class="muted">${object?.bbox ? '蓝框仅为对象定位框，不是精确墨迹掩膜。' : '本对象未提供定位框；不绘制猜测框。'}</p></div></div>`;
       }).join('')}</div>`).join('');
       $('detail').innerHTML = `<h2>${esc(row.char)} <small>${cpName(row.cp)}</small></h2><div class="heroGlyph">${glyph(row)}</div><p>普通第一位：${esc(row.bucket || '无')}　主形族：${esc(row.familyKey || '待定')}</p><p>${row.oldReviewed ? '历史确认仅涉及旧第一位，不等于当前全部路径已确认。' : '逐字入口未自动计为人工确认。'}</p>${row.reason ? `<p>${esc(row.reason)}</p>` : ''}${row.suggestions?.length ? '<h3>可比较的可靠入口</h3><div class="toolbar">'+row.suggestions.map(s=>`<button data-prefix="${s.code}">${s.code} · ${s.allCandidates} 候选${s.preferred?' · 首选':''}</button>`).join('')+'</div>' : ''}<h3>全部路径 · ${num(row.paths?.length || 0)} 条</h3>${pathHtml || '<p>当前没有可靠细分路径；保留身份与已有第一位，不猜补。</p>'}${row.routeAmendments?.length ? '<h3>撤回／修正记录</h3><p>'+row.routeAmendments.map(esc).join('<br>')+'</p>' : ''}${row.warnings?.length ? '<h3>检测提示</h3><p>'+row.warnings.map(esc).join('<br>')+'</p>' : ''}<details><summary>原始对象与依据</summary><pre>${esc(JSON.stringify({font:row.font,objects:row.objects,familyRoutes:row.familyRoutes},null,2))}</pre></details>`;
+      if(row.compatibilityPaths?.length)$('detail').insertAdjacentHTML('beforeend',`<details id="retiredCompatibility"><summary>已退出规范推荐的兼容旧路 · ${row.compatibilityPaths.length}条</summary><p>旧版对象解释仅供兼容；不反向注入当前路径和推荐。</p>${row.compatibilityPaths.map(p=>`<p><button data-compat-prefix="${p.code}">${p.code} · 显式兼容</button> → ${esc(p.replacedBy)}；旧版 ${esc(p.semanticVersion)}；${p.evidence.map(e=>esc(e.objectId)+'：'+esc(e.attribute)).join('；')}</p>`).join('')}</details>`);
       const header=$('detail').querySelector('.heroGlyph');
+      if(header && row.scopeBoundaryAcceptance){const a=row.scopeBoundaryAcceptance;header.insertAdjacentHTML('afterend',`<p>本字形族已人工确认：第二位${esc(a.familyKey)}；${a.generateWholeCounts?'原九扰动整字计数接入新形族':'圆形主体原查法保留，不套用含附加笔的整字计数'}。原首选保留；旧路径按当前有效规则和明确撤回记录处理。</p>`);}
+      if(header && row.pFamilyBoundaryReview){const a=row.pFamilyBoundaryReview;header.insertAdjacentHTML('afterend',`<p class="pFamilyBoundaryDecision">p族本批答复：${esc(a.note)}。计数未逐字人工确认；本批形态确认不等于整字计数已确认；后续主体／附件查法见对应对象路径。</p>`);}
+      if(header && row.subjectAttachmentBinding)header.insertAdjacentHTML('afterend',`<p class="subjectAttachmentDetail">本字按圆主体取第二位o；原整字第一位${esc(row.legacyPrimaryBucket || row.bucket)}保留，原整字形族${esc(row.legacyWholeFamilyKey)}只作兼容。主体对象路径前缀io；t选下方点，y选上方折线，第四位仅描述同一附件。</p>`);
+      if(header && row.firstBucketPrimaryNote)header.insertAdjacentHTML('afterend',`<p class="firstBucketPrimaryNote">${esc(row.firstBucketPrimaryNote)}</p>`);
+      if(header && row.currentFeedbackNote)header.insertAdjacentHTML('afterend',`<p class="currentFeedbackNote">${esc(row.currentFeedbackNote)}</p>`);
+      if(header && row.holeGroupNote)header.insertAdjacentHTML('afterend',`<p class="holeGroupNote">${esc(row.holeGroupNote)}</p>`);
+      if(header && row.roundRefinementNote)header.insertAdjacentHTML('afterend',`<p class="roundRefinementNote">${esc(row.roundRefinementNote)}</p>`);
+      if(header && row.familyCompatibilityNote)header.insertAdjacentHTML('afterend',`<p class="familyCompatibilityNote">${esc(row.familyCompatibilityNote)}</p>`);
+      if(header && row.structuralRecommendations?.length)header.insertAdjacentHTML('afterend','<p>结构计数新入口：'+row.structuralRecommendations.map(c=>`<button data-prefix="${c}">${c} · ${num(row.codeCounts[c])} 候选</button>`).join(' ')+'。对象为整字集合；原首选保留，旧数量入口按当前规则迁移。</p>');
       if(header && row.historicalPilot)header.insertAdjacentHTML('afterend',historicalDetail(row));
       if(header && row.chvcTrial){const t=row.chvcTrial;header.insertAdjacentHTML('afterend',`<div class="pilot-detail"><h3>chvc结构试验 · ${esc(t.status)}</h3><p>局部分叉正证据 ${t.forkPositiveVariants}/9。${t.preferredCodes.length?'试验优先：'+esc(t.preferredCodes.join(' '))+'；chvc降为兼容备选。':'尚未据此删除原入口。'}</p><p>${Object.entries(t.stableFeatures).map(([k,v])=>esc(boot.chvcTrial.featureNames[k])+ '：'+esc(v)).join('；')}</p>${t.choices.map(c=>`<p><button data-prefix="${c.code}">${c.code} · v14全量 ${c.allCandidatesV14} 候选</button> ${esc(c.evidence[0].reason)}</p>`).join('')}<p>部件数是分离墨块，不是笔画；未稳定提取不等于结构不存在。组合特征尚未绑定新键。下方路径的原首选标记保留供对照，本段才是此次试验优先级。</p></div>`);}
-      if(header && row.chvcPreferenceApplied)header.nextElementSibling.lastElementChild.textContent='本草案已将下方首选标记和查询推荐同步为结构细码优先；全部原路径仍保留。切回v14原始／旧码兼容可查看原首选。部件数不是笔画，组合特征尚未绑定新键。';
+      if(header && row.chvcPreferenceApplied)header.nextElementSibling.lastElementChild.textContent='本草案已将下方首选标记和查询推荐同步为结构细码优先；本历史chvc草案的原路径保留，当前结构数量以已激活版本为准。切回v14原始／旧码兼容可查看原首选。部件数不是笔画，组合特征尚未绑定新键。';
       if(header && row.cleanupDraft){const d=row.cleanupDraft;header.insertAdjacentHTML('afterend',`<div class="pilot-detail"><h3>独立清空草案：原 ${esc(d.oldBucket)} → ${esc(d.draftBucket||'主桶待定')}</h3><p>${esc(d.allocationBasis)}</p><p>保留旧码 ${d.oldCodes.length} 条；新增稳定候选码 ${d.newCodes.length} 条。旧第一位 ${esc(d.legacyFirstAlias)} 在原版兼容视图保留。</p><p>${d.historicalFirstKeyConfirmed?'原第一位有人工作过确认；原确认记录未迁移。':'新增检测路径不视作逐字人工确认。'}</p></div>`);}
       if(header && row.uExpansion){const e=row.uExpansion,o=e.strictObject||e.broadObject,s=e.strictStability||e.broadStability;header.insertAdjacentHTML('afterend',`<div class="pilot-detail"><h3>u线群近似观察 · ${esc(e.category)}</h3><p>${o.layerCount}层，${o.pieceCount}个墨块；每层分段 ${esc(o.piecesPerLayer.join('／'))}。线本身${o.memberDirection==='h'?'横向':'纵向'}，整组${o.arrangement==='i'?'上下':'左右'}排列。</p><p>${s?s.variants.filter(v=>v.passed).length+'/9种通过；'+(s.passed?'程序检测稳定':'程序检测尚不稳定'):'未做稳定性判断'}。${e.alreadyInU?'原已保留在u。':'仅列近似候选，原桶和编码未变。'}</p><p>稳定性不是人工自然性确认；较短块或三段层列需要另核边界。</p></div>`);}
       if(header && row.centreTrial){const t=row.centreTrial;header.insertAdjacentHTML('afterend',`<div class="pilot-detail"><h3>o中心 · ${t.stable?'九扰动稳定':'未稳定，不增加新码'}</h3><p>${t.paths.map(p=>esc(p.code)+' · '+num(boot.centreTrial.codeCounts[p.code])+'候选').join('；')||'原有入口保留。'}${t.frozenPreference?'；保留上轮具体首选 '+esc(t.frozenPreference.join(' '))+'。':''}</p><p>${row.centrePreferenceApplied?'本草案首选已同步为中心码，原有路径保留。':'没有因新增中心属性覆盖既有具体首选。'}</p><p>所选对象始终是单个交点，第四位描述它相对本路径主体的位置；不是观察窗口尺寸。</p><details><summary>各对象的中心区边界及稳定性</summary><pre>${esc(JSON.stringify(t.objectsChecked,null,2))}</pre></details></div>`);}
@@ -265,7 +354,7 @@
   function chooseQueue(queue) {
     params = {queue}; $('prefix').value = ''; $('character').value = '';
     $('resultHeading').textContent = queueNames[queue];
-    const notes = {first:'普通字符中全部只有第一位的队列。包含“原有细分入口待补回”，两项不能相加。',prior:'原来有细分路径、现只保留第一位的字符；尚无可靠证据，不直接恢复旧入口。',withdrawn:'v13 撤回错误入口后失去末条细分路径的 33 字。v14 没有新增撤回；此处保留上轮队列。',historical:'固定的历史145字队列：52字已补回，93字待处理。历史确认只涉及旧第一位。',affected:'𐏓、𒌋、𐎓：上轮受影响的旧第一位确认字，不属于固定145字队列。',unclassified:'全局尚未分配普通第一位的字符，与普通桶内“只有第一位”是不同问题。'};
+    const notes = {first:'普通字符中全部只有第一位的队列。包含“原有细分入口待补回”，两项不能相加。',prior:'原来有细分路径、现只保留第一位的字符；尚无可靠证据，不直接恢复旧入口。',withdrawn:'v13 撤回错误入口后失去末条细分路径的 33 字。v14 没有新增撤回；此处保留上轮队列。',historical:allocationMode?`固定历史145字；v14快照为52字有细码、93字待补。当前本队列 ${num(boot.allocationQueueCounts.historical)} 字：已排除转入t／b及已补回细码的字符。历史确认只涉及旧第一位，待补细码不表示确认被撤销。`:'v14历史快照：固定145字中52字有细码、93字待补。本视图未扣除t／b；当前状态请切回工作视图。历史确认只涉及旧第一位。',affected:'𐏓、𒌋、𐎓：上轮受影响的旧第一位确认字，不属于固定145字队列。',unclassified:'全局尚未分配普通第一位的字符，与普通桶内“只有第一位”是不同问题。'};
     $('queueNote').textContent = notes[queue];
     document.querySelectorAll('[data-queue]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.queue===queue)));
     query();
@@ -275,7 +364,7 @@
     for (let i=1;i<=4;i++) $('round'+i).hidden = i!==round;
     document.querySelectorAll('[data-round]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.round)===round)));
     if(round===1) { params={position,key:selectedKey}; $('prefix').value=''; $('character').value=''; $('resultHeading').textContent=`${positions[position]} / ${selectedKey}`; query(); }
-    if(round===2) { params={text:'○●□■☆★∥=∴∵QODTEFB𐎊•▪◾'}; $('prefix').value=''; $('character').value=''; $('resultHeading').textContent='代表字与边界样本'; query(); }
+    if(round===2) { params={text:'○●□■☆★∥=∴∵QODTEFB𐎊•▪◾'+(allocationMode?'LΓYJ)Ꚕꓬߙ৳ᛘ':'')}; $('prefix').value=''; $('character').value=''; $('resultHeading').textContent='代表字与边界样本'; query(); }
     if(round===3) { loadCollisions(); selectPrefix('chvc'); }
     if(round===4) chooseQueue('first');
     history.replaceState(null,'','#round='+round);
@@ -309,15 +398,19 @@
     else if(b.dataset.cleanup) selectCleanup(b.dataset.cleanup);
     else if(b.dataset.trial) selectTrial(b.dataset.trial,b.dataset.oldkey||'');
     else if(b.dataset.pilotcategory) selectTrial('category','',b.dataset.pilotcategory);
+    else if(b.dataset.structureQueue) chooseStructureQueue(b.dataset.structureQueue);
+    else if(b.dataset.structureKey) {position=Number(b.dataset.structurePosition);selectedKey=b.dataset.structureKey;setRound(1);renderKeys();}
     else if(b.dataset.position) {position=Number(b.dataset.position);renderKeys();params={position,key:selectedKey};$('prefix').value='';$('character').value='';$('resultHeading').textContent=`${positions[position]} / ${selectedKey}`;query();}
     else if(b.dataset.key) {selectedKey=b.dataset.key;renderKeys();params={position,key:selectedKey};$('prefix').value='';$('character').value='';$('resultHeading').textContent=`${positions[position]} / ${selectedKey}`;query();}
-    else if(b.dataset.prefix) selectPrefix(b.dataset.prefix);
+    else if(b.dataset.prefix) selectPrefix(b.dataset.prefix,Boolean(b.closest('#detail')));
     else if(b.dataset.cp) showDetail(Number(b.dataset.cp));
     else if(b.dataset.queue) chooseQueue(b.dataset.queue);
     else if(b.dataset.sample) {params={text:b.dataset.sample};$('prefix').value='';$('character').value='';$('resultHeading').textContent='样本 '+b.dataset.sample;query();showDetail(b.dataset.sample.codePointAt(0));$('proof').hidden=!b.dataset.proof;if(b.dataset.proof)$('proofImage').src='/api/shape-overview/asset?id='+b.dataset.proof;}
   });
   $('search').addEventListener('submit',event=>{event.preventDefault();params={prefix:$('prefix').value.toLowerCase(),text:$('character').value.trim()};$('resultHeading').textContent='自定义查询';query();});
-  $('clear').onclick=()=>{params={};$('prefix').value='';$('character').value='';$('resultHeading').textContent='全部普通字符';query();};
+  $('lookupOrder').onchange=()=>{const previous=lookupOrder;lookupOrder=$('lookupOrder').value;let prefix=$('prefix').value.toLowerCase();if(previous!==lookupOrder&&prefix){if(previous==='front'&&prefix.length===4){$('routeLength').value=String(prefix.length);prefix=prefix.slice(1)+prefix[0];}else if(previous==='back'&&prefix.length===Number($('routeLength').value)){prefix=prefix.at(-1)+prefix.slice(0,-1);}else prefix='';}$('prefix').value=prefix;lookupControls();params={prefix,text:$('character').value.trim()};query();};
+  $('routeLength').onchange=()=>{$('prefix').value='';lookupControls();params={prefix:'',text:$('character').value.trim()};query();};
+  $('clear').onclick=()=>{params=lookupOrder==='back'?{prefix:''}:{};$('prefix').value='';$('character').value='';$('resultHeading').textContent=lookupOrder==='back'?'当前后置范围全部字符':'全部普通字符';query();};
   $('prev').onclick=()=>{offset=Math.max(0,offset-60);query(false);};
   $('next').onclick=()=>{if(offset+60<total){offset+=60;query(false);}};
   $('length').onchange=loadCollisions;
@@ -327,13 +420,20 @@
   (async()=>{
     try {
       boot = await api('bootstrap');
+      try{const response=await fetch('data/pictorial-intake-review.json');if(response.ok)pictorial=await response.json();}catch{/* Geometry remains usable when the separate intake report is unavailable. */}
       originalKeys=boot.keys;
       allocationMode=Boolean(boot.cleanupDraft);
+      lookupControls();
       if(allocationMode)boot.keys=boot.allocationKeys;
       const c=boot.capacity;
-      $('version').textContent='独立版：'+boot.run+' · 生成器 v14';
+      $('version').textContent='基线：'+boot.run+' · 生成器 v14；当前工作视图叠加已接受的结构计数'+boot.structureBindings.version.split('-').at(-1)+'，v14对照保留。';
+      if(boot.jointBCBindings)$('version').textContent+=' · '+boot.jointBCBindings.id+'（四字七路）';
+      if(boot.holeGroupBindings)$('version').textContent+=' · 孔组解释层 '+boot.holeGroupBindings;
+      if(boot.externalGroupBindings)$('version').textContent+=' · 外附件组解释层 '+boot.externalGroupBindings;
+      if(boot.countSemanticsVersion==='whole-continuous-total-v1')$('version').textContent+=' · '+boot.countSemanticsVersion;
+      if(boot.curveCountRestoration)$('version').textContent+=' · 曲组恢复 '+boot.curveCountRestoration;
       $('stats').textContent=`普通字符 ${num(c.ordinary)} · 有细分路径 ${num(c.withPaths)} · 仅第一位 ${num(boot.queueCounts.first)} · 路径 ${num(c.paths)} · 四键最大候选 ${num(c.prefixDistribution['4'].maximumCandidates)}`;
-      $('provenance').innerHTML=`<p>独立全量：${esc(boot.id)}</p><p>索引 SHA-256：${esc(boot.sha256)}</p><p>现行部署配置（未改动）：${esc(JSON.stringify(boot.deployed))}</p><p>键义接受、检测几何证据、逐字查找习惯确认是三个不同层次。机器提出路径不等于逐字确认。b 双环、z 连接横笔组均为独立试验。</p><p>第三位选对象，第四位描述同一个对象。交点观察窗口不编码尺寸；线的方向与构件组排列分别解释。圆／方保留尺寸系列；星形主体不加尺寸路径。</p><p>大重码六组专项几何证据来源：${esc(boot.auditVersion)}。其他组没有同等级专项复核，不自动标成证据成立。</p>`;
+      $('provenance').innerHTML=`<p>独立全量：${esc(boot.id)}</p><p>索引 SHA-256：${esc(boot.sha256)}</p><p>现行部署配置（未改动）：${esc(JSON.stringify(boot.deployed))}</p><p>键义接受、检测几何证据、逐字查找习惯确认是三个不同层次。机器提出路径不等于逐字确认。第二位 b 表示双环，第三位 z 表示连接横笔组；其独立试验状态以各键说明为准。当前第一位 b 表示图案／标识，与第二位 b 分开解释。</p><p>第三位选对象，第四位描述同一个对象。交点观察窗口不编码尺寸；线的方向与构件组排列分别解释。圆／方保留尺寸系列；星形主体不加尺寸路径。</p><p>大重码六组专项几何证据来源：${esc(boot.auditVersion)}。其他组没有同等级专项复核，不自动标成证据成立。</p>`;
       $('samples').innerHTML=[['○●','空心／实心圆'],['□■','空心／实心方'],['☆★','星形填充'],['∥=','线组排列'],['∴∵','点组朝向'],['QO','圆环／尾笔','Q'],['D','主体／构件','D'],['T','分叉／误钩'],['EF','连接横笔数量','EF'],['B𐎊•▪◾','双入口边界']].map(([chars,label,proof])=>`<button data-sample="${esc(chars)}" ${proof?'data-proof="'+proof+'"':''}>${esc(chars)} · ${label}</button>`).join('');
       renderCoverageQueues();
       $('majorGroups').innerHTML=['chvc','mdez','ajvg','cxvc','iocv','crvg','chzt','chzb'].map(code=>`<button data-prefix="${code}">${code}</button>`).join('');
@@ -342,6 +442,8 @@
       renderChvc();
       renderThick();
       allocationControls();
+      if(boot.jointBCBindings){const notice='<div class="jointBCNotice"><h2>七条联合BC已采用 · 仅8／ộ／Đ／𝔻</h2><p>8 eesw/eeci；ộ ifgb/ifmg；Đ inmt；𝔻 iegt/iezv。BC共同确定对象，D保持上／纵向／两个／正置／三个／大。六条旧规范路已替换，详情可显式兼容。下方v10结构统计为冻结来源；当前有效规范路径以查询和详情为准。不是全库选择器完成。</p></div>';for(const n of [1,2,3,4])$('structureRound'+n).insertAdjacentHTML('afterbegin',notice);}
+      if(boot.jointCountBindings){const message='<div class="jointCountNotice"><h2>六字计数组合已采用</h2><p>O/D/T/E/Ψ/7：13旧关系换11新关系（10个新字符串），数量D及原首选保持。na/nc/nm是仅直／仅曲／混合整字连续组；qa/qb/qg是整字角／三叉／四叉点集合。旧码仅显式兼容，不是大规模试验已部署。边界：B排除ec、ȱ短横点排除fm，本批未给ȱ派fg码。</p></div>';for(const n of [1,2,3,4])$('structureRound'+n).insertAdjacentHTML('afterbegin',message);}
       restoreLocation();
     } catch(error) { $('version').textContent='独立版未能读取，不显示旧版替代数据。'; fail(error); }
   })();

@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Unicode 音型输入法 · 从字符到自己的编码</title>
+<meta name="description" content="个人做的 Rime / 网页编辑器项目：管理 159,345 个字符的机器初编码，持续人工核对。区块、全形、收藏三套码本；本页采用早期编辑器快照。">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5/900.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/barlow-condensed@5/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/barlow-condensed@5/600.css">
+<style>
+  :root{
+    --bg:#0A0B0B; --ink:#ECE9E2; --dim:#7C8079; --line:#232528; --acc:#C9F24E;
+    --paper:#E9E5DA;
+    --pad:20px; --gap-s:24px; --gap-m:56px; --gap-l:96px;
+    --fs-body:15px; --fs-meta:13px; --fs-h2:38px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"Noto Sans SC",-apple-system,"Segoe UI",sans-serif;
+    font-size:var(--fs-body); line-height:1.75;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{background:var(--acc);color:#0A0B0B}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .num{font-family:"Barlow Condensed","Segoe UI",sans-serif;font-weight:500;font-variant-numeric:tabular-nums}
+  h2{font-size:var(--fs-h2);font-weight:900;line-height:1.22;letter-spacing:-.01em}
+  .dim{color:var(--dim)}
+  .lead{font-size:16px;line-height:1.8;color:#CFCCC4}
+  .rule{height:1px;background:var(--line);transform-origin:left}
+
+  /* ---------- 首屏 ---------- */
+  .hero{min-height:100svh;display:flex;flex-direction:column;padding:20px var(--pad) 26px}
+  .hero-top{display:flex;justify-content:space-between;align-items:baseline;
+    font-size:13px;letter-spacing:.08em;color:var(--dim)}
+  .hero-mid{flex:1;display:flex;flex-direction:column;margin-top:26px}
+  .kicker{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;font-size:19px;font-weight:500;letter-spacing:.01em}
+  .kicker s{text-decoration:none;font-size:var(--fs-meta);color:var(--dim);letter-spacing:.04em}
+  .hero-num{margin-top:12px;font-size:clamp(84px,23vw,96px);line-height:.84;letter-spacing:-.025em;color:#FFFDF6}
+  .claim{font-size:21px;font-weight:500;line-height:1.52;margin-top:16px}
+  .claim u{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
+  .hero-sub{margin-top:16px;font-size:13.5px;line-height:1.85;color:#9A9E97;max-width:30em}
+  .spec{margin-top:32px;border-top:1px solid var(--line)}
+  .spec-row{display:flex;justify-content:space-between;align-items:baseline;
+    padding:12px 0;border-bottom:1px solid var(--line)}
+  .spec-row span{font-size:var(--fs-meta);color:var(--dim);letter-spacing:.03em}
+  .spec-row b{font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:24px;letter-spacing:.01em}
+  .hero-bot{margin-top:auto;padding-top:26px}
+  .demo-row{display:flex;align-items:center;gap:13px}
+  .demo-key{font-family:"Barlow Condensed",sans-serif;font-weight:500;font-size:42px;line-height:1;color:var(--ink)}
+  .demo-arrow{width:22px;height:1px;background:var(--line);flex:none}
+  .rings{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+  .rings i{font-style:normal;font-size:18px;line-height:1;color:#8B908A}
+  .rings i:nth-child(3){color:var(--ink);font-size:25px}
+  .demo-cap{margin-top:12px;font-size:var(--fs-meta);color:var(--dim);letter-spacing:.02em}
+  .cta{display:flex;align-items:center;justify-content:space-between;gap:12px;
+    margin-top:var(--gap-s);background:var(--acc);color:#0A0B0B;
+    font-size:15px;font-weight:500;padding:15px 18px;transition:transform .16s ease, background .16s ease}
+  .cta:active{transform:translateY(1px);background:#D6FF5C}
+  .cta span{font-size:16px}
+
+  /* ---------- 滚动点亮 ---------- */
+  .moment{position:relative;height:212svh}
+  .mstage{position:sticky;top:0;min-height:100svh;display:flex;flex-direction:column;
+    justify-content:center;padding:var(--gap-s) var(--pad);overflow:hidden}
+  .mstage h2{font-size:30px;max-width:22em}
+  .mcount{display:flex;align-items:baseline;gap:8px;margin-top:var(--gap-s)}
+  .mcount b{font-family:"Barlow Condensed",sans-serif;font-weight:500;font-size:46px;line-height:1;color:var(--acc)}
+  .mcount i{font-style:normal;font-size:var(--fs-meta);color:var(--dim);letter-spacing:.06em}
+  .mgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:16px}
+  .mcell{aspect-ratio:1;display:grid;place-items:center;font-size:25px;line-height:1;
+    color:var(--ink);opacity:.075}
+  .mgrid .mcell:nth-child(n+37){display:none}
+  .mnote{margin-top:14px;font-size:13px;color:#8E938C;letter-spacing:.04em}
+  .mtext{margin-top:20px;font-size:13.5px;line-height:1.85;color:#9A9E97;max-width:32em}
+
+  /* ---------- 截图（解剖） ---------- */
+  .shot{padding:8px 0 var(--gap-l)}
+  .shot-bridge{padding:0 var(--pad);font-size:14px;color:#9A9E97;line-height:1.8;max-width:28em}
+  .shot-band,.shot-pair{margin-top:var(--gap-s)}
+  .shot-band img{width:100%;height:auto;border:1px solid #2B2E2C;background:#F7F6F2}
+  .shot-band figcaption{margin-top:10px;font-size:var(--fs-meta);color:var(--dim);line-height:1.8;max-width:38em}
+  .shot-band figcaption b{color:#CFCCC4;font-weight:500;margin-right:6px}
+  .shot-pair{margin-top:var(--gap-m)}
+  .shot-specimen img{width:100%;max-width:340px;height:auto;border:1px solid #2B2E2C;background:#F7F6F2}
+  .shot-note{margin-top:22px}
+  .shot-note b{display:block;font-size:15px;font-weight:500;color:#ECE9E2}
+  .shot-note p{margin-top:12px;font-size:13.5px;line-height:1.9;color:#9A9E97;max-width:30em}
+  .shot-note em{font-style:normal;border-bottom:1px solid #909589;padding-bottom:1px;color:#CFCCC4}
+  .shot-more{padding:0 var(--pad);margin-top:24px;font-size:var(--fs-meta);color:#9A9E97}
+  .shot-more a{border-bottom:1px solid #4A4F49;padding-bottom:2px}
+
+  /* ---------- 三套码本 ---------- */
+  .books{padding:0 var(--pad) var(--gap-l)}
+  .books h2{margin-bottom:var(--gap-s)}
+  .brow{display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:baseline;
+    padding:22px 0;border-top:1px solid var(--line)}
+  .brow:last-child{border-bottom:1px solid var(--line)}
+  .brow .bt{font-size:17px;font-weight:500}
+  .brow .bt s{text-decoration:none;color:var(--dim);font-weight:400;font-size:var(--fs-meta);margin-right:10px;letter-spacing:.08em}
+  .brow .bv{font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:30px;line-height:1;color:#FFFDF6;text-align:right}
+  .brow .bx{grid-column:1/-1;font-size:13.5px;line-height:1.8;color:#9A9E97;margin-top:8px}
+  .brow .bx u{text-decoration:none;border-bottom:1px solid #909589;padding-bottom:1px}
+
+  /* ---------- 676 矩阵 ---------- */
+  .pairs{padding:var(--gap-l) var(--pad);background:var(--paper);color:#14150F}
+  .pairs h2{font-size:32px;color:#14150F}
+  .pairs .lead{margin-top:16px;font-size:14px;color:#4A4638}
+  .pmatrix{display:grid;grid-template-columns:repeat(26,1fr);gap:2px;margin-top:var(--gap-m)}
+  .pcell{height:9px;background:#D5D0BF}
+  .pcell.s{background:#BFB9A6}
+  .pcell.k{background:#14150F}
+  .pcell.o{background:#7C8A3A}
+  .plegend{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px;color:#6B6555}
+  .plegend code{font-family:"Barlow Condensed",sans-serif;font-size:13px;letter-spacing:.06em;color:#14150F;margin-right:6px}
+  .pnote{margin-top:14px;font-size:13px;color:#6B6555}
+
+  /* ---------- 人工确认 ---------- */
+  .review{padding:var(--gap-l) var(--pad)}
+  .review h2{max-width:20em}
+  .review .lead{margin-top:16px;font-size:14px;color:#9A9E97}
+  .rstats{display:flex;gap:28px;margin-top:var(--gap-s);border-top:1px solid var(--line);padding-top:20px;flex-wrap:wrap}
+  .rstat b{display:block;font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:34px;line-height:1;color:#FFFDF6}
+  .rstat span{display:block;margin-top:6px;font-size:13px;color:var(--dim);letter-spacing:.03em}
+  .batches{display:flex;gap:6px;margin-top:var(--gap-s);align-items:center;flex-wrap:wrap}
+  .batches em{font-style:normal;font-family:"Barlow Condensed",sans-serif;font-size:15px;letter-spacing:.06em;
+    padding:3px 9px;border:1px solid #3A3F39;color:#CFCCC4}
+  .batches em.t{border-style:dashed;color:#909589}
+  .batches span{font-size:13px;color:var(--dim);margin-left:6px}
+
+  /* ---------- 手机 ---------- */
+  .mobile{padding:var(--gap-l) var(--pad)}
+  .mobile h2{max-width:18em}
+  .mobile .lead{margin-top:16px;font-size:14px;color:#9A9E97}
+  .phones{display:flex;flex-direction:column;gap:var(--gap-s);margin-top:var(--gap-s)}
+  .phone img{width:100%;height:auto;border:1px solid var(--line)}
+  .phone figcaption{margin-top:9px;font-size:13px;color:var(--dim);letter-spacing:.03em}
+
+  /* ---------- 键盘 ---------- */
+  .keys{padding:var(--gap-l) 0 var(--gap-l)}
+  .keys-head{padding:0 var(--pad)}
+  .keys-head h2{margin-top:0}
+  .keys-head .lead{margin-top:16px;font-size:14px;color:#9A9E97}
+  .keys-img{margin-top:var(--gap-s)}
+  .keys-img img{width:100%;height:auto}
+  .keys-cap{padding:12px var(--pad) 0;font-size:var(--fs-meta);color:var(--dim);line-height:1.8}
+  .shift{display:flex;gap:10px;margin-top:var(--gap-s);padding:0 var(--pad)}
+  .keycap{border:1px solid #3A3F39;padding:7px 12px;font-size:13px;letter-spacing:.1em;color:#CFCCC4}
+
+  /* ---------- 页尾 ---------- */
+  .go{padding:var(--gap-l) var(--pad) 44px;border-top:1px solid var(--line)}
+  .go h2{font-size:30px}
+  .go-lead{margin-top:14px;font-size:13.5px;color:#9A9E97;max-width:26em}
+  .go-main{display:flex;align-items:center;justify-content:space-between;gap:14px;
+    background:var(--acc);color:#0A0B0B;padding:17px 18px;margin-top:var(--gap-s);font-size:16px;font-weight:500}
+  .go-main:active{background:#D6FF5C}
+  .go-main small{display:block;font-size:13px;font-weight:400;opacity:.66;margin-top:2px;letter-spacing:.02em}
+  .go-sub{margin-top:8px}
+  .go-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+    padding:15px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .go-row s{display:block;text-decoration:none;font-size:13px;color:var(--dim);margin-top:3px}
+  .go-row i{font-style:normal;font-size:13px;color:var(--dim);white-space:nowrap}
+  .go-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;margin-top:var(--gap-m)}
+  .go-foot p{font-size:13px;line-height:1.9;color:var(--dim);max-width:18em}
+  .dl-qr{width:136px;height:136px}
+
+  /* 灯箱 */
+  .lb{position:fixed;inset:0;z-index:99;background:rgba(6,7,6,.96);display:none;overflow:auto}
+  .lb.on{display:block}
+  .lb img{width:1425px;max-width:none;height:auto}
+  .lb-close{position:fixed;top:14px;right:14px;z-index:100;width:44px;height:44px;
+    place-items:center;font-size:20px;color:#ECE9E2;background:rgba(0,0,0,.6);
+    border:1px solid #3A3F39;cursor:pointer;display:none}
+  .lb.on .lb-close{display:grid}
+
+  /* ---------- 宽屏 ---------- */
+  @media (min-width:900px){
+    :root{--pad:56px;--gap-m:72px;--gap-l:140px;--fs-h2:52px;--fs-body:16px}
+    .hero,.books,.review,.mobile,.keys-head,.keys-cap,.go,.shot-bridge,.shot-more{max-width:1360px;margin-left:auto;margin-right:auto}
+
+    .hero{min-height:100svh;padding:34px 56px 36px}
+    .hero-mid{display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(40px,6vw,96px);align-items:start;margin-top:56px}
+    .kicker{font-size:22px}
+    .hero-num{font-size:clamp(120px,12.2vw,190px);margin-top:18px}
+    .claim{font-size:25px}
+    .hero-sub{font-size:14.5px;margin-top:24px;max-width:26em}
+    .spec{margin-top:0}
+    .hero-bot{margin-top:auto;border-top:1px solid var(--line);padding-top:22px;
+      display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+    .demo-key{font-size:52px}
+    .cta{margin-top:0;min-width:290px;justify-content:center;gap:22px}
+    .mstage{padding:48px 56px;max-width:1360px;margin:0 auto;width:100%}
+    .mstage h2{font-size:46px}
+    .mhead-row{display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:start}
+    .mtext{margin-top:26px;font-size:14.5px}
+    .mgrid{grid-template-columns:repeat(8,1fr);gap:12px;max-width:620px}
+    .mcell{font-size:34px}
+    .mgrid .mcell:nth-child(n+37){display:grid}
+    .mgrid .mcell:nth-child(n+49){display:none}
+    .mcount b{font-size:64px}
+    .shot{padding:20px 56px var(--gap-l);max-width:1360px;margin:0 auto}
+    .shot-bridge,.shot-more{padding:0}
+    .shot-band{margin-top:44px}
+    .shot-pair{display:grid;grid-template-columns:340px 1fr;gap:64px;align-items:start;margin-top:var(--gap-m)}
+    .shot-note{margin-top:0;padding-top:6px}
+    .shot-note p{font-size:14px;max-width:34em}
+    .books{padding:0 56px var(--gap-l)}
+    .brow{grid-template-columns:96px 1fr auto;gap:6px 32px;padding:26px 0}
+    .brow .bt{font-size:20px}
+    .brow .bx{grid-column:2/3;max-width:52em;font-size:14px;margin-top:6px}
+    .brow .bv{grid-column:3/4;grid-row:1/3;font-size:46px;align-self:center}
+    .pairs{padding:var(--gap-l) 56px}
+    .pairs-in{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:20px 80px;align-items:end}
+    .pairs h2{font-size:46px}
+    .pairs .lead{margin-top:0}
+    .pmatrix{grid-column:1/-1;margin-top:52px;gap:3px}
+    .pcell{height:20px}
+    .plegend{grid-column:1/-1;gap:8px 34px}
+    .pnote{grid-column:1/-1}
+    .review{padding:var(--gap-l) 56px}
+    .review-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+    .review h2{font-size:46px}
+    .mobile{padding:var(--gap-l) 56px}
+    .phones{flex-direction:row;gap:32px}
+    .phone{flex:1}
+    .mobile h2{font-size:46px}
+    .keys{padding:var(--gap-l) 0}
+    .keys-head{padding:0 56px}
+    .keys-body{max-width:1360px;margin:var(--gap-s) auto 0;padding:0 56px;
+      display:grid;grid-template-columns:1.35fr 1fr;gap:64px;align-items:center}
+    .keys-img{margin-top:0}
+    .keys-cap{padding:0}
+    .shift{margin-top:var(--gap-s);padding:0}
+    .go{padding:var(--gap-l) 56px 56px}
+    .go h2{font-size:46px}
+    .go-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+    .go-foot{margin-top:0;justify-content:flex-start}
+    .dl-qr{width:152px;height:152px}
+  }
+</style>
+</head>
+<body>
+<nav aria-label="宣传页版本" style="padding:12px 20px;background:#151817;color:#e9e5da;font:14px/1.8 sans-serif;border-bottom:1px solid #343831"><a href="index.html" style="color:inherit;margin-right:18px">项目介绍 A</a><a href="宣传页-B-字符墙.html" style="color:inherit;margin-right:18px">字符墙 B</a><a href="宣传页-C-候选面板.html" style="color:inherit">候选演示 C</a><span style="display:block;color:#b9bdb5;font-size:12px">2026-10-25 采纳版 · 图片及数字为早期编辑器快照；分类、确认与部署状态以项目现行记录为准。</span></nav>
+
+<!-- 首屏 -->
+<header class="hero">
+  <div class="hero-top">
+    <span>个人项目 · 2026</span>
+    <span>项目展示 · 持续研究</span>
+  </div>
+
+  <div class="hero-mid">
+    <div>
+      <p class="kicker">Unicode 音型输入法</p>
+      <div class="hero-num num" id="heroNum">159,345</div>
+      <p class="claim">个字符的<u>机器初编码</u>。<br>人工持续核对，不等于全部确认。</p>
+      <p class="hero-sub">区块、全形、收藏三套码本各管一件事；机器排初稿，人工逐字过。它能打进小狼毫，也能在浏览器里改。</p>
+    </div>
+
+    <div class="spec">
+      <div class="spec-row"><span>早期快照 · 非汉字唯一码</span><b class="num">56,347</b></div>
+      <div class="spec-row"><span>早期快照 · 区块／前缀</span><b class="num">323 / 360</b></div>
+      <div class="spec-row"><span>早期快照 · 人工确认</span><b class="num">965</b></div>
+    </div>
+  </div>
+
+  <div class="hero-bot">
+    <div class="demo">
+      <div class="demo-row">
+        <span class="demo-key">oe</span>
+        <span class="demo-arrow"></span>
+        <span class="rings" id="rings"><i>○</i><i>◯</i><i>◉</i><i>⌾</i><i>⦿</i><i>◎</i><i>◌</i></span>
+      </div>
+      <p class="demo-cap">历史全形示例 · 两字母形族，截图记录 495 候选</p>
+    </div>
+    <a class="cta" href="#go">进去敲一下就懂了<span>↓</span></a>
+  </div>
+</header>
+
+<!-- 跟着滚动点亮 -->
+<section class="moment" id="moment">
+  <div class="mstage">
+    <div class="mhead-row">
+      <div>
+        <h2>早期形族 oe，<br>不只对应一个字，<br>截图中有 495 个。</h2>
+        <p class="mtext">它们分别来自基本拉丁、西里尔、希腊、希伯来、阿拉伯、古木基、阿拉伯扩展 A……本来不该被放在一起的字，因为形状被归回了同一族：有没有内圈、填到几成、缺口朝哪。</p>
+      </div>
+      <div>
+        <div class="mcount"><b id="mcount">0</b><i>/ 495 候选</i></div>
+        <div class="mgrid" id="mgrid"></div>
+        <p class="mnote">页面展示 48 个位置；495 为早期截图统计</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 解剖：两处特写 -->
+<section class="shot">
+  <p class="shot-bridge">上面那一屏，在编辑器里是这样算出来的。</p>
+
+  <figure class="shot-band">
+    <img src="assets/detail-input.png" alt="编辑器顶部：输入 oe 后显示 495 候选，旁边是 56,347 非汉字、360/676 前缀等当时统计" loading="lazy" width="700" height="150">
+    <figcaption><b>顶上这一行是早期编辑器的快照</b> 56,347 个非汉字，360 / 676 个前缀，316 个还没分配；下一行敲 oe，出来 495 个候选。</figcaption>
+  </figure>
+
+  <div class="shot-pair">
+    <figure class="shot-specimen">
+      <img src="assets/detail-panel.png" alt="右侧详情：U+25CB 的固定来源、区块码 gskk、全形码 oe、第一位圆环、第二位空心低填充" loading="lazy" width="325" height="445">
+    </figure>
+    <div class="shot-note">
+      <b>一个字的全部交代</b>
+      <p>U+25CB 这个圆，来自平面 0 的 Geometric Shapes，区块码 <em>gskk</em>。</p>
+      <p>全形码定的是 <em>oe</em>：第一位「圆环」，第二位「空心低填充」，后两位留空——因为还没有轮到这个字被人工核对。下面那行小字写着它该用哪个字体显示，缺字时用哪个兜底。</p>
+    </div>
+  </div>
+
+  <p class="shot-more"><a href="#" class="shot-open" id="shotOpen">看整张编辑器截图 →</a></p>
+</section>
+
+<!-- 三套码本 -->
+<section class="books">
+  <h2>三套码本，<br>各管一件事。</h2>
+
+  <div class="brow">
+    <div class="bt"><s>01</s>区块</div>
+    <div class="bv num">56,347</div>
+    <p class="bx">平面 → 区块 → 两位前缀 → 区块专属的后两位。全部 56,347 个非汉字符号都有唯一四码；323 个区块用掉 360 个前缀，不同区块不共用同一个前缀。</p>
+  </div>
+
+  <div class="brow">
+    <div class="bt"><s>02</s>全形</div>
+    <div class="bv num">2,761</div>
+    <p class="bx">第一位是主形，第二位是状态。<u>oe</u> 能跨区块检索。早期快照有 2,761 个粗分类建议，其余字符进未分类队列，逐字选主形、状态和参考字体，再确认。</p>
+  </div>
+
+  <div class="brow">
+    <div class="bt"><s>03</s>收藏</div>
+    <div class="bv num">676</div>
+    <p class="bx">每个字符可以有多个 2～4 字母的私人别名，改它不会动前两套码。676 个双字母格子里，一枚可以只属于你——比如 <u>oe</u> 就是「圆、空心、低填充」。</p>
+  </div>
+</section>
+
+<!-- 676 矩阵 -->
+<section class="pairs">
+  <div class="pairs-in">
+    <h2>oe 不是<br>o 加 e。</h2>
+    <p class="lead">26 个字母、676 个双字母组合，都可以有自己的感觉，不必机械继承两个单字母的含义。这是整套东西里唯一没交给算法的部分：它得我自己觉得对。</p>
+    <div class="pmatrix" id="pmatrix" aria-hidden="true"></div>
+    <div class="plegend">
+      <span><code>oe</code>圆环 · 空心低填充（全形两位）</span>
+      <span><code>jj jn jw jx</code>埃及象形 1,072 字的前缀</span>
+      <span><code>mv mu mn mw</code>楔形文字 922 字的前缀</span>
+    </div>
+    <p class="pnote">26 × 26，每格一个双字母组合；深色是上面点到的位置。</p>
+  </div>
+</section>
+
+<!-- 人工确认 -->
+<section class="review">
+  <div class="review-inner">
+    <div>
+      <h2>机器给了初稿，<br>我不认。</h2>
+      <p class="lead">工具先按粗形族和均衡序位，给 159,345 个字符排出初稿。但初稿不是规则：只有逐字过审的才进正式码表，机器建议不自动分配前两键，也不自动发布到小狼毫。</p>
+    </div>
+    <div>
+      <div class="rstats">
+        <div class="rstat"><b class="num">965</b><span>项归属已确认</span></div>
+        <div class="rstat"><b class="num">14</b><span>个字符有实体页</span></div>
+        <div class="rstat"><b class="num">2</b><span>批仍只是试验</span></div>
+      </div>
+      <div class="batches" id="batches">
+        <em>01</em><em>02</em><em>03</em><em>05</em><em>06</em>
+        <em class="t">04</em><em class="t">07</em>
+        <span>虚线两批是试验，不进查询</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 手机 -->
+<section class="mobile">
+  <h2>手机上，<br>还是这三套码。</h2>
+  <p class="lead">触屏编辑器把三套码本原样搬进手机，配同文 Trime 用：区块、全形、收藏、自由拼排、手机键位、草稿与发布。触屏编辑器与同文部署分别验收；具体版本和可用范围以 Android 工程说明为准。</p>
+  <div class="phones">
+    <figure class="phone">
+      <img src="assets/phone-keyboard.png" alt="手机端键位配置：QWERTY 三模式，把字符标到键上" loading="lazy" width="482" height="681">
+      <figcaption>手机键位 · 把字符标在键上，点键看义</figcaption>
+    </figure>
+    <figure class="phone">
+      <img src="assets/phone-pair.png" alt="手机端自由拼排：把符号摆在一起" loading="lazy" width="250" height="596">
+      <figcaption>自由拼排 · 把几个符号摆成一个取用盘</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 键盘 -->
+<section class="keys">
+  <div class="keys-head">
+    <h2>也可以长在<br>你自己的键盘上。</h2>
+    <p class="lead">键位工作台按你的实体键盘排布（这里是 MK68-Colemak），点一个键，写它要出的字符和键义。标注只改显示，不改这张键盘的输入。</p>
+  </div>
+  <div class="keys-body">
+    <div>
+      <div class="keys-img">
+        <img src="assets/keyboard-keys.png" alt="键位工作台：MK68-Colemak 键盘上，F 键被标成 U+2C2D" loading="lazy" width="745" height="225">
+      </div>
+      <p class="keys-cap">F 键上标着 U+2C2D 这个字符。左 Shift 在 区块 → 全形 → 收藏 → 混合 之间切，右 Shift 切中英，切换时正在打的码不丢。</p>
+    </div>
+    <div>
+      <p class="lead" style="font-size:14px">普通中文仍然交给小鹤音形，这里只管 Unicode 符号。多音字保留多个有效四码，部首、笔画、注音、标点各有自己的区块，不抢中文的位置。</p>
+      <div class="shift">
+        <span class="keycap">L-SHIFT 换层</span>
+        <span class="keycap">R-SHIFT 中英</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 页尾导流 -->
+<footer class="go" id="go">
+  <h2>去敲一下。</h2>
+  <p class="go-lead">在线编辑器在浏览器里就能改码，不用装东西。手机上装的是同文 Trime 那一版。</p>
+
+  <a class="go-main" href="https://amd-fedor.tail73cba1.ts.net/unicode-editor/" target="_blank" rel="noopener">
+    <span>打开在线编辑器<small>受限入口；本次未检查在线状态或访问权限</small></span>
+    <span>→</span>
+  </a>
+
+  <div class="go-sub">
+    <div class="go-row">
+      <div>Android 触屏编辑器<s>安装与部署请按项目现行说明</s></div>
+      <i>APK + 同文部署包</i>
+    </div>
+    <div class="go-row">
+      <div>使用与反馈<s>当前通过项目协作渠道联系</s></div>
+      <i>本地展示版</i>
+    </div>
+  </div>
+
+  <div class="go-foot">
+    <p>一个持续研究和使用的个人输入法，慢慢填。让常用键盘难以直接输入的字符有自己的入口，还没填完。</p>
+    <span style="font-size:12px;line-height:1.7;color:inherit">本地项目展示版<br>未公开发布</span>
+  </div>
+</footer>
+
+<div class="lb" id="lb"><div class="lb-close" id="lbClose">×</div><img src="assets/editor-fullform.jpg" alt="编辑器全形模式整张截图"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 整张截图灯箱 */
+  var lb = document.getElementById('lb');
+  document.getElementById('shotOpen').addEventListener('click', function(e){
+    e.preventDefault(); lb.classList.add('on'); document.body.style.overflow = 'hidden';
+  });
+  lb.addEventListener('click', function(){ lb.classList.remove('on'); document.body.style.overflow = ''; });
+
+  /* 滚动点亮：48 个圆 */
+  var pool = ['○','◯','◉','◌','◍','◎','⦿','⦾','⊙','⊚','⊛','⌾','⍟','⨀','⨁','⨂','◐','◑','◒','◓','◔','◕','⬤','Ꙩ','〇','●','◯','○'];
+  var grid = document.getElementById('mgrid');
+  var cells = [];
+  for (var i = 0; i < 48; i++){
+    var s = document.createElement('span');
+    s.className = 'mcell';
+    s.textContent = pool[i % pool.length];
+    grid.appendChild(s); cells.push(s);
+  }
+
+  /* 26×26 双字母矩阵 */
+  var mtx = document.getElementById('pmatrix');
+  var nodes = [];
+  for (var r = 0; r < 26; r++){
+    for (var c = 0; c < 26; c++){
+      var d = document.createElement('i');
+      d.className = 'pcell';
+      mtx.appendChild(d);
+      nodes.push({el:d, r:r, c:c});
+    }
+  }
+  var lit = { 'oe':1, 'jj':1, 'jn':1, 'jw':1, 'jx':1, 'mv':1, 'mu':1, 'mn':1, 'mw':1 };
+  nodes.forEach(function(n){
+    var code = String.fromCharCode(97 + n.r) + String.fromCharCode(97 + n.c);
+    if (lit[code]) n.el.classList.add(code === 'oe' ? 'k' : 'o');
+    else if ((n.r * 7 + n.c * 13) % 11 === 0) n.el.classList.add('s');
+  });
+
+  if (reduce || !window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  var hl = gsap.timeline({ defaults:{ ease:'power3.out' } });
+  hl.from('.hero-top', { opacity:0, duration:.5 })
+    .from('.kicker', { y:10, opacity:0, duration:.5 }, .05)
+    .from('.hero-num', { y:26, opacity:0, duration:.7 }, .12)
+    .from('.claim', { y:14, opacity:0, duration:.55 }, .3)
+    .from('.spec-row', { x:-10, opacity:0, duration:.4, stagger:.07 }, .45)
+    .from('.rings i', { scale:.4, opacity:0, duration:.35, stagger:.05, ease:'back.out(2)' }, .62)
+    .from('.hero-bot', { opacity:0, duration:.5 }, .8);
+
+  var counter = { v: 0 };
+  var label = document.getElementById('mcount');
+  gsap.timeline({ scrollTrigger:{ trigger:'.moment', start:'top top', end:'bottom bottom', scrub:1 } })
+    .to(cells, { opacity:1, duration:.5, stagger:{ each:.055, from:'start' }, ease:'none' }, 0)
+    .to(counter, { v:495, duration:1, ease:'none', onUpdate:function(){ label.textContent = Math.round(counter.v); } }, 0)
+    .fromTo('.mcount', { opacity:.4 }, { opacity:1, duration:.4 }, 0);
+
+  gsap.from('.shot-band', {
+    clipPath:'inset(0% 0% 100% 0%)', duration:.85, ease:'power2.inOut',
+    scrollTrigger:{ trigger:'.shot-band', start:'top 100%' }
+  });
+  gsap.from('.shot-specimen', {
+    x:-20, opacity:0, duration:.7,
+    scrollTrigger:{ trigger:'.shot-pair', start:'top 100%' }
+  });
+
+  gsap.from('.books h2', { y:26, opacity:0, duration:.65,
+    scrollTrigger:{ trigger:'.books', start:'top 100%' } });
+  gsap.utils.toArray('.brow').forEach(function(row, i){
+    gsap.from(row, {
+      x:-14, opacity:0, duration:.5, delay:i * .06,
+      scrollTrigger:{ trigger:row, start:'top 100%' }
+    });
+  });
+
+  gsap.from('.pairs h2', { y:22, opacity:0, duration:.6,
+    scrollTrigger:{ trigger:'.pairs', start:'top 100%' } });
+  gsap.from('.pcell.s, .pcell.o, .pcell.k', {
+    opacity:0, duration:.45, stagger:{ each:.012, from:'random' },
+    scrollTrigger:{ trigger:'.pmatrix', start:'top 100%' }
+  });
+
+  gsap.from('.review h2', { y:24, opacity:0, duration:.6,
+    scrollTrigger:{ trigger:'.review', start:'top 100%' } });
+  gsap.from('.rstat', { y:12, opacity:0, duration:.45, stagger:.09,
+    scrollTrigger:{ trigger:'.rstats', start:'top 100%' } });
+  gsap.from('.batches em', { opacity:0, duration:.3, stagger:.04,
+    scrollTrigger:{ trigger:'.batches', start:'top 100%' } });
+
+  gsap.from('.phone', { scale:.965, opacity:0, duration:.7, stagger:.1,
+    scrollTrigger:{ trigger:'.phones', start:'top 100%' } });
+
+  gsap.from('.keys-img', { clipPath:'inset(0% 100% 0% 0%)', duration:.8,
+    scrollTrigger:{ trigger:'.keys', start:'top 100%' } });
+
+  gsap.from('.go-main', { y:14, opacity:0, duration:.45,
+    scrollTrigger:{ trigger:'.go', start:'top 100%' } });
+})();
+</script>
+</body>
+</html>
