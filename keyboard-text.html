@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>v7-A1 文字说明动态键盘 · 个人 Unicode 输入法原型</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body data-keyboard-mode="text">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-badge">版本 1 · 文字说明版</span>
+      <h1>v7-A1 动态规则键盘（手机 QWERTY 调试台）</h1>
+    </div>
+    <nav class="nav-links">
+      <a class="nav-pill" href="index.html">总览与设计</a>
+      <a class="nav-pill active" href="keyboard-text.html">文字说明键盘</a>
+      <a class="nav-pill" href="keyboard-symbol.html">纯符号动态键盘</a>
+      <button type="button" id="themeBtn">☀ 浅色主题</button>
+    </nav>
+  </header>
+
+  <main class="studio">
+    <section class="phone-shell" aria-label="仿真手机输入法调试框">
+      <div class="phone-status">
+        <span class="mode-chip" id="modeChip"></span>
+        <div class="toggle-bar">
+          <span class="brand-badge" id="orderChip">BCDA</span>
+          <label class="toggle-label"><input type="checkbox" id="toggleAlpha" checked>字母角标</label>
+          <label class="toggle-label"><input type="checkbox" id="toggleHoverHint" checked>悬停释义</label>
+        </div>
+      </div>
+
+      <div class="target-box">
+        <div class="target-head">
+          <span>模拟目标应用输入框（可直接用实体键盘或下方虚拟键输入）</span>
+          <div class="target-actions">
+            <button type="button" id="copyTextBtn">复制</button>
+            <button type="button" id="clearTextBtn">清空</button>
+          </div>
+        </div>
+        <textarea id="editorArea" placeholder="在此试打 Unicode 字符…"></textarea>
+        <div class="caret-info">
+          <span id="caretCode">U+—</span>
+          <span id="caretCount">总字符 0</span>
+        </div>
+      </div>
+
+      <div class="comp-bar">
+        <div class="comp-top">
+          <div class="slots" id="slots"></div>
+          <button type="button" id="resetSeqBtn" style="font-size:11px;padding:3px 8px">重置 Esc</button>
+        </div>
+        <div class="stage-desc">
+          <span id="stageDesc"></span>
+          <span id="matchTotal" style="font-family:var(--font-mono)"></span>
+        </div>
+      </div>
+
+      <div class="cand-panel">
+        <div class="cand-head">
+          <span id="candSummary"></span>
+          <div class="cand-head-btns">
+            <button type="button" id="toggleGroupBtn">G8 代表字聚合</button>
+            <button type="button" id="expandBtn">全铺 (Ctrl+Shift+E)</button>
+          </div>
+        </div>
+        <div class="cand-strip" id="candStrip"></div>
+      </div>
+
+      <div class="hover-readout" id="hoverReadout"></div>
+      <div class="vk-board" id="vkBoard"></div>
+
+      <div class="mode-menu" id="modeMenu" hidden>
+        <h4><span>模式菜单（Ctrl + `）</span><button type="button" id="closeMenuBtn" style="padding:2px 7px;font-size:11px">Esc 关闭</button></h4>
+        <div class="menu-grid">
+          <button type="button" data-layer="G"><strong>1 · 几何层 G</strong><br><span class="muted">29,092 字形规则</span></button>
+          <button type="button" data-layer="T"><strong>2 · 拟像层 T</strong><br><span class="muted">4,366 图标与象形</span></button>
+          <button type="button" data-layer="X"><strong>3 · 附标层 X</strong><br><span class="muted">2,269 组合记号</span></button>
+          <button type="button" data-layer="Z"><strong>4 · Z 保留位</strong><br><span class="muted">远期汉字与谚文</span></button>
+          <button type="button" data-order="BCDA"><strong>BCDA 顺序</strong><br><span class="muted">先规则后视觉</span></button>
+          <button type="button" data-order="ABCD"><strong>ABCD 顺序</strong><br><span class="muted">先视觉/大类后规则</span></button>
+          <button type="button" data-group="grouped"><strong>G8 聚合代表字</strong><br><span class="muted">半码每桶一代表</span></button>
+          <button type="button" data-group="flat"><strong>平铺全部候选</strong><br><span class="muted">半码直接平铺字符</span></button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="side-stack">
+      <section class="panel">
+        <h2><span>一键体验引导（亮灯带打 B → C → D → A）</span></h2>
+        <p class="muted" style="margin:0 0 8px;font-size:12px">点击任意目标字符，虚拟键盘会一步步高亮对应键位，直观体会四级跳转与同桶聚簇。</p>
+        <div class="guide-list" id="guideList"></div>
+      </section>
+
+      <section class="panel">
+        <h2><span>字符详情与编码拆解</span></h2>
+        <div class="inspect-box" id="inspectBox"></div>
+      </section>
+
+      <section class="panel">
+        <h2><span>反查（字符 / 码点 / 四码 / 中文关键词）</span></h2>
+        <div class="search-row">
+          <input type="search" id="searchInput" placeholder="例如：○、U+2197、PBK、箭头、双孔、🐱">
+        </div>
+        <div class="search-results" id="searchOut"></div>
+      </section>
+    </aside>
+  </main>
+
+  <script src="data/v7-a1/keymap-data.js"></script>
+  <script src="v7-symbol-map.js"></script>
+  <script src="v7-engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

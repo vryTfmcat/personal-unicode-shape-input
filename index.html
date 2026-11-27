@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>个人 Unicode 系统输入法 · v7-A1 设计与体验总览</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-badge">v7-A1 · 35,727 全域四键</span>
+      <h1>个人 Unicode 系统输入法 · 原型与设计台</h1>
+    </div>
+    <nav class="nav-links">
+      <a class="nav-pill active" href="index.html">总览与设计</a>
+      <a class="nav-pill" href="keyboard-text.html">版本 1：文字说明键盘</a>
+      <a class="nav-pill" href="keyboard-symbol.html">版本 2：纯符号动态键盘</a>
+      <button type="button" id="homeThemeBtn">☀ 浅色主题</button>
+    </nav>
+  </header>
+
+  <main class="page-wrap">
+    <section class="hero">
+      <h2>从规则浏览器到系统输入法：两个可交互体验版本</h2>
+      <p class="muted">
+        基于 <strong>v7-A1 全键位首版基线</strong>（几何 29,092 + 拟像图标 4,366 + 附标 2,269 = 35,727 字，<code>BCDA ↔ ABCD</code> 100% 可逆，预留 Z 汉字/谚文位），
+        在电脑上用<strong>模拟手机 QWERTY 虚拟键盘 + 实体键盘同步联动</strong>验证系统输入法的交互逻辑、候选窗双形态与动态换面机制。
+      </p>
+    </section>
+
+    <section class="cards-2">
+      <article class="card-box version-card">
+        <div>
+          <span class="brand-badge">版本 1 · 规则调试与学习</span>
+          <h3 style="margin-top:8px">文字说明动态键盘</h3>
+          <p class="muted">
+            直接对标「v7-A1 全键位交互浏览器」的规则树，但收束到真实的手机 26 键 QWERTY 布局。每个键帽清晰显示字母、中文键义简述与剩余字数；第 4 位视觉桶直接显示雪碧图代表字形。
+          </p>
+          <div class="mini-kbd-preview">
+            <div class="mini-cap"><strong>○</strong>圆椭圆</div>
+            <div class="mini-cap"><strong>∟</strong>折角</div>
+            <div class="mini-cap"><strong>⊂</strong>开弧</div>
+            <div class="mini-cap"><strong>△</strong>多边形</div>
+            <div class="mini-cap"><strong>→</strong>箭头</div>
+          </div>
+        </div>
+        <div>
+          <a class="nav-pill active" href="keyboard-text.html" style="display:inline-block;padding:9px 16px">进入文字说明键盘 →</a>
+        </div>
+      </article>
+
+      <article class="card-box version-card">
+        <div>
+          <span class="brand-badge">版本 2 · 零文字直觉验收</span>
+          <h3 style="margin-top:8px">纯 Unicode 符号动态键盘</h3>
+          <p class="muted">
+            键帽上<strong>只显示代表该规则含义的 Unicode 符号</strong>（默认隐藏字母与中文），按下 B → C → D → A 的每一位，整块键盘即时跳变为下一级对应符号或中心代表字形雪碧图。适合发给他人直接上手体验、验收符号直觉性。
+          </p>
+          <div class="mini-kbd-preview">
+            <div class="mini-cap"><strong>○</strong></div>
+            <div class="mini-cap"><strong>⬭</strong></div>
+            <div class="mini-cap"><strong>↗</strong></div>
+            <div class="mini-cap"><strong>◉</strong></div>
+            <div class="mini-cap"><strong>⊕</strong></div>
+          </div>
+        </div>
+        <div>
+          <a class="nav-pill active" href="keyboard-symbol.html" style="display:inline-block;padding:9px 16px">进入纯符号动态键盘 →</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="cards-3">
+      <article class="card-box">
+        <h3>1. 功能设计重点</h3>
+        <ul class="muted" style="padding-left:18px;margin:0">
+          <li><strong>三层 + 保留 + 英文直通</strong>：几何 <code>G</code>、拟像 <code>T</code>、附标 <code>X</code>、远期汉字 <code>Z</code>，右 Shift 切换英文直通。</li>
+          <li><strong>双顺序无缝投影</strong>：<code>BCDA</code>（先规则后视觉）与 <code>ABCD</code>（先视觉/大类后规则）同源切换。</li>
+          <li><strong>半码 G8 聚合与平铺</strong>：1–3 位支持按全码桶聚合代表字（降序排列、显示补全后缀与字数），也支持平铺全部。</li>
+          <li><strong>双态候选窗</strong>：收起态 ≤9 项数字直选；<code>Ctrl+Shift+E</code> 切换全铺网格，保持高亮焦点。</li>
+          <li><strong>反查与引导演示</strong>：支持字符、码点、四码前缀与中文关键词反查，并一键在虚拟键盘亮灯引导按键。</li>
+        </ul>
+      </article>
+
+      <article class="card-box">
+        <h3>2. UI 与视觉风格</h3>
+        <ul class="muted" style="padding-left:18px;margin:0">
+          <li><strong>字形标本盒气质</strong>：固定卡片外框与低饱和角标，字形永远是视觉核心。</li>
+          <li><strong>深色墨绿 / 浅纸色双主题</strong>：白底黑字雪碧图在深色下自动反色增透，保证细笔画锐利可见。</li>
+          <li><strong>不可见与附标显形</strong>：附标自动加虚线圆底座 <code>◌</code> 预览，上屏提交原始码点。</li>
+          <li><strong>三色状态 + 文字双提示</strong>：绿（几何）、琥珀（拟像）、蓝（附标）与文字标签同步呈现，不靠猜色。</li>
+        </ul>
+      </article>
+
+      <article class="card-box">
+        <h3>3. 默认快捷键（可在实体键盘试按）</h3>
+        <table class="kbd-table">
+          <tbody>
+            <tr><td><kbd>A–Z</kbd></td><td>输入编码（同步高亮虚拟键帽）</td></tr>
+            <tr><td><kbd>1–9</kbd></td><td>收起态直选候选 / 进入聚合桶</td></tr>
+            <tr><td><kbd>Space</kbd> / <kbd>Enter</kbd></td><td>确认高亮候选或自动补全桶</td></tr>
+            <tr><td><kbd>Ctrl+Shift+E</kbd></td><td>切换候选窗收起 / 全铺网格</td></tr>
+            <tr><td><kbd>Ctrl+`</kbd></td><td>打开模式菜单（1–4 切层，U 反查）</td></tr>
+            <tr><td><kbd>右 Shift</kbd> 单按</td><td>切换 Unicode / 英文直通</td></tr>
+            <tr><td><kbd>Backspace</kbd> / <kbd>Esc</kbd></td><td>退回上一键位 / 取消当前组字</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <section class="card-box">
+      <h3>4. 与已收集资料及后续 Windows TSF 的衔接</h3>
+      <p class="muted" style="margin-bottom:8px">
+        当前线上版本仅包含运行时必需的纯静态体验文件，原工程与本地参考文件保留在独立工作树。
+        网页原型验证完成后，Windows TSF 正式实现只需把 <code>v7-engine.js</code> 的查询契约（四码双向索引、半码聚合、双态候选、雪碧/字体回退、代理对上屏）平移为本地后台索引服务 + Direct2D 候选窗。
+      </p>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const btn = document.getElementById('homeThemeBtn');
+      let theme = localStorage.getItem('v7_proto_theme') || 'dark';
+      function sync() {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('v7_proto_theme', theme);
+        btn.textContent = theme === 'dark' ? '☀ 浅色主题' : '🌙 深色主题';
+      }
+      btn.onclick = () => { theme = theme === 'dark' ? 'light' : 'dark'; sync(); };
+      sync();
+    })();
+  </script>
+</body>
+</html>
