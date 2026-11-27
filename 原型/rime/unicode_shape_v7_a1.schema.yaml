@@ -1,0 +1,48 @@
+schema:
+  schema_id: unicode_shape_v7_a1
+  name: 全形 v7-A1（BCDA）
+  version: "7.1"
+  icon: icons/unicode_mode_2.ico
+  ascii_icon: icons/unicode_mode_ascii.ico
+  dependencies: [unicode_shape_v7_a1_expanded]
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [形码, 西文]
+engine:
+  processors: [lua_processor@*unicode_v7_panel, key_binder, ascii_composer, speller, selector, navigator, express_editor]
+  segmentors: [ascii_segmentor, abc_segmentor, fallback_segmentor]
+  translators: [table_translator]
+speller:
+  alphabet: abcdefghijklmnopqrstuvwxyz
+  max_code_length: 4
+  auto_select: false
+translator:
+  dictionary: unicode_shape_v7_a1
+  enable_completion: false
+  enable_sentence: false
+  enable_user_dict: false
+  enable_charset_filter: false
+  encode_commit_history: false
+menu:
+  page_size: 9
+ascii_composer:
+  switch_key:
+    Shift_L: noop
+    Shift_R: commit_text
+key_binder:
+  import_preset: default
+  bindings:
+
+style:
+  font_face: "Microsoft YaHei, Segoe UI Symbol, Noto Sans Symbols2, Unifont:0:FFFF, Unifont Upper:10000:10FFFF, Essenfont BMP U17:0:FFFF, Essenfont SMP U17:10000:1FFFF, Essenfont SIP U17:20000:2FFFF, Essenfont TIP U17:30000:3FFFF"
+  label_format: "%s"
+  hover_type: semi_hilite
+  horizontal: true
+  layout:
+    type: horizontal
+    min_width: 630
+    max_width: 630
+    min_height: 100
+    candidate_spacing: 12
+  paging_on_scroll: true
